@@ -1,0 +1,60 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+    - local: .gitlab/ci/prepare.gitlab-ci.yml
+    - local: .gitlab/ci/snippet.gitlab-ci.yml
+
+.run-ebt-rule:
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - mas/apps/ebt/**/*
+
+# ebt-lint:
+#     extends:
+#         - .run-ebt-rule
+#         - .use-python-and-pyd-cache
+#     stage: lint
+#     variables:
+#         EBT_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/python/ebt"
+#     needs:
+#         - job: prepare-python-dependencies
+#           optional: true
+#         - job: build-all-pyd
+#     tags:
+#         - windows
+#     script:
+#         - mkdir "${EBT_ARTIFACT_DIR}"
+#         - yarn workspace @mas/protobuf gen:py
+#         - poetry run pyright mas/apps/ebt --outputjson > "${EBT_ARTIFACT_DIR}/pyright_raw.json"
+#     after_script:
+#         - poetry run pyright-to-gitlab-ci --src "${EBT_ARTIFACT_DIR}/pyright_raw.json" --output "${EBT_ARTIFACT_DIR}/pyright.json" --base_path "${CI_PROJECT_DIR}"
+#     artifacts:
+#         expire_in: 3 day
+#         reports:
+#             codequality: ${EBT_ARTIFACT_DIR}/pyright.json
+
+ebt-test:
+    extends:
+        - .run-ebt-rule
+        - .use-python-and-pyd-cache
+    stage: test
+    variables:
+        EBT_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/python/ebt"
+    needs:
+        - job: prepare-python-dependencies
+          optional: true
+        - job: build-all-pyd
+    tags:
+        - windows
+    script:
+        - yarn workspace @mas/protobuf gen:py
+        - yarn workspace @mas/ebt test --junit-xml="${EBT_ARTIFACT_DIR}/pytest.xml" --cov --cov-report=term --cov-report=xml:"${EBT_ARTIFACT_DIR}/pytest-cov.xml"
+    coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+    artifacts:
+        expire_in: 3 day
+        reports:
+            junit: ${EBT_ARTIFACT_DIR}/pytest.xml
+            coverage_report:
+                coverage_format: cobertura
+                path: ${EBT_ARTIFACT_DIR}/pytest-cov.xml

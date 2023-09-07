@@ -1,0 +1,4 @@
+.conda-activate:
+    script:
+        - if (test-path $PROFILE.CurrentUserAllHosts) { & $PROFILE.CurrentUserAllHosts }
+        - conda activate ./.venv

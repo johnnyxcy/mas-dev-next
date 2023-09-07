@@ -1,0 +1,40 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+    - local: .gitlab/ci/prepare.gitlab-ci.yml
+    - local: .gitlab/ci/snippet.gitlab-ci.yml
+
+.run-build-maspectra-app-rule:
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          when: manual
+        - if: $CI_PIPELINE_SOURCE == "push"
+          when: manual
+        - when: never
+
+build-maspectra-Windows-x64:
+    stage: package
+    extends:
+        - .run-build-maspectra-app-rule
+        - .use-python-cxx-node-cache
+    allow_failure: true
+    variables:
+        DIST_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/dist"
+    needs:
+        - job: prepare-python-dependencies
+          optional: true
+        - job: prepare-node-dependencies
+          optional: true
+        - job: prepare-cxx-dependencies
+          optional: true
+
+    tags:
+        - windows
+    script:
+        - yarn workspace @mas/maspectra package --output "${DIST_ARTIFACT_DIR}"
+    timeout: 60 minutes
+    artifacts:
+        name: "maspectra-win-x64"
+        expire_in: 1 week
+        paths:
+            - ${DIST_ARTIFACT_DIR}/setup-*.exe

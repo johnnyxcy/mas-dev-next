@@ -1,0 +1,138 @@
+# ================== Python Begins ==================
+.python-cache: &python-cache
+    key:
+        files:
+            - poetry.lock
+        prefix: python
+    paths:
+        - .venv/
+
+.python-cache-push: &python-cache-push
+    <<: *python-cache
+    policy: push
+
+.python-cache-pull: &python-cache-pull
+    <<: *python-cache
+    policy: pull
+
+# Use
+.use-python-cache:
+    cache:
+        - *python-cache-pull
+
+# Update
+.update-python-cache:
+    cache:
+        - *python-cache-push
+
+# ================== Python Ends ==================
+
+# ================== Nodejs Begins ==================
+.node_modules-cache: &node_modules-cache
+    key:
+        files:
+            - yarn.lock
+        prefix: node_modules
+    paths:
+        - node_modules/
+        - mas/libs/*/node_modules/
+        - mas/apps/*/node_modules/
+        - mas/protobuf/node_modules/
+        - mas/i18n/node_modules/
+        - mas/apps/maspectra/src/node_modules/ # special case
+        - mas/apps/maspectra/release/maspectra/node_modules/ # special case
+
+.node_modules-cache-push: &node_modules-cache-push
+    <<: *node_modules-cache
+    policy: push
+
+.node_modules-cache-pull: &node_modules-cache-pull
+    <<: *node_modules-cache
+    policy: pull
+
+# Use
+.use-node_modules-cache:
+    cache:
+        - *node_modules-cache-pull
+
+# Update
+.update-node_modules-cache:
+    cache:
+        - *node_modules-cache-push
+# ================== Nodejs Ends ==================
+
+# ================== CXX Begins ==================
+.cxx-cache: &cxx-cache
+    key:
+        files:
+            - mas/vendor/package.json
+        prefix: cxx
+    paths:
+        - .local
+
+.cxx-cache-push: &cxx-cache-push
+    <<: *cxx-cache
+    policy: push
+
+.cxx-cache-pull: &cxx-cache-pull
+    <<: *cxx-cache
+    policy: pull
+
+# Use
+.use-cxx-cache:
+    cache:
+        - *cxx-cache-pull
+
+# Update
+.update-cxx-cache:
+    cache:
+        - *cxx-cache-push
+# ================== CXX Ends ==================
+
+# ================== pyd Begins ==================
+.pyd-build-cache: &pyd-build-cache
+    key: ${CI_COMMIT_REF_SLUG}-pyd-build
+    paths:
+        - mas/libs/crobat/build/
+        - mas/libs/seel/build/
+        - mas/libs/ditto/build/
+
+.pyd-build-cache-push: &pyd-build-cache-push
+    <<: *pyd-build-cache
+    policy: push
+
+.pyd-build-cache-pull: &pyd-build-cache-pull
+    <<: *pyd-build-cache
+    policy: pull
+# ================== pyd Ends ==================
+
+# ================== Mixed Begins ==================
+.build-pyd-cache:
+    cache:
+        - *cxx-cache-pull
+        - *python-cache-pull
+        - *pyd-build-cache-push
+
+.use-python-and-node-cache:
+    cache:
+        - *python-cache-pull
+        - *node_modules-cache-pull
+
+.use-python-and-pyd-cache:
+    cache:
+        - *python-cache-pull
+        - *pyd-build-cache-pull
+
+.use-python-cxx-pyd-cache:
+    cache:
+        - *cxx-cache-pull
+        - *python-cache-pull
+        - *pyd-build-cache-pull
+
+.use-python-cxx-node-cache:
+    cache:
+        - *cxx-cache-pull
+        - *python-cache-pull
+        - *node_modules-cache-pull
+# ================== Mixed Ends ==================
+

@@ -1,0 +1,20 @@
+codebase_index:
+    stage: indexing
+    allow_failure: true
+    needs: []
+    tags:
+        - linux
+    script:
+        - echo "👓 Indexing..."
+        - export NVM_DIR="$HOME/.nvm"
+        - \. "$NVM_DIR/nvm.sh"
+        - echo "{\"extends\":\"./tsconfig.path.json\",\"include\":[\"./mas\"],\"exclude\":[\"**/node_modules\", \"tmp\", \".jest\", \"dist\", \"build\", \"dll\", \"vendor\"],\"files\":[]}" > tsconfig.json
+        - lsif-tsc -p . --out codebase.lsif
+        - rm tsconfig.json
+        # lsif-py 存在错误的判断 CircularDependencyError 问题
+        # - python3.10 ./mas/vendor/lsif-py/lsif-py ./mas --exclude-dir ./mas/vendor --file codebase.lsif
+    artifacts:
+        expire_in: 3 day
+        reports:
+            lsif:
+                - codebase.lsif

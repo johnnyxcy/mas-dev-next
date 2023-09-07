@@ -1,0 +1,21 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+    - local: .gitlab/ci/prepare.gitlab-ci.yml
+    - local: .gitlab/ci/snippet.gitlab-ci.yml
+
+build-all-pyd:
+    stage: build
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    extends:
+        - .build-pyd-cache
+    tags:
+        - windows
+    needs:
+        - job: prepare-python-dependencies
+          optional: true
+        - job: prepare-cxx-dependencies
+          optional: true
+    script:
+        - yarn build:all-pyd

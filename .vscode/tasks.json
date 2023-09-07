@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cmake",
+            "label": "[CMake]build-all",
+            "command": "build",
+            "targets": ["all"],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "CMake 构建所有 targets"
+        },
+        {
+            "label": "TestMate discovery",
+            "command": "${command:test-explorer.reload}",
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "Generate Protobuf",
+            "type": "shell",
+            "command": "yarn workspace @mas/protobuf gen",
+            "problemMatcher": [],
+            "detail": "生成 Protobuf"
+        },
+        {
+            "label": "Generate pyd",
+            "type": "shell",
+            "command": "yarn build:all-pyd",
+            "problemMatcher": [],
+            "detail": "生成所有 pyd",
+        }
+    ]
+}

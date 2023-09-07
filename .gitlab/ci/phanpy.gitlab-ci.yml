@@ -1,0 +1,56 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+    - local: .gitlab/ci/prepare.gitlab-ci.yml
+    - local: .gitlab/ci/snippet.gitlab-ci.yml
+
+.run-phanpy-rule:
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - mas/libs/phanpy/**/*
+
+# phanpy-lint:
+#     extends:
+#         - .run-phanpy-rule
+#         - .use-python-cache
+#     stage: lint
+#     variables:
+#         PHANPY_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/python/phanpy"
+#     needs:
+#         - job: prepare-python-dependencies
+#           optional: true
+#     tags:
+#         - windows
+#     script:
+#         - mkdir "${PHANPY_ARTIFACT_DIR}"
+#         - poetry run pyright mas/libs/phanpy --outputjson > "${PHANPY_ARTIFACT_DIR}/pyright_raw.json"
+#     after_script:
+#         - poetry run pyright-to-gitlab-ci --src "${PHANPY_ARTIFACT_DIR}/pyright_raw.json" --output "${PHANPY_ARTIFACT_DIR}/pyright.json" --base_path "${CI_PROJECT_DIR}"
+#     artifacts:
+#         expire_in: 3 day
+#         reports:
+#             codequality: ${PHANPY_ARTIFACT_DIR}/pyright.json
+
+phanpy-test:
+    extends:
+        - .run-phanpy-rule
+        - .use-python-cache
+    stage: test
+    variables:
+        PHANPY_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/python/phanpy"
+    needs:
+        - job: prepare-python-dependencies
+          optional: true
+    tags:
+        - windows
+    script:
+        - yarn workspace @mas/phanpy test --junit-xml="${PHANPY_ARTIFACT_DIR}/pytest.xml" --cov --cov-report=term --cov-report=xml:"${PHANPY_ARTIFACT_DIR}/pytest-cov.xml"
+    coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+    artifacts:
+        expire_in: 3 day
+        reports:
+            junit: ${PHANPY_ARTIFACT_DIR}/pytest.xml
+            coverage_report:
+                coverage_format: cobertura
+                path: ${PHANPY_ARTIFACT_DIR}/pytest-cov.xml

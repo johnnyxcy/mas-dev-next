@@ -1,0 +1,78 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Environment Configuration
+.env
+# .env-prod | .env-dev | .env-test
+.env-*
+
+# compiled output
+dist
+/build
+
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/cmake-kits.json
+
+# misc
+.jest
+.cache
+.artifact
+*.lsif
+*.profraw
+.eslintcache
+connect.lock
+coverage
+npm-debug.log
+yarn-error.log
+testem.log
+tsconfig.tsbuildinfo
+
+# cmake
+cmake-build-debug
+cmake-build-release
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# python caches
+**/__pycache__
+**/.mypy_cache
+**/.pytest_cache
+.coverage
+
+# python venv
+.venv
+
+# umi
+**/.umi
+
+# temp
+tmp
+tmp-*
+tmp.*
+.tmp
+temp
+temp-*
+temp.*
+.temp
+
+.local
+
+.Rproj.user

@@ -1,0 +1,49 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+
+prepare-node-dependencies: # 处理 node 环境依赖相关
+    stage: .pre
+    extends: .update-node_modules-cache
+    rules:
+        - changes:
+              paths:
+                  - yarn.lock
+              compare_to: HEAD~
+    tags:
+        - windows
+    retry: 2
+    script:
+        - echo "🚅 正在准备新的 node_modules 缓存..."
+        - yarn --frozen-lockfile --network-timeout 1000000
+
+prepare-python-dependencies:  # 处理 python 环境依赖相关
+    stage: .pre
+    rules:
+        - changes:
+              paths:
+                  - poetry.lock
+              compare_to: HEAD~
+    extends: .update-python-cache
+    tags:
+        - windows
+    script:
+        - echo "🚅 正在准备新的 python 缓存..."
+        - python -m pip install -U poetry==1.4.0
+        - python -m poetry install --no-root
+
+prepare-cxx-dependencies:  # 处理 python 环境依赖相关
+    stage: .pre
+    rules:
+        - changes:
+              paths:
+                  - mas/vendor/package.json
+              compare_to: HEAD~
+    extends: .update-cxx-cache
+    variables:
+        PREPARE_CXX_BOOST_BUILD_DIR: "${CI_PROJECT_DIR}/buildboost"
+    tags:
+        - windows
+    script:
+        - echo "🚅 正在准备新的 CXX .local 缓存..."
+        - python ./common/scripts/prepare_cxx.py

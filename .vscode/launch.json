@@ -1,0 +1,87 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "[launch]@mas/maspectra:main",
+            "type": "node",
+            "request": "launch",
+            "protocol": "inspector",
+            "cwd": "${workspaceFolder}/mas/apps/maspectra",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": ["start"],
+            "env": {
+                "MAIN_ARGS": "--inspect=5858 --remote-debugging-port=9223",
+                "PORT": "1212",
+                "NODE_ENV": "development"
+            },
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "name": "[attach]@mas/maspectra:renderer",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9223,
+            "webRoot": "${workspaceFolder}/mas/apps/maspectra",
+            "timeout": 999999,
+            "presentation": {
+                "hidden": true
+            }
+        },
+        {
+            "name": "[launch]@mas/ebt",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/mas/apps/ebt/__main__.py",
+            "args": [
+                "--port",
+                "${input:port}",
+                "--secret",
+                "dasstudio2019",
+                "--log",
+                "${workspaceFolder}/mas/apps/ebt/.tmp/ebt.dev.log",
+                "--debug"
+            ],
+            "envFile": "${workspaceFolder}/.env",
+            "autoReload": {
+                "enable": true
+            },
+            "justMyCode": true,
+            "presentation": {
+                "hidden": false,
+                "order": 2
+            }
+        },
+        {
+            "name": "[attach]py-clang",
+            "type": "lldb",
+            "request": "attach",
+            "program": "${workspaceFolder}/.venv/bin/python",
+            "pid": "${command:pickMyProcess}",
+            "presentation": {
+                "hidden": false,
+                "order": 3
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "[launch]@mas/maspectra",
+            "stopAll": true,
+            "configurations": ["[launch]@mas/maspectra:main", "[attach]@mas/maspectra:renderer"],
+            "presentation": {
+                "hidden": false,
+                "order": 1
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "type": "promptString",
+            "id": "port",
+            "description": "Port = ",
+            "default": "6001"
+        }
+    ]
+}

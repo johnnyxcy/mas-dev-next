@@ -1,0 +1,61 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+    - local: .gitlab/ci/prepare.gitlab-ci.yml
+    - local: .gitlab/ci/snippet.gitlab-ci.yml
+
+.run-masmod-rule:
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - mas/libs/masmod/**/*
+
+# masmod-lint:
+#     extends:
+#         - .run-masmod-rule
+#         - .use-python-and-pyd-cache
+#     stage: lint
+#     variables:
+#         MASMOD_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/python/masmod"
+#     needs:
+#         - job: prepare-python-dependencies
+#           optional: true
+#         - job: build-all-pyd
+#     tags:
+#         - windows
+#     script:
+#         - mkdir "${MASMOD_ARTIFACT_DIR}"
+#         - poetry run pyright mas/libs/masmod --outputjson > "${MASMOD_ARTIFACT_DIR}/pyright_raw.json"
+#     after_script:
+#         - poetry run pyright-to-gitlab-ci --src "${MASMOD_ARTIFACT_DIR}/pyright_raw.json" --output "${MASMOD_ARTIFACT_DIR}/pyright.json" --base_path "${CI_PROJECT_DIR}"
+#     artifacts:
+#         expire_in: 3 day
+#         reports:
+#             codequality: ${MASMOD_ARTIFACT_DIR}/pyright.json
+
+masmod-test:
+    extends:
+        - .run-masmod-rule
+        - .use-python-cxx-pyd-cache
+    stage: test
+    variables:
+        MASMOD_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/python/masmod"
+        MASMOD_SKIP_COMPILE_IF_EXISTS: 0
+    needs:
+        - job: prepare-python-dependencies
+          optional: true
+        - job: prepare-cxx-dependencies
+          optional: true
+        - job: build-all-pyd
+    tags:
+        - windows
+    script:
+        - yarn workspace @mas/masmod test --junit-xml="${MASMOD_ARTIFACT_DIR}/pytest.xml" --cov --cov-report=term --cov-report=xml:"${MASMOD_ARTIFACT_DIR}/pytest-cov.xml"
+    coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+    artifacts:
+        expire_in: 3 day
+        reports:
+            junit: ${MASMOD_ARTIFACT_DIR}/pytest.xml
+            coverage_report:
+                coverage_format: cobertura
+                path: ${MASMOD_ARTIFACT_DIR}/pytest-cov.xml

@@ -1,0 +1,81 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+    - local: .gitlab/ci/prepare.gitlab-ci.yml
+
+# .run-components-rule:
+#     rules:
+#         - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+#           changes:
+#               - mas/libs/components/**/*
+
+# components-lint:
+#     stage: lint
+#     extends:
+#         - .run-components-rule
+#         - .use-python-and-node-cache
+#     variables:
+#         COMPONENTS_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/nodejs/components"
+#     tags:
+#         - windows
+#     needs:
+#         - job: prepare-python-dependencies
+#           optional: true
+#         - job: prepare-node-dependencies
+#           optional: true
+#     script:
+#         - yarn workspace @mas/components lint:tsc
+#         - yarn workspace @mas/components lint --format junit --output-file ${COMPONENTS_ARTIFACT_DIR}/eslint-junit.xml
+#     artifacts:
+#         expire_in: 3 day
+#         reports:
+#             junit: ${COMPONENTS_ARTIFACT_DIR}/eslint-junit.xml
+
+# components-test:
+#     stage: test
+#     extends:
+#         - .run-components-rule
+#         - .use-python-and-node-cache
+#     variables:
+#         COMPONENTS_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/nodejs/components"
+#         JEST_JUNIT_OUTPUT_DIR: ${COMPONENTS_ARTIFACT_DIR}
+#         JEST_JUNIT_OUTPUT_NAME: "jest-junit.xml"
+#         JEST_COVERAGE_OUT_DIR: ${COMPONENTS_ARTIFACT_DIR}
+#     tags:
+#         - windows
+#     needs:
+#         - job: prepare-node-dependencies
+#           optional: true
+#     script:
+#         - yarn workspace @mas/components test --coverage --reporters=default --reporters=jest-junit --ci
+#     coverage: '/^All files[^|]*\|[^|]*\s+([\d\.]+)/'
+#     artifacts:
+#         expire_in: 1 week
+#         reports:
+#             junit: ${JEST_JUNIT_OUTPUT_DIR}/${JEST_JUNIT_OUTPUT_NAME}
+#             coverage_report:
+#                 coverage_format: cobertura
+#                 path: ${JEST_COVERAGE_OUT_DIR}/cobertura-coverage.xml
+
+components-build:
+    stage: package
+    extends:
+        - .use-node_modules-cache
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          when: manual
+    allow_failure: true
+    needs:
+        - job: prepare-node-dependencies
+          optional: true
+    variables:
+        COMPONENTS_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/nodejs/components"
+    tags:
+        - windows
+    script:
+        - yarn workspace @mas/components storybook:build -o ${COMPONENTS_ARTIFACT_DIR}/storybook
+    artifacts:
+        name: "components-storybook"
+        expire_in: 1 week
+        paths:
+            - ${COMPONENTS_ARTIFACT_DIR}/storybook

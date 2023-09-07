@@ -1,0 +1,56 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+    - local: .gitlab/ci/prepare.gitlab-ci.yml
+    - local: .gitlab/ci/snippet.gitlab-ci.yml
+
+.run-maspy-rule:
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - mas/libs/maspy/**/*
+
+# maspy-lint:
+#     extends:
+#         - .run-maspy-rule
+#         - .use-python-cache
+#     stage: lint
+#     variables:
+#         MASPY_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/python/maspy"
+#     needs:
+#         - job: prepare-python-dependencies
+#           optional: true
+#     tags:
+#         - windows
+#     script:
+#         - mkdir "${MASPY_ARTIFACT_DIR}"
+#         - poetry run pyright mas/libs/maspy --outputjson > "${MASPY_ARTIFACT_DIR}/pyright_raw.json"
+#     after_script:
+#         - poetry run pyright-to-gitlab-ci --src "${MASPY_ARTIFACT_DIR}/pyright_raw.json" --output "${MASPY_ARTIFACT_DIR}/pyright.json" --base_path "${CI_PROJECT_DIR}"
+#     artifacts:
+#         expire_in: 3 day
+#         reports:
+#             codequality: ${MASPY_ARTIFACT_DIR}/pyright.json
+
+maspy-test:
+    extends:
+        - .run-maspy-rule
+        - .use-python-cache
+    stage: test
+    variables:
+        MASPY_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/python/maspy"
+    needs:
+        - job: prepare-python-dependencies
+          optional: true
+    tags:
+        - windows
+    script:
+        - yarn workspace @mas/maspy test --junit-xml="${MASPY_ARTIFACT_DIR}/pytest.xml" --cov --cov-report=term --cov-report=xml:"${MASPY_ARTIFACT_DIR}/pytest-cov.xml"
+    coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+    artifacts:
+        expire_in: 3 day
+        reports:
+            junit: ${MASPY_ARTIFACT_DIR}/pytest.xml
+            coverage_report:
+                coverage_format: cobertura
+                path: ${MASPY_ARTIFACT_DIR}/pytest-cov.xml

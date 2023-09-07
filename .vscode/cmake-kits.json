@@ -1,0 +1,30 @@
+[
+    {
+        "name": "MSVC in virtualenv (Windows)",
+        "visualStudio": "57059b25",
+        "visualStudioArchitecture": "x64",
+        "isTrusted": true,
+        "preferredGenerator": {
+          "name": "Visual Studio 17 2022",
+          "platform": "x64",
+          "toolset": "host=x64"
+        },
+        "environmentSetupScript": "${workspaceFolder}/.venv/Scripts/activate"
+    },
+    {
+        "name": "GNU in virtualenv (Windows)",
+        "compilers": {
+            "C": "gcc",
+            "CXX": "g++"
+        },
+        "environmentSetupScript": "${workspaceFolder}/.venv/Scripts/activate"
+    },
+    {
+        "name": "GNU in virtualenv (Darwin)",
+        "compilers": {
+            "C": "gcc",
+            "CXX": "g++"
+        },
+        "environmentSetupScript": "${workspaceFolder}/.venv/bin/activate"
+    }
+]

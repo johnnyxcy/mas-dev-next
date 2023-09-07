@@ -1,0 +1,58 @@
+include:
+    - local: .gitlab/ci/cache.gitlab-ci.yml
+    - local: .gitlab/ci/variables.gitlab-ci.yml
+    - local: .gitlab/ci/prepare.gitlab-ci.yml
+
+.run-noctowl-rule:
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - mas/libs/noctowl/**/*
+
+# noctowl-lint:
+#     stage: lint
+#     extends:
+#         - .run-noctowl-rule
+#         - .use-python-and-node-cache
+#     variables:
+#         NOCTOWL_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/nodejs/noctowl"
+#     tags:
+#         - windows
+#     needs:
+#         - job: prepare-python-dependencies
+#           optional: true
+#         - job: prepare-node-dependencies
+#           optional: true
+#     script:
+#         - yarn workspace @mas/noctowl lint:tsc
+#         - yarn workspace @mas/noctowl lint --format junit --output-file ${NOCTOWL_ARTIFACT_DIR}/eslint-junit.xml
+#     artifacts:
+#         expire_in: 3 day
+#         reports:
+#             junit: ${NOCTOWL_ARTIFACT_DIR}/eslint-junit.xml
+
+noctowl-test:
+    stage: test
+    extends:
+        - .run-noctowl-rule
+        - .use-node_modules-cache
+    variables:
+        NOCTOWL_ARTIFACT_DIR: "${CI_ARTIFACT_DIR}/nodejs/noctowl"
+        JEST_JUNIT_OUTPUT_DIR: ${NOCTOWL_ARTIFACT_DIR}
+        JEST_JUNIT_OUTPUT_NAME: "jest-junit.xml"
+        JEST_COVERAGE_OUT_DIR: ${NOCTOWL_ARTIFACT_DIR}
+    tags:
+        - windows
+    needs:
+        - job: prepare-node-dependencies
+          optional: true
+    script:
+        - yarn workspace @mas/noctowl test --coverage --reporters=default --reporters=jest-junit --ci
+    coverage: '/^All files[^|]*\|[^|]*\s+([\d\.]+)/'
+    artifacts:
+        expire_in: 3 day
+        reports:
+            junit: ${JEST_JUNIT_OUTPUT_DIR}/${JEST_JUNIT_OUTPUT_NAME}
+            coverage_report:
+                coverage_format: cobertura
+                path: ${JEST_COVERAGE_OUT_DIR}/cobertura-coverage.xml

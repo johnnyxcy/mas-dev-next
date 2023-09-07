@@ -1,0 +1,15 @@
+variables:
+    CI_ARTIFACT_DIR: "$CI_PROJECT_DIR/.artifact"
+
+    GIT_SUBMODULE_STRATEGY: recursive
+
+    # 解决缓存过慢的问题
+    FF_USE_FASTZIP: "true" # enable fastzip - a faster zip implementation that also supports level configuration.
+    ARTIFACT_COMPRESSION_LEVEL: default # can also be set to fastest, fast, slow and slowest. If just enabling fastzip is not enough try setting this to fastest or fast.
+    CACHE_COMPRESSION_LEVEL: default # same as above, but for caches
+    TRANSFER_METER_FREQUENCY: 5s # will display transfer progress every 5 seconds for artifacts and remote caches.
+
+    # 缓存路径
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    POETRY_CACHE_DIR: "$CI_PROJECT_DIR/.cache/poetry"
+    YARN_CACHE_FOLDER: "$CI_PROJECT_DIR/.cache/yarn"
