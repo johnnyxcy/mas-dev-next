@@ -28,7 +28,7 @@
         // 更详细的补全内容
         "--completion-style=detailed"
     ],
-    "cmake.configureArgs": ["-DCODE_COVERAGE=ON", "-DMAS_SKIP_PYD=ON", "-DMAS_SKIP_TESTS=OFF"],
+    "cmake.configureArgs": ["-DMAS_SKIP_PYD=ON", "-DMAS_SKIP_TESTS=OFF"],
     "cmake.preferredGenerators": ["Ninja"],
     "cSpell.words": [
         "acks",
@@ -206,7 +206,11 @@
         "*.webpack.ts": "webpack"
     },
     "material-icon-theme.folders.associations": {
-        "runtime": "connection"
+        "runtime": "connection",
+        "c++": "project",
+        ".cmake": "tools",
+        ".debug": "debug",
+        ".scripts": "scripts"
     },
     "psi-header.changes-tracking": {
         "autoHeader": "manualSave",
@@ -259,19 +263,7 @@
     "python.analysis.stubPath": "mas/py-stubs",
     "python.analysis.typeCheckingMode": "strict",
     "python.envFile": "${workspaceFolder}/.env",
-    "python.formatting.provider": "yapf",
-    "python.formatting.yapfArgs": ["--style=${workspaceFolder}/.style.yapf"],
     "python.languageServer": "Pylance",
-    "python.linting.cwd": "${workspaceFolder}",
-    "python.linting.enabled": true,
-    "python.linting.mypyArgs": [
-        "--config-file=${workspaceFolder}/pyproject.toml",
-        "--hide-error-codes",
-        "--no-pretty"
-    ],
-    "python.linting.mypyEnabled": false,
-    "python.linting.pydocstyleArgs": ["--config=${workspaceFolder}/pyproject.toml"],
-    "python.linting.pydocstyleEnabled": false,
     "python.testing.cwd": "${workspaceFolder}",
     "python.testing.pytestArgs": ["-s"],
     "python.testing.pytestEnabled": true,
@@ -290,7 +282,7 @@
         "args": "${argsArray}",
         "cwd": "${cwd}",
         "env": "${envObj}",
-        "initCommands": ["command source ${workspaceRoot}/.lldbinit"],
+        "initCommands": ["command source ${workspaceRoot}/c++/.lldbinit"],
         "program": "${exec}",
         "sourceFileMap": "${sourceFileMapObj}",
         "terminal": "integrated",
@@ -299,7 +291,7 @@
     "testMate.cpp.log.logpanel": true,
     "testMate.cpp.test.advancedExecutables": [
         {
-            "pattern": "build/**/*test*",
+            "pattern": "c++/build/**/*test*",
             "runTask": {
                 "before": ["[CMake]build-all"]
             }
