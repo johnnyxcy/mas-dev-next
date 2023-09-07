@@ -1,0 +1,11 @@
+{
+    "name": "mas-dev",
+    "version": "0.0.0",
+    "description": "mas-dev Typescript project monorepo",
+    "author": {
+        "name": "Maspectra Dev Team",
+        "email": "mas@drugchina.net",
+        "url": "https://www.maspectra.com"
+    },
+    "private": true
+}
