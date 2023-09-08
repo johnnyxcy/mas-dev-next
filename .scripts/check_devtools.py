@@ -1,14 +1,14 @@
 # _*_ coding: utf-8 _*_
 ############################################################
-# File: .scripts/check_devtools.py
+# File: mas-dev/.scripts/check_devtools.py
 #
 # Author: 许翀轶 <chongyi.xu@drugchina.net>
 #
 # File Created: 08/03/2023 01:20 pm
 #
-# Last Modified: 09/07/2023 10:48 am
+# Last Modified: 09/08/2023 11:40 am
 #
-# Modified By: Chongyi Xu <johnny.xcy1997@outlook.com>
+# Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
 #
 # Copyright (c) 2023 Maspectra Dev Team
 ############################################################
@@ -97,13 +97,11 @@ def check_cmake_version() -> bool:
         如果符合规范, 返回 True
     """
     logger.info("👉 Checking CMake version ^3.22")
-    return_code, cmake_version_output = subprocess.getstatusoutput(
-        "cmake --version")
+    return_code, cmake_version_output = subprocess.getstatusoutput("cmake --version")
     if return_code != 0:
         logger.error("❌ cmake is not installed")
         return False
-    cmake_version = re.findall(r"cmake version ([0-9]+\.[0-9]+\.[0-9]+)",
-                               cmake_version_output.splitlines()[0])[0]
+    cmake_version = re.findall(r"cmake version ([0-9]+\.[0-9]+\.[0-9]+)", cmake_version_output.splitlines()[0])[0]
     if cmake_version and cmake_version >= "3.22.0":
         logger.info(f"✅ cmake {cmake_version}")
         return True
@@ -119,14 +117,12 @@ def check_ninja_version() -> bool:
         Required: Ninja@^1.10
     """
     logger.info("👉 Checking Ninja version ^1.10")
-    return_code, ninja_version_output = subprocess.getstatusoutput(
-        "ninja --version")
+    return_code, ninja_version_output = subprocess.getstatusoutput("ninja --version")
     if return_code != 0:
         logger.error("❌ Ninja is not installed")
         return False
 
-    if re.match(r"[0-9]+\.[0-9]+\.[0-9]+",
-                ninja_version_output) and ninja_version_output >= "1.10.0":
+    if re.match(r"[0-9]+\.[0-9]+\.[0-9]+", ninja_version_output) and ninja_version_output >= "1.10.0":
         logger.info(f"✅ Ninja {ninja_version_output}")
         return True
     else:
@@ -141,11 +137,13 @@ def check_devtools() -> None:
     cmake_version_is_valid = check_cmake_version()
     ninja_version_is_valid = check_ninja_version()
 
-    if py_version_is_valid and \
-        node_version_is_valid and \
-        yarn_version_is_valid and \
-        cmake_version_is_valid and \
-        ninja_version_is_valid:
+    if (
+        py_version_is_valid
+        and node_version_is_valid
+        and yarn_version_is_valid
+        and cmake_version_is_valid
+        and ninja_version_is_valid
+    ):
         logger.info(f"😁 [OK] Devtools are all valid")
         return
     else:

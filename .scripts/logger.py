@@ -1,14 +1,14 @@
 # _*_ coding: utf-8 _*_
 ############################################################
-# File: .scripts/logger.py
+# File: mas-dev/.scripts/logger.py
 #
 # Author: Chongyi Xu <johnny.xcy1997@outlook.com>
 #
 # File Created: 09/07/2023 10:45 am
 #
-# Last Modified: 09/07/2023 10:48 am
+# Last Modified: 09/08/2023 11:40 am
 #
-# Modified By: Chongyi Xu <johnny.xcy1997@outlook.com>
+# Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
 #
 # Copyright (c) 2023 Maspectra Dev Team
 ############################################################
@@ -19,20 +19,20 @@ import typing
 
 
 class _ConsoleLoggerFormatter(logging.Formatter):
-    grey = '\x1b[38;20m'
-    light_green = '\x1b[92;20m'
-    yellow = '\x1b[33;20m'
-    red = '\x1b[31;20m'
-    bold_red = '\x1b[31;1m'
-    reset = '\x1b[0m'
-    record_fmt = '[%(levelname)s][%(asctime)s] %(message)s'
+    grey = "\x1b[38;20m"
+    light_green = "\x1b[92;20m"
+    yellow = "\x1b[33;20m"
+    red = "\x1b[31;20m"
+    bold_red = "\x1b[31;1m"
+    reset = "\x1b[0m"
+    record_fmt = "[%(levelname)s][%(asctime)s] %(message)s"
 
     FORMATS = {
         logging.DEBUG: grey + record_fmt + reset,
         logging.INFO: light_green + record_fmt + reset,
         logging.WARNING: yellow + record_fmt + reset,
         logging.ERROR: red + record_fmt + reset,
-        logging.CRITICAL: bold_red + record_fmt + reset
+        logging.CRITICAL: bold_red + record_fmt + reset,
     }
 
     def format(self, record: logging.LogRecord) -> str:
