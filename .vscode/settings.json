@@ -198,12 +198,14 @@
     ],
     "files.associations": {
         "*.spec": "python",
-        ".coveragerc": "plaintext"
+        ".coveragerc": "plaintext",
+        "*.json5": "jsonc"
     },
     "jestrunner.changeDirectoryToWorkspaceRoot": false,
     "jupyter.notebookFileRoot": "${workspaceFolder}",
     "material-icon-theme.files.associations": {
-        "*.webpack.ts": "webpack"
+        "*.webpack.ts": "webpack",
+        "*.eslint.js": "eslint"
     },
     "material-icon-theme.folders.associations": {
         "runtime": "connection",
