@@ -18,6 +18,7 @@ black = "^23.7.0"
 
 [tool.poetry.group.dev.dependencies]
 colorama = "^0.4.6"
+gitpython = "^3.1.35"
 
 [tool.black]
 line-length = 119
@@ -32,8 +33,13 @@ exclude = '''
 (
     node_modules
     | __pycache__
+    | \.vscode
+    | \.git
+    | \.eggs
+    | \.pytest_cache
+    | \.ipynb_checkpoints
     | dist
-    | .dist
+    | \.dist
     | static
     | release
     | assets

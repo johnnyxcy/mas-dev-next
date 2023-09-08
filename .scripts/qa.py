@@ -6,7 +6,7 @@
 #
 # File Created: 09/08/2023 10:50 am
 #
-# Last Modified: 09/08/2023 11:17 am
+# Last Modified: 09/08/2023 11:26 am
 #
 # Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
 #
@@ -25,7 +25,7 @@ import colorama
 
 IQAUse = typing.Literal["eslint", "prettier", "pytest", "pyright", "black", "autoflake", "isort"]
 
-REPO_ROOT: typing.Final[pathlib.Path] = pathlib.Path(__file__).parent.parent.parent.resolve().absolute()
+REPO_ROOT: typing.Final[pathlib.Path] = pathlib.Path(__file__).parent.parent.resolve().absolute()
 
 
 @dataclass

@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-poetry run python common/scripts/verify_commit.py $* || {
+poetry run python .scripts/verify_commit.py $* || {
     echo
     echo "commit-msg hook failed (add --no-verify to bypass)"
     exit 1
