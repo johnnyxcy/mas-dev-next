@@ -1,19 +1,23 @@
 /*
- * File: mas-dev/.prettierrc.js
+ * File: mas-dev/.prettierrc.cjs
  *
- * Author: Chongyi Xu <johnny.xcy1997@outlook.com>
+ * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
- * File Created: 09/07/2023 10:35 am
+ * File Created: 09/07/2023 05:34 pm
  *
- * Last Modified: 09/07/2023 10:35 am
+ * Last Modified: 09/08/2023 09:58 am
  *
- * Modified By: Chongyi Xu <johnny.xcy1997@outlook.com>
+ * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
 // Documentation for this file: https://prettier.io/docs/en/configuration.html
 // Documentation for options: https://prettier.io/docs/en/options.html
-module.exports = {
+
+/**
+ * @type {import("prettier").Config}
+ */
+const config = {
     // We use a larger print width because Prettier's word-wrapping seems to be tuned
     // for plain JavaScript without type annotations
     printWidth: 119,
@@ -36,7 +40,7 @@ module.exports = {
 
     // For ES5, trailing commas cannot be used in function parameters; it is counterintuitive
     // to use them for arrays only
-    trailingComma: "none",
+    trailingComma: "all",
 
     // Print spaces between brackets in object literals.
     bracketSpacing: true,
@@ -47,5 +51,17 @@ module.exports = {
     bracketSameLine: false,
 
     // Include parentheses around a sole arrow function parameter.
-    arrowParens: "always"
+    arrowParens: "always",
+
+    overrides: [
+        {
+            files: ["*.json", "*.json5", "*.jsonc"],
+            options: {
+                quoteProps: "preserve",
+                trailingComma: "none",
+            },
+        },
+    ],
 };
+
+module.exports = config;

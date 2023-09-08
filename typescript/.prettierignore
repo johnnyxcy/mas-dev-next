@@ -4,28 +4,8 @@
 # 👋 (copy + paste your .gitignore file contents here) 👋
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# compiled output
-dist
-build
-
 # dependencies
 node_modules
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 
 # misc
 /.sass-cache
@@ -40,20 +20,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# python caches
-**/__pycache__
-**/.mypy_cache
-**/.pytest_cache
-
-# python venv
-.venv
-
-# temp
-tmp
-.tmp
-temp
-
-.umi
 
 #-------------------------------------------------------------------------------------------------------------------
 # Prettier-specific overrides
@@ -65,9 +31,3 @@ CHANGELOG.*
 pnpm-lock.yaml
 yarn.lock
 package-lock.json
-
-# Build outputs
-dist
-build
-dll
-

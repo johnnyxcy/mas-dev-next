@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.node.json",
+    "compilerOptions": {
+        // ensure that nobody can accidentally use this config for a build
+        "noEmit": true,
+        "emitDeclarationOnly": true
+    },
+    "include": ["src", "vite.config.ts", "jest.config.ts", "package.json"]
+}
