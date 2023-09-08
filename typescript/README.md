@@ -1,1 +1,0 @@
-# mas-dev@Typescript project

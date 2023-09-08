@@ -5,9 +5,9 @@
         "visualStudioArchitecture": "x64",
         "isTrusted": true,
         "preferredGenerator": {
-          "name": "Visual Studio 17 2022",
-          "platform": "x64",
-          "toolset": "host=x64"
+            "name": "Visual Studio 17 2022",
+            "platform": "x64",
+            "toolset": "host=x64"
         },
         "environmentSetupScript": "${workspaceFolder}/.venv/Scripts/activate"
     },

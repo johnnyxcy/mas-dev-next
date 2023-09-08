@@ -23,6 +23,7 @@ node_modules
 
 # IDE - VSCode
 .vscode/*
+!.vscode/.debug.script.mjs
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
