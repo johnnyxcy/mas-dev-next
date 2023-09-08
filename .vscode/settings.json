@@ -6,9 +6,13 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[python]": {
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "autoDocstring.docstringFormat": "google",
+    "black-formatter.args": ["--config", "${workspaceFolder}/python/pyproject.toml"],
     "clangd.arguments": [
         // "--query-driver=C:/ProgramData/Development/mingw64/bin/g++",
         // 支持读取 .clangd 文件
@@ -262,7 +266,6 @@
     ],
     "python.analysis.autoImportCompletions": false,
     "python.analysis.completeFunctionParens": false,
-    "python.analysis.stubPath": "mas/py-stubs",
     "python.analysis.typeCheckingMode": "strict",
     "python.envFile": "${workspaceFolder}/.env",
     "python.languageServer": "Pylance",

@@ -1,0 +1,84 @@
+[tool.poetry]
+name = "mas-dev-python"
+version = "0.0.0"
+description = "mas-dev python project"
+authors = ["Maspectra Dev Team <mas@drugchina.net>"]
+readme = "README.md"
+
+[[tool.poetry.source]]
+name = "tsinghua"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple/"
+default = true
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.qa.dependencies]
+black = "^23.7.0"
+
+[tool.poetry.group.dev.dependencies]
+colorama = "^0.4.6"
+
+[tool.black]
+line-length = 119
+target-version = ["py310"]
+include = '''
+(
+     \.pyi?$
+   | \.py?$
+)
+'''
+exclude = '''
+(
+    node_modules
+    | __pycache__
+    | dist
+    | .dist
+    | static
+    | release
+    | assets
+    | temp
+    | \.tmp
+    | \.temp
+    | \.venv
+)
+'''
+
+[tool.pyright]
+pythonVersion = "3.10.8"
+
+typeCheckingMode = "strict"
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/dist",
+    "**/.dist",
+    "**/release",
+    "**/static",
+    "**/assets",
+    "**/.tmp",
+    "**/vendor",
+    ".venv",
+]
+# ignore = ["mas/protobuf"]
+# stubPath = "mas/py-stubs"
+
+reportUnusedExpression = "error"
+reportMissingTypeStubs = "none"
+reportUnnecessaryComparison = "none"
+reportUnnecessaryIsInstance = "none"
+reportConstantRedefinition = "none"
+reportInvalidStringEscapeSequence = "none"
+
+# pandas did terrible job on this
+reportUnknownVariableType = "warning"
+reportMissingTypeArgument = "warning"
+reportUnknownArgumentType = "warning"
+reportUnknownMemberType = "none"
+reportUnknownParameterType = "warning"
+reportIncompatibleMethodOverride = "warning"
+reportPrivateUsage = "none"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
