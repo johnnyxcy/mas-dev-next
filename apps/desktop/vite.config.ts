@@ -1,39 +1,48 @@
 import { rmSync } from "node:fs";
 
 import react from "@vitejs/plugin-react";
-import { defineConfig, UserConfig } from "vite";
+import { defineConfig } from "vite";
 import electron from "vite-plugin-electron";
 import renderer from "vite-plugin-electron-renderer";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 import pkg from "./package.json";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }): UserConfig => {
-    rmSync(".dist", { recursive: true, force: true });
+export default defineConfig(({ command }) => {
+    rmSync(".dist/", { recursive: true, force: true });
 
     const isServe = command === "serve";
     const isBuild = command === "build";
-    const withSourcemap = isServe || !!process.env.VSCODE_DEBUG;
+    const isVscodeDebug = !!process.env._VSCODE_DEBUG;
+    const sourcemap = isServe || isVscodeDebug;
 
     return {
         plugins: [
+            tsconfigPaths(),
             react(),
             electron([
                 {
                     // Main-Process entry file of the Electron App.
-                    entry: "platform/main.ts",
+                    entry: "src/platform/main.ts",
                     onstart(options) {
-                        if (process.env.VSCODE_DEBUG) {
-                            console.info(/* For `.vscode/.debug.script.mjs` */ "[startup] Electron App");
+                        if (isVscodeDebug) {
+                            if (!process.env._REMOTE_DEBUGGING_PORT) {
+                                throw new Error(
+                                    "Missing environment variable `_REMOTE_DEBUGGING_PORT` with vscode debugging.",
+                                );
+                            }
+                            options.startup([`--remote-debugging-port=${process.env._REMOTE_DEBUGGING_PORT}`, "."]);
+                            // console.log(/* For `.vscode/.debug.script.mjs` */ "[startup] Electron App");
                         } else {
                             options.startup();
                         }
                     },
                     vite: {
                         build: {
-                            sourcemap: withSourcemap,
+                            sourcemap,
                             minify: isBuild,
-                            outDir: ".dist/main",
+                            outDir: ".dist/platform",
                             rollupOptions: {
                                 external: Object.keys("dependencies" in pkg ? pkg.dependencies : {}),
                             },
@@ -41,7 +50,7 @@ export default defineConfig(({ command }): UserConfig => {
                     },
                 },
                 {
-                    entry: "platform/preload.ts",
+                    entry: "src/platform/preload.ts",
                     onstart(options) {
                         // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
                         // instead of restarting the entire Electron App.
@@ -49,9 +58,9 @@ export default defineConfig(({ command }): UserConfig => {
                     },
                     vite: {
                         build: {
-                            sourcemap: withSourcemap ? "inline" : undefined, // #332
+                            sourcemap: sourcemap ? "inline" : undefined, // #332
                             minify: isBuild,
-                            outDir: ".dist/preload",
+                            outDir: ".dist/platform",
                             rollupOptions: {
                                 external: Object.keys("dependencies" in pkg ? pkg.dependencies : {}),
                             },
@@ -62,9 +71,10 @@ export default defineConfig(({ command }): UserConfig => {
             // Use Node.js API in the Renderer-process
             renderer(),
         ],
-        server: process.env.VSCODE_DEBUG
+        server: isVscodeDebug
             ? (() => {
-                  const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL);
+                  //   const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL);
+                  const url = new URL("http://127.0.0.1:7777");
                   return {
                       host: url.hostname,
                       port: +url.port,

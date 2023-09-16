@@ -17,44 +17,6 @@
             "runOptions": {
                 "runOn": "folderOpen"
             }
-        },
-        {
-            "label": "Generate Protobuf",
-            "type": "shell",
-            "command": "yarn workspace @mas/protobuf gen",
-            "problemMatcher": [],
-            "detail": "生成 Protobuf"
-        },
-        {
-            "label": "Generate pyd",
-            "type": "shell",
-            "command": "yarn build:all-pyd",
-            "problemMatcher": [],
-            "detail": "生成所有 pyd"
-        },
-        {
-            "label": "[Maspectra] Before Debug",
-            "type": "shell",
-            "command": "node .vscode/.debug.script.mjs",
-            "isBackground": true,
-            "problemMatcher": {
-                "owner": "typescript",
-                "fileLocation": "relative",
-                "pattern": {
-                    // TODO: correct "regexp"
-                    "regexp": "^([a-zA-Z]\\:/?([\\w\\-]/?)+\\.\\w+):(\\d+):(\\d+): (ERROR|WARNING)\\: (.*)$",
-                    "file": 1,
-                    "line": 3,
-                    "column": 4,
-                    "code": 5,
-                    "message": 6
-                },
-                "background": {
-                    "activeOnStart": true,
-                    "beginsPattern": "^.*VITE v.*  ready in \\d* ms.*$",
-                    "endsPattern": "^.*\\[startup\\] Electron App.*$"
-                }
-            }
         }
     ]
 }

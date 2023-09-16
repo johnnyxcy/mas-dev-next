@@ -2,11 +2,14 @@
 
 # Environment Configuration
 .env
+# .prod.env | .dev.env | .test.env
+.*.env
 # .env-prod | .env-dev | .env-test
 .env-*
 
 # compiled output
 dist
+.dist
 /build
 
 # dependencies

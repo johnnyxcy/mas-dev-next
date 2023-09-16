@@ -1,29 +1,30 @@
 /*
- * File: @mas/maspectra/.eslintrc.js
+ * File: @mas/desktop/.eslintrc.js
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
- * File Created: 09/08/2023 10:17 am
+ * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/08/2023 10:25 am
+ * Last Modified: 09/13/2023 03:21 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
+
 /**
  * @type {import("eslint").Linter.Config}
  */
-const config = {
+module.exports = {
     extends: [require.resolve("@mas/eslint-config/react.eslint")],
     parserOptions: {
         project: require.resolve("./tsconfig.eslint.json"),
         tsconfigRootDir: __dirname,
     },
-    ignorePatterns: [".eslintrc.js", "static", "node_modules"],
+    ignorePatterns: [".eslintrc.js", "node_modules"],
     overrides: [
         {
-            files: ["scripts/*"],
+            files: [".scripts/*", "*.config.ts"],
             rules: {
                 "global-require": "off",
                 "no-console": "off",
@@ -35,16 +36,5 @@ const config = {
                 "@typescript-eslint/no-restricted-imports": "off",
             },
         },
-        {
-            files: ["*.config.ts"],
-            rules: {
-                "global-require": "off",
-                "no-console": "off",
-                "import/no-dynamic-require": "off",
-                "@typescript-eslint/no-restricted-imports": "off",
-            },
-        },
     ],
 };
-
-module.exports = config;

@@ -1,11 +1,11 @@
 /*
- * File: @mas/maspectra/.scripts/.debug.script.mjs
+ * File: @mas/desktop/.scripts/debug.mjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
- * File Created: 09/08/2023 10:42 am
+ * File Created: 09/13/2023 04:03 pm
  *
- * Last Modified: 09/08/2023 10:47 am
+ * Last Modified: 09/13/2023 05:18 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -20,12 +20,18 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const pkg = createRequire(import.meta.url)("../package.json");
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const packageDir = path.dirname(__dirname);
+const pkg = createRequire(import.meta.url)("../package.json");
+
+console.info("========================================");
+console.info("Debugging @mas/desktop v%s", pkg.version);
 
 // write .debug.env
+const dotenvName = ".debug.env";
+const dotenvFp = path.join(packageDir, dotenvName);
 const envContent = Object.entries(pkg.debug.env).map(([key, val]) => `${key}=${val}`);
-fs.writeFileSync(path.join(__dirname, ".debug.env"), envContent.join("\n"));
+fs.writeFileSync(dotenvFp, envContent.join("\n"));
 
 // bootstrap
 spawn(
@@ -35,5 +41,12 @@ spawn(
     {
         stdio: "inherit",
         env: Object.assign(process.env, { VSCODE_DEBUG: "true" }),
+        cwd: packageDir,
     },
-);
+).once("exit", (code) => {
+    process.exit(code ?? undefined);
+});
+
+process.on("exit", () => {
+    fs.rmSync(dotenvFp);
+});

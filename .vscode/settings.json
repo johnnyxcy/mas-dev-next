@@ -207,8 +207,13 @@
     },
     "jestrunner.changeDirectoryToWorkspaceRoot": false,
     "jupyter.notebookFileRoot": "${workspaceFolder}",
+    "json.schemas": [
+        {
+            "fileMatch": ["/*electron-builder.json5", "/*electron-builder.json"],
+            "url": "https://json.schemastore.org/electron-builder"
+        }
+    ],
     "material-icon-theme.files.associations": {
-        "*.webpack.ts": "webpack",
         "*.eslint.js": "eslint"
     },
     "material-icon-theme.folders.associations": {

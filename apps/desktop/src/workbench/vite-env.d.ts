@@ -1,14 +1,14 @@
 /*
- * File: @mas/maspectra/src/platform/main.ts
+ * File: @mas/desktop/src/workbench/vite-env.d.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
- * File Created: 09/08/2023 10:19 am
+ * File Created: 09/13/2023 03:23 pm
  *
- * Last Modified: 09/08/2023 10:20 am
+ * Last Modified: 09/13/2023 03:23 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-const Variable = "123";
+/// <reference types="vite/client" />

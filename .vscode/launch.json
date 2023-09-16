@@ -2,69 +2,58 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "[launch]@mas/maspectra:main",
+            "name": "[launch]@mas/desktop::main",
             "type": "node",
             "request": "launch",
-            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            // "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            // "windows": {
+            //     "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+            // },
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/vite",
             "windows": {
-                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/vite.cmd"
             },
-            "runtimeArgs": ["--no-sandbox", "--remote-debugging-port=9229", "."],
-            "envFile": "${workspaceFolder}/.vscode/.debug.env",
+            // "runtimeArgs": ["--remote-debugging-port=9229", "."],
+            "cwd": "${workspaceFolder}/apps/desktop",
+            // "envFile": "${workspaceFolder}/packages/desktop/.debug.env",
             "console": "integratedTerminal",
+            "env": {
+                "_VSCODE_DEBUG": "1",
+                "_REMOTE_DEBUGGING_PORT": "9229"
+            },
             "presentation": {
                 "hidden": true
             }
         },
         {
-            "name": "[attach]@mas/maspectra:renderer",
+            "name": "[attach]@mas/desktop::renderer",
             "port": 9229,
             "request": "attach",
             "type": "chrome",
             "timeout": 60000,
+            "webRoot": "${workspaceFolder}/apps/desktop",
             "skipFiles": [
                 "<node_internals>/**",
                 "${workspaceRoot}/node_modules/**",
                 "${workspaceRoot}/**/node_modules/**",
-                "${workspaceRoot}/typescript/apps/maspectra/.dist/**",
+                "!${workspaceRoot}/apps/desktop/**",
+                "${workspaceRoot}/apps/desktop/.dist/**",
+                "${workspaceRoot}/apps/desktop/src/platform/**",
+                "${workspaceRoot}/apps/**/*",
                 // Skip files in host(VITE_DEV_SERVER_URL)
-                "http://127.0.0.1:9876/**"
+                "http://127.0.0.1:7777/**"
             ],
             "presentation": {
                 "hidden": true
-            }
-        },
-        {
-            "name": "[launch]@mas/ebt",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/mas/apps/ebt/__main__.py",
-            "args": [
-                "--port",
-                "${input:port}",
-                "--secret",
-                "dasstudio2019",
-                "--log",
-                "${workspaceFolder}/mas/apps/ebt/.tmp/ebt.dev.log",
-                "--debug"
-            ],
-            "envFile": "${workspaceFolder}/.env",
-            "autoReload": {
-                "enable": true
-            },
-            "justMyCode": true,
-            "presentation": {
-                "hidden": false,
-                "order": 2
             }
         }
     ],
     "compounds": [
         {
-            "name": "[launch]@mas/maspectra",
+            "name": "[launch]@mas/desktop",
             "stopAll": true,
-            "preLaunchTask": "[Maspectra] Before Debug",
-            "configurations": ["[launch]@mas/maspectra:main", "[attach]@mas/maspectra:renderer"],
+            // "preLaunchTask": "[debug]@mas/desktop::before",
+            "configurations": ["[launch]@mas/desktop::main", "[attach]@mas/desktop::renderer"],
             "presentation": {
                 "hidden": false,
                 "order": 1
