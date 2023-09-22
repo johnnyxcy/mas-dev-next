@@ -1,28 +1,42 @@
 /*
- * File: @mas/eslint-config/base.eslint.js
+ * File: @mas/tools/eslint/rules.eslint.js
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
- * File Created: 09/07/2023 05:21 pm
+ * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 09/08/2023 10:22 am
+ * Last Modified: 09/22/2023 02:21 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
+/**
+ * @type {import("eslint").Linter.Config}
+ */
 module.exports = {
     extends: [
+        "airbnb/hooks",
         "airbnb-base",
+        "airbnb-typescript",
         "airbnb-typescript/base",
         "plugin:import/typescript",
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
         "plugin:promise/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:react-redux/recommended",
+        "plugin:storybook/recommended",
         require.resolve("./restricted-path.eslint"),
     ],
-    plugins: ["unicorn", "prettier", "import", "@typescript-eslint"],
+    plugins: ["unicorn", "prettier", "import", "@typescript-eslint", "react", "react-hooks", "react-redux", "i18next"],
     parser: "@typescript-eslint/parser",
+    parserOptions: {
+        ecmaFeatures: {
+            jsx: true,
+        },
+    },
     settings: {
         "import/resolver": {
             // See https://github.com/benmosher/eslint-plugin-import/issues/1396#issuecomment-575727774 for line below
@@ -34,13 +48,17 @@ module.exports = {
         },
         "import/core-modules": ["electron"],
         "import/internal-regex": "^@mas/",
+        "react": {
+            createClass: "createReactClass", // Regex for Component Factory to use,
+            // default to "createReactClass"
+            pragma: "React", // Pragma to use, default to "React"
+            fragment: "Fragment", // Fragment to use (may be a property of <pragma>), default to "Fragment"
+            version: "18.2", // React version. "detect" automatically picks the version you have installed.
+        },
     },
     reportUnusedDisableDirectives: true,
     rules: {
-        /**
-         * IMPORTANT eslint override
-         */
-        // #region
+        // #region General
         "no-plusplus": "off",
         "no-bitwise": "off",
         "no-continue": "off",
@@ -73,6 +91,9 @@ module.exports = {
         "prefer-template": "off",
         "prefer-spread": "off",
         "prefer-const": ["error", { destructuring: "all", ignoreReadBeforeAssign: true }],
+        // #endregion
+
+        // #region unicorn
         "unicorn/empty-brace-spaces": "error",
         "unicorn/filename-case": ["error", { case: "kebabCase" }],
         "unicorn/import-style": "error",
@@ -111,28 +132,24 @@ module.exports = {
         "unicorn/require-array-join-separator": "error",
         "unicorn/string-content": ["error", { patterns: {} }],
         "unicorn/throw-new-error": "error",
+        // #endregion
+
+        // #region promise
         "promise/always-return": "off",
         "promise/catch-or-return": ["error", { allowThen: true, allowFinally: true }],
+        // #endregion
+
+        // #region @typescript-eslint
         "@typescript-eslint/ban-types": ["error", { types: { "{}": false, "Function": false } }],
         "@typescript-eslint/ban-ts-comment": ["error", { "ts-ignore": "allow-with-description" }],
         "@typescript-eslint/dot-notation": "off",
         // using prettier
         "@typescript-eslint/indent": "off",
         "@typescript-eslint/quotes": ["error", "double", { avoidEscape: true }],
-        "@typescript-eslint/comma-dangle": [
-            "error",
-            {
-                arrays: "never",
-                objects: "never",
-                imports: "never",
-                exports: "never",
-                functions: "never",
-            },
-        ],
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-useless-constructor": "off",
-        "@typescript-eslint/no-use-before-define": ["error", { typedefs: false, ignoreTypeReferences: true }],
+        "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/explicit-member-accessibility": [
             "error",
             {
@@ -152,6 +169,7 @@ module.exports = {
                 allowSingleExtends: true,
             },
         ],
+        "@typescript-eslint/no-redeclare": "off",
         "@typescript-eslint/comma-dangle": ["error", "always-multiline"],
         "@typescript-eslint/no-namespace": "off",
         "@typescript-eslint/no-this-alias": "off",
@@ -161,7 +179,6 @@ module.exports = {
         "@typescript-eslint/no-unused-vars": ["error", { destructuredArrayIgnorePattern: "^_", args: "none" }],
         // using type imports to resolve circular import error
         "@typescript-eslint/consistent-type-imports": ["error", { prefer: "no-type-imports" }],
-        "@typescript-eslint/member-ordering": "error",
         "@typescript-eslint/lines-between-class-members": "off",
         "@typescript-eslint/member-ordering": [
             "error",
@@ -192,6 +209,9 @@ module.exports = {
                 ],
             },
         ],
+        // #endregion
+
+        // #region Import
         "import/order": [
             "error",
             {
@@ -209,9 +229,25 @@ module.exports = {
         ],
         "import/no-relative-parent-imports": "off",
         "import/no-relative-packages": "off",
-        "import/no-unassigned-import": ["error", { allow: ["**/*.css"] }],
+        "import/no-unassigned-import": "off",
         "import/no-self-import": "error",
         "import/no-extraneous-dependencies": "off",
+        // #endregion
+
+        // #region React
+        "react/function-component-definition": ["error", { namedComponents: "arrow-function" }],
+        "react/no-typos": "error",
+        "react/no-unstable-nested-components": "error",
+        "react/no-unused-prop-types": "error",
+        "react/react-in-jsx-scope": "error",
+        "react/require-default-props": [
+            "error",
+            {
+                forbidDefaultForRequired: true,
+                classes: "defaultProps",
+                functions: "defaultArguments",
+            },
+        ],
         // #endregion
     },
     overrides: [
@@ -278,9 +314,97 @@ module.exports = {
             },
         },
         {
-            files: ["*.js", "*.jsx"],
+            files: ["*.tsx"],
             rules: {
-                "@typescript-eslint/explicit-function-return-type": "off",
+                "unicorn/no-useless-undefined": "off",
+                "no-restricted-exports": "off",
+                // 保证所有字符串都通过了 i18next
+                "i18next/no-literal-string": [
+                    "error",
+                    {
+                        mode: "jsx-text-only",
+                        message: "字符需要符合 i18n 规范",
+                    },
+                ],
+                "@typescript-eslint/explicit-function-return-type": [
+                    "error",
+                    {
+                        allowExpressions: true,
+                        allowTypedFunctionExpressions: true,
+                        allowHigherOrderFunctions: true,
+                        allowDirectConstAssertionInArrowFunctions: true,
+                        allowConciseArrowFunctionExpressionsStartingWithVoid: false,
+                    },
+                ],
+                "@typescript-eslint/naming-convention": [
+                    "error",
+                    {
+                        selector: "default",
+                        format: ["camelCase"],
+                        leadingUnderscore: "allow",
+                        trailingUnderscore: "allow",
+                    },
+                    {
+                        selector: "variable",
+                        format: ["camelCase", "UPPER_CASE", "PascalCase"],
+                        leadingUnderscore: "allow",
+                        trailingUnderscore: "allow",
+                    },
+                    {
+                        selector: "typeProperty",
+                        format: ["camelCase", "PascalCase"],
+                    },
+                    { selector: "objectLiteralProperty", format: null },
+                    {
+                        selector: "typeLike",
+                        format: ["PascalCase"],
+                        leadingUnderscore: "forbid",
+                        trailingUnderscore: "forbid",
+                    },
+                    {
+                        selector: "enumMember",
+                        format: ["UPPER_CASE"],
+                        leadingUnderscore: "forbid",
+                        trailingUnderscore: "forbid",
+                    },
+                    // Sometimes you might want to allow destructured properties to retain their original name,
+                    // even if it breaks your naming convention.
+                    {
+                        selector: "variable",
+                        modifiers: ["destructured"],
+                        format: null,
+                    },
+                    {
+                        selector: "variable",
+                        modifiers: ["global"],
+                        format: null,
+                    },
+                ],
+                "import/order": [
+                    "error",
+                    {
+                        "groups": ["builtin", "external", "internal", "sibling", "parent", "index", "type", "object"],
+                        "newlines-between": "always-and-inside-groups",
+                        "alphabetize": { order: "asc" },
+                        "pathGroups": [
+                            {
+                                pattern: "react",
+                                group: "builtin",
+                                position: "before",
+                            },
+                        ],
+                        "pathGroupsExcludedImportTypes": ["react"],
+                    },
+                ],
+            },
+        },
+        {
+            // or whatever matches stories specified in .storybook/main.js
+            files: ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+            rules: {
+                "i18next/no-literal-string": "off",
+                "import/no-extraneous-dependencies": "off",
+                "no-console": "off",
             },
         },
         {

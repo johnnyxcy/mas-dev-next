@@ -214,7 +214,8 @@
         }
     ],
     "material-icon-theme.files.associations": {
-        "*.eslint.js": "eslint"
+        "*.eslint.js": "eslint",
+        "*.jest.ts": "jest"
     },
     "material-icon-theme.folders.associations": {
         "runtime": "connection",

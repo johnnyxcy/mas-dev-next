@@ -5,7 +5,7 @@
  *
  * File Created: 09/07/2023 05:34 pm
  *
- * Last Modified: 09/08/2023 09:58 am
+ * Last Modified: 09/20/2023 04:12 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -59,6 +59,13 @@ const config = {
             options: {
                 quoteProps: "preserve",
                 trailingComma: "none",
+            },
+        },
+        {
+            files: ["*.md", "*.mdx"],
+            options: {
+                tabWidth: 2,
+                useTabs: false,
             },
         },
     ],

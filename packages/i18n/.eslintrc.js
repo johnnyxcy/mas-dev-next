@@ -1,5 +1,5 @@
 /*
- * File: @mas/desktop/.eslintrc.js
+ * File: i18n/.eslintrc.js
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *

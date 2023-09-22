@@ -1,0 +1,15 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "noEmit": false,
+        "composite": true,
+        "outDir": "lib",
+
+        "paths": {
+            "@mas/shared/*": ["./src/*"]
+        }
+    },
+    "include": ["src", "*.config.ts", "*.json"]
+    // "exclude": ["**/__tests__", "**/__test__"]
+}

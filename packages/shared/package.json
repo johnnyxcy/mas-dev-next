@@ -1,0 +1,31 @@
+{
+    "name": "@mas/shared",
+    "version": "1.0.0",
+    "description": "",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "directories": {
+        "lib": "lib/"
+    },
+    "files": [
+        "lib/**/*.{d.ts,js,js.map,json}"
+    ],
+    "scripts": {
+        "build": "tsc -b",
+        "test": "jest --coverage --verbose"
+    },
+    "keywords": [],
+    "author": {
+        "name": "Maspectra Dev Team",
+        "email": "mas@drugchina.net",
+        "url": "https://www.maspectra.com"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "inversify": "latest",
+        "reflect-metadata": "latest"
+    },
+    "devDependencies": {
+        "@mas/tools": "*"
+    }
+}
