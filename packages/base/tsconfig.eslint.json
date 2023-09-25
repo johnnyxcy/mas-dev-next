@@ -5,9 +5,5 @@
         "noEmit": true,
         "emitDeclarationOnly": true
     },
-    "include": [
-        // whatever paths you intend to lint
-        "eslint",
-        "*.config.ts"
-    ]
+    "include": ["src", "tests", "vite.config.ts", ".eslintrc.cjs"]
 }

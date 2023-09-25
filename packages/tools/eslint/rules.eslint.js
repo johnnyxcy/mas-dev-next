@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 09/22/2023 02:21 pm
+ * Last Modified: 09/25/2023 09:32 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -252,18 +252,8 @@ module.exports = {
     },
     overrides: [
         {
-            files: ["*.ts", "*.js"],
+            files: ["*.ts"],
             rules: {
-                "@typescript-eslint/explicit-function-return-type": [
-                    "error",
-                    {
-                        allowExpressions: true,
-                        allowTypedFunctionExpressions: true,
-                        allowHigherOrderFunctions: true,
-                        allowDirectConstAssertionInArrowFunctions: true,
-                        allowConciseArrowFunctionExpressionsStartingWithVoid: false,
-                    },
-                ],
                 "@typescript-eslint/naming-convention": [
                     "error",
                     {
@@ -311,6 +301,14 @@ module.exports = {
                         format: null,
                     },
                 ],
+            },
+        },
+        {
+            files: ["*.js"],
+            rules: {
+                "strict": "off",
+                "func-names": "off",
+                "@typescript-eslint/naming-convention": "off",
             },
         },
         {
@@ -408,10 +406,11 @@ module.exports = {
             },
         },
         {
-            files: ["**/__tests__/*.ts", "**/__tests__/**/*.ts", "**/__tests__/*.tsx", "**/__tests__/**/*.tsx"],
+            files: ["**/tests/*.ts", "**/tests/**/*.ts", "**/tests/*.tsx", "**/tests/**/*.tsx"],
             rules: {
                 "import/no-extraneous-dependencies": "off",
                 "@typescript-eslint/naming-convention": "off",
+                "@typescript-eslint/quotes": "off",
             },
         },
     ],

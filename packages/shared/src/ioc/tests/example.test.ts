@@ -1,16 +1,17 @@
 /*
- * File: @mas/shared/src/ioc/__tests__/example.test.ts
+ * File: @mas/shared/src/ioc/tests/example.test.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/20/2023 04:45 pm
  *
- * Last Modified: 09/22/2023 02:33 pm
+ * Last Modified: 09/25/2023 04:14 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
+import { describe, expect, it } from "vitest";
 
 import { Container, inject, injectable } from "@mas/shared/ioc";
 

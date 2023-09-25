@@ -1,10 +1,10 @@
 {
-    "name": "@mas/shared",
+    "name": "@mas/base",
     "version": "1.0.0",
     "description": "",
     "type": "module",
-    "main": ".dist/lib/shared.js",
-    "types": ".dist/types/shared.d.ts",
+    "main": ".dist/lib/base.js",
+    "types": ".dist/types/base.d.ts",
     "scripts": {
         "build": "vite build",
         "lint": "eslint ./src --config ./.eslintrc.js"
@@ -16,10 +16,7 @@
         "url": "https://www.maspectra.com"
     },
     "license": "ISC",
-    "dependencies": {
-        "inversify": "latest",
-        "reflect-metadata": "latest"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@mas/tools": "*"
     }

@@ -5,7 +5,7 @@
  *
  * File Created: 11/08/2022 10:01 am
  *
- * Last Modified: 09/08/2023 11:18 am
+ * Last Modified: 09/25/2023 05:15 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,12 +15,14 @@
 // @ts-check
 
 const path = require("path");
-const os = require("os");
 
 /**
  * @type {string[]}
  */
-const ignoreDirs = ["vendor/**/*", "static/**/*"];
+const ignoreDirs = [
+    "vendor/**/*", // vendor
+    "static/**/*", // static resource
+];
 
 /**
  * @type {string}

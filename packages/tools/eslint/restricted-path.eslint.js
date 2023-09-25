@@ -5,7 +5,7 @@
  *
  * File Created: 09/07/2023 05:22 pm
  *
- * Last Modified: 09/21/2023 08:07 pm
+ * Last Modified: 09/25/2023 05:36 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,12 +22,17 @@
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
-    rules: {
-        // "import/no-restricted-paths": [
-        //     "error",
-        //     {
-        //         zones: []
-        //     }
-        // ]
-    },
+    //     rules: {
+    //         "import/no-restricted-paths": [
+    //             "error",
+    //             {
+    //                 zones: [
+    //                     {
+    //                         target: "",
+    //                         from: "",
+    //                     },
+    //                 ],
+    //             },
+    //         ],
+    //     },
 };

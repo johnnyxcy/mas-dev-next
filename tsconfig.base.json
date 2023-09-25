@@ -28,6 +28,5 @@
         "noFallthroughCasesInSwitch": true,
         "useUnknownInCatchVariables": false
     },
-    "exclude": ["**/node_modules", "tmp", ".jest", "dist", "build"],
-    "files": ["node_modules/jest-expect-message/types/index.d.ts"]
+    "exclude": ["**/node_modules", "tmp", "dist", "build"]
 }

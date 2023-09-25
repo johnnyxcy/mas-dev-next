@@ -5,5 +5,5 @@
         "noEmit": true,
         "emitDeclarationOnly": true
     },
-    "include": ["src", "*.config.ts"]
+    "include": ["src", "vite.config.ts", ".eslintrc.cjs"]
 }

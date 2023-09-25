@@ -34,7 +34,6 @@ node_modules
 !.vscode/cmake-kits.json
 
 # misc
-.jest
 .cache
 .artifact
 *.lsif
