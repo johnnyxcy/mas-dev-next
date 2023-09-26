@@ -1,11 +1,11 @@
 /*
- * File: i18n/src/common/localization.ts
+ * File: @mas/i18n/src/common/localization.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/20/2023 02:57 pm
  *
- * Last Modified: 09/20/2023 04:21 pm
+ * Last Modified: 09/25/2023 10:41 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -14,19 +14,19 @@
 
 export const localizationPath = "/services/i18n";
 
-export const AsyncLocalizationProvider = Symbol("AsyncLocalizationProvider");
-export interface AsyncLocalizationProvider {
+export const IAsyncLocalizationProvider = Symbol("IAsyncLocalizationProvider");
+export interface IAsyncLocalizationProvider {
     getCurrentLanguage(): Promise<string>;
     setCurrentLanguage(languageId: string): Promise<void>;
-    getAvailableLanguages(): Promise<LanguageInfo[]>;
-    loadLocalization(languageId: string): Promise<Localization>;
+    getAvailableLanguages(): Promise<ILanguageInfo[]>;
+    loadLocalization(languageId: string): Promise<ILocalization>;
 }
 
-export interface Localization extends LanguageInfo {
+export interface ILocalization extends ILanguageInfo {
     translations: { [key: string]: string };
 }
 
-export interface LanguageInfo {
+export interface ILanguageInfo {
     languageId: string;
     languageName?: string;
     languagePack?: boolean;
@@ -45,7 +45,7 @@ export namespace Localization {
     }
 
     export function localize(
-        localization: Localization | undefined,
+        localization: ILocalization | undefined,
         key: string,
         defaultValue: string,
         ...args: FormatType[]

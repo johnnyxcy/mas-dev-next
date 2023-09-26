@@ -6,8 +6,8 @@
         "composite": true,
 
         "paths": {
-            "@mas/shared/*": ["./src/*"]
+            "@mas/contribution/*": ["./src/*"]
         }
     },
-    "include": ["src"]
+    "include": ["src", "tests"]
 }

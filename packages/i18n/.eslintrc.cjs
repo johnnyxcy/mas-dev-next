@@ -1,11 +1,11 @@
 /*
- * File: i18n/.eslintrc.js
+ * File: i18n/.eslintrc.cjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/20/2023 05:03 pm
+ * Last Modified: 09/25/2023 10:24 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *

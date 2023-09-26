@@ -18,9 +18,10 @@
     ],
     "devDependencies": {
         "@types/lint-staged": "^13.2.0",
+        "@types/eslint": "latest",
         "@types/node": "^20.5.9",
         "@vitejs/plugin-react": "latest",
-        "eslint": "^8.48.0",
+        "eslint": "latest",
         "husky": "^8.0.3",
         "lint-staged": "^14.0.1",
         "prettier": "^3.0.3",

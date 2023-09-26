@@ -1,11 +1,11 @@
 /*
- * File: @mas/shared/vite.config.ts
+ * File: @mas/i18n/vite.config.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 09/25/2023 05:01 pm
+ * Last Modified: 09/26/2023 01:45 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -36,7 +36,11 @@ export default defineConfig({
     build: {
         outDir: ".dist/lib",
         lib: {
-            entry: resolve(__dirname, "src/index.ts"),
+            entry: {
+                nls: resolve(__dirname, "src/nls.ts"),
+                common: resolve(__dirname, "src/common/index.ts"),
+                node: resolve(__dirname, "src/node/index.ts"),
+            },
             formats: ["es"],
         },
         chunkSizeWarningLimit: 1000,

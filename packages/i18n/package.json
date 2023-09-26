@@ -1,19 +1,63 @@
 {
-    "name": "i18n",
+    "name": "@mas/i18n",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+    "type": "module",
+    "main": "./.dist/lib/nls.js",
+    "types": "./.dist/types/nls.d.ts",
+    "files": [
+        ".dist"
+    ],
+    "exports": {
+        ".": {
+            "import": "./.dist/nls.js",
+            "require": "./.dist/nls.cjs"
+        },
+        "./common": {
+            "import": "./dist/common.js",
+            "require": "./dist/common.cjs"
+        },
+        "./node": {
+            "import": "./dist/node.js",
+            "require": "./dist/node.cjs"
+        }
     },
-    "keywords": [],
+    "typesVersions": {
+        "*": {
+            "nls": [
+                "./.dist/types/nls.d.ts"
+            ],
+            "common": [
+                "./.dist/types/common.d.ts"
+            ],
+            "node": [
+                "./.dist/types/node.d.ts"
+            ]
+        }
+    },
+    "scripts": {
+        "build": "vite build",
+        "test": "vitest --run --coverage",
+        "lint": "eslint ./src --config ./.eslintrc.js"
+    },
+    "keywords": [
+        "Internationalization",
+        "Translation",
+        "Infrastructure",
+        "Maspectra",
+        "Maspectra.App"
+    ],
     "author": {
         "name": "Maspectra Dev Team",
         "email": "mas@drugchina.net",
         "url": "https://www.maspectra.com"
     },
     "license": "ISC",
+    "dependencies": {
+        "inversify": "latest"
+    },
     "devDependencies": {
-        "@mas/tools": "*"
+        "@mas/tools": "*",
+        "@mas/contribution": "*"
     }
 }

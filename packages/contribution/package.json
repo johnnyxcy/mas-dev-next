@@ -1,12 +1,13 @@
 {
-    "name": "@mas/shared",
+    "name": "@mas/contribution",
     "version": "1.0.0",
     "description": "",
     "type": "module",
-    "main": ".dist/lib/shared.js",
-    "types": ".dist/types/shared.d.ts",
+    "main": ".dist/lib/contribution.js",
+    "types": ".dist/types/contribution.d.ts",
     "scripts": {
         "build": "vite build",
+        "test": "vitest --run --coverage",
         "lint": "eslint ./src --config ./.eslintrc.js"
     },
     "keywords": [],
@@ -17,8 +18,7 @@
     },
     "license": "ISC",
     "dependencies": {
-        "inversify": "latest",
-        "reflect-metadata": "latest"
+        "inversify": "latest"
     },
     "devDependencies": {
         "@mas/tools": "*"

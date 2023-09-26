@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 09/25/2023 09:32 pm
+ * Last Modified: 09/26/2023 01:58 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -46,7 +46,7 @@ module.exports = {
         "import/parsers": {
             "@typescript-eslint/parser": [".ts", ".tsx"],
         },
-        "import/core-modules": ["electron"],
+        "import/core-modules": ["electron", "vitest", "vite"],
         "import/internal-regex": "^@mas/",
         "react": {
             createClass: "createReactClass", // Regex for Component Factory to use,
@@ -71,6 +71,7 @@ module.exports = {
         "no-underscore-dangle": "off",
         "no-constant-condition": "off",
         "no-restricted-syntax": "off",
+        "no-restricted-exports": "off",
         "no-nested-ternary": "off",
         "no-lonely-if": "off",
         "no-prototype-builtins": "off",
@@ -140,7 +141,7 @@ module.exports = {
         // #endregion
 
         // #region @typescript-eslint
-        "@typescript-eslint/ban-types": ["error", { types: { "{}": false, "Function": false } }],
+        "@typescript-eslint/ban-types": ["error", { types: { "{}": false, "Function": false, "Object": false } }],
         "@typescript-eslint/ban-ts-comment": ["error", { "ts-ignore": "allow-with-description" }],
         "@typescript-eslint/dot-notation": "off",
         // using prettier
@@ -216,10 +217,17 @@ module.exports = {
             "error",
             {
                 "groups": ["builtin", "external", "internal", "type", "sibling", "parent", "index", "object"],
+                "pathGroups": [
+                    {
+                        pattern: "@mas/~/**",
+                        group: "external",
+                    },
+                ],
                 "newlines-between": "always-and-inside-groups",
                 "alphabetize": { order: "asc" },
             },
         ],
+        "import/extensions": "off",
         "import/prefer-default-export": "off",
         "import/no-useless-path-segments": [
             "error",
@@ -315,7 +323,6 @@ module.exports = {
             files: ["*.tsx"],
             rules: {
                 "unicorn/no-useless-undefined": "off",
-                "no-restricted-exports": "off",
                 // 保证所有字符串都通过了 i18next
                 "i18next/no-literal-string": [
                     "error",

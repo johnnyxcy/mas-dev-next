@@ -6,5 +6,5 @@
             "@mas/i18n/*": ["src/*"]
         }
     },
-    "include": ["src"]
+    "include": ["src", "tests"]
 }

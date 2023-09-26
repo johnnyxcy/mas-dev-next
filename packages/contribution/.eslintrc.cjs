@@ -1,11 +1,11 @@
 /*
- * File: @mas/shared/.eslintrc.cjs
+ * File: @mas/contribution/.eslintrc.cjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/25/2023 05:38 pm
+ * Last Modified: 09/25/2023 11:00 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
