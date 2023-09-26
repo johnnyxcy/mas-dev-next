@@ -10,21 +10,18 @@
     ],
     "exports": {
         ".": {
-            "import": "./.dist/nls.js",
-            "require": "./.dist/nls.cjs"
+            "import": "./.dist/lib/nls.js"
         },
         "./common": {
-            "import": "./dist/common.js",
-            "require": "./dist/common.cjs"
+            "import": "./.dist/lib/common.js"
         },
         "./node": {
-            "import": "./dist/node.js",
-            "require": "./dist/node.cjs"
+            "import": "./.dist/lib/node.js"
         }
     },
     "typesVersions": {
         "*": {
-            "nls": [
+            ".": [
                 "./.dist/types/nls.d.ts"
             ],
             "common": [

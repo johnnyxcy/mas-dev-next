@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 09/26/2023 01:58 pm
+ * Last Modified: 09/26/2023 05:16 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -68,6 +68,7 @@ module.exports = {
         "no-param-reassign": "off",
         "no-else-return": "off",
         "no-return-assign": "off",
+        "no-undef-init": "off",
         "no-underscore-dangle": "off",
         "no-constant-condition": "off",
         "no-restricted-syntax": "off",
@@ -219,8 +220,9 @@ module.exports = {
                 "groups": ["builtin", "external", "internal", "type", "sibling", "parent", "index", "object"],
                 "pathGroups": [
                     {
-                        pattern: "@mas/~/**",
-                        group: "external",
+                        pattern: "@mas/i18n",
+                        group: "internal",
+                        position: "before",
                     },
                 ],
                 "newlines-between": "always-and-inside-groups",
