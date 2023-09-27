@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 02:57 pm
  *
- * Last Modified: 09/25/2023 10:41 pm
+ * Last Modified: 09/26/2023 05:36 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,15 +22,15 @@ export interface IAsyncLocalizationProvider {
     loadLocalization(languageId: string): Promise<ILocalization>;
 }
 
-export interface ILocalization extends ILanguageInfo {
-    translations: { [key: string]: string };
-}
-
 export interface ILanguageInfo {
     languageId: string;
     languageName?: string;
     languagePack?: boolean;
     localizedLanguageName?: string;
+}
+
+export interface ILocalization extends ILanguageInfo {
+    translations: { [key: string]: string };
 }
 
 export type FormatType = string | number | boolean | undefined;

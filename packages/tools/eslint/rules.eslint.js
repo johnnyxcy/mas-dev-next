@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 09/26/2023 05:16 pm
+ * Last Modified: 09/27/2023 03:51 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -82,7 +82,7 @@ module.exports = {
         "no-template-curly-in-string": "off",
         "no-promise-executor-return": "off",
         "operator-assignment": "off",
-        "func-names": "error",
+        "func-names": "off",
         "guard-for-in": "off",
         "quote-props": ["error", "consistent"],
         "no-console": ["error", { allow: ["warn", "error"] }],
@@ -131,7 +131,7 @@ module.exports = {
         "unicorn/prefer-object-from-entries": "error",
         "unicorn/prefer-regexp-test": "error",
         "unicorn/relative-url-style": "error",
-        "unicorn/require-array-join-separator": "error",
+        "unicorn/require-array-join-separator": "off",
         "unicorn/string-content": ["error", { patterns: {} }],
         "unicorn/throw-new-error": "error",
         // #endregion

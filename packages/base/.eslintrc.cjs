@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/25/2023 09:25 pm
+ * Last Modified: 09/27/2023 03:52 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -23,6 +23,33 @@ module.exports = {
     },
     ignorePatterns: [".eslintrc.js", "node_modules", "lib"],
     overrides: [
+        {
+            files: ["src/**/*.ts", "tests/**/*.ts"],
+            rules: {
+                "no-void": "off",
+                "no-fallthrough": "off",
+                "no-new-object": "off",
+                "no-console": "off",
+                "no-useless-return": "off",
+                "default-case": "off",
+                "one-var": "off",
+                "prefer-rest-params": "off",
+                "prefer-promise-reject-errors": "off",
+                "func-names": "off",
+                "promise/catch-or-return": "off",
+                "promise/param-names": "off",
+                "promise/no-return-wrap": "off",
+                "import/no-mutable-exports": "off",
+                "unicorn/no-array-push-push": "off",
+                "unicorn/no-useless-promise-resolve-reject": "off",
+                "@typescript-eslint/member-ordering": "off",
+                "@typescript-eslint/no-shadow": "off",
+                "@typescript-eslint/no-loop-func": "off",
+                "@typescript-eslint/no-throw-literal": "off",
+                "@typescript-eslint/naming-convention": "off",
+                "@typescript-eslint/consistent-type-imports": "off",
+            },
+        },
         {
             files: [".scripts/*", "*.config.ts"],
             rules: {

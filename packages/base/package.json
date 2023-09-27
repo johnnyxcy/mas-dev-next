@@ -7,7 +7,9 @@
     "types": ".dist/types/base.d.ts",
     "scripts": {
         "build": "vite build",
-        "lint": "eslint ./src --config ./.eslintrc.js"
+        "test:run": "vitest --run --coverage",
+        "test:ui": "vitest --ui --coverage",
+        "lint": "eslint ./src --config ./.eslintrc.cjs"
     },
     "keywords": [],
     "author": {

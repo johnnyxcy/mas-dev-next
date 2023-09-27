@@ -1,4 +1,3 @@
-/* eslint-disable prefer-rest-params, func-names */
 /*
  * File: @mas/base/src/common/objects.ts
  *
@@ -6,7 +5,7 @@
  *
  * File Created: 09/26/2023 05:26 pm
  *
- * Last Modified: 09/26/2023 05:28 pm
+ * Last Modified: 09/27/2023 01:25 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *

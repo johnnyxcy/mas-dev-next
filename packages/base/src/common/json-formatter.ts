@@ -1,4 +1,3 @@
-/* eslint-disable default-case */
 /*
  * File: @mas/base/src/common/json-formatter.ts
  *
@@ -6,7 +5,7 @@
  *
  * File Created: 09/26/2023 04:41 pm
  *
- * Last Modified: 09/26/2023 04:42 pm
+ * Last Modified: 09/27/2023 01:24 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *

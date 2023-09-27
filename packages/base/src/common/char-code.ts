@@ -11,7 +11,7 @@
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-/* eslint-disable @typescript-eslint/no-duplicate-enum-values, @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/no-duplicate-enum-values */
 
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.

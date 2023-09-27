@@ -30,7 +30,7 @@ export function createSingleCallFunction<T extends Function>(this: unknown, fn: 
         }
 
         didCall = true;
-        // eslint-disable-next-line prefer-rest-params
+
         result = fn.apply(_this, arguments);
 
         return result;

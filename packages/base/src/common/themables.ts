@@ -47,7 +47,6 @@ export namespace ThemeIcon {
     export const iconModifierExpression = "~[A-Za-z]+";
     export const iconNameCharacter = "[A-Za-z0-9~-]";
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     const ThemeIconIdRegex = new RegExp(`^(${iconNameExpression})(${iconModifierExpression})?$`);
 
     export function asClassNameArray(icon: ThemeIcon): string[] {

@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 06:04 pm
  *
- * Last Modified: 09/25/2023 06:04 pm
+ * Last Modified: 09/27/2023 01:33 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,7 +15,7 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import { ThemeIcon } from "@mas/base/common/themables";
+import { type ThemeIcon } from "@mas/base/common/themables";
 import { isString } from "@mas/base/common/types";
 
 const _codiconFontCharacters: { [id: string]: number } = Object.create(null);
