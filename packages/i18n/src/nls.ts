@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 09:42 pm
  *
- * Last Modified: 09/27/2023 10:59 am
+ * Last Modified: 09/27/2023 05:19 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -67,8 +67,12 @@ export namespace nls {
         return "";
     }
 
-    export function localize(key: string, defaultValue: string, ...args: FormatType[]): string {
-        return Localization.localize(localization, key, defaultValue, ...args);
+    export function localize(key: INlsInfo | string, defaultValue: string, ...args: FormatType[]): string {
+        if (typeof key === "object") {
+            return Localization.localize(localization, key.key, defaultValue, ...args);
+        } else {
+            return Localization.localize(localization, key, defaultValue, ...args);
+        }
     }
 
     export function isSelectedLocale(id: string): boolean {
