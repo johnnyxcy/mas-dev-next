@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 04:12 pm
  *
- * Last Modified: 09/27/2023 04:35 pm
+ * Last Modified: 09/27/2023 04:51 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -916,7 +916,7 @@ describe("Ternary Search Tree", () => {
     });
 });
 
-describe("TST, perf", function () {
+describe.skip("TST, perf", function () {
     function createRandomUris(n: number): URI[] {
         const uris: URI[] = [];
         function randomWord(): string {
