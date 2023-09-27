@@ -5,13 +5,13 @@
  *
  * File Created: 09/27/2023 11:05 am
  *
- * Last Modified: 09/27/2023 01:55 pm
+ * Last Modified: 09/27/2023 04:20 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-import { afterAll, beforeAll, describe, test } from "vitest";
+import { afterEach, beforeEach, describe, test } from "vitest";
 
 import {
     DisposableStore,
@@ -71,16 +71,16 @@ export async function assertThrowsAsync(
 export function ensureNoDisposablesAreLeakedInTestSuite(): Pick<DisposableStore, "add"> {
     let tracker: DisposableTracker | undefined;
     let store: DisposableStore;
-    beforeAll(() => {
+    beforeEach(() => {
         store = new DisposableStore();
         tracker = new DisposableTracker();
         setDisposableTracker(tracker);
     });
 
-    afterAll((context) => {
+    afterEach((context) => {
         store.dispose();
         setDisposableTracker(null);
-        if (context.result?.state !== "fail") {
+        if (context.task.result?.state !== "fail") {
             const result = tracker!.computeLeakingDisposables();
             if (result) {
                 console.error(result.details);
