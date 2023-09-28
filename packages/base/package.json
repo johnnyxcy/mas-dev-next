@@ -9,7 +9,7 @@
         "build": "vite build",
         "test:run": "vitest --run --coverage",
         "test:ui": "vitest --ui --coverage",
-        "lint": "eslint ./src --config ./.eslintrc.cjs"
+        "lint": "eslint ./src ./tests --config ./.eslintrc.cjs"
     },
     "keywords": [],
     "author": {
@@ -18,7 +18,10 @@
         "url": "https://www.maspectra.com"
     },
     "license": "ISC",
-    "dependencies": {},
+    "dependencies": {
+        "reflect-metadata": "latest",
+        "inversify": "latest"
+    },
     "devDependencies": {
         "@mas/i18n": "*",
         "@mas/tools": "*"

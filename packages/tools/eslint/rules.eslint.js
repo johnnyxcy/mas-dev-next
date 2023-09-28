@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 09/27/2023 03:51 pm
+ * Last Modified: 09/28/2023 09:04 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -150,6 +150,7 @@ module.exports = {
         "@typescript-eslint/quotes": ["error", "double", { avoidEscape: true }],
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-useless-constructor": "off",
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/explicit-member-accessibility": [

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
 /*
  * File: @mas/base/tests/common/path.test.ts
  *

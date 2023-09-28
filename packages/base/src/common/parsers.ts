@@ -1,11 +1,11 @@
 /*
- * File: @mas/base/src/common/parser.ts
+ * File: @mas/base/src/common/parsers.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/26/2023 05:25 pm
  *
- * Last Modified: 09/26/2023 05:25 pm
+ * Last Modified: 09/28/2023 08:46 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *

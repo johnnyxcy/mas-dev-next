@@ -212,7 +212,7 @@ describe("Types", () => {
     test("validateConstraints", () => {
         types.validateConstraints([1, "test", true], [Number, String, Boolean]);
         types.validateConstraints([1, "test", true], ["number", "string", "boolean"]);
-        // eslint-disable-next-line no-console
+
         types.validateConstraints([console.log], [Function]);
         types.validateConstraints([undefined], [types.isUndefined]);
         types.validateConstraints([1], [types.isNumber]);

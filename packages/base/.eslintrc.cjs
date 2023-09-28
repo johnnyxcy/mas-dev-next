@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/27/2023 03:52 pm
+ * Last Modified: 09/28/2023 03:09 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -38,8 +38,10 @@ module.exports = {
                 "func-names": "off",
                 "promise/catch-or-return": "off",
                 "promise/param-names": "off",
+                "promise/no-nesting": "off",
                 "promise/no-return-wrap": "off",
                 "import/no-mutable-exports": "off",
+                "unicorn/prefer-default-parameters": "off",
                 "unicorn/no-array-push-push": "off",
                 "unicorn/no-useless-promise-resolve-reject": "off",
                 "@typescript-eslint/member-ordering": "off",
