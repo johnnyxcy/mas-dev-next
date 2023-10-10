@@ -1,3 +1,2 @@
 lint-staged.config.js
 vitest.workspace.ts
-**/tests/**/fixtures/**

@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 09/28/2023 09:04 am
+ * Last Modified: 10/10/2023 02:06 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,6 @@
  */
 module.exports = {
     extends: [
-        "airbnb/hooks",
         "airbnb-base",
         "airbnb-typescript",
         "airbnb-typescript/base",
@@ -24,19 +23,12 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
         "plugin:promise/recommended",
-        "plugin:react/recommended",
-        "plugin:react-hooks/recommended",
-        "plugin:react-redux/recommended",
-        "plugin:storybook/recommended",
+
         require.resolve("./restricted-path.eslint"),
     ],
-    plugins: ["unicorn", "prettier", "import", "@typescript-eslint", "react", "react-hooks", "react-redux", "i18next"],
+    plugins: ["unicorn", "prettier", "import", "@typescript-eslint"],
     parser: "@typescript-eslint/parser",
-    parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
-        },
-    },
+
     settings: {
         "import/resolver": {
             // See https://github.com/benmosher/eslint-plugin-import/issues/1396#issuecomment-575727774 for line below
@@ -48,13 +40,6 @@ module.exports = {
         },
         "import/core-modules": ["electron", "vitest", "vite"],
         "import/internal-regex": "^@mas/",
-        "react": {
-            createClass: "createReactClass", // Regex for Component Factory to use,
-            // default to "createReactClass"
-            pragma: "React", // Pragma to use, default to "React"
-            fragment: "Fragment", // Fragment to use (may be a property of <pragma>), default to "Fragment"
-            version: "18.2", // React version. "detect" automatically picks the version you have installed.
-        },
     },
     reportUnusedDisableDirectives: true,
     rules: {
@@ -244,22 +229,6 @@ module.exports = {
         "import/no-self-import": "error",
         "import/no-extraneous-dependencies": "off",
         // #endregion
-
-        // #region React
-        "react/function-component-definition": ["error", { namedComponents: "arrow-function" }],
-        "react/no-typos": "error",
-        "react/no-unstable-nested-components": "error",
-        "react/no-unused-prop-types": "error",
-        "react/react-in-jsx-scope": "error",
-        "react/require-default-props": [
-            "error",
-            {
-                forbidDefaultForRequired: true,
-                classes: "defaultProps",
-                functions: "defaultArguments",
-            },
-        ],
-        // #endregion
     },
     overrides: [
         {
@@ -324,6 +293,27 @@ module.exports = {
         },
         {
             files: ["*.tsx"],
+            extends: [
+                "airbnb/hooks",
+                "plugin:react/recommended",
+                "plugin:react-hooks/recommended",
+                "plugin:react-redux/recommended",
+            ],
+            plugins: ["react", "react-hooks", "react-redux", "i18next"],
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
+            },
+            settings: {
+                react: {
+                    createClass: "createReactClass", // Regex for Component Factory to use,
+                    // default to "createReactClass"
+                    pragma: "React", // Pragma to use, default to "React"
+                    fragment: "Fragment", // Fragment to use (may be a property of <pragma>), default to "Fragment"
+                    version: "detect", // React version. "detect" automatically picks the version you have installed.
+                },
+            },
             rules: {
                 "unicorn/no-useless-undefined": "off",
                 // 保证所有字符串都通过了 i18next
@@ -404,15 +394,21 @@ module.exports = {
                         "pathGroupsExcludedImportTypes": ["react"],
                     },
                 ],
-            },
-        },
-        {
-            // or whatever matches stories specified in .storybook/main.js
-            files: ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
-            rules: {
-                "i18next/no-literal-string": "off",
-                "import/no-extraneous-dependencies": "off",
-                "no-console": "off",
+                // #region React
+                "react/function-component-definition": ["error", { namedComponents: "arrow-function" }],
+                "react/no-typos": "error",
+                "react/no-unstable-nested-components": "error",
+                "react/no-unused-prop-types": "error",
+                "react/react-in-jsx-scope": "error",
+                "react/require-default-props": [
+                    "error",
+                    {
+                        forbidDefaultForRequired: true,
+                        classes: "defaultProps",
+                        functions: "defaultArguments",
+                    },
+                ],
+                // #endregion
             },
         },
         {
