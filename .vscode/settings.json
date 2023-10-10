@@ -229,7 +229,7 @@
         "isActive": true,
         "modAuthor": "Modified By:",
         "modDate": "Last Modified:",
-        "replace": ["File:"]
+        "replace": ["File:", "Copyright"]
     },
     // TODO: 将这个添加到 User Settings.json
     // "psi-header.variables": [

@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/28/2023 03:09 pm
+ * Last Modified: 10/10/2023 02:28 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -50,6 +50,7 @@ module.exports = {
                 "@typescript-eslint/no-throw-literal": "off",
                 "@typescript-eslint/naming-convention": "off",
                 "@typescript-eslint/consistent-type-imports": "off",
+                "@typescript-eslint/explicit-function-return-type": "off",
             },
         },
         {

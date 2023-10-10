@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 10/10/2023 02:06 pm
+ * Last Modified: 10/10/2023 02:27 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -149,6 +149,16 @@ module.exports = {
                     properties: "no-public",
                     parameterProperties: "no-public",
                 },
+            },
+        ],
+        "@typescript-eslint/explicit-function-return-type": [
+            "error",
+            {
+                allowExpressions: true,
+                allowTypedFunctionExpressions: true,
+                allowHigherOrderFunctions: true,
+                allowDirectConstAssertionInArrowFunctions: true,
+                allowConciseArrowFunctionExpressionsStartingWithVoid: false,
             },
         ],
         "@typescript-eslint/no-empty-interface": [
@@ -322,16 +332,6 @@ module.exports = {
                     {
                         mode: "jsx-text-only",
                         message: "字符需要符合 i18n 规范",
-                    },
-                ],
-                "@typescript-eslint/explicit-function-return-type": [
-                    "error",
-                    {
-                        allowExpressions: true,
-                        allowTypedFunctionExpressions: true,
-                        allowHigherOrderFunctions: true,
-                        allowDirectConstAssertionInArrowFunctions: true,
-                        allowConciseArrowFunctionExpressionsStartingWithVoid: false,
                     },
                 ],
                 "@typescript-eslint/naming-convention": [
