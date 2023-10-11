@@ -1,0 +1,29 @@
+{
+    "name": "@mas/icons",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@mas/tools": "*",
+        "@storybook/addon-essentials": "latest",
+        "@storybook/addon-interactions": "latest",
+        "@storybook/addon-links": "latest",
+        "@storybook/addon-onboarding": "^1.0.8",
+        "@storybook/blocks": "latest",
+        "@storybook/builder-vite": "latest",
+        "@storybook/react": "latest",
+        "@storybook/react-vite": "latest",
+        "@storybook/testing-library": "latest",
+        "react": "latest",
+        "react-dom": "latest",
+        "storybook": "latest"
+    }
+}

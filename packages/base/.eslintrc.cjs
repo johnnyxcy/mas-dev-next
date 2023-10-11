@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/10/2023 02:28 pm
+ * Last Modified: 10/10/2023 03:06 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -21,7 +21,7 @@ module.exports = {
         project: require.resolve("./tsconfig.eslint.json"),
         tsconfigRootDir: __dirname,
     },
-    ignorePatterns: [".eslintrc.js", "node_modules", "lib"],
+    ignorePatterns: [".eslintrc.cjs", "node_modules", "lib"],
     overrides: [
         {
             files: ["src/**/*.ts", "tests/**/*.ts"],

@@ -2,6 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "[launch]@mas/icons::storybook",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "yarn storybook",
+            "cwd": "${workspaceFolder}/packages/icons",
+            "internalConsoleOptions": "openOnFirstSessionStart",
+            "serverReadyAction": {
+                "pattern": "Local:.+(https?://[^:]+:[0-9]+)",
+                "uriFormat": "%s",
+                "action": "debugWithChrome",
+                "killOnServerStop": true
+            }
+        },
+        {
             "name": "[launch]@mas/desktop::main",
             "type": "node",
             "request": "launch",
