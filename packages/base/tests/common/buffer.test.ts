@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:33 pm
  *
- * Last Modified: 09/27/2023 05:34 pm
+ * Last Modified: 10/11/2023 10:23 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -19,15 +19,15 @@ import { assert, describe, test } from "vitest";
 
 import { timeout } from "@mas/base/common/async";
 import {
-    bufferedStreamToBuffer,
+    BinaryBuffer,
     bufferToReadable,
     bufferToStream,
+    bufferedStreamToBuffer,
     decodeBase64,
     encodeBase64,
     newWriteableBufferStream,
     readableToBuffer,
     streamToBuffer,
-    VSBuffer,
 } from "@mas/base/common/buffer";
 import { peekStream } from "@mas/base/common/stream";
 import { ensureNoDisposablesAreLeakedInTestSuite } from "@mas/base/testing/common/utils";
@@ -37,27 +37,27 @@ describe("Buffer", () => {
 
     test("issue #71993 - VSBuffer#toString returns numbers", () => {
         const data = new Uint8Array([1, 2, 3, "h".charCodeAt(0), "i".charCodeAt(0), 4, 5]).buffer;
-        const buffer = VSBuffer.wrap(new Uint8Array(data, 3, 2));
+        const buffer = BinaryBuffer.wrap(new Uint8Array(data, 3, 2));
         assert.deepStrictEqual(buffer.toString(), "hi");
     });
 
     test("bufferToReadable / readableToBuffer", () => {
         const content = "Hello World";
-        const readable = bufferToReadable(VSBuffer.fromString(content));
+        const readable = bufferToReadable(BinaryBuffer.fromString(content));
 
         assert.strictEqual(readableToBuffer(readable).toString(), content);
     });
 
     test("bufferToStream / streamToBuffer", async () => {
         const content = "Hello World";
-        const stream = bufferToStream(VSBuffer.fromString(content));
+        const stream = bufferToStream(BinaryBuffer.fromString(content));
 
         assert.strictEqual((await streamToBuffer(stream)).toString(), content);
     });
 
     test("bufferedStreamToBuffer", async () => {
         const content = "Hello World";
-        const stream = await peekStream(bufferToStream(VSBuffer.fromString(content)), 1);
+        const stream = await peekStream(bufferToStream(BinaryBuffer.fromString(content)), 1);
 
         assert.strictEqual((await bufferedStreamToBuffer(stream)).toString(), content);
     });
@@ -65,7 +65,7 @@ describe("Buffer", () => {
     test("bufferWriteableStream - basics (no error)", async () => {
         const stream = newWriteableBufferStream();
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -81,9 +81,9 @@ describe("Buffer", () => {
         });
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
-        stream.end(VSBuffer.fromString("World"));
+        stream.end(BinaryBuffer.fromString("World"));
 
         assert.strictEqual(chunks.length, 2);
         assert.strictEqual(chunks[0].toString(), "Hello");
@@ -95,7 +95,7 @@ describe("Buffer", () => {
     test("bufferWriteableStream - basics (error)", async () => {
         const stream = newWriteableBufferStream();
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -111,7 +111,7 @@ describe("Buffer", () => {
         });
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
         stream.error(new Error());
         stream.end();
@@ -126,11 +126,11 @@ describe("Buffer", () => {
         const stream = newWriteableBufferStream();
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
-        stream.end(VSBuffer.fromString("World"));
+        stream.end(BinaryBuffer.fromString("World"));
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -155,11 +155,11 @@ describe("Buffer", () => {
         const stream = newWriteableBufferStream();
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
         stream.error(new Error());
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -186,16 +186,16 @@ describe("Buffer", () => {
         const stream = newWriteableBufferStream();
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
-        stream.end(VSBuffer.fromString("World"));
+        stream.end(BinaryBuffer.fromString("World"));
 
         let ended = false;
         stream.on("end", () => {
             ended = true;
         });
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -214,15 +214,15 @@ describe("Buffer", () => {
     test("bufferWriteableStream - nothing happens after end()", async () => {
         const stream = newWriteableBufferStream();
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
-        stream.end(VSBuffer.fromString("World"));
+        stream.end(BinaryBuffer.fromString("World"));
 
         let dataCalledAfterEnd = false;
         stream.on("data", (data) => {
@@ -240,11 +240,11 @@ describe("Buffer", () => {
         });
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
         stream.error(new Error());
         await timeout(0);
-        stream.end(VSBuffer.fromString("World"));
+        stream.end(BinaryBuffer.fromString("World"));
 
         assert.strictEqual(dataCalledAfterEnd, false);
         assert.strictEqual(errorCalledAfterEnd, false);
@@ -258,7 +258,7 @@ describe("Buffer", () => {
     test("bufferWriteableStream - pause/resume (simple)", async () => {
         const stream = newWriteableBufferStream();
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -276,9 +276,9 @@ describe("Buffer", () => {
         stream.pause();
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
-        stream.end(VSBuffer.fromString("World"));
+        stream.end(BinaryBuffer.fromString("World"));
 
         assert.strictEqual(chunks.length, 0);
         assert.strictEqual(errors.length, 0);
@@ -295,7 +295,7 @@ describe("Buffer", () => {
     test("bufferWriteableStream - pause/resume (pause after first write)", async () => {
         const stream = newWriteableBufferStream();
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -311,12 +311,12 @@ describe("Buffer", () => {
         });
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
 
         stream.pause();
 
         await timeout(0);
-        stream.end(VSBuffer.fromString("World"));
+        stream.end(BinaryBuffer.fromString("World"));
 
         assert.strictEqual(chunks.length, 1);
         assert.strictEqual(chunks[0].toString(), "Hello");
@@ -335,7 +335,7 @@ describe("Buffer", () => {
     test("bufferWriteableStream - pause/resume (error)", async () => {
         const stream = newWriteableBufferStream();
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -353,7 +353,7 @@ describe("Buffer", () => {
         stream.pause();
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
         stream.error(new Error());
         stream.end();
@@ -373,7 +373,7 @@ describe("Buffer", () => {
     test("bufferWriteableStream - destroy", async () => {
         const stream = newWriteableBufferStream();
 
-        const chunks: VSBuffer[] = [];
+        const chunks: BinaryBuffer[] = [];
         stream.on("data", (data) => {
             chunks.push(data);
         });
@@ -391,9 +391,9 @@ describe("Buffer", () => {
         stream.destroy();
 
         await timeout(0);
-        stream.write(VSBuffer.fromString("Hello"));
+        stream.write(BinaryBuffer.fromString("Hello"));
         await timeout(0);
-        stream.end(VSBuffer.fromString("World"));
+        stream.end(BinaryBuffer.fromString("World"));
 
         assert.strictEqual(chunks.length, 0);
         assert.strictEqual(ended, false);
@@ -440,18 +440,18 @@ describe("Buffer", () => {
     });
 
     test("indexOf", () => {
-        const haystack = VSBuffer.fromString("abcaabbccaaabbbccc");
-        assert.strictEqual(haystack.indexOf(VSBuffer.fromString("")), 0);
-        assert.strictEqual(haystack.indexOf(VSBuffer.fromString("a".repeat(100))), -1);
+        const haystack = BinaryBuffer.fromString("abcaabbccaaabbbccc");
+        assert.strictEqual(haystack.indexOf(BinaryBuffer.fromString("")), 0);
+        assert.strictEqual(haystack.indexOf(BinaryBuffer.fromString("a".repeat(100))), -1);
 
-        assert.strictEqual(haystack.indexOf(VSBuffer.fromString("a")), 0);
-        assert.strictEqual(haystack.indexOf(VSBuffer.fromString("c")), 2);
+        assert.strictEqual(haystack.indexOf(BinaryBuffer.fromString("a")), 0);
+        assert.strictEqual(haystack.indexOf(BinaryBuffer.fromString("c")), 2);
 
-        assert.strictEqual(haystack.indexOf(VSBuffer.fromString("abcaa")), 0);
-        assert.strictEqual(haystack.indexOf(VSBuffer.fromString("caaab")), 8);
-        assert.strictEqual(haystack.indexOf(VSBuffer.fromString("ccc")), 15);
+        assert.strictEqual(haystack.indexOf(BinaryBuffer.fromString("abcaa")), 0);
+        assert.strictEqual(haystack.indexOf(BinaryBuffer.fromString("caaab")), 8);
+        assert.strictEqual(haystack.indexOf(BinaryBuffer.fromString("ccc")), 15);
 
-        assert.strictEqual(haystack.indexOf(VSBuffer.fromString("cccb")), -1);
+        assert.strictEqual(haystack.indexOf(BinaryBuffer.fromString("cccb")), -1);
     });
 
     describe("base64", () => {
@@ -494,7 +494,7 @@ describe("Buffer", () => {
 
         test("encodes", () => {
             for (const [bytes, expected] of testCases) {
-                assert.strictEqual(encodeBase64(VSBuffer.wrap(bytes)), expected);
+                assert.strictEqual(encodeBase64(BinaryBuffer.wrap(bytes)), expected);
             }
         });
 

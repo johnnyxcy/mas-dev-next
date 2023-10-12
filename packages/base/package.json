@@ -19,7 +19,9 @@
     "license": "ISC",
     "dependencies": {
         "reflect-metadata": "latest",
-        "inversify": "latest"
+        "inversify": "latest",
+        "jschardet": "latest",
+        "iconv-lite": "latest"
     },
     "devDependencies": {
         "@mas/i18n": "*",

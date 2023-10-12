@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:31 pm
  *
- * Last Modified: 09/27/2023 05:31 pm
+ * Last Modified: 10/11/2023 10:23 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -27,55 +27,55 @@ const indexOfTable = new Lazy(() => new Uint8Array(256));
 let textEncoder: TextEncoder | null;
 let textDecoder: TextDecoder | null;
 
-export class VSBuffer {
+export class BinaryBuffer {
     /**
-     * When running in a nodejs context, the backing store for the returned `VSBuffer` instance
+     * When running in a nodejs context, the backing store for the returned `BinaryBuffer` instance
      * might use a nodejs Buffer allocated from node's Buffer pool, which is not transferrable.
      */
-    static alloc(byteLength: number): VSBuffer {
+    static alloc(byteLength: number): BinaryBuffer {
         if (hasBuffer) {
-            return new VSBuffer(Buffer.allocUnsafe(byteLength));
+            return new BinaryBuffer(Buffer.allocUnsafe(byteLength));
         } else {
-            return new VSBuffer(new Uint8Array(byteLength));
+            return new BinaryBuffer(new Uint8Array(byteLength));
         }
     }
 
     /**
      * When running in a nodejs context, if `actual` is not a nodejs Buffer, the backing store for
-     * the returned `VSBuffer` instance might use a nodejs Buffer allocated from node's Buffer pool,
+     * the returned `BinaryBuffer` instance might use a nodejs Buffer allocated from node's Buffer pool,
      * which is not transferrable.
      */
-    static wrap(actual: Uint8Array): VSBuffer {
+    static wrap(actual: Uint8Array): BinaryBuffer {
         if (hasBuffer && !Buffer.isBuffer(actual)) {
             // https://nodejs.org/dist/latest-v10.x/docs/api/buffer.html#buffer_class_method_buffer_from_arraybuffer_byteoffset_length
             // Create a zero-copy Buffer wrapper around the ArrayBuffer pointed to by the Uint8Array
             actual = Buffer.from(actual.buffer, actual.byteOffset, actual.byteLength);
         }
-        return new VSBuffer(actual);
+        return new BinaryBuffer(actual);
     }
 
     /**
-     * When running in a nodejs context, the backing store for the returned `VSBuffer` instance
+     * When running in a nodejs context, the backing store for the returned `BinaryBuffer` instance
      * might use a nodejs Buffer allocated from node's Buffer pool, which is not transferrable.
      */
-    static fromString(source: string, options?: { dontUseNodeBuffer?: boolean }): VSBuffer {
+    static fromString(source: string, options?: { dontUseNodeBuffer?: boolean }): BinaryBuffer {
         const dontUseNodeBuffer = options?.dontUseNodeBuffer || false;
         if (!dontUseNodeBuffer && hasBuffer) {
-            return new VSBuffer(Buffer.from(source));
+            return new BinaryBuffer(Buffer.from(source));
         } else {
             if (!textEncoder) {
                 textEncoder = new TextEncoder();
             }
-            return new VSBuffer(textEncoder.encode(source));
+            return new BinaryBuffer(textEncoder.encode(source));
         }
     }
 
     /**
-     * When running in a nodejs context, the backing store for the returned `VSBuffer` instance
+     * When running in a nodejs context, the backing store for the returned `BinaryBuffer` instance
      * might use a nodejs Buffer allocated from node's Buffer pool, which is not transferrable.
      */
-    static fromByteArray(source: number[]): VSBuffer {
-        const result = VSBuffer.alloc(source.length);
+    static fromByteArray(source: number[]): BinaryBuffer {
+        const result = BinaryBuffer.alloc(source.length);
         for (let i = 0, len = source.length; i < len; i++) {
             result.buffer[i] = source[i];
         }
@@ -83,10 +83,10 @@ export class VSBuffer {
     }
 
     /**
-     * When running in a nodejs context, the backing store for the returned `VSBuffer` instance
+     * When running in a nodejs context, the backing store for the returned `BinaryBuffer` instance
      * might use a nodejs Buffer allocated from node's Buffer pool, which is not transferrable.
      */
-    static concat(buffers: VSBuffer[], totalLength?: number): VSBuffer {
+    static concat(buffers: BinaryBuffer[], totalLength?: number): BinaryBuffer {
         if (typeof totalLength === "undefined") {
             totalLength = 0;
             for (let i = 0, len = buffers.length; i < len; i++) {
@@ -94,7 +94,7 @@ export class VSBuffer {
             }
         }
 
-        const ret = VSBuffer.alloc(totalLength);
+        const ret = BinaryBuffer.alloc(totalLength);
         let offset = 0;
         for (let i = 0, len = buffers.length; i < len; i++) {
             const element = buffers[i];
@@ -114,11 +114,11 @@ export class VSBuffer {
     }
 
     /**
-     * When running in a nodejs context, the backing store for the returned `VSBuffer` instance
+     * When running in a nodejs context, the backing store for the returned `BinaryBuffer` instance
      * might use a nodejs Buffer allocated from node's Buffer pool, which is not transferrable.
      */
-    clone(): VSBuffer {
-        const result = VSBuffer.alloc(this.byteLength);
+    clone(): BinaryBuffer {
+        const result = BinaryBuffer.alloc(this.byteLength);
         result.set(this);
         return result;
     }
@@ -134,20 +134,20 @@ export class VSBuffer {
         }
     }
 
-    slice(start?: number, end?: number): VSBuffer {
+    slice(start?: number, end?: number): BinaryBuffer {
         // IMPORTANT: use subarray instead of slice because TypedArray#slice
         // creates shallow copy and NodeBuffer#slice doesn't. The use of subarray
         // ensures the same, performance, behaviour.
-        return new VSBuffer(this.buffer.subarray(start, end));
+        return new BinaryBuffer(this.buffer.subarray(start, end));
     }
 
-    set(array: VSBuffer, offset?: number): void;
+    set(array: BinaryBuffer, offset?: number): void;
     set(array: Uint8Array, offset?: number): void;
     set(array: ArrayBuffer, offset?: number): void;
     set(array: ArrayBufferView, offset?: number): void;
-    set(array: VSBuffer | Uint8Array | ArrayBuffer | ArrayBufferView, offset?: number): void;
-    set(array: VSBuffer | Uint8Array | ArrayBuffer | ArrayBufferView, offset?: number): void {
-        if (array instanceof VSBuffer) {
+    set(array: BinaryBuffer | Uint8Array | ArrayBuffer | ArrayBufferView, offset?: number): void;
+    set(array: BinaryBuffer | Uint8Array | ArrayBuffer | ArrayBufferView, offset?: number): void {
+        if (array instanceof BinaryBuffer) {
             this.buffer.set(array.buffer, offset);
         } else if (array instanceof Uint8Array) {
             this.buffer.set(array, offset);
@@ -184,8 +184,8 @@ export class VSBuffer {
         writeUInt8(this.buffer, value, offset);
     }
 
-    indexOf(subarray: VSBuffer | Uint8Array, offset = 0) {
-        return binaryIndexOf(this.buffer, subarray instanceof VSBuffer ? subarray.buffer : subarray, offset);
+    indexOf(subarray: BinaryBuffer | Uint8Array, offset = 0) {
+        return binaryIndexOf(this.buffer, subarray instanceof BinaryBuffer ? subarray.buffer : subarray, offset);
     }
 }
 
@@ -288,34 +288,34 @@ export function writeUInt8(destination: Uint8Array, value: number, offset: numbe
     destination[offset] = value;
 }
 
-export interface VSBufferReadable extends streams.Readable<VSBuffer> {}
+export interface BinaryBufferReadable extends streams.Readable<BinaryBuffer> {}
 
-export interface VSBufferReadableStream extends streams.ReadableStream<VSBuffer> {}
+export interface BinaryBufferReadableStream extends streams.ReadableStream<BinaryBuffer> {}
 
-export interface VSBufferWriteableStream extends streams.WriteableStream<VSBuffer> {}
+export interface BinaryBufferWriteableStream extends streams.WriteableStream<BinaryBuffer> {}
 
-export interface VSBufferReadableBufferedStream extends streams.ReadableBufferedStream<VSBuffer> {}
+export interface BinaryBufferReadableBufferedStream extends streams.ReadableBufferedStream<BinaryBuffer> {}
 
-export function readableToBuffer(readable: VSBufferReadable): VSBuffer {
-    return streams.consumeReadable<VSBuffer>(readable, (chunks) => VSBuffer.concat(chunks));
+export function readableToBuffer(readable: BinaryBufferReadable): BinaryBuffer {
+    return streams.consumeReadable<BinaryBuffer>(readable, (chunks) => BinaryBuffer.concat(chunks));
 }
 
-export function bufferToReadable(buffer: VSBuffer): VSBufferReadable {
-    return streams.toReadable<VSBuffer>(buffer);
+export function bufferToReadable(buffer: BinaryBuffer): BinaryBufferReadable {
+    return streams.toReadable<BinaryBuffer>(buffer);
 }
 
-export function streamToBuffer(stream: streams.ReadableStream<VSBuffer>): Promise<VSBuffer> {
-    return streams.consumeStream<VSBuffer>(stream, (chunks) => VSBuffer.concat(chunks));
+export function streamToBuffer(stream: streams.ReadableStream<BinaryBuffer>): Promise<BinaryBuffer> {
+    return streams.consumeStream<BinaryBuffer>(stream, (chunks) => BinaryBuffer.concat(chunks));
 }
 
 export async function bufferedStreamToBuffer(
-    bufferedStream: streams.ReadableBufferedStream<VSBuffer>,
-): Promise<VSBuffer> {
+    bufferedStream: streams.ReadableBufferedStream<BinaryBuffer>,
+): Promise<BinaryBuffer> {
     if (bufferedStream.ended) {
-        return VSBuffer.concat(bufferedStream.buffer);
+        return BinaryBuffer.concat(bufferedStream.buffer);
     }
 
-    return VSBuffer.concat([
+    return BinaryBuffer.concat([
         // Include already read chunks...
         ...bufferedStream.buffer,
 
@@ -324,30 +324,35 @@ export async function bufferedStreamToBuffer(
     ]);
 }
 
-export function bufferToStream(buffer: VSBuffer): streams.ReadableStream<VSBuffer> {
-    return streams.toStream<VSBuffer>(buffer, (chunks) => VSBuffer.concat(chunks));
+export function bufferToStream(buffer: BinaryBuffer): streams.ReadableStream<BinaryBuffer> {
+    return streams.toStream<BinaryBuffer>(buffer, (chunks) => BinaryBuffer.concat(chunks));
 }
 
 export function streamToBufferReadableStream(
     stream: streams.ReadableStreamEvents<Uint8Array | string>,
-): streams.ReadableStream<VSBuffer> {
-    return streams.transform<Uint8Array | string, VSBuffer>(
+): streams.ReadableStream<BinaryBuffer> {
+    return streams.transform<Uint8Array | string, BinaryBuffer>(
         stream,
-        { data: (data) => (typeof data === "string" ? VSBuffer.fromString(data) : VSBuffer.wrap(data)) },
-        (chunks) => VSBuffer.concat(chunks),
+        { data: (data) => (typeof data === "string" ? BinaryBuffer.fromString(data) : BinaryBuffer.wrap(data)) },
+        (chunks) => BinaryBuffer.concat(chunks),
     );
 }
 
-export function newWriteableBufferStream(options?: streams.WriteableStreamOptions): streams.WriteableStream<VSBuffer> {
-    return streams.newWriteableStream<VSBuffer>((chunks) => VSBuffer.concat(chunks), options);
+export function newWriteableBufferStream(
+    options?: streams.WriteableStreamOptions,
+): streams.WriteableStream<BinaryBuffer> {
+    return streams.newWriteableStream<BinaryBuffer>((chunks) => BinaryBuffer.concat(chunks), options);
 }
 
-export function prefixedBufferReadable(prefix: VSBuffer, readable: VSBufferReadable): VSBufferReadable {
-    return streams.prefixedReadable(prefix, readable, (chunks) => VSBuffer.concat(chunks));
+export function prefixedBufferReadable(prefix: BinaryBuffer, readable: BinaryBufferReadable): BinaryBufferReadable {
+    return streams.prefixedReadable(prefix, readable, (chunks) => BinaryBuffer.concat(chunks));
 }
 
-export function prefixedBufferStream(prefix: VSBuffer, stream: VSBufferReadableStream): VSBufferReadableStream {
-    return streams.prefixedStream(prefix, stream, (chunks) => VSBuffer.concat(chunks));
+export function prefixedBufferStream(
+    prefix: BinaryBuffer,
+    stream: BinaryBufferReadableStream,
+): BinaryBufferReadableStream {
+    return streams.prefixedStream(prefix, stream, (chunks) => BinaryBuffer.concat(chunks));
 }
 
 /** Decodes base64 to a uint8 array. URL-encoded and unpadded base64 is allowed. */
@@ -409,14 +414,14 @@ export function decodeBase64(encoded: string) {
     }
 
     // slice is needed to account for overestimation due to padding
-    return VSBuffer.wrap(buffer).slice(0, unpadded);
+    return BinaryBuffer.wrap(buffer).slice(0, unpadded);
 }
 
 const base64Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const base64UrlSafeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
 /** Encodes a buffer to a base64 string. */
-export function encodeBase64({ buffer }: VSBuffer, padded = true, urlSafe = false) {
+export function encodeBase64({ buffer }: BinaryBuffer, padded = true, urlSafe = false) {
     const dictionary = urlSafe ? base64UrlSafeAlphabet : base64Alphabet;
     let output = "";
 

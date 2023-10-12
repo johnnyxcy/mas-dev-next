@@ -9,6 +9,7 @@
         // whatever paths you intend to lint
         "eslint",
         "vite",
+        "bootstrap",
         ".eslintrc.cjs",
         "*.config.ts"
     ]

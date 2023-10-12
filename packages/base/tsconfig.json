@@ -9,5 +9,6 @@
             "@mas/base/*": ["./src/*"]
         }
     },
-    "include": ["src", "tests"]
+    "include": ["src", "tests"],
+    "references": [{ "path": "../tools" }, { "path": "../i18n" }]
 }

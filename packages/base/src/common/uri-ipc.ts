@@ -5,7 +5,7 @@
  *
  * File Created: 09/28/2023 08:48 am
  *
- * Last Modified: 09/28/2023 08:48 am
+ * Last Modified: 10/11/2023 10:23 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { VSBuffer } from "@mas/base/common/buffer";
+import { BinaryBuffer } from "@mas/base/common/buffer";
 import { MarshalledObject } from "@mas/base/common/marshalling";
 import { MarshalledId } from "@mas/base/common/marshalling-ids";
 import { URI, UriComponents } from "@mas/base/common/uri";
@@ -134,7 +134,7 @@ function _transformIncomingURIs(obj: any, transformer: IURITransformer, revive: 
             return revive ? URI.revive(transformer.transformIncoming(obj)) : transformer.transformIncoming(obj);
         }
 
-        if (obj instanceof VSBuffer) {
+        if (obj instanceof BinaryBuffer) {
             return null;
         }
 

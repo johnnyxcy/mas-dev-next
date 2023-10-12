@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/28/2023 09:03 am
+ * Last Modified: 10/11/2023 03:34 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,4 +22,14 @@ module.exports = {
         tsconfigRootDir: __dirname,
     },
     ignorePatterns: [".eslintrc.cjs", "node_modules"],
+    overrides: [
+        {
+            files: ["bootstrap/**/*.cjs"],
+            rules: {
+                "strict": "off",
+                "no-console": "off",
+                "@typescript-eslint/no-var-requires": "off",
+            },
+        },
+    ],
 };

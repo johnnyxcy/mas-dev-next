@@ -9,15 +9,9 @@
         ".dist"
     ],
     "exports": {
-        ".": {
-            "import": "./.dist/lib/nls.js"
-        },
-        "./common": {
-            "import": "./.dist/lib/common.js"
-        },
-        "./node": {
-            "import": "./.dist/lib/node.js"
-        }
+        ".": "./.dist/lib/nls.js",
+        "./common": "./.dist/lib/common.js",
+        "./node": "./.dist/lib/node.js"
     },
     "typesVersions": {
         "*": {

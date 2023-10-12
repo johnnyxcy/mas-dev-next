@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/10/2023 03:06 pm
+ * Last Modified: 10/12/2023 09:32 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -40,6 +40,7 @@ module.exports = {
                 "promise/param-names": "off",
                 "promise/no-nesting": "off",
                 "promise/no-return-wrap": "off",
+                "promise/no-promise-in-callback": "off",
                 "import/no-mutable-exports": "off",
                 "unicorn/prefer-default-parameters": "off",
                 "unicorn/no-array-push-push": "off",

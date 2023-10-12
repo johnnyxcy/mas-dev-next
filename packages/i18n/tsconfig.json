@@ -2,6 +2,9 @@
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
         "baseUrl": "./",
+        "noEmit": false,
+        "composite": true,
+
         "paths": {
             "@mas/i18n/*": ["src/*"]
         }

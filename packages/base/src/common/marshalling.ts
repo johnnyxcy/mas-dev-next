@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:28 pm
  *
- * Last Modified: 09/27/2023 05:33 pm
+ * Last Modified: 10/11/2023 10:23 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { VSBuffer } from "@mas/base/common/buffer";
+import { BinaryBuffer } from "@mas/base/common/buffer";
 import { MarshalledId } from "@mas/base/common/marshalling-ids";
 import { URI, UriComponents } from "@mas/base/common/uri";
 
@@ -48,8 +48,8 @@ function replacer(key: string, value: any): any {
 
 type Deserialize<T> = T extends UriComponents
     ? URI
-    : T extends VSBuffer
-    ? VSBuffer
+    : T extends BinaryBuffer
+    ? BinaryBuffer
     : T extends object
     ? Revived<T>
     : T;
@@ -71,7 +71,7 @@ export function revive<T = any>(obj: any, depth = 0): Revived<T> {
                 return <any>new Date(obj.source);
         }
 
-        if (obj instanceof VSBuffer || obj instanceof Uint8Array) {
+        if (obj instanceof BinaryBuffer || obj instanceof Uint8Array) {
             return <any>obj;
         }
 

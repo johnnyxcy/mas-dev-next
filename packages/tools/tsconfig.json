@@ -1,4 +1,13 @@
 {
     "extends": "../../tsconfig.node.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "noEmit": false,
+        "composite": true,
+
+        "paths": {
+            "@mas/tools/*": ["."]
+        }
+    },
     "include": ["eslint", "vite"]
 }
