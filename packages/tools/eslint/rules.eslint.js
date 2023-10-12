@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 10/10/2023 02:27 pm
+ * Last Modified: 10/12/2023 10:18 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -78,6 +78,7 @@ module.exports = {
         "prefer-template": "off",
         "prefer-spread": "off",
         "prefer-const": ["error", { destructuring: "all", ignoreReadBeforeAssign: true }],
+        "radix": ["error", "as-needed"],
         // #endregion
 
         // #region unicorn

@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/11/2023 03:34 pm
+ * Last Modified: 10/12/2023 11:14 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -29,6 +29,12 @@ module.exports = {
                 "strict": "off",
                 "no-console": "off",
                 "@typescript-eslint/no-var-requires": "off",
+            },
+        },
+        {
+            files: ["reporter/**/*.ts"],
+            rules: {
+                "@typescript-eslint/no-shadow": "off",
             },
         },
     ],

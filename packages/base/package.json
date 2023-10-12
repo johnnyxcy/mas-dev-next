@@ -21,10 +21,13 @@
         "reflect-metadata": "latest",
         "inversify": "latest",
         "jschardet": "latest",
-        "iconv-lite": "latest"
+        "iconv-lite": "latest",
+        "yauzl": "latest",
+        "yazl": "latest"
     },
     "devDependencies": {
         "@mas/i18n": "*",
-        "@mas/tools": "*"
+        "@mas/tools": "*",
+        "@types/yazl": "latest"
     }
 }

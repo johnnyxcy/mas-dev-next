@@ -6,8 +6,9 @@
         "composite": true,
 
         "paths": {
-            "@mas/tools/*": ["."]
+            "@mas/tools/eslint/*": ["./eslint/*"],
+            "@mas/tools/reporter/*": ["./reporter/*"]
         }
     },
-    "include": ["eslint", "vite"]
+    "include": ["eslint", "reporter"]
 }

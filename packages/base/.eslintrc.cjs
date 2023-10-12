@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/12/2023 09:32 am
+ * Last Modified: 10/12/2023 01:27 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -24,6 +24,12 @@ module.exports = {
     ignorePatterns: [".eslintrc.cjs", "node_modules", "lib"],
     overrides: [
         {
+            files: ["src/**/*.js"],
+            rules: {
+                "@typescript-eslint/explicit-function-return-type": "off",
+            },
+        },
+        {
             files: ["src/**/*.ts", "tests/**/*.ts"],
             rules: {
                 "no-void": "off",
@@ -31,6 +37,7 @@ module.exports = {
                 "no-new-object": "off",
                 "no-console": "off",
                 "no-useless-return": "off",
+                "no-control-regex": "off",
                 "default-case": "off",
                 "one-var": "off",
                 "prefer-rest-params": "off",

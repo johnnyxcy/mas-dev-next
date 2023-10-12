@@ -1,11 +1,11 @@
 /*
- * File: @mas/base/src/common/stripComment.js
+ * File: @mas/base/src/common/strip-comment.js
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 09:24 pm
  *
- * Last Modified: 09/25/2023 09:24 pm
+ * Last Modified: 10/12/2023 01:28 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -21,7 +21,7 @@
 // @ts-check
 
 (function () {
-    function factory(path, os, productName, cwd) {
+    function factory() {
         // First group matches a double quoted string
         // Second group matches a single quoted string
         // Third group matches a multi line comment
@@ -64,12 +64,7 @@
         };
     }
 
-    if (typeof define === "function") {
-        // amd
-        define([], function () {
-            return factory();
-        });
-    } else if (typeof module === "object" && typeof module.exports === "object") {
+    if (typeof module === "object" && typeof module.exports === "object") {
         // commonjs
         module.exports = factory();
     } else {

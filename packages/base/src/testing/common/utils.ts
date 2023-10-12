@@ -5,13 +5,13 @@
  *
  * File Created: 09/27/2023 11:05 am
  *
- * Last Modified: 09/27/2023 04:20 pm
+ * Last Modified: 10/12/2023 01:21 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-import { afterEach, beforeEach, describe, test } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, test } from "vitest";
 
 import {
     DisposableStore,
@@ -123,3 +123,12 @@ function computeLeakingDisposables(tracker: DisposableTracker, logToConsole = tr
         throw new Error(`There are ${result.leaks.length} undisposed disposables!${result.details}`);
     }
 }
+
+export function flakySuite(description: string, callback: (this: any) => void) {
+    return describe(description, callback, { retry: 3, timeout: 1000 * 20 });
+}
+
+export const setup = beforeEach;
+export const teardown = afterEach;
+export const suiteSetup = beforeAll;
+export const suiteTeardown = afterAll;

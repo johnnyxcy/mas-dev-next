@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 09:09 pm
  *
- * Last Modified: 09/25/2023 09:12 pm
+ * Last Modified: 10/12/2023 01:29 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,6 +22,7 @@
 
 (function () {
     /**
+     * @param {number | undefined} timeOrigin
      * @returns {{mark(name:string):void, getMarks():{name:string, startTime:number}[]}}
      */
     function _definePolyfillMarks(timeOrigin) {
@@ -30,9 +31,16 @@
             _data.push("code/timeOrigin", timeOrigin);
         }
 
+        /**
+         * @param {string} name
+         */
         function mark(name) {
             _data.push(name, Date.now());
         }
+
+        /**
+         * @returns {{name:string, startTime:number}[]}
+         */
         function getMarks() {
             const result = [];
             for (let i = 0; i < _data.length; i += 2) {
@@ -123,12 +131,7 @@
         sharedObj = {};
     }
 
-    if (typeof define === "function") {
-        // amd
-        define([], function () {
-            return _factory(sharedObj);
-        });
-    } else if (typeof module === "object" && typeof module.exports === "object") {
+    if (typeof module === "object" && typeof module.exports === "object") {
         // commonjs
         module.exports = _factory(sharedObj);
     } else {
