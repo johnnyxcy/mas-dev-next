@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 06:01 pm
  *
- * Last Modified: 09/25/2023 06:02 pm
+ * Last Modified: 10/12/2023 01:49 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -144,7 +144,7 @@ describe("Types", () => {
             }),
         );
         assert(!types.isNumber({ foo: "bar" }));
-        assert(!types.isNumber(Number.parseInt("A", 10)));
+        assert(!types.isNumber(Number.parseInt("A")));
 
         assert(types.isNumber(5));
     });

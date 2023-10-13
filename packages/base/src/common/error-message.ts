@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:46 pm
  *
- * Last Modified: 09/27/2023 05:46 pm
+ * Last Modified: 10/12/2023 05:49 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,7 +15,7 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import nls from "@mas/i18n";
+import nls from "@mas/i18n/nls";
 
 import { IAction } from "@mas/base/common/actions";
 import * as arrays from "@mas/base/common/arrays";

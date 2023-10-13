@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 10/12/2023 10:18 am
+ * Last Modified: 10/13/2023 09:45 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -53,6 +53,7 @@ module.exports = {
         "no-param-reassign": "off",
         "no-else-return": "off",
         "no-return-assign": "off",
+        "no-empty": ["error", { allowEmptyCatch: true }],
         "no-undef-init": "off",
         "no-underscore-dangle": "off",
         "no-constant-condition": "off",
@@ -83,7 +84,7 @@ module.exports = {
 
         // #region unicorn
         "unicorn/empty-brace-spaces": "error",
-        "unicorn/filename-case": ["error", { case: "kebabCase" }],
+        "unicorn/filename-case": ["error", { case: "kebabCase", ignore: [/indexedDB/] }],
         "unicorn/import-style": "error",
         "unicorn/new-for-builtins": "error",
         "unicorn/no-abusive-eslint-disable": "error",
@@ -239,6 +240,7 @@ module.exports = {
         "import/no-unassigned-import": "off",
         "import/no-self-import": "error",
         "import/no-extraneous-dependencies": "off",
+        "import/no-named-as-default": "off",
         // #endregion
     },
     overrides: [

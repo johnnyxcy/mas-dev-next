@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 09/13/2023 05:23 pm
+ * Last Modified: 10/13/2023 08:42 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,12 +15,15 @@ import React from "react";
 
 import ReactDOM from "react-dom/client";
 
+import * as strings from "@mas/base/common/strings";
+
 const App: React.FC = () => {
     return (
         <div>
             Hello World A
             <button
-                onClick={() => {
+                onClick={async () => {
+                    console.log(strings.charCount("Hello World A"));
                     console.info("Hello World B");
                 }}
             >

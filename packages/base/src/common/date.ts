@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 10:47 am
  *
- * Last Modified: 09/27/2023 11:00 am
+ * Last Modified: 10/12/2023 05:49 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { localize } from "@mas/i18n";
+import { localize } from "@mas/i18n/nls";
 
 const minute = 60;
 const hour = minute * 60;

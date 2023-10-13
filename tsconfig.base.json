@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "target": "ESNext",
-        "noEmit": false,
+        "noEmit": true,
+
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "allowJs": true,
         "skipLibCheck": true,
@@ -9,11 +10,13 @@
 
         "jsx": "react-jsx",
 
-        "module": "ESNext",
-        "moduleResolution": "Node",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "resolveJsonModule": true,
         "isolatedModules": true,
         "experimentalDecorators": true,
+
+        "declarationMap": true,
 
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,

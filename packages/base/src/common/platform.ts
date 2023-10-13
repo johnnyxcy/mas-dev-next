@@ -5,7 +5,7 @@
  *
  * File Created: 09/26/2023 05:31 pm
  *
- * Last Modified: 09/26/2023 05:40 pm
+ * Last Modified: 10/12/2023 05:49 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,7 +15,7 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import nls from "@mas/i18n";
+import nls from "@mas/i18n/nls";
 
 export const LANGUAGE_DEFAULT = "en";
 

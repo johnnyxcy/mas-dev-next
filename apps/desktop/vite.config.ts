@@ -1,7 +1,8 @@
 import { rmSync } from "node:fs";
 
-import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+
+import react from "@vitejs/plugin-react";
 import electron from "vite-plugin-electron";
 import renderer from "vite-plugin-electron-renderer";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -22,9 +23,23 @@ export default defineConfig(({ command }) => {
             tsconfigPaths(),
             react(),
             electron([
+                // #region Main Process
                 {
-                    // Main-Process entry file of the Electron App.
-                    entry: "src/platform/main.ts",
+                    vite: {
+                        build: {
+                            lib: {
+                                // Main-Process entry file of the Electron App.
+                                entry: "src/platform/main.ts",
+                            },
+                            sourcemap,
+                            minify: isBuild,
+                            outDir: ".dist/platform",
+                            rollupOptions: {
+                                external: Object.keys("dependencies" in pkg ? pkg.dependencies : {}),
+                            },
+                        },
+                    },
+
                     onstart(options) {
                         if (isVscodeDebug) {
                             if (!process.env._REMOTE_DEBUGGING_PORT) {
@@ -38,26 +53,17 @@ export default defineConfig(({ command }) => {
                             options.startup();
                         }
                     },
-                    vite: {
-                        build: {
-                            sourcemap,
-                            minify: isBuild,
-                            outDir: ".dist/platform",
-                            rollupOptions: {
-                                external: Object.keys("dependencies" in pkg ? pkg.dependencies : {}),
-                            },
-                        },
-                    },
                 },
+                // #endregion
+
+                // #region Preload Process
                 {
-                    entry: "src/platform/preload.ts",
-                    onstart(options) {
-                        // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
-                        // instead of restarting the entire Electron App.
-                        options.reload();
-                    },
                     vite: {
                         build: {
+                            lib: {
+                                // Preload entry file of the Electron App.
+                                entry: "src/platform/preload.ts",
+                            },
                             sourcemap: sourcemap ? "inline" : undefined, // #332
                             minify: isBuild,
                             outDir: ".dist/platform",
@@ -66,10 +72,19 @@ export default defineConfig(({ command }) => {
                             },
                         },
                     },
+                    onstart(options) {
+                        // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
+                        // instead of restarting the entire Electron App.
+                        options.reload();
+                    },
                 },
+                // #endregion
             ]),
+
+            // #region Renderer Process
             // Use Node.js API in the Renderer-process
             renderer(),
+            // #endregion
         ],
         server: isVscodeDebug
             ? (() => {

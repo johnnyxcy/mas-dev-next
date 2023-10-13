@@ -2,11 +2,16 @@
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
         "baseUrl": "./",
+        "outDir": "./.dist",
+        "noEmit": false,
+        "composite": true,
+        "emitDeclarationOnly": true,
+
         "paths": {
-            "@mas/desktop/platform/*": ["src/platform/*"],
-            "@mas/desktop/workbench/*": ["src/workbench/*"]
+            "@mas/desktop/platform/*": ["./src/platform/*"],
+            "@mas/desktop/workbench/*": ["./src/workbench/*"]
         }
     },
     "include": ["src"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "references": [{ "path": "../../packages/base/tsconfig.json" }]
 }

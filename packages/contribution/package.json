@@ -3,8 +3,11 @@
     "version": "1.0.0",
     "description": "",
     "type": "module",
-    "main": ".dist/lib/contribution.js",
-    "types": ".dist/types/contribution.d.ts",
+    "exports": {
+        ".": "./src/index.ts",
+        "./common": "./src/common/index.ts",
+        "./common/*": "./src/common/*.ts"
+    },
     "scripts": {
         "build": "vite build",
         "test": "vitest --run --coverage",

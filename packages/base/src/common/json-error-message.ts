@@ -5,13 +5,13 @@
  *
  * File Created: 09/26/2023 04:28 pm
  *
- * Last Modified: 09/26/2023 05:12 pm
+ * Last Modified: 10/12/2023 05:49 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-import nls from "@mas/i18n";
+import nls from "@mas/i18n/nls";
 
 import { ParseErrorCode } from "@mas/base/common/json";
 

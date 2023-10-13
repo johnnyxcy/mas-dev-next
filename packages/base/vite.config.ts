@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 09/28/2023 03:22 pm
+ * Last Modified: 10/12/2023 03:31 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -47,5 +47,10 @@ export default defineConfig({
         coverage: {
             provider: "istanbul",
         },
+        environmentMatchGlobs: [
+            ["**/tests/common/**/*.test.ts", "node"],
+            ["**/tests/node/**/*.test.ts", "node"],
+            ["**/tests/browser/**/*.test.ts", "jsdom"],
+        ],
     },
 });

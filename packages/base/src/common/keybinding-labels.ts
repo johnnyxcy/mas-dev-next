@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:14 pm
  *
- * Last Modified: 09/27/2023 05:14 pm
+ * Last Modified: 10/12/2023 05:49 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import nls from "@mas/i18n";
+import nls from "@mas/i18n/nls";
 
 import { Modifiers } from "@mas/base/common/keybindings";
 import { OperatingSystem } from "@mas/base/common/platform";

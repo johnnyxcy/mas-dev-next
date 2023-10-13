@@ -3,9 +3,15 @@
     "version": "1.0.0",
     "description": "",
     "type": "module",
-    "main": ".dist/lib/base.js",
-    "types": ".dist/types/base.d.ts",
+    "exports": {
+        "./common/*": "./src/common/*.ts",
+        "./browser/*": "./src/browser/*.ts",
+        "./node/*": "./src/node/*.ts",
+        "./testing/common/*": "./src/testing/common/*.ts",
+        "./testing/node/*": "./src/testing/node/*.ts"
+    },
     "scripts": {
+        "build": "vite build",
         "test:run": "vitest --run --coverage",
         "test:ui": "vitest --ui --coverage",
         "lint": "eslint ./src ./tests --config ./.eslintrc.cjs"

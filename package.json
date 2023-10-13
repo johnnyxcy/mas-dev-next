@@ -24,6 +24,7 @@
         "@vitest/ui": "latest",
         "eslint": "latest",
         "husky": "latest",
+        "jsdom": "latest",
         "lint-staged": "latest",
         "prettier": "latest",
         "pyright": "^1.1.326",

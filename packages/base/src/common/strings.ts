@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 03:35 pm
  *
- * Last Modified: 09/27/2023 03:36 pm
+ * Last Modified: 10/12/2023 01:50 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -41,7 +41,7 @@ export function format(value: string, ...args: any[]): string {
         return value;
     }
     return value.replace(_formatRegexp, function (match, group) {
-        const idx = Number.parseInt(group, 10);
+        const idx = Number.parseInt(group);
         return Number.isNaN(idx) || idx < 0 || idx >= args.length ? match : args[idx];
     });
 }
@@ -752,11 +752,11 @@ export function lcut(text: string, n: number) {
 }
 
 // Escape codes, compiled from https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Functions-using-CSI-_-ordered-by-the-final-character_s_
-// eslint-disable-next-line no-control-regex
+
 const CSI_SEQUENCE = /(:?\x1b\[|\x9B)[=?>!]?[\d;:]*["$#'* ]?[a-zA-Z@^`{}|~]/g;
 
 // Plus additional markers for custom `\x1b]...\x07` instructions.
-// eslint-disable-next-line no-control-regex
+
 const CSI_CUSTOM_SEQUENCE = /\x1b\].*?\x07/g;
 
 export function removeAnsiEscapeCodes(str: string): string {
