@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:53 pm
  *
- * Last Modified: 09/26/2023 03:43 pm
+ * Last Modified: 10/13/2023 11:26 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -29,7 +29,7 @@
 import * as fs from "fs-extra";
 import { inject, injectable, named } from "inversify";
 
-import { IContributionProvider } from "@mas/contribution";
+import { IContributionProvider } from "@mas/contribution/common/contribution-provider";
 import { ILanguageInfo, ILocalization } from "@mas/i18n/common/localization";
 import { LocalizationProvider } from "@mas/i18n/node/localization-provider";
 

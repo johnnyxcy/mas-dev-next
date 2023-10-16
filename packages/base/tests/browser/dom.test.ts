@@ -5,7 +5,7 @@
  *
  * File Created: 10/12/2023 01:55 pm
  *
- * Last Modified: 10/12/2023 04:03 pm
+ * Last Modified: 10/16/2023 04:50 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,7 +15,6 @@ import { assert, describe, test } from "vitest";
 
 import { $, copyAttributes, h, multibyteAwareBtoa, trackAttributes } from "@mas/base/browser/dom";
 import { timeout } from "@mas/base/common/async";
-import { runWithFakedTimers } from "@mas/base/testing/common/time-travel-scheduler";
 
 describe("dom", () => {
     test("hasClass", () => {
@@ -296,40 +295,36 @@ describe("dom", () => {
     });
 
     test("trackAttributes (unfiltered)", async () => {
-        return runWithFakedTimers({ useFakeTimers: true }, async () => {
-            const elementSource = document.createElement("div");
-            const elementTarget = document.createElement("div");
+        const elementSource = document.createElement("div");
+        const elementTarget = document.createElement("div");
 
-            const disposable = trackAttributes(elementSource, elementTarget);
+        const disposable = trackAttributes(elementSource, elementTarget);
 
-            elementSource.setAttribute("foo", "bar");
-            elementSource.setAttribute("bar", "foo");
+        elementSource.setAttribute("foo", "bar");
+        elementSource.setAttribute("bar", "foo");
 
-            await timeout(1);
+        await timeout(1);
 
-            assert.strictEqual(elementTarget.getAttribute("foo"), "bar");
-            assert.strictEqual(elementTarget.getAttribute("bar"), "foo");
+        assert.strictEqual(elementTarget.getAttribute("foo"), "bar");
+        assert.strictEqual(elementTarget.getAttribute("bar"), "foo");
 
-            disposable.dispose();
-        });
+        disposable.dispose();
     });
 
     test("trackAttributes (filtered)", async () => {
-        return runWithFakedTimers({ useFakeTimers: true }, async () => {
-            const elementSource = document.createElement("div");
-            const elementTarget = document.createElement("div");
+        const elementSource = document.createElement("div");
+        const elementTarget = document.createElement("div");
 
-            const disposable = trackAttributes(elementSource, elementTarget, ["foo"]);
+        const disposable = trackAttributes(elementSource, elementTarget, ["foo"]);
 
-            elementSource.setAttribute("foo", "bar");
-            elementSource.setAttribute("bar", "foo");
+        elementSource.setAttribute("foo", "bar");
+        elementSource.setAttribute("bar", "foo");
 
-            await timeout(1);
+        await timeout(1);
 
-            assert.strictEqual(elementTarget.getAttribute("foo"), "bar");
-            assert.strictEqual(elementTarget.getAttribute("bar"), null);
+        assert.strictEqual(elementTarget.getAttribute("foo"), "bar");
+        assert.strictEqual(elementTarget.getAttribute("bar"), null);
 
-            disposable.dispose();
-        });
+        disposable.dispose();
     });
 });

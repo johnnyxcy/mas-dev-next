@@ -2,9 +2,8 @@
     "name": "@mas/icons",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "vite build",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },
@@ -24,6 +23,7 @@
         "@storybook/testing-library": "latest",
         "react": "latest",
         "react-dom": "latest",
-        "storybook": "latest"
+        "storybook": "latest",
+        "vite-plugin-lib-inject-css": "latest"
     }
 }

@@ -7,18 +7,24 @@
         ".dist"
     ],
     "exports": {
-        ".": "./src/nls.ts",
-        "./nls": "./src/nls.ts",
-        "./common": "./src/common/index.ts",
-        "./common/*": "./src/common/*.ts",
-        "./node": "./src/node/index.ts",
-        "./node/*": "./src/node/*.ts"
+        "./nls": {
+            "types": "./.dist/types/src/nls.d.ts",
+            "default": "./.dist/lib/nls.js"
+        },
+        "./common/*": {
+            "types": "./.dist/types/src/common/*.d.ts",
+            "default": "./.dist/lib/common/*.js"
+        },
+        "./node/*": {
+            "types": "./.dist/types/src/node/*.d.ts",
+            "default": "./.dist/lib/node/*.js"
+        }
     },
     "scripts": {
         "build": "vite build",
         "test": "vitest --run --coverage",
         "test:ui": "vitest --ui --coverage",
-        "lint": "eslint ./src --config ./.eslintrc.js"
+        "lint": "eslint ./src --config ./.eslintrc.cjs"
     },
     "keywords": [
         "Internationalization",
@@ -34,6 +40,7 @@
     },
     "license": "ISC",
     "dependencies": {
+        "fs-extra": "latest",
         "inversify": "latest"
     },
     "devDependencies": {

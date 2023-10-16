@@ -1,11 +1,11 @@
 /*
- * File: @mas/desktop/.eslintrc.js
+ * File: @mas/desktop/.eslintrc.cjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/20/2023 05:03 pm
+ * Last Modified: 10/16/2023 04:51 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *

@@ -5,7 +5,7 @@
  *
  * File Created: 10/12/2023 01:52 pm
  *
- * Last Modified: 10/12/2023 01:53 pm
+ * Last Modified: 10/16/2023 11:13 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,6 +15,7 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+
 import { assert, describe, test } from "vitest";
 
 import { sha1Hex } from "@mas/base/browser/hash";
@@ -122,12 +123,26 @@ describe("Hash", () => {
         let actual = hash.digest();
         assert.strictEqual(actual, expected);
 
+        /**
+         * @jest-environment node
+         *``    * README: since vitest vm uses different Buffer/ArrayBuffer for node and browser,
+         * `BinaryBuffer.from("").buffer instanceof ArrayBuffer` will complain to be false,
+         * which will cause the following test to fail.
+         *
+         * https://github.com/jestjs/jest/issues/7780 fixes ArrayBuffer only not Buffer, so
+         * we have to use node test runtime instead of jsdom for this test
+         */
+
         // Test with crypto.subtle
         actual = await sha1Hex(str);
         assert.strictEqual(actual, expected);
     }
 
-    test("sha1-1", () => {
+    test("sha1-1", async () => {
+        return checkSHA1("\udd56", "9bdb77276c1852e1fb067820472812fcf6084024");
+    });
+
+    test("sha1-1", async () => {
         return checkSHA1("\udd56", "9bdb77276c1852e1fb067820472812fcf6084024");
     });
 

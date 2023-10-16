@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/10/2023 05:03 pm
+ * Last Modified: 10/13/2023 04:29 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,6 +16,7 @@
 import { defineConfig } from "vite";
 
 import dts from "vite-plugin-dts";
+import { libInjectCss } from "vite-plugin-lib-inject-css";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
@@ -26,11 +27,22 @@ export default defineConfig({
                 outDir: ".dist/types",
                 exclude: ["**/tests"],
                 include: ["src"],
-                insertTypesEntry: true,
             }),
             apply: "build",
         },
+        libInjectCss(),
     ],
+    build: {
+        outDir: ".dist/lib",
+        lib: {
+            entry: {
+                codicons: "./src/codicons/index.ts",
+            },
+            formats: ["es"],
+            fileName: () => "codicons.js",
+        },
+        chunkSizeWarningLimit: 1000,
+    },
     test: {
         /* for example, use global to avoid globals imports (describe, test, expect): */
         globals: true,

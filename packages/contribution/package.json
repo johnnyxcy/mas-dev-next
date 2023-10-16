@@ -3,15 +3,23 @@
     "version": "1.0.0",
     "description": "",
     "type": "module",
+    "files": [
+        ".dist"
+    ],
     "exports": {
-        ".": "./src/index.ts",
-        "./common": "./src/common/index.ts",
-        "./common/*": "./src/common/*.ts"
+        ".": {
+            "types": "./.dist/types/src/index.d.ts",
+            "default": "./.dist/lib/index"
+        },
+        "./common/*": {
+            "types": "./.dist/types/src/common/*.d.ts",
+            "default": "./.dist/lib/common/*"
+        }
     },
     "scripts": {
         "build": "vite build",
         "test": "vitest --run --coverage",
-        "lint": "eslint ./src --config ./.eslintrc.js"
+        "lint": "eslint ./src --config ./.eslintrc.cjs"
     },
     "keywords": [],
     "author": {
@@ -24,6 +32,7 @@
         "inversify": "latest"
     },
     "devDependencies": {
+        "@mas/i18n": "*",
         "@mas/tools": "*"
     }
 }

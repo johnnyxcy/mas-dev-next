@@ -5,17 +5,17 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 09/26/2023 01:45 pm
+ * Last Modified: 10/13/2023 01:27 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
 /// <reference types="vitest" />
-
-import { resolve } from "node:path";
-
+import path from "node:path";
 import { defineConfig } from "vite";
+
+import glob from "glob";
 
 import dts from "vite-plugin-dts";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -28,7 +28,6 @@ export default defineConfig({
                 outDir: ".dist/types",
                 exclude: ["**/tests"],
                 include: ["src"],
-                insertTypesEntry: true,
             }),
             apply: "build",
         },
@@ -36,12 +35,18 @@ export default defineConfig({
     build: {
         outDir: ".dist/lib",
         lib: {
-            entry: {
-                nls: resolve(__dirname, "src/nls.ts"),
-                common: resolve(__dirname, "src/common/index.ts"),
-                node: resolve(__dirname, "src/node/index.ts"),
-            },
+            entry: glob.sync(path.resolve(__dirname, "src/**/*.ts")),
             formats: ["es"],
+        },
+        rollupOptions: {
+            external: ["fs-extra", "inversify", /@mas\/contribution(.+)?/],
+            output: {
+                preserveModules: true,
+                preserveModulesRoot: "src",
+                entryFileNames: ({ name: fileName }) => {
+                    return `${fileName}.js`;
+                },
+            },
         },
         chunkSizeWarningLimit: 1000,
     },

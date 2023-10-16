@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/12/2023 01:27 pm
+ * Last Modified: 10/16/2023 03:11 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -24,7 +24,7 @@ module.exports = {
     ignorePatterns: [".eslintrc.cjs", "node_modules", "lib"],
     overrides: [
         {
-            files: ["src/**/*.js"],
+            files: ["src/**/*.js", "src/**/*.cjs"],
             rules: {
                 "@typescript-eslint/explicit-function-return-type": "off",
             },
@@ -75,8 +75,9 @@ module.exports = {
             },
         },
         {
-            files: ["src/common/performance.js", "src/common/strip-comment.js"],
+            files: ["src/common/performance.js"],
             rules: {
+                "strict": "off",
                 "no-console": "off",
                 "vars-on-top": "off",
                 "no-restricted-globals": "off",

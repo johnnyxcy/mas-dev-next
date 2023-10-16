@@ -5,18 +5,18 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/12/2023 03:31 pm
+ * Last Modified: 10/16/2023 04:46 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
 /// <reference types="vitest" />
-
-import { resolve } from "node:path";
-
+import { builtinModules } from "node:module";
+import path from "node:path";
 import { defineConfig } from "vite";
 
+import glob from "glob";
 import dts from "vite-plugin-dts";
 import tsconfigPaths from "vite-tsconfig-paths";
 
@@ -28,7 +28,6 @@ export default defineConfig({
                 outDir: ".dist/types",
                 exclude: ["**/tests"],
                 include: ["src"],
-                insertTypesEntry: true,
             }),
             apply: "build",
         },
@@ -36,8 +35,30 @@ export default defineConfig({
     build: {
         outDir: ".dist/lib",
         lib: {
-            entry: [resolve(__dirname, "src/common/index.ts")],
+            entry: glob.sync(path.resolve(__dirname, "src/**/*.ts"), { ignore: ["**/*.d.ts"] }),
             formats: ["es"],
+        },
+        rollupOptions: {
+            external: [
+                "inversify",
+                "jschardet",
+                "iconv-lite",
+                "yauzl",
+                "yazl",
+                "pretty-format",
+                "reflect-metadata",
+                /@mas\/i18n(.+)?/,
+                /@vitest(.+)?/,
+                ...builtinModules,
+                /^node:/,
+            ],
+            output: {
+                preserveModules: true,
+                preserveModulesRoot: "src",
+                entryFileNames: ({ name: fileName }) => {
+                    return `${fileName}.js`;
+                },
+            },
         },
         chunkSizeWarningLimit: 1000,
     },
@@ -52,5 +73,6 @@ export default defineConfig({
             ["**/tests/node/**/*.test.ts", "node"],
             ["**/tests/browser/**/*.test.ts", "jsdom"],
         ],
+        setupFiles: ["fake-indexeddb/auto"],
     },
 });

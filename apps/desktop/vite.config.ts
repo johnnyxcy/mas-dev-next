@@ -25,12 +25,10 @@ export default defineConfig(({ command }) => {
             electron([
                 // #region Main Process
                 {
+                    // Main-Process entry file of the Electron App.
+                    entry: "src/platform/main.ts",
                     vite: {
                         build: {
-                            lib: {
-                                // Main-Process entry file of the Electron App.
-                                entry: "src/platform/main.ts",
-                            },
                             sourcemap,
                             minify: isBuild,
                             outDir: ".dist/platform",
@@ -58,12 +56,10 @@ export default defineConfig(({ command }) => {
 
                 // #region Preload Process
                 {
+                    // Preload entry file of the Electron App.
+                    entry: "src/platform/preload.ts",
                     vite: {
                         build: {
-                            lib: {
-                                // Preload entry file of the Electron App.
-                                entry: "src/platform/preload.ts",
-                            },
                             sourcemap: sourcemap ? "inline" : undefined, // #332
                             minify: isBuild,
                             outDir: ".dist/platform",

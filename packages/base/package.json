@@ -4,11 +4,38 @@
     "description": "",
     "type": "module",
     "exports": {
-        "./common/*": "./src/common/*.ts",
-        "./browser/*": "./src/browser/*.ts",
-        "./node/*": "./src/node/*.ts",
-        "./testing/common/*": "./src/testing/common/*.ts",
-        "./testing/node/*": "./src/testing/node/*.ts"
+        ".": {
+            "types": "./.dist/types/src/index.d.ts",
+            "default": "./.dist/lib/index"
+        },
+        "./browser/*": {
+            "types": "./.dist/types/src/browser/*.d.ts",
+            "default": "./.dist/lib/browser/*"
+        },
+        "./common/*": {
+            "types": "./.dist/types/src/common/*.d.ts",
+            "default": "./.dist/lib/common/*"
+        },
+        "./common/encoding": {
+            "types": "./.dist/types/src/common/encoding/index.d.ts",
+            "default": "./.dist/lib/common/encoding/index"
+        },
+        "./common/encoding/*": {
+            "types": "./.dist/types/src/common/encoding/*.d.ts",
+            "default": "./.dist/lib/common/encoding/*"
+        },
+        "./node/*": {
+            "types": "./.dist/types/src/node/*.d.ts",
+            "default": "./.dist/lib/node/*"
+        },
+        "./testing/common/*": {
+            "types": "./.dist/types/src/testing/common/*.d.ts",
+            "default": "./.dist/lib/testing/common/*"
+        },
+        "./testing/node/*": {
+            "types": "./.dist/types/src/testing/node/*.d.ts",
+            "default": "./.dist/lib/testing/node/*"
+        }
     },
     "scripts": {
         "build": "vite build",
@@ -34,6 +61,7 @@
     "devDependencies": {
         "@mas/i18n": "*",
         "@mas/tools": "*",
-        "@types/yazl": "latest"
+        "@types/yazl": "latest",
+        "fake-indexeddb": "latest"
     }
 }

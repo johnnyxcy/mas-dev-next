@@ -1,10 +1,12 @@
 {
     "name": "@mas/desktop",
     "version": "1.0.0",
-    "main": ".dist/platform/main.cjs",
+    "main": ".dist/platform/main.js",
+    "type": "module",
     "scripts": {
         "dev": "vite",
         "build": "vite build && electron-builder",
+        "lint": "eslint ./src --config ./.eslintrc.cjs",
         "preview": "vite preview",
         "pree2e": "vite build --mode=test",
         "e2e": "playwright test"

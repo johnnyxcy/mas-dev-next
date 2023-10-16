@@ -2,7 +2,8 @@
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
         "baseUrl": "./",
-        "noEmit": true,
+        "outDir": "./.dist",
+        "noEmit": false,
         "composite": true,
 
         "paths": {
@@ -10,5 +11,5 @@
         }
     },
     "include": ["src", "tests"],
-    "references": [{ "path": "../tools" }, { "path": "../i18n" }]
+    "references": [{ "path": "../tools/tsconfig.json" }, { "path": "../i18n/tsconfig.json" }]
 }

@@ -5,7 +5,7 @@
  *
  * File Created: 10/12/2023 11:22 am
  *
- * Last Modified: 10/12/2023 05:49 pm
+ * Last Modified: 10/16/2023 03:27 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,13 +22,12 @@ import { Readable } from "node:stream";
 import { open as _openZip, Entry, ZipFile } from "yauzl";
 import * as yazl from "yazl";
 
-import nls from "@mas/i18n/nls";
-
 import { createCancelablePromise, Sequencer } from "@mas/base/common/async";
 import { CancellationToken } from "@mas/base/common/cancellation";
 import * as path from "@mas/base/common/path";
 import { assertIsDefined } from "@mas/base/common/types";
 import { Promises } from "@mas/base/node/pfs";
+import nls from "@mas/i18n/nls";
 
 export const CorruptZipMessage: string = "end of central directory record signature not found";
 const CORRUPT_ZIP_PATTERN = new RegExp(CorruptZipMessage);
