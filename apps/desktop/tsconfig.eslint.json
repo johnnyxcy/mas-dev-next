@@ -8,6 +8,7 @@
     "include": [
         // whatever paths you intend to lint
         "src",
+        ".scripts",
         ".eslintrc.cjs",
         "*.config.ts"
     ]

@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:24 pm
  *
- * Last Modified: 09/13/2023 04:55 pm
+ * Last Modified: 10/17/2023 03:59 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -43,12 +43,11 @@ let win: BrowserWindow | null = null;
 // Here, you can also use other preload
 const preload = join(__dirname, "preload.js");
 const devUrl = process.env.VITE_DEV_SERVER_URL;
-const indexHtml = join(process.env.DIST, "../index.html");
+const indexHtml = join(process.env.DIST, "workbench/index.html");
 
 async function createWindow(): Promise<void> {
     win = new BrowserWindow({
         title: "Main window",
-        // icon: join(process.env.VITE_PUBLIC, "favicon.ico"),
         webPreferences: {
             preload,
             // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production

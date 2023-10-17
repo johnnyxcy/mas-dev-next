@@ -39,18 +39,27 @@
             "request": "attach",
             "type": "chrome",
             "timeout": 60000,
-            "webRoot": "${workspaceFolder}/apps/desktop",
+            "webRoot": "${workspaceRoot}/apps/desktop",
             "skipFiles": [
+                // Skip node internals
                 "<node_internals>/**",
+                // Skip root node_modules folder
                 "${workspaceRoot}/node_modules/**",
+                // Skip any node_modules nested in folders of the workspace
                 "${workspaceRoot}/**/node_modules/**",
-                "!${workspaceRoot}/apps/desktop/**",
-                "${workspaceRoot}/apps/desktop/.dist/**",
-                "${workspaceRoot}/apps/desktop/src/platform/**",
-                "${workspaceRoot}/apps/**/*",
+
                 // Skip files in host(VITE_DEV_SERVER_URL)
-                "http://127.0.0.1:7777/**"
+                "http://127.0.0.1:7777/**",
+
+                // Don't skip our source files
+                "!${workspaceRoot}/apps/**",
+                "!${workspaceRoot}/packages/**"
             ],
+            "outFiles": ["${workspaceRoot}/packages/**/.dist/lib/*.js"],
+            "pathMapping": {
+                "/": "${workspaceRoot}/apps/desktop",
+                "/@fs/": "/"
+            },
             "presentation": {
                 "hidden": true
             }
@@ -60,7 +69,6 @@
         {
             "name": "[launch]@mas/desktop",
             "stopAll": true,
-            // "preLaunchTask": "[debug]@mas/desktop::before",
             "configurations": ["[launch]@mas/desktop::main", "[attach]@mas/desktop::renderer"],
             "presentation": {
                 "hidden": false,

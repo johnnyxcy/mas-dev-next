@@ -51,15 +51,16 @@
     },
     "license": "ISC",
     "dependencies": {
+        "@mas/i18n": "*",
         "reflect-metadata": "latest",
         "inversify": "latest",
         "jschardet": "latest",
+        "pretty-format": "latest",
         "iconv-lite": "latest",
         "yauzl": "latest",
         "yazl": "latest"
     },
     "devDependencies": {
-        "@mas/i18n": "*",
         "@mas/tools": "*",
         "@types/yazl": "latest",
         "fake-indexeddb": "latest"

@@ -1,5 +1,4 @@
 import { rmSync } from "node:fs";
-
 import { defineConfig } from "vite";
 
 import react from "@vitejs/plugin-react";
@@ -21,7 +20,6 @@ export default defineConfig(({ command }) => {
     return {
         plugins: [
             tsconfigPaths(),
-            react(),
             electron([
                 // #region Main Process
                 {
@@ -45,8 +43,8 @@ export default defineConfig(({ command }) => {
                                     "Missing environment variable `_REMOTE_DEBUGGING_PORT` with vscode debugging.",
                                 );
                             }
+                            console.log(`Current directory: ${process.cwd()}`);
                             options.startup([`--remote-debugging-port=${process.env._REMOTE_DEBUGGING_PORT}`, "."]);
-                            // console.log(/* For `.vscode/.debug.script.mjs` */ "[startup] Electron App");
                         } else {
                             options.startup();
                         }
@@ -76,12 +74,17 @@ export default defineConfig(({ command }) => {
                 },
                 // #endregion
             ]),
-
-            // #region Renderer Process
-            // Use Node.js API in the Renderer-process
             renderer(),
-            // #endregion
+            react(),
         ],
+        // #region Renderer Process
+        build: {
+            sourcemap,
+            minify: isBuild,
+            outDir: "./.dist/workbench",
+            assetsDir: "chunks",
+        },
+        // #endregion
         server: isVscodeDebug
             ? (() => {
                   //   const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL);

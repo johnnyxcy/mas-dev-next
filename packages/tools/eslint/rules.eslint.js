@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 10/13/2023 09:45 am
+ * Last Modified: 10/17/2023 03:20 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -331,7 +331,7 @@ module.exports = {
                 "unicorn/no-useless-undefined": "off",
                 // 保证所有字符串都通过了 i18next
                 "i18next/no-literal-string": [
-                    "error",
+                    "warn",
                     {
                         mode: "jsx-text-only",
                         message: "字符需要符合 i18n 规范",

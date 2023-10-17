@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/16/2023 04:54 pm
+ * Last Modified: 10/17/2023 04:23 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,13 +13,14 @@
  */
 /// <reference types="vitest" />
 import { rmSync } from "node:fs";
-import { builtinModules } from "node:module";
 import path from "node:path";
 import { defineConfig } from "vite";
 
 import glob from "glob";
 import dts from "vite-plugin-dts";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+import pkg from "./package.json";
 
 export default defineConfig(() => {
     rmSync(".dist/", { recursive: true, force: true });
@@ -37,25 +38,15 @@ export default defineConfig(() => {
             },
         ],
         build: {
+            sourcemap: true,
+            minify: "esbuild",
             outDir: ".dist/lib",
             lib: {
                 entry: glob.sync(path.resolve(__dirname, "src/**/*.ts"), { ignore: ["**/*.d.ts"] }),
                 formats: ["es"],
             },
             rollupOptions: {
-                external: [
-                    "inversify",
-                    "jschardet",
-                    "iconv-lite",
-                    "yauzl",
-                    "yazl",
-                    "pretty-format",
-                    "reflect-metadata",
-                    /@mas\/i18n(.+)?/,
-                    /@vitest(.+)?/,
-                    ...builtinModules,
-                    /^node:/,
-                ],
+                external: [...Object.keys(pkg.dependencies || {}), /@mas\/i18n(.+)?/, /@vitest(.+)?/, /^node:/],
                 output: {
                     preserveModules: true,
                     preserveModulesRoot: "src",
