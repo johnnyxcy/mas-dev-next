@@ -3,7 +3,6 @@ import { defineConfig } from "vite";
 
 import react from "@vitejs/plugin-react";
 import electron from "vite-plugin-electron";
-import renderer from "vite-plugin-electron-renderer";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 import pkg from "./package.json";
@@ -16,6 +15,8 @@ export default defineConfig(({ command }) => {
     const isBuild = command === "build";
     const isVscodeDebug = !!process.env._VSCODE_DEBUG;
     const sourcemap = isServe || isVscodeDebug;
+
+    console.log(command);
 
     return {
         plugins: [
@@ -31,7 +32,7 @@ export default defineConfig(({ command }) => {
                             minify: isBuild,
                             outDir: ".dist/platform",
                             rollupOptions: {
-                                external: Object.keys("dependencies" in pkg ? pkg.dependencies : {}),
+                                external: [...Object.keys(pkg.dependencies || {}), /@mas\/i18n(.+)?/, /^node:/],
                             },
                         },
                     },
@@ -43,7 +44,6 @@ export default defineConfig(({ command }) => {
                                     "Missing environment variable `_REMOTE_DEBUGGING_PORT` with vscode debugging.",
                                 );
                             }
-                            console.log(`Current directory: ${process.cwd()}`);
                             options.startup([`--remote-debugging-port=${process.env._REMOTE_DEBUGGING_PORT}`, "."]);
                         } else {
                             options.startup();
@@ -62,7 +62,7 @@ export default defineConfig(({ command }) => {
                             minify: isBuild,
                             outDir: ".dist/platform",
                             rollupOptions: {
-                                external: Object.keys("dependencies" in pkg ? pkg.dependencies : {}),
+                                external: [...Object.keys(pkg.dependencies || {}), /@mas\/i18n(.+)?/, /^node:/],
                             },
                         },
                     },
@@ -74,7 +74,6 @@ export default defineConfig(({ command }) => {
                 },
                 // #endregion
             ]),
-            renderer(),
             react(),
         ],
         // #region Renderer Process

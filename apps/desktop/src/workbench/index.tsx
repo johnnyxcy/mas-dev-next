@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 10/17/2023 05:31 pm
+ * Last Modified: 10/17/2023 05:54 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -18,7 +18,7 @@ import ReactDOM from "react-dom/client";
 const App: React.FC = () => {
     return (
         <div>
-            Hello World A<button onClick={async (e) => {}}>Click Me</button>
+            Hello World<button onClick={async (e) => {}}>Click Me Now!</button>
         </div>
     );
 };
