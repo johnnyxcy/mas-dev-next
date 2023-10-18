@@ -1,4 +1,5 @@
 import { rmSync } from "node:fs";
+import path from "node:path";
 import { defineConfig } from "vite";
 
 import react from "@vitejs/plugin-react";
@@ -80,6 +81,11 @@ export default defineConfig(({ command }) => {
         build: {
             sourcemap,
             minify: isBuild,
+            rollupOptions: {
+                input: {
+                    main: path.resolve(__dirname, "index.html"),
+                },
+            },
             outDir: "./.dist/workbench",
             assetsDir: "chunks",
         },
