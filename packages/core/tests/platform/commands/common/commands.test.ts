@@ -1,11 +1,11 @@
 /*
- * File: @mas/core/tests/commands/common/commands.test.ts
+ * File: @mas/core/tests/platform/commands/common/commands.test.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 10/18/2023 01:06 pm
  *
- * Last Modified: 10/18/2023 01:09 pm
+ * Last Modified: 10/18/2023 01:13 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,7 +15,7 @@ import { assert, describe, test } from "vitest";
 
 import { combinedDisposable } from "@mas/base/common/lifecycle";
 import { ensureNoDisposablesAreLeakedInTestSuite } from "@mas/base/testing/common/utils";
-import { CommandsRegistry } from "@mas/core/commands/common/commands";
+import { CommandsRegistry } from "@mas/core/platform/commands/common/commands";
 
 describe("Command Tests", function () {
     ensureNoDisposablesAreLeakedInTestSuite();

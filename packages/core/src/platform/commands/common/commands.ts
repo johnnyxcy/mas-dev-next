@@ -1,11 +1,11 @@
 /*
- * File: @mas/core/src/commands/common/commands.ts
+ * File: @mas/core/src/platform/commands/common/commands.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 10/18/2023 10:44 am
  *
- * Last Modified: 10/18/2023 01:05 pm
+ * Last Modified: 10/18/2023 01:12 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -18,7 +18,7 @@ import { type IJSONSchema } from "@mas/base/common/json-schema";
 import { toDisposable, type IDisposable } from "@mas/base/common/lifecycle";
 import { LinkedList } from "@mas/base/common/linked-list";
 import { validateConstraints, type TypeConstraint } from "@mas/base/common/types";
-import { type ILocalizedString } from "@mas/core/action/common/actions";
+import { type ILocalizedString } from "@mas/core/platform/action/common/actions";
 
 export interface ICommandEvent {
     commandId: string;
