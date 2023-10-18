@@ -1,0 +1,27 @@
+{
+    "name": "@mas/core",
+    "version": "1.0.0",
+    "description": "",
+    "type": "module",
+    "license": "MIT",
+    "scripts": {
+        "build": "vite build",
+        "test:run": "vitest --run --coverage",
+        "test:ui": "vitest --ui --coverage",
+        "lint": "eslint ./src ./tests --config ./.eslintrc.cjs"
+    },
+    "keywords": [],
+    "author": {
+        "name": "Maspectra Dev Team",
+        "email": "mas@drugchina.net",
+        "url": "https://www.maspectra.com"
+    },
+    "dependencies": {
+        "@mas/i18n": "*",
+        "@mas/base": "*",
+        "@mas/contribution": "*"
+    },
+    "devDependencies": {
+        "@mas/tools": "*"
+    }
+}

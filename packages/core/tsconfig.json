@@ -1,0 +1,15 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./.dist",
+        "noEmit": false,
+        "composite": true,
+
+        "paths": {
+            "@mas/core/*": ["./src/*"]
+        }
+    },
+    "include": ["src", "tests"],
+    "references": [{ "path": "../tools/tsconfig.json" }, { "path": "../i18n/tsconfig.json" }]
+}

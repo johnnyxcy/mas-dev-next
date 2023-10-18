@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 10/17/2023 03:20 pm
+ * Last Modified: 10/18/2023 10:49 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -178,7 +178,7 @@ module.exports = {
         "@typescript-eslint/no-restricted-imports": ["error", { patterns: ["\\./*", "\\.\\./*"] }],
         "@typescript-eslint/no-unused-vars": ["error", { destructuredArrayIgnorePattern: "^_", args: "none" }],
         // using type imports to resolve circular import error
-        "@typescript-eslint/consistent-type-imports": ["error", { prefer: "no-type-imports" }],
+        "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/lines-between-class-members": "off",
         "@typescript-eslint/member-ordering": [
             "error",
