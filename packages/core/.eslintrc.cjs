@@ -1,11 +1,11 @@
 /*
- * File: @mas/base/.eslintrc.cjs
+ * File: @mas/core/.eslintrc.cjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/16/2023 03:11 pm
+ * Last Modified: 10/18/2023 01:16 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -35,6 +35,10 @@ module.exports = {
                 "unicorn/no-process-exit": "off",
                 "@typescript-eslint/no-restricted-imports": "off",
             },
+        },
+        {
+            files: ["src/**/*.ts"],
+            rules: {},
         },
     ],
 };
