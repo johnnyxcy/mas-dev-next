@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 10/18/2023 10:49 am
+ * Last Modified: 10/24/2023 03:37 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -62,6 +62,7 @@ module.exports = {
         "no-nested-ternary": "off",
         "no-lonely-if": "off",
         "no-prototype-builtins": "off",
+        "no-useless-return": "off",
         "no-use-before-define": "off", // use @typescript-eslint/no-use-before-define instead
         "no-multi-assign": "off",
         "no-await-in-loop": "off",
@@ -107,7 +108,6 @@ module.exports = {
         "unicorn/prefer-array-index-of": "error",
         "unicorn/prefer-array-some": "error",
         "unicorn/prefer-default-parameters": "error",
-        "unicorn/prefer-event-target": "error",
         "unicorn/prefer-export-from": ["error", { ignoreUsedVariables: true }],
         "unicorn/prefer-includes": "error",
         "unicorn/prefer-modern-dom-apis": "error",
@@ -117,6 +117,7 @@ module.exports = {
         "unicorn/prefer-number-properties": "error",
         "unicorn/prefer-object-from-entries": "error",
         "unicorn/prefer-regexp-test": "error",
+        "unicorn/prefer-event-target": "off",
         "unicorn/relative-url-style": "error",
         "unicorn/require-array-join-separator": "off",
         "unicorn/string-content": ["error", { patterns: {} }],

@@ -1,11 +1,11 @@
 /*
- * File: @mas/base/vite.config.ts
+ * File: @mas/core/vite.config.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/17/2023 04:23 pm
+ * Last Modified: 10/24/2023 03:01 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -46,7 +46,13 @@ export default defineConfig(() => {
                 formats: ["es"],
             },
             rollupOptions: {
-                external: [...Object.keys(pkg.dependencies || {}), /@mas\/i18n(.+)?/, /@vitest(.+)?/, /^node:/],
+                external: [
+                    ...Object.keys(pkg.dependencies || {}),
+                    /@mas\/base(.+)?/,
+                    /@mas\/i18n(.+)?/,
+                    /@vitest(.+)?/,
+                    /^node:/,
+                ],
                 output: {
                     preserveModules: true,
                     preserveModulesRoot: "src",
@@ -63,6 +69,12 @@ export default defineConfig(() => {
             coverage: {
                 provider: "istanbul",
             },
+            environmentMatchGlobs: [
+                ["**/tests/**/common/**/*.test.ts", "node"],
+                ["**/tests/**/node/**/*.test.ts", "node"],
+                ["**/tests/**/browser/**/*.test.ts", "jsdom"],
+            ],
+            setupFiles: ["fake-indexeddb/auto"],
         },
     };
 });

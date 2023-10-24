@@ -2,8 +2,34 @@
     "name": "@mas/core",
     "version": "1.0.0",
     "description": "",
-    "type": "module",
     "license": "MIT",
+    "type": "module",
+    "exports": {
+        "./parts/ipc/browser/*": {
+            "types": "./.dist/types/src/parts/ipc/browser/*.d.ts",
+            "default": "./.dist/lib/parts/ipc/browser/*"
+        },
+        "./parts/ipc/common/*": {
+            "types": "./.dist/types/src/parts/ipc/common/*.d.ts",
+            "default": "./.dist/lib/parts/ipc/common/*"
+        },
+        "./parts/ipc/node/*": {
+            "types": "./.dist/types/src/parts/ipc/node/*.d.ts",
+            "default": "./.dist/lib/parts/ipc/node/*"
+        },
+        "./parts/sandbox/common/*": {
+            "types": "./.dist/types/src/parts/sandbox/common/*.d.ts",
+            "default": "./.dist/lib/parts/sandbox/common/*"
+        },
+        "./parts/sandbox/electron-sandbox/*": {
+            "types": "./.dist/types/src/parts/sandbox/electron-sandbox/*.d.ts",
+            "default": "./.dist/lib/parts/sandbox/electron-sandbox/*"
+        },
+        "./parts/sandbox/node/*": {
+            "types": "./.dist/types/src/parts/sandbox/node/*.d.ts",
+            "default": "./.dist/lib/parts/sandbox/node/*"
+        }
+    },
     "scripts": {
         "build": "vite build",
         "test:run": "vitest --run --coverage",

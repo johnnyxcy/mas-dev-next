@@ -13,7 +13,7 @@
         "module": "ESNext",
         "moduleResolution": "Bundler",
         "resolveJsonModule": true,
-        "isolatedModules": true,
+        "isolatedModules": false, // const enums export
         "experimentalDecorators": true,
 
         "declarationMap": true,
