@@ -5,7 +5,7 @@
  *
  * File Created: 10/24/2023 11:23 am
  *
- * Last Modified: 10/24/2023 02:10 pm
+ * Last Modified: 10/24/2023 04:47 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -125,8 +125,8 @@ export interface ISandboxContext {
     resolveConfiguration(): Promise<ISandboxConfiguration>;
 }
 
-export const ipcRenderer: IpcRenderer = globals.vscode.ipcRenderer;
-export const ipcMessagePort: IpcMessagePort = globals.vscode.ipcMessagePort;
-export const webFrame: WebFrame = globals.vscode.webFrame;
-export const process: ISandboxNodeProcess = globals.vscode.process;
-export const context: ISandboxContext = globals.vscode.context;
+export const ipcRenderer: IpcRenderer = globals.mas.ipcRenderer;
+export const ipcMessagePort: IpcMessagePort = globals.mas.ipcMessagePort;
+export const webFrame: WebFrame = globals.mas.webFrame;
+export const process: ISandboxNodeProcess = globals.mas.process;
+export const context: ISandboxContext = globals.mas.context;

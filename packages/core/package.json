@@ -48,6 +48,7 @@
         "@mas/contribution": "*"
     },
     "devDependencies": {
-        "@mas/tools": "*"
+        "@mas/tools": "*",
+        "electron": "27.0.2"
     }
 }

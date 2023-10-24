@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 02:39 pm
  *
- * Last Modified: 10/12/2023 09:05 am
+ * Last Modified: 10/24/2023 05:19 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -116,3 +116,5 @@ export namespace Schemas {
      */
     export const vscodeSourceControl = "vscode-scm";
 }
+
+export const VSCODE_AUTHORITY = "vscode-app";
