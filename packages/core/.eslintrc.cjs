@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/23/2023 04:56 pm
+ * Last Modified: 10/25/2023 02:37 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -37,7 +37,7 @@ module.exports = {
             },
         },
         {
-            files: ["src/**/*.ts"],
+            files: ["src/**/*.ts", "tests/**/*.ts"],
             rules: {
                 "no-void": "off",
                 "no-fallthrough": "off",

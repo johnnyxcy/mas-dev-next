@@ -3402,6 +3402,14 @@
   dependencies:
     "@volar/language-core" "1.10.4"
 
+"@vscode/sqlite3@latest":
+  version "5.1.6-vscode"
+  resolved "https://registry.npmmirror.com/@vscode/sqlite3/-/sqlite3-5.1.6-vscode.tgz#2f20e80fe2af59f3e81bf777f5fe2da5a6ec8329"
+  integrity sha512-SzNUiijrRyJr1ly6eHIs5UcCqH/V8aaoz9mHNm5SdnJCJOX5T9RcHqO1AJ9VreHcPcRPKuG2paUpMkTeyynmYQ==
+  dependencies:
+    node-addon-api "^4.2.0"
+    tar "^6.1.11"
+
 "@vue/compiler-core@3.3.4":
   version "3.3.4"
   resolved "https://registry.npmmirror.com/@vue/compiler-core/-/compiler-core-3.3.4.tgz#7fbf591c1c19e1acd28ffd284526e98b4f581128"
@@ -8170,6 +8178,11 @@ node-addon-api@^1.6.3:
   resolved "https://registry.npmmirror.com/node-addon-api/-/node-addon-api-1.7.2.tgz#3df30b95720b53c24e59948b49532b662444f54d"
   integrity sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==
 
+node-addon-api@^4.2.0:
+  version "4.3.0"
+  resolved "https://registry.npmmirror.com/node-addon-api/-/node-addon-api-4.3.0.tgz#52a1a0b475193e0928e98e0426a0d1254782b77f"
+  integrity sha512-73sE9+3UaLYYFmDsFZnqCInzPyh3MqIwZO9cw58yIqAZhONrrabrYyYe3TuIqtIiOuTXVhsGau8hcrhhwSsDIQ==
+
 node-dir@^0.1.10, node-dir@^0.1.17:
   version "0.1.17"
   resolved "https://registry.npmmirror.com/node-dir/-/node-dir-0.1.17.tgz#5f5665d93351335caabef8f1c554516cf5f1e4e5"
@@ -9930,7 +9943,7 @@ tar-stream@^2.1.4:
     inherits "^2.0.3"
     readable-stream "^3.1.1"
 
-tar@^6.1.12, tar@^6.2.0:
+tar@^6.1.11, tar@^6.1.12, tar@^6.2.0:
   version "6.2.0"
   resolved "https://registry.npmmirror.com/tar/-/tar-6.2.0.tgz#b14ce49a79cb1cd23bc9b016302dea5474493f73"
   integrity sha512-/Wo7DcT0u5HUV486xg675HtjNd3BXZ6xDbzsCUZPt5iw8bTQ63bP0Raut3mvro9u+CUyq7YQd8Cx55fsZXxqLQ==

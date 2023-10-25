@@ -45,7 +45,8 @@
     "dependencies": {
         "@mas/i18n": "*",
         "@mas/base": "*",
-        "@mas/contribution": "*"
+        "@mas/contribution": "*",
+        "@vscode/sqlite3": "latest"
     },
     "devDependencies": {
         "@mas/tools": "*",

@@ -20,7 +20,7 @@
 
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
-        "useDefineForClassFields": true,
+        "useDefineForClassFields": false,
 
         /* Linting */
         "strict": true,
