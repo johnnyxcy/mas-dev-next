@@ -33,6 +33,6 @@
     },
     "devDependencies": {
         "@mas/i18n": "*",
-        "@mas/tools": "*"
+        "@mas/configs": "*"
     }
 }

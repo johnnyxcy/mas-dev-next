@@ -61,7 +61,7 @@
         "yazl": "latest"
     },
     "devDependencies": {
-        "@mas/tools": "*",
+        "@mas/configs": "*",
         "@types/yazl": "latest",
         "fake-indexeddb": "latest"
     }

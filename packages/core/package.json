@@ -49,7 +49,7 @@
         "@vscode/sqlite3": "latest"
     },
     "devDependencies": {
-        "@mas/tools": "*",
+        "@mas/configs": "*",
         "electron": "27.0.2"
     }
 }

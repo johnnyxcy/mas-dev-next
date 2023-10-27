@@ -1,11 +1,11 @@
 /*
- * File: i18n/.eslintrc.cjs
+ * File: @mas/i18n/.eslintrc.cjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 09/25/2023 10:24 pm
+ * Last Modified: 10/27/2023 10:43 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,7 @@
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
-    extends: [require.resolve("@mas/tools/eslint/rules.eslint")],
+    extends: [require.resolve("@mas/configs/eslint/rules.eslint")],
     parserOptions: {
         project: require.resolve("./tsconfig.eslint.json"),
         tsconfigRootDir: __dirname,
@@ -28,6 +28,7 @@ module.exports = {
             rules: {
                 "global-require": "off",
                 "no-console": "off",
+                "@typescript-eslint/no-shadow": "off",
                 "import/no-unassigned-import": "off",
                 "import/no-relative-parent-imports": "off",
                 "import/no-relative-packages": "off",

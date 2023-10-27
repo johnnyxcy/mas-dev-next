@@ -1,11 +1,11 @@
 /*
- * File: @mas/tools/.eslintrc.cjs
+ * File: @mas/configs/.eslintrc.cjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/26/2023 05:51 pm
+ * Last Modified: 10/27/2023 10:32 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,15 +22,4 @@ module.exports = {
         tsconfigRootDir: __dirname,
     },
     ignorePatterns: [".eslintrc.cjs", "node_modules"],
-    overrides: [
-        {
-            files: ["reporter/**/*.ts", "localization/**/*.ts"],
-            rules: {
-                "no-console": "off",
-                "@typescript-eslint/no-restricted-imports": "off",
-                "@typescript-eslint/no-shadow": "off",
-                "@typescript-eslint/explicit-function-return-type": "off",
-            },
-        },
-    ],
 };
