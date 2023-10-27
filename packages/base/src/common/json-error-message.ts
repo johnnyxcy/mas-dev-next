@@ -11,9 +11,8 @@
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-import nls from "@mas/i18n/nls";
-
 import { ParseErrorCode } from "@mas/base/common/json";
+import nls from "@mas/i18n/nls";
 
 export function getParseErrorMessage(errorCode: ParseErrorCode): string {
     switch (errorCode) {

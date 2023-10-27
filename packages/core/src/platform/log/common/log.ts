@@ -314,7 +314,6 @@ export abstract class AbstractMessageLogger extends AbstractLogger implements IL
     error(message: string | Error, ...args: any[]): void {
         if (this.checkLogLevel(LogLevel.Error)) {
             if (message instanceof Error) {
-                // eslint-disable-next-line prefer-rest-params
                 const array = Array.prototype.slice.call(arguments) as any[];
                 array[0] = message.stack;
                 this.log(LogLevel.Error, format(array));
@@ -327,7 +326,6 @@ export abstract class AbstractMessageLogger extends AbstractLogger implements IL
     flush(): void {}
 }
 
-/* eslint-disable no-console */
 export class ConsoleMainLogger extends AbstractLogger implements ILogger {
     private useColors: boolean;
 
@@ -769,7 +767,6 @@ export function getLogLevel(configuration: { verbose?: boolean; logLevel?: strin
     return DEFAULT_LOG_LEVEL;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export function LogLevelToString(logLevel: LogLevel): string {
     switch (logLevel) {
         case LogLevel.Trace:

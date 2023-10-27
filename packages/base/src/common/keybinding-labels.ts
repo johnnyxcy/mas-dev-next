@@ -16,10 +16,9 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import nls from "@mas/i18n/nls";
-
 import { Modifiers } from "@mas/base/common/keybindings";
 import { OperatingSystem } from "@mas/base/common/platform";
+import nls from "@mas/i18n/nls";
 
 export interface ModifierLabels {
     readonly ctrlKey: string;

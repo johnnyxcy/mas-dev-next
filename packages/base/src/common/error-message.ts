@@ -15,11 +15,11 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-import nls from "@mas/i18n/nls";
 
 import { IAction } from "@mas/base/common/actions";
 import * as arrays from "@mas/base/common/arrays";
 import * as types from "@mas/base/common/types";
+import nls from "@mas/i18n/nls";
 
 function exceptionToErrorMessage(exception: any, verbose: boolean): string {
     if (verbose && (exception.stack || exception.stacktrace)) {
