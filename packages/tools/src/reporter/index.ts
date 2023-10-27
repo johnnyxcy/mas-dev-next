@@ -1,18 +1,18 @@
 /*
- * File: @mas/tools/reporter/index.ts
+ * File: @mas/tools/src/reporter/index.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 10/12/2023 10:14 am
  *
- * Last Modified: 10/12/2023 10:34 am
+ * Last Modified: 10/27/2023 11:14 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
+ * Copyright (c) 2023 Maspectra Dev Team
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
@@ -136,8 +136,10 @@ export function createReporter(id?: string): IReporter {
 
                 const err = new Error(`Found ${errors.length} errors`);
                 (err as any).__reporter__ = true;
+                // @ts-ignore `through` works with `this`
                 this.emit("error", err);
             } else {
+                // @ts-ignore `through` works with `this`
                 this.emit("end");
             }
         });

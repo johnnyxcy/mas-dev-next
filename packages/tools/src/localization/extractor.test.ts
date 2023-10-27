@@ -1,11 +1,11 @@
 /*
- * File: @mas/tools/localization/extractor.test.ts
+ * File: @mas/tools/src/localization/extractor.test.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 10/26/2023 05:50 pm
  *
- * Last Modified: 10/26/2023 05:51 pm
+ * Last Modified: 10/27/2023 11:11 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *

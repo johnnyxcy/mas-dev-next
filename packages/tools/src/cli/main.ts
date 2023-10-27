@@ -1,11 +1,11 @@
 /*
- * File: @mas/tools/cli/main.ts
+ * File: @mas/tools/src/cli/main.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 10/27/2023 09:04 am
  *
- * Last Modified: 10/27/2023 10:18 am
+ * Last Modified: 10/27/2023 02:40 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,8 @@ import yargs from "yargs";
 import { extract } from "@mas/tools/localization/extractor";
 
 async function main(): Promise<void> {
-    yargs()
+    yargs(process.argv.slice(2))
+        .scriptName("mas dev command line interface")
         .command<{
             root: string;
             output: string;
@@ -32,46 +33,53 @@ async function main(): Promise<void> {
                 output: {
                     alias: "o",
                     describe: "Output file for the extracted translations",
+                    type: "string",
                     demandOption: true,
                 },
                 root: {
                     alias: "r",
                     describe: "The directory which contains the source code",
+                    type: "string",
                     default: ".",
                 },
                 merge: {
                     alias: "m",
                     describe: "Whether to merge new with existing translation values",
-                    boolean: true,
+                    type: "boolean",
                     default: false,
                 },
                 exclude: {
                     alias: "e",
                     describe: "Allows to exclude translation keys starting with this value",
+                    type: "string",
+                    default: "",
                 },
                 files: {
                     alias: "f",
                     describe: "Glob pattern matching the files to extract from (starting from --root).",
-                    array: true,
+                    type: "array",
+                    default: ["*.ts", "*.tsx"],
                 },
                 logs: {
                     alias: "l",
                     describe: "File path to a log file",
+                    type: "string",
+                    default: "",
                 },
                 quiet: {
                     alias: "q",
                     describe: "Prevents errors from being logged to console",
-                    boolean: true,
+                    type: "boolean",
                     default: false,
                 },
             },
             handler: async (options) => {
+                console.log(options);
                 await extract(options);
             },
         })
-        .strict()
+        .demandCommand(1, "You need at least one command before moving on")
         .strictCommands()
-        .demandCommand(1, "Please run a command")
         .fail((msg, err, cli) => {
             process.exitCode = 1;
             if (err) {
@@ -83,6 +91,7 @@ async function main(): Promise<void> {
                 console.error(msg);
             }
         })
+        .help()
         .parse();
 }
 

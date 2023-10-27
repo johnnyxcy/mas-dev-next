@@ -6,30 +6,25 @@
         "name": "Maspectra Dev Team",
         "url": "https://www.maspectra.com"
     },
-    "description": "This package is used to manage commonly used configurations",
+    "description": "This package provides a set of tools for Maspectra development.",
+    "scripts": {
+        "build": "vite build",
+        "test": "vitest --run --coverage",
+        "test:ui": "vitest --ui --coverage",
+        "lint": "eslint --config ./.eslintrc.cjs ./src"
+    },
+    "dependencies": {
+        "ansi-colors": "latest",
+        "deepmerge": "latest",
+        "fancy-log": "latest",
+        "fs-extra": "latest",
+        "glob": "latest",
+        "through": "latest",
+        "typescript": "latest",
+        "yargs": "latest"
+    },
     "devDependencies": {
         "@types/fancy-log": "latest",
-        "@types/through": "latest",
-        "@typescript-eslint/eslint-plugin": "^6.6.0",
-        "@typescript-eslint/parser": "^6.6.0",
-        "@vitest/coverage-istanbul": "latest",
-        "ansi-colors": "latest",
-        "eslint-config-airbnb": "^19.0.4",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-airbnb-typescript": "^17.1.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-import-resolver-typescript": "^3.6.0",
-        "eslint-mdx": "^2.2.0",
-        "eslint-plugin-i18next": "^6.0.3",
-        "eslint-plugin-import": "^2.28.1",
-        "eslint-plugin-jsx-a11y": "^6.5.1",
-        "eslint-plugin-prettier": "^5.0.0",
-        "eslint-plugin-promise": "^6.1.1",
-        "eslint-plugin-react": "^7.33.2",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-react-redux": "^4.0.0",
-        "eslint-plugin-unicorn": "^48.0.1",
-        "fancy-log": "latest",
-        "through": "latest"
+        "@types/through": "latest"
     }
 }

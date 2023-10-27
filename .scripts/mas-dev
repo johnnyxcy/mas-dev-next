@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+// Stash the base directory into a global variable.
+require("../packages/tools/.dist/cli");

@@ -32,7 +32,6 @@
         "inversify": "latest"
     },
     "devDependencies": {
-        "@mas/i18n": "*",
         "@mas/configs": "*"
     }
 }

@@ -7,10 +7,7 @@
     },
     "include": [
         // whatever paths you intend to lint
-        "eslint",
-        "reporter",
-        "cli",
-        "localization",
+        "src",
         ".eslintrc.cjs",
         "*.config.ts"
     ]

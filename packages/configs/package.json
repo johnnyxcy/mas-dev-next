@@ -7,6 +7,11 @@
         "url": "https://www.maspectra.com"
     },
     "description": "This package is used to manage commonly used configurations",
+    "license": "MIT",
+    "scripts": {
+        "build": "echo 'nothing to build'",
+        "lint": "eslint --config .eslintrc.cjs ."
+    },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^6.6.0",
         "@typescript-eslint/parser": "^6.6.0",

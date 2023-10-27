@@ -17,21 +17,22 @@
         "apps/*"
     ],
     "devDependencies": {
-        "@types/lint-staged": "latest",
         "@types/eslint": "latest",
+        "@types/lint-staged": "latest",
         "@types/node": "^20.5.9",
         "@vitejs/plugin-react": "latest",
         "@vitest/ui": "latest",
         "eslint": "latest",
         "husky": "latest",
         "jsdom": "latest",
+        "lerna": "latest",
         "lint-staged": "latest",
         "prettier": "latest",
         "pyright": "^1.1.326",
         "ts-node": "latest",
         "typescript": "^5.2.2",
         "vite": "latest",
-        "vitest": "latest",
-        "vite-plugin-dts": "latest"
+        "vite-plugin-dts": "latest",
+        "vitest": "latest"
     }
 }

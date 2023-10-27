@@ -24,7 +24,7 @@
         "build": "vite build",
         "test": "vitest --run --coverage",
         "test:ui": "vitest --ui --coverage",
-        "lint": "eslint ./src --config ./.eslintrc.cjs"
+        "lint": "eslint --config ./.eslintrc.cjs ./src ./test"
     },
     "keywords": [
         "Internationalization",

@@ -1,11 +1,11 @@
 /*
- * File: @mas/tools/localization/extractor.ts
+ * File: @mas/tools/src/localization/extractor.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 10/26/2023 01:55 pm
  *
- * Last Modified: 10/26/2023 05:48 pm
+ * Last Modified: 10/27/2023 02:41 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -29,14 +29,11 @@
 
 import * as os from "node:os";
 import * as path from "node:path";
-import { promisify } from "node:util";
 
 import deepmerge from "deepmerge";
 import * as fs from "fs-extra";
 import { glob } from "glob";
 import ts from "typescript";
-
-const globPromise = promisify(glob);
 
 export interface Localization {
     [key: string]: string | Localization;
@@ -116,7 +113,7 @@ export async function extract(options: ExtractionOptions): Promise<void> {
     const files: string[] = [];
     await Promise.all(
         (options.files ?? ["**/src/**/*.{ts,tsx}"]).map(async (pattern) =>
-            files.push(...(await globPromise(pattern, { cwd }))),
+            files.push(...(await glob(pattern, { cwd }))),
         ),
     );
     let localization: Localization = {};
