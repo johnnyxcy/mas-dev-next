@@ -5,35 +5,36 @@
  *
  * File Created: 09/26/2023 04:28 pm
  *
- * Last Modified: 10/12/2023 05:49 pm
+ * Last Modified: 10/27/2023 05:04 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
+import nls from "@mas/i18n";
+
 import { ParseErrorCode } from "@mas/base/common/json";
-import nls from "@mas/i18n/nls";
 
 export function getParseErrorMessage(errorCode: ParseErrorCode): string {
     switch (errorCode) {
         case ParseErrorCode.InvalidSymbol:
-            return nls.localize("error.invalidSymbol", "Invalid symbol");
+            return nls.localizeByDefault("Invalid symbol");
         case ParseErrorCode.InvalidNumberFormat:
-            return nls.localize("error.invalidNumberFormat", "Invalid number format");
+            return nls.localizeByDefault("Invalid number format");
         case ParseErrorCode.PropertyNameExpected:
-            return nls.localize("error.propertyNameExpected", "Property name expected");
+            return nls.localizeByDefault("Property name expected");
         case ParseErrorCode.ValueExpected:
-            return nls.localize("error.valueExpected", "Value expected");
+            return nls.localizeByDefault("Value expected");
         case ParseErrorCode.ColonExpected:
-            return nls.localize("error.colonExpected", "Colon expected");
+            return nls.localizeByDefault("Colon expected");
         case ParseErrorCode.CommaExpected:
-            return nls.localize("error.commaExpected", "Comma expected");
+            return nls.localizeByDefault("Comma expected");
         case ParseErrorCode.CloseBraceExpected:
-            return nls.localize("error.closeBraceExpected", "Closing brace expected");
+            return nls.localizeByDefault("Closing brace expected");
         case ParseErrorCode.CloseBracketExpected:
-            return nls.localize("error.closeBracketExpected", "Closing bracket expected");
+            return nls.localizeByDefault("Closing bracket expected");
         case ParseErrorCode.EndOfFileExpected:
-            return nls.localize("error.endOfFileExpected", "End of file expected");
+            return nls.localizeByDefault("End of file expected");
         default:
             return "";
     }

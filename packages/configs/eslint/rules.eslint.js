@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 10/27/2023 10:33 am
+ * Last Modified: 10/27/2023 05:21 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -26,7 +26,7 @@ module.exports = {
 
         require.resolve("./restricted-path.eslint"),
     ],
-    plugins: ["unicorn", "prettier", "import", "@typescript-eslint"],
+    plugins: ["unicorn", "prettier", "import", "@typescript-eslint", "mas"],
     parser: "@typescript-eslint/parser",
 
     settings: {
@@ -43,6 +43,9 @@ module.exports = {
     },
     reportUnusedDisableDirectives: true,
     rules: {
+        // #region custom
+        "mas/check-nls": "error",
+        // #endregion
         // #region General
         "no-plusplus": "off",
         "no-bitwise": "off",
@@ -262,6 +265,10 @@ module.exports = {
                         leadingUnderscore: "allowSingleOrDouble",
                         trailingUnderscore: "allowSingleOrDouble",
                     },
+                    {
+                        selector: "import",
+                        format: ["camelCase", "PascalCase"],
+                    },
                     { selector: "objectLiteralProperty", format: null },
                     { selector: "objectLiteralMethod", format: null },
                     {
@@ -313,7 +320,7 @@ module.exports = {
                 "plugin:react-hooks/recommended",
                 "plugin:react-redux/recommended",
             ],
-            plugins: ["react", "react-hooks", "react-redux", "i18next"],
+            plugins: ["react", "react-hooks", "react-redux"],
             parserOptions: {
                 ecmaFeatures: {
                     jsx: true,
@@ -330,14 +337,6 @@ module.exports = {
             },
             rules: {
                 "unicorn/no-useless-undefined": "off",
-                // 保证所有字符串都通过了 i18next
-                "i18next/no-literal-string": [
-                    "warn",
-                    {
-                        mode: "jsx-text-only",
-                        message: "字符需要符合 i18n 规范",
-                    },
-                ],
                 "@typescript-eslint/naming-convention": [
                     "error",
                     {
@@ -351,6 +350,10 @@ module.exports = {
                         format: ["camelCase", "UPPER_CASE", "PascalCase"],
                         leadingUnderscore: "allow",
                         trailingUnderscore: "allow",
+                    },
+                    {
+                        selector: "import",
+                        format: ["camelCase", "PascalCase"],
                     },
                     {
                         selector: "typeProperty",

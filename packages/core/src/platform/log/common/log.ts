@@ -462,7 +462,6 @@ export class ConsoleLogger extends AbstractLogger implements ILogger {
         // noop
     }
 }
-/* eslint-enable no-console */
 
 @injectable()
 export class AdapterLogger extends AbstractLogger implements ILogger {

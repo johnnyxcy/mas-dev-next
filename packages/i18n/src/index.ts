@@ -1,11 +1,11 @@
 /*
- * File: @mas/i18n/src/nls.ts
+ * File: @mas/i18n/src/index.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 09:42 pm
  *
- * Last Modified: 09/27/2023 05:19 pm
+ * Last Modified: 10/27/2023 03:26 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -67,12 +67,8 @@ export namespace nls {
         return "";
     }
 
-    export function localize(key: INlsInfo | string, defaultValue: string, ...args: FormatType[]): string {
-        if (typeof key === "object") {
-            return Localization.localize(localization, key.key, defaultValue, ...args);
-        } else {
-            return Localization.localize(localization, key, defaultValue, ...args);
-        }
+    export function localize(key: string, defaultValue: string, ...args: FormatType[]): string {
+        return Localization.localize(localization, key, defaultValue, ...args);
     }
 
     export function isSelectedLocale(id: string): boolean {
@@ -88,12 +84,7 @@ export namespace nls {
 }
 
 interface INlsKeys {
-    [key: string]: (string | INlsInfo)[];
-}
-
-interface INlsInfo {
-    key: string;
-    comment: string[];
+    [key: string]: string[];
 }
 
 class LocalizationKeyProvider {
@@ -142,7 +133,7 @@ class LocalizationKeyProvider {
             for (let i = 0; i < messageBundle.length; i++) {
                 const message = Localization.normalize(messageBundle[i]);
                 const key = keyBundle[i];
-                const localizationKey = this.buildKey(typeof key === "string" ? key : key.key, fileKey);
+                const localizationKey = this.buildKey(key, fileKey);
                 list.push({
                     key: localizationKey,
                     message,
@@ -156,8 +147,5 @@ class LocalizationKeyProvider {
         return `vscode/${Localization.transformKey(filepath)}/${key}`;
     }
 }
-
-const localize = nls.localize;
-export { localize };
 
 export default nls;

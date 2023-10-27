@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:14 pm
  *
- * Last Modified: 10/12/2023 05:49 pm
+ * Last Modified: 10/27/2023 04:03 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,10 +15,10 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+import nls from "@mas/i18n";
 
 import { Modifiers } from "@mas/base/common/keybindings";
 import { OperatingSystem } from "@mas/base/common/platform";
-import nls from "@mas/i18n/nls";
 
 export interface ModifierLabels {
     readonly ctrlKey: string;
@@ -77,41 +77,17 @@ export const UILabelProvider = new ModifierLabelProvider(
         separator: "",
     },
     {
-        ctrlKey: nls.localize(
-            { key: "ctrlKey", comment: ["This is the short form for the Control key on the keyboard"] },
-            "Ctrl",
-        ),
-        shiftKey: nls.localize(
-            { key: "shiftKey", comment: ["This is the short form for the Shift key on the keyboard"] },
-            "Shift",
-        ),
-        altKey: nls.localize(
-            { key: "altKey", comment: ["This is the short form for the Alt key on the keyboard"] },
-            "Alt",
-        ),
-        metaKey: nls.localize(
-            { key: "windowsKey", comment: ["This is the short form for the Windows key on the keyboard"] },
-            "Windows",
-        ),
+        ctrlKey: nls.localizeByDefault("Ctrl"),
+        shiftKey: nls.localizeByDefault("Shift"),
+        altKey: nls.localizeByDefault("Alt"),
+        metaKey: nls.localizeByDefault("Windows"),
         separator: "+",
     },
     {
-        ctrlKey: nls.localize(
-            { key: "ctrlKey", comment: ["This is the short form for the Control key on the keyboard"] },
-            "Ctrl",
-        ),
-        shiftKey: nls.localize(
-            { key: "shiftKey", comment: ["This is the short form for the Shift key on the keyboard"] },
-            "Shift",
-        ),
-        altKey: nls.localize(
-            { key: "altKey", comment: ["This is the short form for the Alt key on the keyboard"] },
-            "Alt",
-        ),
-        metaKey: nls.localize(
-            { key: "superKey", comment: ["This is the short form for the Super key on the keyboard"] },
-            "Super",
-        ),
+        ctrlKey: nls.localizeByDefault("Ctrl"),
+        shiftKey: nls.localizeByDefault("Shift"),
+        altKey: nls.localizeByDefault("Alt"),
+        metaKey: nls.localizeByDefault("Super"),
         separator: "+",
     },
 );
@@ -121,60 +97,24 @@ export const UILabelProvider = new ModifierLabelProvider(
  */
 export const AriaLabelProvider = new ModifierLabelProvider(
     {
-        ctrlKey: nls.localize(
-            { key: "ctrlKey.long", comment: ["This is the long form for the Control key on the keyboard"] },
-            "Control",
-        ),
-        shiftKey: nls.localize(
-            { key: "shiftKey.long", comment: ["This is the long form for the Shift key on the keyboard"] },
-            "Shift",
-        ),
-        altKey: nls.localize(
-            { key: "optKey.long", comment: ["This is the long form for the Alt/Option key on the keyboard"] },
-            "Option",
-        ),
-        metaKey: nls.localize(
-            { key: "cmdKey.long", comment: ["This is the long form for the Command key on the keyboard"] },
-            "Command",
-        ),
+        ctrlKey: nls.localizeByDefault("Control"),
+        shiftKey: nls.localizeByDefault("Shift"),
+        altKey: nls.localizeByDefault("Option"),
+        metaKey: nls.localizeByDefault("Command"),
         separator: "+",
     },
     {
-        ctrlKey: nls.localize(
-            { key: "ctrlKey.long", comment: ["This is the long form for the Control key on the keyboard"] },
-            "Control",
-        ),
-        shiftKey: nls.localize(
-            { key: "shiftKey.long", comment: ["This is the long form for the Shift key on the keyboard"] },
-            "Shift",
-        ),
-        altKey: nls.localize(
-            { key: "altKey.long", comment: ["This is the long form for the Alt key on the keyboard"] },
-            "Alt",
-        ),
-        metaKey: nls.localize(
-            { key: "windowsKey.long", comment: ["This is the long form for the Windows key on the keyboard"] },
-            "Windows",
-        ),
+        ctrlKey: nls.localizeByDefault("Control"),
+        shiftKey: nls.localizeByDefault("Shift"),
+        altKey: nls.localizeByDefault("Alt"),
+        metaKey: nls.localizeByDefault("Windows"),
         separator: "+",
     },
     {
-        ctrlKey: nls.localize(
-            { key: "ctrlKey.long", comment: ["This is the long form for the Control key on the keyboard"] },
-            "Control",
-        ),
-        shiftKey: nls.localize(
-            { key: "shiftKey.long", comment: ["This is the long form for the Shift key on the keyboard"] },
-            "Shift",
-        ),
-        altKey: nls.localize(
-            { key: "altKey.long", comment: ["This is the long form for the Alt key on the keyboard"] },
-            "Alt",
-        ),
-        metaKey: nls.localize(
-            { key: "superKey.long", comment: ["This is the long form for the Super key on the keyboard"] },
-            "Super",
-        ),
+        ctrlKey: nls.localizeByDefault("Control"),
+        shiftKey: nls.localizeByDefault("Shift"),
+        altKey: nls.localizeByDefault("Alt"),
+        metaKey: nls.localizeByDefault("Super"),
         separator: "+",
     },
 );

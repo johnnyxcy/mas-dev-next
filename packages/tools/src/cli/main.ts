@@ -5,7 +5,7 @@
  *
  * File Created: 10/27/2023 09:04 am
  *
- * Last Modified: 10/27/2023 02:40 pm
+ * Last Modified: 10/27/2023 03:08 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -52,19 +52,17 @@ async function main(): Promise<void> {
                     alias: "e",
                     describe: "Allows to exclude translation keys starting with this value",
                     type: "string",
-                    default: "",
                 },
                 files: {
                     alias: "f",
                     describe: "Glob pattern matching the files to extract from (starting from --root).",
                     type: "array",
-                    default: ["*.ts", "*.tsx"],
+                    default: ["**/src/**/*.{ts,tsx}"],
                 },
                 logs: {
                     alias: "l",
                     describe: "File path to a log file",
                     type: "string",
-                    default: "",
                 },
                 quiet: {
                     alias: "q",
@@ -74,7 +72,6 @@ async function main(): Promise<void> {
                 },
             },
             handler: async (options) => {
-                console.log(options);
                 await extract(options);
             },
         })

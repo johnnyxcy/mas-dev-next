@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:46 pm
  *
- * Last Modified: 10/12/2023 05:49 pm
+ * Last Modified: 10/27/2023 05:12 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,16 +15,15 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+import nls from "@mas/i18n";
 
 import { IAction } from "@mas/base/common/actions";
 import * as arrays from "@mas/base/common/arrays";
 import * as types from "@mas/base/common/types";
-import nls from "@mas/i18n/nls";
 
 function exceptionToErrorMessage(exception: any, verbose: boolean): string {
     if (verbose && (exception.stack || exception.stacktrace)) {
-        return nls.localize(
-            "stackTrace.format",
+        return nls.localizeByDefault(
             "{0}: {1}",
             detectSystemErrorMessage(exception),
             stackToString(exception.stack) || stackToString(exception.stacktrace),
@@ -54,12 +53,12 @@ function detectSystemErrorMessage(exception: any): string {
         typeof exception.errno === "number" &&
         typeof exception.syscall === "string"
     ) {
-        return nls.localize("nodeExceptionMessage", "A system error occurred ({0})", exception.message);
+        return nls.localizeByDefault("A system error occurred ({0})", exception.message);
     }
 
     return (
         exception.message ||
-        nls.localize("error.defaultMessage", "An unknown error occurred. Please consult the log for more details.")
+        nls.localizeByDefault("An unknown error occurred. Please consult the log for more details.")
     );
 }
 
@@ -71,10 +70,7 @@ function detectSystemErrorMessage(exception: any): string {
  */
 export function toErrorMessage(error: any = null, verbose: boolean = false): string {
     if (!error) {
-        return nls.localize(
-            "error.defaultMessage",
-            "An unknown error occurred. Please consult the log for more details.",
-        );
+        return nls.localizeByDefault("An unknown error occurred. Please consult the log for more details.");
     }
 
     if (Array.isArray(error)) {
@@ -82,7 +78,7 @@ export function toErrorMessage(error: any = null, verbose: boolean = false): str
         const msg = toErrorMessage(errors[0], verbose);
 
         if (errors.length > 1) {
-            return nls.localize("error.moreErrors", "{0} ({1} errors in total)", msg, errors.length);
+            return nls.localizeByDefault("{0} ({1} errors in total)", msg, errors.length);
         }
 
         return msg;
@@ -112,7 +108,7 @@ export function toErrorMessage(error: any = null, verbose: boolean = false): str
         return error.message;
     }
 
-    return nls.localize("error.defaultMessage", "An unknown error occurred. Please consult the log for more details.");
+    return nls.localizeByDefault("An unknown error occurred. Please consult the log for more details.");
 }
 
 export interface IErrorWithActions extends Error {

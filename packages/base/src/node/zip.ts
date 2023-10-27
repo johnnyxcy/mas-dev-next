@@ -5,7 +5,7 @@
  *
  * File Created: 10/12/2023 11:22 am
  *
- * Last Modified: 10/16/2023 03:27 pm
+ * Last Modified: 10/27/2023 05:04 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,12 +22,13 @@ import { Readable } from "node:stream";
 import { open as _openZip, Entry, ZipFile } from "yauzl";
 import * as yazl from "yazl";
 
+import nls from "@mas/i18n";
+
 import { createCancelablePromise, Sequencer } from "@mas/base/common/async";
 import { CancellationToken } from "@mas/base/common/cancellation";
 import * as path from "@mas/base/common/path";
 import { assertIsDefined } from "@mas/base/common/types";
 import { Promises } from "@mas/base/node/pfs";
-import nls from "@mas/i18n/nls";
 
 export const CorruptZipMessage: string = "end of central directory record signature not found";
 const CORRUPT_ZIP_PATTERN = new RegExp(CorruptZipMessage);
@@ -99,9 +100,7 @@ function extractEntry(
     const dirName = path.dirname(fileName);
     const targetDirName = path.join(targetPath, dirName);
     if (!targetDirName.startsWith(targetPath)) {
-        return Promise.reject(
-            new Error(nls.localize("invalid file", "Error extracting {0}. Invalid file.", fileName)),
-        );
+        return Promise.reject(new Error(nls.localizeByDefault("Error extracting {0}. Invalid file.", fileName)));
     }
     const targetFileName = path.join(targetPath, fileName);
 
@@ -162,8 +161,7 @@ function extractZip(zipfile: ZipFile, targetPath: string, options: IOptions, tok
                         new ExtractError(
                             "Incomplete",
                             new Error(
-                                nls.localize(
-                                    "incompleteExtract",
+                                nls.localizeByDefault(
                                     "Incomplete. Found {0} of {1} entries",
                                     extractedEntriesCount,
                                     zipfile.entryCount,
@@ -296,7 +294,7 @@ function read(zipPath: string, filePath: string): Promise<Readable> {
                 }
             });
 
-            zipfile.once("close", () => e(new Error(nls.localize("notFound", "{0} not found inside zip.", filePath))));
+            zipfile.once("close", () => e(new Error(nls.localizeByDefault("{0} not found inside zip.", filePath))));
         });
     });
 }

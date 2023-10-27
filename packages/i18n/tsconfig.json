@@ -6,6 +6,7 @@
         "composite": true,
 
         "paths": {
+            "@mas/i18n": ["src/index"],
             "@mas/i18n/*": ["src/*"]
         }
     },

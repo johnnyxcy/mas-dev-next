@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/27/2023 01:13 pm
+ * Last Modified: 10/27/2023 03:05 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -35,6 +35,12 @@ module.exports = {
                 "import/no-dynamic-require": "off",
                 "unicorn/no-process-exit": "off",
                 "@typescript-eslint/no-restricted-imports": "off",
+            },
+        },
+        {
+            files: ["src/index.ts"],
+            rules: {
+                "no-restricted-syntax": "off",
             },
         },
     ],

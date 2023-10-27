@@ -5,7 +5,7 @@
  *
  * File Created: 10/26/2023 01:55 pm
  *
- * Last Modified: 10/27/2023 02:41 pm
+ * Last Modified: 10/27/2023 04:15 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -113,7 +113,7 @@ export async function extract(options: ExtractionOptions): Promise<void> {
     const files: string[] = [];
     await Promise.all(
         (options.files ?? ["**/src/**/*.{ts,tsx}"]).map(async (pattern) =>
-            files.push(...(await glob(pattern, { cwd }))),
+            files.push(...(await glob(pattern, { cwd, ignore: ["**/node_modules/**"] }))),
         ),
     );
     let localization: Localization = {};

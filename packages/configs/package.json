@@ -13,22 +13,21 @@
         "lint": "eslint --config .eslintrc.cjs ."
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^6.6.0",
-        "@typescript-eslint/parser": "^6.6.0",
-        "eslint-config-airbnb": "^19.0.4",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-airbnb-typescript": "^17.1.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-import-resolver-typescript": "^3.6.0",
-        "eslint-mdx": "^2.2.0",
-        "eslint-plugin-i18next": "^6.0.3",
-        "eslint-plugin-import": "^2.28.1",
-        "eslint-plugin-jsx-a11y": "^6.5.1",
-        "eslint-plugin-prettier": "^5.0.0",
-        "eslint-plugin-promise": "^6.1.1",
-        "eslint-plugin-react": "^7.33.2",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "eslint-plugin-react-redux": "^4.0.0",
-        "eslint-plugin-unicorn": "^48.0.1"
+        "@typescript-eslint/eslint-plugin": "latest",
+        "@typescript-eslint/parser": "latest",
+        "eslint-config-airbnb": "latest",
+        "eslint-config-airbnb-base": "latest",
+        "eslint-config-airbnb-typescript": "latest",
+        "eslint-config-prettier": "latest",
+        "eslint-import-resolver-typescript": "latest",
+        "eslint-mdx": "latest",
+        "eslint-plugin-import": "latest",
+        "eslint-plugin-jsx-a11y": "latest",
+        "eslint-plugin-prettier": "latest",
+        "eslint-plugin-promise": "latest",
+        "eslint-plugin-react": "latest",
+        "eslint-plugin-react-hooks": "latest",
+        "eslint-plugin-react-redux": "latest",
+        "eslint-plugin-unicorn": "latest"
     }
 }

@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:42 pm
  *
- * Last Modified: 10/13/2023 09:45 am
+ * Last Modified: 10/27/2023 05:08 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,10 +15,10 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+import nls from "@mas/i18n";
 
 import { Emitter, type Event } from "@mas/base/common/event";
 import { Disposable, type IDisposable } from "@mas/base/common/lifecycle";
-import nls from "@mas/i18n/nls";
 
 export interface ITelemetryData {
     readonly from?: string;
@@ -282,7 +282,7 @@ export class EmptySubmenuAction extends Action {
     static readonly ID = "vs.actions.empty";
 
     constructor() {
-        super(EmptySubmenuAction.ID, nls.localize("submenu.empty", "(empty)"), undefined, false);
+        super(EmptySubmenuAction.ID, nls.localizeByDefault("(empty)"), undefined, false);
     }
 }
 

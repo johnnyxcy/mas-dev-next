@@ -7,9 +7,9 @@
         ".dist"
     ],
     "exports": {
-        "./nls": {
-            "types": "./.dist/types/src/nls.d.ts",
-            "default": "./.dist/lib/nls.js"
+        ".": {
+            "types": "./.dist/types/src/index.d.ts",
+            "default": "./.dist/lib/index.js"
         },
         "./common/*": {
             "types": "./.dist/types/src/common/*.d.ts",
@@ -24,7 +24,7 @@
         "build": "vite build",
         "test": "vitest --run --coverage",
         "test:ui": "vitest --ui --coverage",
-        "lint": "eslint --config ./.eslintrc.cjs ./src ./test"
+        "lint": "eslint --config ./.eslintrc.cjs ./src ./tests"
     },
     "keywords": [
         "Internationalization",

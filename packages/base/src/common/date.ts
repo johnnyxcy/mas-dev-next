@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 10:47 am
  *
- * Last Modified: 10/12/2023 05:49 pm
+ * Last Modified: 10/27/2023 02:47 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,7 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { localize } from "@mas/i18n/nls";
+import nls from "@mas/i18n";
 
 const minute = 60;
 const hour = minute * 60;
@@ -26,7 +26,7 @@ const month = day * 30;
 const year = day * 365;
 
 /**
- * Create a localized difference of the time between now and the specified date.
+ * Create a nls.localized difference of the time between now and the specified date.
  * @param date The date to generate the difference from.
  * @param appendAgoLabel Whether to append the " ago" to the end.
  * @param useFullTimeWords Whether to use full words (eg. seconds) instead of
@@ -46,11 +46,11 @@ export function fromNow(
 
     const seconds = Math.round((new Date().getTime() - date) / 1000);
     if (seconds < -30) {
-        return localize("date.fromNow.in", "in {0}", fromNow(new Date().getTime() + seconds * 1000, false));
+        return nls.localizeByDefault("in {0}", fromNow(new Date().getTime() + seconds * 1000, false));
     }
 
     if (!disallowNow && seconds < 30) {
-        return localize("date.fromNow.now", "now");
+        return nls.localizeByDefault("now");
     }
 
     let value: number;
@@ -60,22 +60,22 @@ export function fromNow(
         if (appendAgoLabel) {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.seconds.singular.ago.fullWord", "{0} second ago", value)
-                    : localize("date.fromNow.seconds.singular.ago", "{0} sec ago", value);
+                    ? nls.localizeByDefault("{0} second ago", value)
+                    : nls.localizeByDefault("{0} sec ago", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.seconds.plural.ago.fullWord", "{0} seconds ago", value)
-                    : localize("date.fromNow.seconds.plural.ago", "{0} secs ago", value);
+                    ? nls.localizeByDefault("{0} seconds ago", value)
+                    : nls.localizeByDefault("{0} secs ago", value);
             }
         } else {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.seconds.singular.fullWord", "{0} second", value)
-                    : localize("date.fromNow.seconds.singular", "{0} sec", value);
+                    ? nls.localizeByDefault("{0} second", value)
+                    : nls.localizeByDefault("{0} sec", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.seconds.plural.fullWord", "{0} seconds", value)
-                    : localize("date.fromNow.seconds.plural", "{0} secs", value);
+                    ? nls.localizeByDefault("{0} seconds", value)
+                    : nls.localizeByDefault("{0} secs", value);
             }
         }
     }
@@ -85,22 +85,22 @@ export function fromNow(
         if (appendAgoLabel) {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.minutes.singular.ago.fullWord", "{0} minute ago", value)
-                    : localize("date.fromNow.minutes.singular.ago", "{0} min ago", value);
+                    ? nls.localizeByDefault("{0} minute ago", value)
+                    : nls.localizeByDefault("{0} min ago", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.minutes.plural.ago.fullWord", "{0} minutes ago", value)
-                    : localize("date.fromNow.minutes.plural.ago", "{0} mins ago", value);
+                    ? nls.localizeByDefault("{0} minutes ago", value)
+                    : nls.localizeByDefault("{0} mins ago", value);
             }
         } else {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.minutes.singular.fullWord", "{0} minute", value)
-                    : localize("date.fromNow.minutes.singular", "{0} min", value);
+                    ? nls.localizeByDefault("{0} minute", value)
+                    : nls.localizeByDefault("{0} min", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.minutes.plural.fullWord", "{0} minutes", value)
-                    : localize("date.fromNow.minutes.plural", "{0} mins", value);
+                    ? nls.localizeByDefault("{0} minutes", value)
+                    : nls.localizeByDefault("{0} mins", value);
             }
         }
     }
@@ -110,22 +110,22 @@ export function fromNow(
         if (appendAgoLabel) {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.hours.singular.ago.fullWord", "{0} hour ago", value)
-                    : localize("date.fromNow.hours.singular.ago", "{0} hr ago", value);
+                    ? nls.localizeByDefault("{0} hour ago", value)
+                    : nls.localizeByDefault("{0} hr ago", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.hours.plural.ago.fullWord", "{0} hours ago", value)
-                    : localize("date.fromNow.hours.plural.ago", "{0} hrs ago", value);
+                    ? nls.localizeByDefault("{0} hours ago", value)
+                    : nls.localizeByDefault("{0} hrs ago", value);
             }
         } else {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.hours.singular.fullWord", "{0} hour", value)
-                    : localize("date.fromNow.hours.singular", "{0} hr", value);
+                    ? nls.localizeByDefault("{0} hour", value)
+                    : nls.localizeByDefault("{0} hr", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.hours.plural.fullWord", "{0} hours", value)
-                    : localize("date.fromNow.hours.plural", "{0} hrs", value);
+                    ? nls.localizeByDefault("{0} hours", value)
+                    : nls.localizeByDefault("{0} hrs", value);
             }
         }
     }
@@ -134,12 +134,10 @@ export function fromNow(
         value = Math.floor(seconds / day);
         if (appendAgoLabel) {
             return value === 1
-                ? localize("date.fromNow.days.singular.ago", "{0} day ago", value)
-                : localize("date.fromNow.days.plural.ago", "{0} days ago", value);
+                ? nls.localizeByDefault("{0} day ago", value)
+                : nls.localizeByDefault("{0} days ago", value);
         } else {
-            return value === 1
-                ? localize("date.fromNow.days.singular", "{0} day", value)
-                : localize("date.fromNow.days.plural", "{0} days", value);
+            return value === 1 ? nls.localizeByDefault("{0} day", value) : nls.localizeByDefault("{0} days", value);
         }
     }
 
@@ -148,22 +146,22 @@ export function fromNow(
         if (appendAgoLabel) {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.weeks.singular.ago.fullWord", "{0} week ago", value)
-                    : localize("date.fromNow.weeks.singular.ago", "{0} wk ago", value);
+                    ? nls.localizeByDefault("{0} week ago", value)
+                    : nls.localizeByDefault("{0} wk ago", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.weeks.plural.ago.fullWord", "{0} weeks ago", value)
-                    : localize("date.fromNow.weeks.plural.ago", "{0} wks ago", value);
+                    ? nls.localizeByDefault("{0} weeks ago", value)
+                    : nls.localizeByDefault("{0} wks ago", value);
             }
         } else {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.weeks.singular.fullWord", "{0} week", value)
-                    : localize("date.fromNow.weeks.singular", "{0} wk", value);
+                    ? nls.localizeByDefault("{0} week", value)
+                    : nls.localizeByDefault("{0} wk", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.weeks.plural.fullWord", "{0} weeks", value)
-                    : localize("date.fromNow.weeks.plural", "{0} wks", value);
+                    ? nls.localizeByDefault("{0} weeks", value)
+                    : nls.localizeByDefault("{0} wks", value);
             }
         }
     }
@@ -173,22 +171,22 @@ export function fromNow(
         if (appendAgoLabel) {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.months.singular.ago.fullWord", "{0} month ago", value)
-                    : localize("date.fromNow.months.singular.ago", "{0} mo ago", value);
+                    ? nls.localizeByDefault("{0} month ago", value)
+                    : nls.localizeByDefault("{0} mo ago", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.months.plural.ago.fullWord", "{0} months ago", value)
-                    : localize("date.fromNow.months.plural.ago", "{0} mos ago", value);
+                    ? nls.localizeByDefault("{0} months ago", value)
+                    : nls.localizeByDefault("{0} mos ago", value);
             }
         } else {
             if (value === 1) {
                 return useFullTimeWords
-                    ? localize("date.fromNow.months.singular.fullWord", "{0} month", value)
-                    : localize("date.fromNow.months.singular", "{0} mo", value);
+                    ? nls.localizeByDefault("{0} month", value)
+                    : nls.localizeByDefault("{0} mo", value);
             } else {
                 return useFullTimeWords
-                    ? localize("date.fromNow.months.plural.fullWord", "{0} months", value)
-                    : localize("date.fromNow.months.plural", "{0} mos", value);
+                    ? nls.localizeByDefault("{0} months", value)
+                    : nls.localizeByDefault("{0} mos", value);
             }
         }
     }
@@ -197,22 +195,22 @@ export function fromNow(
     if (appendAgoLabel) {
         if (value === 1) {
             return useFullTimeWords
-                ? localize("date.fromNow.years.singular.ago.fullWord", "{0} year ago", value)
-                : localize("date.fromNow.years.singular.ago", "{0} yr ago", value);
+                ? nls.localizeByDefault("{0} year ago", value)
+                : nls.localizeByDefault("{0} yr ago", value);
         } else {
             return useFullTimeWords
-                ? localize("date.fromNow.years.plural.ago.fullWord", "{0} years ago", value)
-                : localize("date.fromNow.years.plural.ago", "{0} yrs ago", value);
+                ? nls.localizeByDefault("{0} years ago", value)
+                : nls.localizeByDefault("{0} yrs ago", value);
         }
     } else {
         if (value === 1) {
             return useFullTimeWords
-                ? localize("date.fromNow.years.singular.fullWord", "{0} year", value)
-                : localize("date.fromNow.years.singular", "{0} yr", value);
+                ? nls.localizeByDefault("{0} year", value)
+                : nls.localizeByDefault("{0} yr", value);
         } else {
             return useFullTimeWords
-                ? localize("date.fromNow.years.plural.fullWord", "{0} years", value)
-                : localize("date.fromNow.years.plural", "{0} yrs", value);
+                ? nls.localizeByDefault("{0} years", value)
+                : nls.localizeByDefault("{0} yrs", value);
         }
     }
 }

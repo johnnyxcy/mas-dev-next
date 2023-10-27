@@ -22,7 +22,7 @@
         "@types/node": "^20.5.9",
         "@vitejs/plugin-react": "latest",
         "@vitest/ui": "latest",
-        "eslint": "latest",
+        "eslint": "^8.52.0",
         "husky": "latest",
         "jsdom": "latest",
         "lerna": "latest",

@@ -5,7 +5,7 @@
  *
  * File Created: 10/26/2023 05:50 pm
  *
- * Last Modified: 10/27/2023 11:11 am
+ * Last Modified: 10/27/2023 04:29 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,7 +13,7 @@
  */
 import { assert, describe, it } from "vitest";
 
-import { extractFromFile, ExtractionOptions } from "./extractor";
+import { extract, extractFromFile, ExtractionOptions } from "./extractor";
 
 const TEST_FILE = "test.ts";
 const quiet: ExtractionOptions = { quiet: true };
@@ -136,4 +136,19 @@ describe("correctly extracts from file content", () => {
             "test.ts(1,20): Template literals are not supported for localization. Please use the additional arguments of the 'nls.localize' function to format strings",
         ]);
     });
+
+    it(
+        "some test",
+        async () => {
+            const options: ExtractionOptions = {
+                root: "/Users/johnnyxcy/Workspace/OpenSource/_johnnyxcy/mas-dev-next/packages/base",
+                output: "/Users/johnnyxcy/Workspace/OpenSource/_johnnyxcy/mas-dev-next/temp.json",
+                logs: "/Users/johnnyxcy/Workspace/OpenSource/_johnnyxcy/mas-dev-next/temp.log",
+            };
+            await extract(options);
+        },
+        {
+            timeout: 999999,
+        },
+    );
 });

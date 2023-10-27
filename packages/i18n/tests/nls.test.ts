@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:26 pm
  *
- * Last Modified: 09/27/2023 02:00 pm
+ * Last Modified: 10/27/2023 05:24 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,7 +13,7 @@
  */
 import { describe, expect, it } from "vitest";
 
-import nls from "@mas/i18n/nls";
+import nls from "@mas/i18n";
 
 describe("nls", () => {
     it("should be defined", () => {

@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 09:47 pm
  *
- * Last Modified: 09/26/2023 03:42 pm
+ * Last Modified: 10/27/2023 02:45 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -28,8 +28,9 @@
 // *****************************************************************************
 import { injectable } from "inversify";
 
+import { nls } from "@mas/i18n";
+
 import { ILanguageInfo, ILocalization } from "@mas/i18n/common/localization";
-import { nls } from "@mas/i18n/nls";
 
 @injectable()
 export class LocalizationProvider {
