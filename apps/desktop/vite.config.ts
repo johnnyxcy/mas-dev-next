@@ -1,6 +1,6 @@
 import { rmSync } from "node:fs";
 import path from "node:path";
-import { defineConfig } from "vite";
+import { UserConfig, defineConfig } from "vite";
 
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
@@ -10,7 +10,7 @@ import electron, { notBundle } from "@mas/vite-electron-plugin";
 import pkg from "./package.json";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ command }) => {
+export default defineConfig(({ command }): UserConfig => {
     rmSync(".dist/", { recursive: true, force: true });
 
     const isServe = command === "serve";
@@ -85,10 +85,27 @@ export default defineConfig(({ command }) => {
             minify: isBuild,
             rollupOptions: {
                 input: {
-                    main: path.resolve(__dirname, "index.html"),
+                    workbench: path.resolve(__dirname, "src/workbench/index.html"),
+                    launcher: path.resolve(__dirname, "src/launcher/index.html"),
                 },
+                plugins: [
+                    {
+                        name: "bundle-html-rename",
+                        generateBundle(options, bundle) {
+                            function renameHtml(name: string): void {
+                                const html = bundle[`src/${name}/index.html`];
+                                if (html.type === "asset" && typeof html.source === "string") {
+                                    html.fileName = `${name}.html`;
+                                    html.source = html.source.replace(/\.\.\/\.\.\/chunks/g, "./chunks");
+                                }
+                            }
+                            renameHtml("workbench");
+                            renameHtml("launcher");
+                        },
+                    },
+                ],
             },
-            outDir: "./.dist/workbench",
+            outDir: "./.dist/renderer",
             assetsDir: "chunks",
         },
         // #endregion

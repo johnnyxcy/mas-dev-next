@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:24 pm
  *
- * Last Modified: 10/17/2023 05:55 pm
+ * Last Modified: 10/30/2023 05:00 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -43,7 +43,7 @@ let win: BrowserWindow | null = null;
 // Here, you can also use other preload
 const preload = join(__dirname, "preload.js");
 const devUrl = process.env.VITE_DEV_SERVER_URL;
-const indexHtml = join(process.env.DIST, "workbench/index.html");
+const workbenchHtml = join(devUrl ? join(devUrl, "src") : process.env.DIST, "renderer/workbench.html");
 
 async function createWindow(): Promise<void> {
     win = new BrowserWindow({
@@ -60,11 +60,11 @@ async function createWindow(): Promise<void> {
 
     if (devUrl) {
         // electron-vite-vue#298
-        win.loadURL(devUrl);
+        win.loadURL(workbenchHtml);
         // Open devTool if the app is not packaged
         win.webContents.openDevTools();
     } else {
-        win.loadFile(indexHtml);
+        win.loadFile(workbenchHtml);
     }
 
     // Test actively push message to the Electron-Renderer
@@ -121,6 +121,6 @@ ipcMain.handle("open-win", (_, arg) => {
     if (devUrl) {
         childWindow.loadURL(`${devUrl}#${arg}`);
     } else {
-        childWindow.loadFile(indexHtml, { hash: arg });
+        childWindow.loadFile(workbenchHtml, { hash: arg });
     }
 });
