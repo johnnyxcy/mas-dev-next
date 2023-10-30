@@ -1,0 +1,14 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./.dist",
+        "noEmit": false,
+        "composite": true,
+
+        "paths": {
+            "@mas/vite-electron-plugin/*": ["src/*"]
+        }
+    },
+    "include": ["src"]
+}
