@@ -27,11 +27,9 @@
         "requireindex": "latest"
     },
     "devDependencies": {
+        "eslint": "*",
         "eslint-doc-generator": "latest",
         "eslint-plugin-eslint-plugin": "latest",
         "eslint-plugin-node": "latest"
-    },
-    "peerDependencies": {
-        "eslint": "*"
     }
 }

@@ -45,9 +45,16 @@
     },
     "devDependencies": {
         "@mas/contribution": "*",
-        "deepmerge": "latest"
+        "deepmerge": "latest",
+        "eslint": "*",
+        "glob": "*",
+        "vite": "*",
+        "vite-plugin-dts": "*",
+        "vite-tsconfig-paths": "*",
+        "vitest": "*"
     },
     "peerDependencies": {
-        "@mas/configs": "*"
+        "@mas/configs": "*",
+        "typescript": "*"
     }
 }

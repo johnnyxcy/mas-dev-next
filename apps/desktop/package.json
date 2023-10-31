@@ -12,7 +12,6 @@
     "description": "Maspectra Desktop Application",
     "scripts": {
         "dev": "vite",
-        "build": "vite build && node ./.scripts/build.mjs",
         "lint": "eslint ./src --config ./.eslintrc.cjs",
         "preview": "vite preview",
         "pree2e": "vite build --mode=test",
@@ -30,15 +29,16 @@
         "@vitejs/plugin-react": "*",
         "electron": "27.0.2",
         "electron-builder": "^24.6.3",
+        "eslint": "*",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "typescript": "^5.1.6",
         "vite": "*",
         "vite-plugin-dts": "*",
         "vite-tsconfig-paths": "*",
         "vitest": "*"
     },
     "peerDependencies": {
-        "@mas/configs": "*"
+        "@mas/configs": "*",
+        "typescript": "*"
     }
 }

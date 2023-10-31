@@ -31,7 +31,16 @@
     "dependencies": {
         "inversify": "latest"
     },
+    "devDependencies": {
+        "eslint": "*",
+        "glob": "*",
+        "vite": "*",
+        "vite-plugin-dts": "*",
+        "vite-tsconfig-paths": "*",
+        "vitest": "*"
+    },
     "peerDependencies": {
-        "@mas/configs": "*"
+        "@mas/configs": "*",
+        "typescript": "*"
     }
 }

@@ -5,7 +5,7 @@
  *
  * File Created: 10/30/2023 03:12 pm
  *
- * Last Modified: 10/30/2023 03:19 pm
+ * Last Modified: 10/31/2023 11:19 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,4 +13,4 @@
  */
 export { notBundle, type NotBundleOptions } from "@mas/vite-electron-plugin/not-bundle";
 export { type ElectronOptions } from "@mas/vite-electron-plugin/options";
-export { default, startup } from "@mas/vite-electron-plugin/plugin";
+export { default as electron, startup } from "@mas/vite-electron-plugin/plugin";

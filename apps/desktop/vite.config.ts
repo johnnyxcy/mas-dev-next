@@ -5,7 +5,7 @@ import { UserConfig, defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tsconfigPaths from "vite-tsconfig-paths";
 
-import electron, { notBundle } from "@mas/vite-electron-plugin";
+import { electron, notBundle } from "@mas/vite-electron-plugin";
 
 import pkg from "./package.json";
 

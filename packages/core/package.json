@@ -48,8 +48,17 @@
         "@mas/i18n": "*",
         "@vscode/sqlite3": "latest"
     },
+    "devDependencies": {
+        "eslint": "*",
+        "glob": "*",
+        "vite": "*",
+        "vite-plugin-dts": "*",
+        "vite-tsconfig-paths": "*",
+        "vitest": "*"
+    },
     "peerDependencies": {
         "@mas/configs": "*",
-        "electron": "27.0.2"
+        "electron": "27.0.2",
+        "typescript": "*"
     }
 }

@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/16/2023 04:55 pm
+ * Last Modified: 10/31/2023 11:19 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -17,7 +17,7 @@ import { rmSync } from "node:fs";
 import path from "node:path";
 import { defineConfig } from "vite";
 
-import glob from "glob";
+import { glob } from "glob";
 import dts from "vite-plugin-dts";
 import tsconfigPaths from "vite-tsconfig-paths";
 

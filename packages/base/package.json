@@ -63,9 +63,15 @@
     "devDependencies": {
         "@types/yazl": "latest",
         "eslint": "*",
-        "fake-indexeddb": "latest"
+        "fake-indexeddb": "latest",
+        "glob": "*",
+        "vite": "*",
+        "vite-plugin-dts": "*",
+        "vite-tsconfig-paths": "*",
+        "vitest": "*"
     },
     "peerDependencies": {
-        "@mas/configs": "*"
+        "@mas/configs": "*",
+        "typescript": "*"
     }
 }

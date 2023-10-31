@@ -24,13 +24,18 @@
         "@storybook/react": "latest",
         "@storybook/react-vite": "latest",
         "@storybook/testing-library": "latest",
+        "eslint": "*",
         "react": "latest",
         "react-dom": "latest",
         "storybook": "latest",
-        "vite-plugin-lib-inject-css": "latest"
+        "vite": "*",
+        "vite-plugin-dts": "*",
+        "vite-plugin-lib-inject-css": "latest",
+        "vite-tsconfig-paths": "*",
+        "vitest": "*"
     },
     "peerDependencies": {
         "@mas/configs": "*",
-        "vite": "*"
+        "typescript": "*"
     }
 }
