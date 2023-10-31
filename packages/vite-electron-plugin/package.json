@@ -13,6 +13,19 @@
         "lint": "eslint --config ./.eslintrc.cjs ./src"
     },
     "keywords": [],
-    "author": "",
-    "license": "ISC"
+    "author": {
+        "name": "Maspectra Dev Team",
+        "email": "mas@drugchina.net",
+        "url": "https://www.maspectra.com"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "vite": "*",
+        "vite-plugin-dts": "*",
+        "vite-tsconfig-paths": "*",
+        "vitest": "*"
+    },
+    "peerDependencies": {
+        "typescript": "*"
+    }
 }

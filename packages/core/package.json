@@ -43,12 +43,12 @@
         "url": "https://www.maspectra.com"
     },
     "dependencies": {
-        "@mas/i18n": "*",
         "@mas/base": "*",
         "@mas/contribution": "*",
+        "@mas/i18n": "*",
         "@vscode/sqlite3": "latest"
     },
-    "devDependencies": {
+    "peerDependencies": {
         "@mas/configs": "*",
         "electron": "27.0.2"
     }

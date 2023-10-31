@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/27/2023 01:30 pm
+ * Last Modified: 10/31/2023 10:17 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,13 +15,13 @@
 
 import { rmSync } from "node:fs";
 import path from "node:path";
-import { UserConfig, defineConfig } from "vite";
+import { defineConfig } from "vite";
 
 import tsconfigPaths from "vite-tsconfig-paths";
 
 import pkg from "./package.json";
 
-export default defineConfig((): UserConfig => {
+export default defineConfig(() => {
     rmSync(".dist/", { recursive: true, force: true });
 
     return {

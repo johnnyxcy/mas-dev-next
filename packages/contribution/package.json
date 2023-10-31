@@ -31,7 +31,7 @@
     "dependencies": {
         "inversify": "latest"
     },
-    "devDependencies": {
+    "peerDependencies": {
         "@mas/configs": "*"
     }
 }

@@ -8,10 +8,13 @@
         "build-storybook": "storybook build"
     },
     "keywords": [],
-    "author": "",
+    "author": {
+        "name": "Maspectra Dev Team",
+        "email": "mas@drugchina.net",
+        "url": "https://www.maspectra.com"
+    },
     "license": "ISC",
     "devDependencies": {
-        "@mas/configs": "*",
         "@storybook/addon-essentials": "latest",
         "@storybook/addon-interactions": "latest",
         "@storybook/addon-links": "latest",
@@ -25,5 +28,9 @@
         "react-dom": "latest",
         "storybook": "latest",
         "vite-plugin-lib-inject-css": "latest"
+    },
+    "peerDependencies": {
+        "@mas/configs": "*",
+        "vite": "*"
     }
 }

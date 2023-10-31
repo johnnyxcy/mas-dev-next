@@ -52,17 +52,20 @@
     "license": "MIT",
     "dependencies": {
         "@mas/i18n": "*",
-        "reflect-metadata": "latest",
+        "iconv-lite": "latest",
         "inversify": "latest",
         "jschardet": "latest",
         "pretty-format": "latest",
-        "iconv-lite": "latest",
+        "reflect-metadata": "latest",
         "yauzl": "latest",
         "yazl": "latest"
     },
     "devDependencies": {
-        "@mas/configs": "*",
         "@types/yazl": "latest",
+        "eslint": "*",
         "fake-indexeddb": "latest"
+    },
+    "peerDependencies": {
+        "@mas/configs": "*"
     }
 }

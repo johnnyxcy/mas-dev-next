@@ -44,8 +44,10 @@
         "inversify": "latest"
     },
     "devDependencies": {
-        "@mas/configs": "*",
         "@mas/contribution": "*",
         "deepmerge": "latest"
+    },
+    "peerDependencies": {
+        "@mas/configs": "*"
     }
 }

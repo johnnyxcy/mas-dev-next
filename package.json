@@ -10,7 +10,7 @@
     "private": true,
     "engines": {
         "node": ">=20",
-        "yarn": ">=1.22"
+        "yarn": ">=4"
     },
     "workspaces": [
         "packages/*",
@@ -33,6 +33,7 @@
         "typescript": "^5.2.2",
         "vite": "latest",
         "vite-plugin-dts": "latest",
+        "vite-tsconfig-paths": "latest",
         "vitest": "latest"
     }
 }

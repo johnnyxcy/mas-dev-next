@@ -29,5 +29,9 @@
         "eslint-plugin-react-hooks": "latest",
         "eslint-plugin-react-redux": "latest",
         "eslint-plugin-unicorn": "latest"
+    },
+    "peerDependencies": {
+        "eslint": "*",
+        "prettier": "*"
     }
 }

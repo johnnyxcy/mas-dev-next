@@ -4,7 +4,11 @@
     "main": ".dist/platform/main.js",
     "type": "commonjs",
     "license": "UNLICENSED",
-    "author": "Maspectra Dev Team <mas@drugchina.net>",
+    "author": {
+        "name": "Maspectra Dev Team",
+        "email": "mas@drugchina.net",
+        "url": "https://www.maspectra.com"
+    },
     "description": "Maspectra Desktop Application",
     "scripts": {
         "dev": "vite",
@@ -20,21 +24,21 @@
         "electron-updater": "^6.1.1"
     },
     "devDependencies": {
-        "@mas/configs": "*",
         "@mas/vite-electron-plugin": "*",
         "@types/react": "^18.2.20",
         "@types/react-dom": "^18.2.7",
-        "@vitejs/plugin-react": "^4.0.4",
+        "@vitejs/plugin-react": "*",
         "electron": "27.0.2",
         "electron-builder": "^24.6.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "typescript": "^5.1.6",
-        "vite": "^4.4.9",
-        "vite-tsconfig-paths": "^4.2.1"
+        "vite": "*",
+        "vite-plugin-dts": "*",
+        "vite-tsconfig-paths": "*",
+        "vitest": "*"
     },
-    "resolutions": {
-        "wrap-ansi": "7.0.0",
-        "string-width": "4.1.0"
+    "peerDependencies": {
+        "@mas/configs": "*"
     }
 }

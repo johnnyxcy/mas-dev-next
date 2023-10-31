@@ -7,10 +7,14 @@
         "eslintplugin",
         "eslint-plugin"
     ],
-    "author": "johnnyxcy",
+    "license": "ISC",
+    "author": {
+        "name": "Maspectra Dev Team",
+        "email": "mas@drugchina.net",
+        "url": "https://www.maspectra.com"
+    },
     "main": "./lib/index.js",
     "exports": "./lib/index.js",
-    "private": "true",
     "scripts": {
         "lint": "yarn lint:js",
         "lint:eslint-docs": "yarn update:eslint-docs -- --check",
@@ -19,17 +23,15 @@
         "update:eslint-docs": "eslint-doc-generator"
     },
     "dependencies": {
-        "requireindex": "latest",
-        "js-levenshtein": "latest"
+        "js-levenshtein": "latest",
+        "requireindex": "latest"
     },
     "devDependencies": {
-        "eslint": "latest",
         "eslint-doc-generator": "latest",
         "eslint-plugin-eslint-plugin": "latest",
         "eslint-plugin-node": "latest"
     },
-    "engines": {
-        "node": "^14.17.0 || ^16.0.0 || >= 18.0.0"
-    },
-    "license": "ISC"
+    "peerDependencies": {
+        "eslint": "*"
+    }
 }
