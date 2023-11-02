@@ -45,6 +45,7 @@
     },
     "devDependencies": {
         "@mas/contribution": "*",
+        "@vitest/coverage-istanbul": "*",
         "deepmerge": "latest",
         "eslint": "*",
         "glob": "*",

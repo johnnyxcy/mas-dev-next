@@ -62,6 +62,7 @@
     },
     "devDependencies": {
         "@types/yazl": "latest",
+        "@vitest/coverage-istanbul": "*",
         "eslint": "*",
         "fake-indexeddb": "latest",
         "glob": "*",

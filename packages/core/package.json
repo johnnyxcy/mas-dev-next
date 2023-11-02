@@ -49,6 +49,7 @@
         "@vscode/sqlite3": "latest"
     },
     "devDependencies": {
+        "@vitest/coverage-istanbul": "*",
         "eslint": "*",
         "glob": "*",
         "vite": "*",

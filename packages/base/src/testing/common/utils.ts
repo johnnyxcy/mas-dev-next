@@ -5,13 +5,13 @@
  *
  * File Created: 09/27/2023 11:05 am
  *
- * Last Modified: 10/12/2023 01:21 pm
+ * Last Modified: 11/02/2023 03:19 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-import { afterAll, afterEach, beforeAll, beforeEach, describe, test } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, test, TestAPI } from "vitest";
 
 import {
     DisposableStore,
@@ -25,12 +25,12 @@ import { URI } from "@mas/base/common/uri";
 
 export type ValueCallback<T = any> = (value: T | Promise<T>) => void;
 
-export function toResource(this: any, path: string): URI {
+export function toResource(test: TestAPI, path: string): URI {
     if (isWindows) {
-        return URI.file(join("C:\\", btoa(this.test.fullTitle()), path));
+        return URI.file(join("C:\\", btoa(test.name), path));
     }
 
-    return URI.file(join("/", btoa(this.test.fullTitle()), path));
+    return URI.file(join("/", btoa(test.name), path));
 }
 
 export function suiteRepeat(n: number, description: string, callback: (this: any) => void): void {

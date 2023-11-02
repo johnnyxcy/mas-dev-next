@@ -2332,6 +2332,7 @@ __metadata:
   dependencies:
     "@mas/i18n": "npm:*"
     "@types/yazl": "npm:latest"
+    "@vitest/coverage-istanbul": "npm:*"
     eslint: "npm:*"
     fake-indexeddb: "npm:latest"
     glob: "npm:*"
@@ -2401,6 +2402,7 @@ __metadata:
     "@mas/base": "npm:*"
     "@mas/contribution": "npm:*"
     "@mas/i18n": "npm:*"
+    "@vitest/coverage-istanbul": "npm:*"
     "@vscode/sqlite3": "npm:latest"
     eslint: "npm:*"
     glob: "npm:*"
@@ -2446,6 +2448,7 @@ __metadata:
   resolution: "@mas/i18n@workspace:packages/i18n"
   dependencies:
     "@mas/contribution": "npm:*"
+    "@vitest/coverage-istanbul": "npm:*"
     deepmerge: "npm:latest"
     eslint: "npm:*"
     fs-extra: "npm:latest"
@@ -5700,6 +5703,23 @@ __metadata:
   peerDependencies:
     vite: ^4.1.0-beta.0
   checksum: 259a92a303cd736240dc0d3282d1261339e7bbcf51c5b326868c910b35d4bd22a360334b2dafa5bfc7f3e935f2cd0fdc7ccb6ec6b519b81017c4c4812cd05290
+  languageName: node
+  linkType: hard
+
+"@vitest/coverage-istanbul@npm:*":
+  version: 0.34.6
+  resolution: "@vitest/coverage-istanbul@npm:0.34.6"
+  dependencies:
+    istanbul-lib-coverage: "npm:^3.2.0"
+    istanbul-lib-instrument: "npm:^6.0.0"
+    istanbul-lib-report: "npm:^3.0.1"
+    istanbul-lib-source-maps: "npm:^4.0.1"
+    istanbul-reports: "npm:^3.1.5"
+    picocolors: "npm:^1.0.0"
+    test-exclude: "npm:^6.0.0"
+  peerDependencies:
+    vitest: ">=0.32.0 <1"
+  checksum: 310dfef5ee22e90f097f9dc8c6f789be823cdb5a0a466b77a116f3588fdd422ff8ee1c79ac6fde8c986945d91648cfc2abf5ac0bf91754a0d9082c8e85132027
   languageName: node
   linkType: hard
 
@@ -10682,6 +10702,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"html-escaper@npm:^2.0.0":
+  version: 2.0.2
+  resolution: "html-escaper@npm:2.0.2"
+  checksum: 208e8a12de1a6569edbb14544f4567e6ce8ecc30b9394fcaa4e7bb1e60c12a7c9a1ed27e31290817157e8626f3a4f29e76c8747030822eb84a6abb15c255f0a0
+  languageName: node
+  linkType: hard
+
 "html-tags@npm:^3.1.0":
   version: 3.3.1
   resolution: "html-tags@npm:3.3.1"
@@ -11584,7 +11611,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"istanbul-lib-coverage@npm:^3.2.0":
+"istanbul-lib-coverage@npm:^3.0.0, istanbul-lib-coverage@npm:^3.2.0":
   version: 3.2.0
   resolution: "istanbul-lib-coverage@npm:3.2.0"
   checksum: 10ecb00a50cac2f506af8231ce523ffa1ac1310db0435c8ffaabb50c1d72539906583aa13c84f8835dc103998b9989edc3c1de989d2e2a96a91a9ba44e5db6b9
@@ -11601,6 +11628,51 @@ __metadata:
     istanbul-lib-coverage: "npm:^3.2.0"
     semver: "npm:^6.3.0"
   checksum: 8a1bdf3e377dcc0d33ec32fe2b6ecacdb1e4358fd0eb923d4326bb11c67622c0ceb99600a680f3dad5d29c66fc1991306081e339b4d43d0b8a2ab2e1d910a6ee
+  languageName: node
+  linkType: hard
+
+"istanbul-lib-instrument@npm:^6.0.0":
+  version: 6.0.1
+  resolution: "istanbul-lib-instrument@npm:6.0.1"
+  dependencies:
+    "@babel/core": "npm:^7.12.3"
+    "@babel/parser": "npm:^7.14.7"
+    "@istanbuljs/schema": "npm:^0.1.2"
+    istanbul-lib-coverage: "npm:^3.2.0"
+    semver: "npm:^7.5.4"
+  checksum: 313d61aca3f82a04ad9377841d05061d603ea3d4a4dd281fdda2479ec4ddbc86dc1792c73651f21c93480570d1ecadc5f63011e2df86f30ee662b62c0c00e3d8
+  languageName: node
+  linkType: hard
+
+"istanbul-lib-report@npm:^3.0.0, istanbul-lib-report@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "istanbul-lib-report@npm:3.0.1"
+  dependencies:
+    istanbul-lib-coverage: "npm:^3.0.0"
+    make-dir: "npm:^4.0.0"
+    supports-color: "npm:^7.1.0"
+  checksum: 84323afb14392de8b6a5714bd7e9af845cfbd56cfe71ed276cda2f5f1201aea673c7111901227ee33e68e4364e288d73861eb2ed48f6679d1e69a43b6d9b3ba7
+  languageName: node
+  linkType: hard
+
+"istanbul-lib-source-maps@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "istanbul-lib-source-maps@npm:4.0.1"
+  dependencies:
+    debug: "npm:^4.1.1"
+    istanbul-lib-coverage: "npm:^3.0.0"
+    source-map: "npm:^0.6.1"
+  checksum: 19e4cc405016f2c906dff271a76715b3e881fa9faeb3f09a86cb99b8512b3a5ed19cadfe0b54c17ca0e54c1142c9c6de9330d65506e35873994e06634eebeb66
+  languageName: node
+  linkType: hard
+
+"istanbul-reports@npm:^3.1.5":
+  version: 3.1.6
+  resolution: "istanbul-reports@npm:3.1.6"
+  dependencies:
+    html-escaper: "npm:^2.0.0"
+    istanbul-lib-report: "npm:^3.0.0"
+  checksum: ec3f1bdbc51b3e0b325a5b9f4ad31a247697f31001df4e81075f7980413f14da1b5adfec574fd156efd3b0464023f61320f6718efc66ee72b32d89611cef99dd
   languageName: node
   linkType: hard
 
@@ -12508,7 +12580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"make-dir@npm:4.0.0":
+"make-dir@npm:4.0.0, make-dir@npm:^4.0.0":
   version: 4.0.0
   resolution: "make-dir@npm:4.0.0"
   dependencies:
