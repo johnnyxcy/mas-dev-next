@@ -5,11 +5,11 @@
  *
  * File Created: 11/08/2022 10:01 am
  *
- * Last Modified: 09/25/2023 05:15 pm
+ * Last Modified: 11/02/2023 09:58 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
- * Copyright (c) 2022 MaS Dev Team
+ * Copyright (c) 2023 Maspectra Dev Team
  */
 
 // @ts-check
@@ -41,13 +41,13 @@ const relativeToRepoRoot = (files) => files.map((f) => path.relative(__dirname, 
  */
 module.exports = {
     [`!({${ignorePattern}})*.{js,jsx,ts,tsx}`]: (files) =>
-        relativeToRepoRoot(files).map((f) => `poetry run python .scripts/qa.py --use eslint ${f} --quiet`),
+        relativeToRepoRoot(files).map((f) => `python .scripts/qa.py --use eslint ${f} --quiet`),
     [`!({${ignorePattern}})*.{py,pyi}`]: (files) =>
         relativeToRepoRoot(files).flatMap((f) => [
             // `poetry run python ./common/scripts/qa.py --use autoflake ${f}`,
             // `poetry run python ./common/scripts/qa.py --use isort ${f}`,
-            `poetry run python .scripts/qa.py --use black ${f} --fast`,
-            `poetry run python .scripts/qa.py --use pyright ${f} --level error`,
+            `python .scripts/qa.py --use black ${f} --fast`,
+            `python .scripts/qa.py --use pyright ${f} --level error`,
         ]),
     [`!({${ignorePattern}})*.{md,json,jsonc,json5}`]: (files) =>
         relativeToRepoRoot(files).map((f) => `yarn prettier --check ${f}`),

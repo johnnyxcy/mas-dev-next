@@ -12,7 +12,7 @@
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "autoDocstring.docstringFormat": "google",
-    "black-formatter.args": ["--config", "${workspaceFolder}/pyproject.toml"],
+    "black-formatter.args": ["--config", "${workspaceFolder}/python/pyproject.toml"],
     "clangd.arguments": [
         // "--query-driver=C:/ProgramData/Development/mingw64/bin/g++",
         // 支持读取 .clangd 文件

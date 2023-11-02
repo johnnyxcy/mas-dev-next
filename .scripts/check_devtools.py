@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # _*_ coding: utf-8 _*_
 ############################################################
 # File: mas-dev/.scripts/check_devtools.py
@@ -6,7 +7,7 @@
 #
 # File Created: 08/03/2023 01:20 pm
 #
-# Last Modified: 09/08/2023 11:40 am
+# Last Modified: 11/02/2023 11:33 am
 #
 # Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
 #
@@ -15,7 +16,6 @@
 import re
 import subprocess
 import sys
-
 import logger
 
 
@@ -46,45 +46,48 @@ def check_node_version() -> bool:
     """检查 Node 版本是否符合要求
 
     Notes:
-        Required: node@^16
+        Required: node@^20
 
     Returns:
         如果符合规范, 返回 True
     """
-    logger.info("👉 Checking node version ^16")
+    logger.info("👉 Checking node version ^20")
     return_code, node_version = subprocess.getstatusoutput("node --version")
     if return_code != 0:
         logger.error("❌ Node is not installed")
         return False
-    if re.match(r"v16\.[0-9]+\.[0-9]+", node_version):
-        logger.info(f"✅ Node {node_version}")
-        return True
-    else:
-        logger.error(f"❌ Node {node_version}")
-        return False
+    match = re.findall(r"v([0-9]+)\.([0-9]+)\.([0-9]+)", node_version)
+    if match:
+        major, _minor, _micro = match[0]
+        if major >= "20":
+            logger.info(f"✅ Node {node_version}")
+            return True
+    logger.error(f"❌ Node {node_version}")
+    return False
 
 
 def check_yarn_version() -> bool:
     """检查 yarn 版本是否符合要求
 
     Notes:
-        Required: yarn@^1.22
+        Required: yarn@^4
 
     Returns:
         如果符合规范, 返回 True
     """
-    logger.info("👉 Checking yarn version ^1.22")
+    logger.info("👉 Checking yarn version ^4")
     return_code, yarn_version = subprocess.getstatusoutput("yarn --version")
     if return_code != 0:
         logger.error("❌ yarn is not installed")
         return False
-
-    if re.match(r"1\.22.[0-9]+", yarn_version):
-        logger.info(f"✅ yarn {yarn_version}")
-        return True
-    else:
-        logger.error(f"❌ yarn {yarn_version}")
-        return False
+    match = re.findall(r"([0-9]+)\.([0-9]+)\.([0-9]+)", yarn_version)
+    if match:
+        major, _minor, _micro = match[0]
+        if major >= "4":
+            logger.info(f"✅ yarn {yarn_version}")
+            return True
+    logger.error(f"❌ yarn {yarn_version}")
+    return False
 
 
 def check_cmake_version() -> bool:

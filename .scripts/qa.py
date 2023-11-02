@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # _*_ coding: utf-8 _*_
 ############################################################
 # File: mas-dev/.scripts/qa.py
@@ -6,7 +7,7 @@
 #
 # File Created: 09/08/2023 10:50 am
 #
-# Last Modified: 09/08/2023 11:26 am
+# Last Modified: 11/02/2023 11:32 am
 #
 # Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
 #
@@ -21,11 +22,25 @@ import time
 import typing
 from dataclasses import dataclass
 
-import colorama
+try:
+    import colorama
+except ImportError:
+    import pip
+
+    pip.main(["install", "colorama"])
+    import colorama
+
 
 IQAUse = typing.Literal["eslint", "prettier", "pytest", "pyright", "black", "autoflake", "isort"]
 
 REPO_ROOT: typing.Final[pathlib.Path] = pathlib.Path(__file__).parent.parent.resolve().absolute()
+PYTHON_PROJECT_ROOT: typing.Final[pathlib.Path] = REPO_ROOT / "python"
+if sys.platform == "win32":
+    PY_EXE: typing.Final[pathlib.Path] = PYTHON_PROJECT_ROOT / ".venv/Scripts/python.exe"
+else:
+    PY_EXE: typing.Final[pathlib.Path] = PYTHON_PROJECT_ROOT / ".venv/bin/python"
+PYPROJECT_CONFIG: typing.Final[pathlib.Path] = PYTHON_PROJECT_ROOT / "pyproject.toml"
+CXX_PROJECT_ROOT: typing.Final[pathlib.Path] = REPO_ROOT / "c++"
 
 
 @dataclass
@@ -137,14 +152,14 @@ def pytest_cmd_getter(
     files_or_dirs: list[pathlib.Path],
     extra: typing.List[str],
 ) -> str:
-    config = REPO_ROOT.joinpath("pyproject.toml").resolve()
+    config = PYPROJECT_CONFIG
 
     if fix:
         raise ValueError('pytest does not support "fix" mode')
 
     return " ".join(
         [
-            "python",
+            PY_EXE.as_posix(),
             "-m",
             "pytest",
             "-c",
@@ -181,8 +196,11 @@ def black_cmd_getter(
     files_or_dirs: list[pathlib.Path],
     extra: typing.List[str],
 ) -> str:
-    config = REPO_ROOT.joinpath("pyproject.toml").resolve()
+    config = PYPROJECT_CONFIG
+
     cmd_parts = [
+        PY_EXE.as_posix(),
+        "-m",
         "black",
         "--config",  # 递归处理文件夹
         config.relative_to(REPO_ROOT).as_posix(),
@@ -204,6 +222,8 @@ def autoflake_cmd_getter(
     extra: typing.List[str],
 ) -> str:
     cmd_parts = [
+        PY_EXE.as_posix(),
+        "-m",
         "autoflake",
         "--recursive",  # 递归处理文件夹
         "--quiet",  # 不需要打印过多的输出
@@ -231,9 +251,11 @@ def isort_cmd_getter(
     files_or_dirs: list[pathlib.Path],
     extra: typing.List[str],
 ) -> str:
-    config = REPO_ROOT.joinpath("pyproject.toml").resolve()
+    config = PYPROJECT_CONFIG
 
     cmd_parts = [
+        PY_EXE.as_posix(),
+        "-m",
         "isort",
         "--atomic",
         "--only-modified",
