@@ -5,7 +5,7 @@
  *
  * File Created: 11/02/2023 04:40 pm
  *
- * Last Modified: 11/02/2023 05:00 pm
+ * Last Modified: 11/02/2023 05:16 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -30,7 +30,7 @@ import { Schemas } from "@mas/base/common/network";
 import { basename, joinPath } from "@mas/base/common/resources";
 import { URI } from "@mas/base/common/uri";
 import { setup, teardown } from "@mas/base/testing/common/utils";
-import { IndexedDBFileSystemProvider } from "@mas/core/platform/files/browser/indexedDB-fs-provider";
+import { IndexedDBFileSystemProvider } from "@mas/core/platform/files/browser/indexedDB-file-system-provider";
 import { FileService } from "@mas/core/platform/files/common/file-services";
 import {
     FileOperation,

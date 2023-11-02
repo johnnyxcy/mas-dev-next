@@ -1,11 +1,11 @@
 /*
- * File: @mas/core/src/platform/files/browser/indexedDB-fs-provider.ts
+ * File: @mas/core/src/platform/files/browser/indexedDB-file-system-provider.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 11/02/2023 04:28 pm
  *
- * Last Modified: 11/02/2023 04:39 pm
+ * Last Modified: 11/02/2023 05:16 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
