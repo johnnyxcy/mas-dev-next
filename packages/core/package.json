@@ -49,6 +49,7 @@
         "@vscode/sqlite3": "latest"
     },
     "devDependencies": {
+        "@types/wicg-file-system-access": "latest",
         "@vitest/coverage-istanbul": "*",
         "eslint": "*",
         "glob": "*",

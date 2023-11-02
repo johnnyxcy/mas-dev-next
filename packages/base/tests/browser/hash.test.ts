@@ -5,7 +5,7 @@
  *
  * File Created: 10/12/2023 01:52 pm
  *
- * Last Modified: 10/16/2023 11:13 am
+ * Last Modified: 11/02/2023 05:00 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -122,16 +122,6 @@ describe("Hash", () => {
         hash.update(str);
         let actual = hash.digest();
         assert.strictEqual(actual, expected);
-
-        /**
-         * @jest-environment node
-         *``    * README: since vitest vm uses different Buffer/ArrayBuffer for node and browser,
-         * `BinaryBuffer.from("").buffer instanceof ArrayBuffer` will complain to be false,
-         * which will cause the following test to fail.
-         *
-         * https://github.com/jestjs/jest/issues/7780 fixes ArrayBuffer only not Buffer, so
-         * we have to use node test runtime instead of jsdom for this test
-         */
 
         // Test with crypto.subtle
         actual = await sha1Hex(str);

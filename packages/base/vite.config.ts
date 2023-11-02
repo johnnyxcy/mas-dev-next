@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/31/2023 11:19 am
+ * Last Modified: 11/02/2023 04:57 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -67,7 +67,7 @@ export default defineConfig(() => {
             environmentMatchGlobs: [
                 ["**/tests/common/**/*.test.ts", "node"],
                 ["**/tests/node/**/*.test.ts", "node"],
-                ["**/tests/browser/**/*.test.ts", "jsdom"],
+                ["**/tests/browser/**/*.test.ts", "happy-dom"],
             ],
             setupFiles: ["fake-indexeddb/auto"],
         },
