@@ -5,7 +5,7 @@
  *
  * File Created: 11/06/2023 01:58 pm
  *
- * Last Modified: 11/06/2023 02:00 pm
+ * Last Modified: 11/06/2023 05:41 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -901,10 +901,11 @@ export class DiskFileSystemProvider
             if (mkdir) {
                 await Promises.mkdir(dirname(toFilePath), { recursive: true });
             }
-
             await Promises.copyFile(fromFilePath, toFilePath);
         } catch (error) {
             if (error.code === "ENOENT" && !mkdir) {
+                // needs to release lock first before calling doClone with `mkdir=true`
+                locks.dispose();
                 return await this.doCloneFile(from, to, true);
             }
 
