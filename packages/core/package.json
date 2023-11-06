@@ -46,7 +46,9 @@
         "@mas/base": "*",
         "@mas/contribution": "*",
         "@mas/i18n": "*",
-        "@vscode/sqlite3": "latest"
+        "@parcel/watcher": "latest",
+        "@vscode/sqlite3": "latest",
+        "graceful-fs": "latest"
     },
     "devDependencies": {
         "@types/wicg-file-system-access": "latest",

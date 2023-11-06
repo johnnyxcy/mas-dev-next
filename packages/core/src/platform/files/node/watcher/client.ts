@@ -5,7 +5,7 @@
  *
  * File Created: 11/02/2023 05:42 pm
  *
- * Last Modified: 11/06/2023 01:36 pm
+ * Last Modified: 11/06/2023 01:58 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -38,27 +38,5 @@ export class UniversalWatcherClient extends AbstractUniversalWatcherClient {
 
     protected override createWatcher(disposables: DisposableStore): IUniversalWatcher {
         return new UniversalWatcher();
-        // // Fork the universal file watcher and build a client around
-        // // its server for passing over requests and receiving events.
-        // const client = disposables.add(
-        //     new Client(FileAccess.asFileUri("bootstrap-fork").fsPath, {
-        //         serverName: "File Watcher",
-        //         args: ["--type=fileWatcher"],
-        //         env: {
-        //             VSCODE_AMD_ENTRYPOINT: "vs/platform/files/node/watcher/watcherMain",
-        //             VSCODE_PIPE_LOGGING: "true",
-        //             VSCODE_VERBOSE_LOGGING: "true", // transmit console logs from server to client
-        //         },
-        //     }),
-        // );
-
-        // // React on unexpected termination of the watcher process
-        // disposables.add(
-        //     client.onDidProcessExit(({ code, signal }) =>
-        //         this.onError(`terminated by itself with code ${code}, signal: ${signal}`),
-        //     ),
-        // );
-
-        // return ProxyChannel.toService<IUniversalWatcher>(getNextTickChannel(client.getChannel("watcher")));
     }
 }

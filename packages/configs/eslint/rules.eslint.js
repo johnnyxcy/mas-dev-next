@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 10/27/2023 05:21 pm
+ * Last Modified: 11/06/2023 01:50 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -56,6 +56,7 @@ module.exports = {
         "no-param-reassign": "off",
         "no-else-return": "off",
         "no-return-assign": "off",
+        "no-undef": "off", // It is safe to disable this rule when using TypeScript because TypeScript's compiler enforces this check.
         "no-empty": ["error", { allowEmptyCatch: true }],
         "no-undef-init": "off",
         "no-underscore-dangle": "off",
@@ -310,6 +311,7 @@ module.exports = {
                 "strict": "off",
                 "func-names": "off",
                 "@typescript-eslint/naming-convention": "off",
+                "@typescript-eslint/explicit-function-return-type": "off",
             },
         },
         {

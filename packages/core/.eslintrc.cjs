@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/27/2023 10:43 am
+ * Last Modified: 11/06/2023 04:25 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -21,7 +21,7 @@ module.exports = {
         project: require.resolve("./tsconfig.eslint.json"),
         tsconfigRootDir: __dirname,
     },
-    ignorePatterns: [".eslintrc.cjs", "node_modules", "lib"],
+    ignorePatterns: [".eslintrc.cjs", "node_modules", "lib", "tests/**/fixtures"],
     overrides: [
         {
             files: [".scripts/*", "*.config.ts"],
@@ -45,6 +45,7 @@ module.exports = {
                 "no-console": "off",
                 "no-useless-return": "off",
                 "no-control-regex": "off",
+                "no-ex-assign": "off",
                 "default-case": "off",
                 "one-var": "off",
                 "prefer-rest-params": "off",
