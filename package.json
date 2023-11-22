@@ -35,5 +35,6 @@
         "vite-plugin-dts": "latest",
         "vite-tsconfig-paths": "latest",
         "vitest": "latest"
-    }
+    },
+    "packageManager": "yarn@4.0.2"
 }

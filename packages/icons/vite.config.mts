@@ -1,11 +1,11 @@
 /*
- * File: @mas/icons/vite.config.ts
+ * File: @mas/icons/vite.config.mts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/31/2023 10:23 am
+ * Last Modified: 11/17/2023 01:23 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *

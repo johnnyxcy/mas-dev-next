@@ -5,7 +5,7 @@
  *
  * File Created: 10/10/2023 04:00 pm
  *
- * Last Modified: 10/11/2023 08:29 am
+ * Last Modified: 11/22/2023 04:37 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,6 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 
 import "@mas/icons/codicons";
-// import "@mas/icons/codicons/codicon/icons.css";
 
 type IconButtonProps = {
     iconId: string;
@@ -24,10 +23,31 @@ type IconButtonProps = {
 };
 
 const IconButton: React.FC<IconButtonProps> = ({ iconId, label }) => {
+    const clsName = `codicon ${iconId}`;
     return (
-        <div className="icon" data-name={iconId} title={iconId}>
+        <div
+            className="icon"
+            data-name={iconId}
+            title={iconId}
+            onClick={() => {
+                navigator.clipboard.writeText(clsName);
+                const notification = document.querySelector("#notification");
+                const notificationText = document.querySelector("#notification-id");
+                if (notification && notificationText) {
+                    notificationText.innerHTML = iconId;
+                    if (!notification.classList.contains("show")) {
+                        notification.classList.add("show");
+                    }
+                    setTimeout(() => {
+                        if (notification.classList.contains("show")) {
+                            notification.classList.remove("show");
+                        }
+                    }, 3000);
+                }
+            }}
+        >
             <span className="inner">
-                <i className={`codicon ${iconId}`} aria-hidden="true"></i>
+                <i className={clsName} aria-hidden="true"></i>
             </span>
             <br />
             <span className="label">{label}</span>
@@ -36,9 +56,6 @@ const IconButton: React.FC<IconButtonProps> = ({ iconId, label }) => {
 };
 
 const codiconsCss = `
-/*---------------------
- *  Icons
- *-------------------*/
 .codicon-add:before { content: "\\ea60" }
 .codicon-plus:before { content: "\\ea60" }
 .codicon-gist-new:before { content: "\\ea60" }
@@ -569,9 +586,24 @@ const codiconsCss = `
 .codicon-mic:before { content: "\\ec12" }
 .codicon-thumbsdown-filled:before { content: "\\ec13" }
 .codicon-thumbsup-filled:before { content: "\\ec14" }
+.codicon-coffee:before { content: "\\ec15" }
+.codicon-snake:before { content: "\\ec16" }
+.codicon-game:before { content: "\\ec17" }
+.codicon-vr:before { content: "\\ec18" }
+.codicon-chip:before { content: "\\ec19" }
+.codicon-piano:before { content: "\\ec1a" }
+.codicon-music:before { content: "\\ec1b" }
+.codicon-mic-filled:before { content: "\\ec1c" }
+.codicon-git-fetch:before { content: "\\ec1d" }
+.codicon-copilot:before { content: "\\ec1e" }
 `;
 
 const Page: React.FC = () => {
+    React.useEffect(() => {
+        return () => {
+            localStorage.clear();
+        };
+    }, []);
     return (
         <>
             <style type="text/css">{codiconsCss}</style>
@@ -649,9 +681,36 @@ const Page: React.FC = () => {
                     outline: none !important;
                     border-color: #18a0fb;
                 }
-                `}
+
+                #notification {
+                    position: fixed;
+                    margin: auto;
+                    bottom: 40px;
+                    left: 50%;
+                    width: auto;
+                    transform: translateX(-50%);
+                    color: white;
+                    background-color: #212121;
+                    padding: 8px 24px;
+                    border-radius: 8px;
+                    opacity: 0;
+                    transition: opacity .3s ease-in-out;
+                    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
+                }
+
+                #notification-id {
+                    font-weight: bold;
+                }
+
+                #notification.show{
+                    opacity: .9;
+                }`}
             </style>
+
             <div className="codicons-stories-container">
+                <div id="notification">
+                    📋 Copied: <span id="notification-id"></span>
+                </div>
                 <div style={{ display: "flex", flexDirection: "column", flexWrap: "nowrap" }}>
                     <input
                         type="text"
@@ -677,9 +736,137 @@ const Page: React.FC = () => {
                         }}
                     />
                     <div className="icons">
-                        <IconButton iconId="codicon-account" label="account" />
-                        <IconButton iconId="codicon-activate-breakpoints" label="activate-breakpoints" />
                         <IconButton iconId="codicon-add" label="add" />
+                        <IconButton iconId="codicon-plus" label="plus" />
+                        <IconButton iconId="codicon-gist-new" label="gist-new" />
+                        <IconButton iconId="codicon-repo-create" label="repo-create" />
+                        <IconButton iconId="codicon-lightbulb" label="lightbulb" />
+                        <IconButton iconId="codicon-light-bulb" label="light-bulb" />
+                        <IconButton iconId="codicon-repo" label="repo" />
+                        <IconButton iconId="codicon-repo-delete" label="repo-delete" />
+                        <IconButton iconId="codicon-gist-fork" label="gist-fork" />
+                        <IconButton iconId="codicon-repo-forked" label="repo-forked" />
+                        <IconButton iconId="codicon-git-pull-request" label="git-pull-request" />
+                        <IconButton iconId="codicon-git-pull-request-abandoned" label="git-pull-request-abandoned" />
+                        <IconButton iconId="codicon-record-keys" label="record-keys" />
+                        <IconButton iconId="codicon-keyboard" label="keyboard" />
+                        <IconButton iconId="codicon-tag" label="tag" />
+                        <IconButton iconId="codicon-git-pull-request-label" label="git-pull-request-label" />
+                        <IconButton iconId="codicon-tag-add" label="tag-add" />
+                        <IconButton iconId="codicon-tag-remove" label="tag-remove" />
+                        <IconButton iconId="codicon-person" label="person" />
+                        <IconButton iconId="codicon-person-follow" label="person-follow" />
+                        <IconButton iconId="codicon-person-outline" label="person-outline" />
+                        <IconButton iconId="codicon-person-filled" label="person-filled" />
+                        <IconButton iconId="codicon-git-branch" label="git-branch" />
+                        <IconButton iconId="codicon-git-branch-create" label="git-branch-create" />
+                        <IconButton iconId="codicon-git-branch-delete" label="git-branch-delete" />
+                        <IconButton iconId="codicon-source-control" label="source-control" />
+                        <IconButton iconId="codicon-mirror" label="mirror" />
+                        <IconButton iconId="codicon-mirror-public" label="mirror-public" />
+                        <IconButton iconId="codicon-star" label="star" />
+                        <IconButton iconId="codicon-star-add" label="star-add" />
+                        <IconButton iconId="codicon-star-delete" label="star-delete" />
+                        <IconButton iconId="codicon-star-empty" label="star-empty" />
+                        <IconButton iconId="codicon-comment" label="comment" />
+                        <IconButton iconId="codicon-comment-add" label="comment-add" />
+                        <IconButton iconId="codicon-alert" label="alert" />
+                        <IconButton iconId="codicon-warning" label="warning" />
+                        <IconButton iconId="codicon-search" label="search" />
+                        <IconButton iconId="codicon-search-save" label="search-save" />
+                        <IconButton iconId="codicon-log-out" label="log-out" />
+                        <IconButton iconId="codicon-sign-out" label="sign-out" />
+                        <IconButton iconId="codicon-log-in" label="log-in" />
+                        <IconButton iconId="codicon-sign-in" label="sign-in" />
+                        <IconButton iconId="codicon-eye" label="eye" />
+                        <IconButton iconId="codicon-eye-unwatch" label="eye-unwatch" />
+                        <IconButton iconId="codicon-eye-watch" label="eye-watch" />
+                        <IconButton iconId="codicon-circle-filled" label="circle-filled" />
+                        <IconButton iconId="codicon-primitive-dot" label="primitive-dot" />
+                        <IconButton iconId="codicon-close-dirty" label="close-dirty" />
+                        <IconButton iconId="codicon-debug-breakpoint" label="debug-breakpoint" />
+                        <IconButton iconId="codicon-debug-breakpoint-disabled" label="debug-breakpoint-disabled" />
+                        <IconButton iconId="codicon-debug-hint" label="debug-hint" />
+                        <IconButton iconId="codicon-terminal-decoration-success" label="terminal-decoration-success" />
+                        <IconButton iconId="codicon-primitive-square" label="primitive-square" />
+                        <IconButton iconId="codicon-edit" label="edit" />
+                        <IconButton iconId="codicon-pencil" label="pencil" />
+                        <IconButton iconId="codicon-info" label="info" />
+                        <IconButton iconId="codicon-issue-opened" label="issue-opened" />
+                        <IconButton iconId="codicon-gist-private" label="gist-private" />
+                        <IconButton iconId="codicon-git-fork-private" label="git-fork-private" />
+                        <IconButton iconId="codicon-lock" label="lock" />
+                        <IconButton iconId="codicon-mirror-private" label="mirror-private" />
+                        <IconButton iconId="codicon-close" label="close" />
+                        <IconButton iconId="codicon-remove-close" label="remove-close" />
+                        <IconButton iconId="codicon-x" label="x" />
+                        <IconButton iconId="codicon-repo-sync" label="repo-sync" />
+                        <IconButton iconId="codicon-sync" label="sync" />
+                        <IconButton iconId="codicon-clone" label="clone" />
+                        <IconButton iconId="codicon-desktop-download" label="desktop-download" />
+                        <IconButton iconId="codicon-beaker" label="beaker" />
+                        <IconButton iconId="codicon-microscope" label="microscope" />
+                        <IconButton iconId="codicon-vm" label="vm" />
+                        <IconButton iconId="codicon-device-desktop" label="device-desktop" />
+                        <IconButton iconId="codicon-file" label="file" />
+                        <IconButton iconId="codicon-file-text" label="file-text" />
+                        <IconButton iconId="codicon-more" label="more" />
+                        <IconButton iconId="codicon-ellipsis" label="ellipsis" />
+                        <IconButton iconId="codicon-kebab-horizontal" label="kebab-horizontal" />
+                        <IconButton iconId="codicon-mail-reply" label="mail-reply" />
+                        <IconButton iconId="codicon-reply" label="reply" />
+                        <IconButton iconId="codicon-organization" label="organization" />
+                        <IconButton iconId="codicon-organization-filled" label="organization-filled" />
+                        <IconButton iconId="codicon-organization-outline" label="organization-outline" />
+                        <IconButton iconId="codicon-new-file" label="new-file" />
+                        <IconButton iconId="codicon-file-add" label="file-add" />
+                        <IconButton iconId="codicon-new-folder" label="new-folder" />
+                        <IconButton iconId="codicon-file-directory-create" label="file-directory-create" />
+                        <IconButton iconId="codicon-trash" label="trash" />
+                        <IconButton iconId="codicon-trashcan" label="trashcan" />
+                        <IconButton iconId="codicon-history" label="history" />
+                        <IconButton iconId="codicon-clock" label="clock" />
+                        <IconButton iconId="codicon-folder" label="folder" />
+                        <IconButton iconId="codicon-file-directory" label="file-directory" />
+                        <IconButton iconId="codicon-symbol-folder" label="symbol-folder" />
+                        <IconButton iconId="codicon-logo-github" label="logo-github" />
+                        <IconButton iconId="codicon-mark-github" label="mark-github" />
+                        <IconButton iconId="codicon-github" label="github" />
+                        <IconButton iconId="codicon-terminal" label="terminal" />
+                        <IconButton iconId="codicon-console" label="console" />
+                        <IconButton iconId="codicon-repl" label="repl" />
+                        <IconButton iconId="codicon-zap" label="zap" />
+                        <IconButton iconId="codicon-symbol-event" label="symbol-event" />
+                        <IconButton iconId="codicon-error" label="error" />
+                        <IconButton iconId="codicon-stop" label="stop" />
+                        <IconButton iconId="codicon-variable" label="variable" />
+                        <IconButton iconId="codicon-symbol-variable" label="symbol-variable" />
+                        <IconButton iconId="codicon-array" label="array" />
+                        <IconButton iconId="codicon-symbol-array" label="symbol-array" />
+                        <IconButton iconId="codicon-symbol-module" label="symbol-module" />
+                        <IconButton iconId="codicon-symbol-package" label="symbol-package" />
+                        <IconButton iconId="codicon-symbol-namespace" label="symbol-namespace" />
+                        <IconButton iconId="codicon-symbol-object" label="symbol-object" />
+                        <IconButton iconId="codicon-symbol-method" label="symbol-method" />
+                        <IconButton iconId="codicon-symbol-function" label="symbol-function" />
+                        <IconButton iconId="codicon-symbol-constructor" label="symbol-constructor" />
+                        <IconButton iconId="codicon-symbol-boolean" label="symbol-boolean" />
+                        <IconButton iconId="codicon-symbol-null" label="symbol-null" />
+                        <IconButton iconId="codicon-symbol-numeric" label="symbol-numeric" />
+                        <IconButton iconId="codicon-symbol-number" label="symbol-number" />
+                        <IconButton iconId="codicon-symbol-structure" label="symbol-structure" />
+                        <IconButton iconId="codicon-symbol-struct" label="symbol-struct" />
+                        <IconButton iconId="codicon-symbol-parameter" label="symbol-parameter" />
+                        <IconButton iconId="codicon-symbol-type-parameter" label="symbol-type-parameter" />
+                        <IconButton iconId="codicon-symbol-key" label="symbol-key" />
+                        <IconButton iconId="codicon-symbol-text" label="symbol-text" />
+                        <IconButton iconId="codicon-symbol-reference" label="symbol-reference" />
+                        <IconButton iconId="codicon-go-to-file" label="go-to-file" />
+                        <IconButton iconId="codicon-symbol-enum" label="symbol-enum" />
+                        <IconButton iconId="codicon-symbol-value" label="symbol-value" />
+                        <IconButton iconId="codicon-symbol-ruler" label="symbol-ruler" />
+                        <IconButton iconId="codicon-symbol-unit" label="symbol-unit" />
+                        <IconButton iconId="codicon-activate-breakpoints" label="activate-breakpoints" />
                         <IconButton iconId="codicon-archive" label="archive" />
                         <IconButton iconId="codicon-arrow-both" label="arrow-both" />
                         <IconButton iconId="codicon-arrow-down" label="arrow-down" />
@@ -690,19 +877,45 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-arrow-small-right" label="arrow-small-right" />
                         <IconButton iconId="codicon-arrow-small-up" label="arrow-small-up" />
                         <IconButton iconId="codicon-arrow-up" label="arrow-up" />
-                        <IconButton iconId="codicon-beaker" label="beaker" />
-                        <IconButton iconId="codicon-bell-dot" label="bell-dot" />
                         <IconButton iconId="codicon-bell" label="bell" />
                         <IconButton iconId="codicon-bold" label="bold" />
                         <IconButton iconId="codicon-book" label="book" />
                         <IconButton iconId="codicon-bookmark" label="bookmark" />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-conditional-unverified"
+                            label="debug-breakpoint-conditional-unverified"
+                        />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-conditional"
+                            label="debug-breakpoint-conditional"
+                        />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-conditional-disabled"
+                            label="debug-breakpoint-conditional-disabled"
+                        />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-data-unverified"
+                            label="debug-breakpoint-data-unverified"
+                        />
+                        <IconButton iconId="codicon-debug-breakpoint-data" label="debug-breakpoint-data" />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-data-disabled"
+                            label="debug-breakpoint-data-disabled"
+                        />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-log-unverified"
+                            label="debug-breakpoint-log-unverified"
+                        />
+                        <IconButton iconId="codicon-debug-breakpoint-log" label="debug-breakpoint-log" />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-log-disabled"
+                            label="debug-breakpoint-log-disabled"
+                        />
                         <IconButton iconId="codicon-briefcase" label="briefcase" />
                         <IconButton iconId="codicon-broadcast" label="broadcast" />
                         <IconButton iconId="codicon-browser" label="browser" />
                         <IconButton iconId="codicon-bug" label="bug" />
                         <IconButton iconId="codicon-calendar" label="calendar" />
-                        <IconButton iconId="codicon-call-incoming" label="call-incoming" />
-                        <IconButton iconId="codicon-call-outgoing" label="call-outgoing" />
                         <IconButton iconId="codicon-case-sensitive" label="case-sensitive" />
                         <IconButton iconId="codicon-check" label="check" />
                         <IconButton iconId="codicon-checklist" label="checklist" />
@@ -714,73 +927,38 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-chrome-maximize" label="chrome-maximize" />
                         <IconButton iconId="codicon-chrome-minimize" label="chrome-minimize" />
                         <IconButton iconId="codicon-chrome-restore" label="chrome-restore" />
-                        <IconButton iconId="codicon-circle-filled" label="circle-filled" />
                         <IconButton iconId="codicon-circle-outline" label="circle-outline" />
+                        <IconButton iconId="codicon-circle" label="circle" />
+                        <IconButton iconId="codicon-debug-breakpoint-unverified" label="debug-breakpoint-unverified" />
+                        <IconButton
+                            iconId="codicon-terminal-decoration-incomplete"
+                            label="terminal-decoration-incomplete"
+                        />
                         <IconButton iconId="codicon-circle-slash" label="circle-slash" />
                         <IconButton iconId="codicon-circuit-board" label="circuit-board" />
                         <IconButton iconId="codicon-clear-all" label="clear-all" />
                         <IconButton iconId="codicon-clippy" label="clippy" />
                         <IconButton iconId="codicon-close-all" label="close-all" />
-                        <IconButton iconId="codicon-close" label="close" />
                         <IconButton iconId="codicon-cloud-download" label="cloud-download" />
                         <IconButton iconId="codicon-cloud-upload" label="cloud-upload" />
-                        <IconButton iconId="codicon-cloud" label="cloud" />
                         <IconButton iconId="codicon-code" label="code" />
                         <IconButton iconId="codicon-collapse-all" label="collapse-all" />
                         <IconButton iconId="codicon-color-mode" label="color-mode" />
                         <IconButton iconId="codicon-comment-discussion" label="comment-discussion" />
-                        <IconButton iconId="codicon-comment" label="comment" />
                         <IconButton iconId="codicon-credit-card" label="credit-card" />
                         <IconButton iconId="codicon-dash" label="dash" />
                         <IconButton iconId="codicon-dashboard" label="dashboard" />
                         <IconButton iconId="codicon-database" label="database" />
-                        <IconButton iconId="codicon-debug-alt-small" label="debug-alt-small" />
-                        <IconButton iconId="codicon-debug-alt" label="debug-alt" />
-                        <IconButton
-                            iconId="codicon-debug-breakpoint-conditional-unverified"
-                            label="debug-breakpoint-conditional-unverified"
-                        />
-                        <IconButton
-                            iconId="codicon-debug-breakpoint-conditional"
-                            label="debug-breakpoint-conditional"
-                        />
-                        <IconButton
-                            iconId="codicon-debug-breakpoint-data-unverified"
-                            label="debug-breakpoint-data-unverified"
-                        />
-                        <IconButton iconId="codicon-debug-breakpoint-data" label="debug-breakpoint-data" />
-                        <IconButton
-                            iconId="codicon-debug-breakpoint-function-unverified"
-                            label="debug-breakpoint-function-unverified"
-                        />
-                        <IconButton iconId="codicon-debug-breakpoint-function" label="debug-breakpoint-function" />
-                        <IconButton
-                            iconId="codicon-debug-breakpoint-log-unverified"
-                            label="debug-breakpoint-log-unverified"
-                        />
-                        <IconButton iconId="codicon-debug-breakpoint-log" label="debug-breakpoint-log" />
-                        <IconButton
-                            iconId="codicon-debug-breakpoint-unsupported"
-                            label="debug-breakpoint-unsupported"
-                        />
-                        <IconButton iconId="codicon-debug-console" label="debug-console" />
                         <IconButton iconId="codicon-debug-continue" label="debug-continue" />
                         <IconButton iconId="codicon-debug-disconnect" label="debug-disconnect" />
                         <IconButton iconId="codicon-debug-pause" label="debug-pause" />
-                        <IconButton iconId="codicon-debug-restart-frame" label="debug-restart-frame" />
                         <IconButton iconId="codicon-debug-restart" label="debug-restart" />
-                        <IconButton iconId="codicon-debug-reverse-continue" label="debug-reverse-continue" />
-                        <IconButton iconId="codicon-debug-stackframe-active" label="debug-stackframe-active" />
-                        <IconButton iconId="codicon-debug-stackframe-dot" label="debug-stackframe-dot" />
-                        <IconButton iconId="codicon-debug-stackframe" label="debug-stackframe" />
                         <IconButton iconId="codicon-debug-start" label="debug-start" />
-                        <IconButton iconId="codicon-debug-step-back" label="debug-step-back" />
                         <IconButton iconId="codicon-debug-step-into" label="debug-step-into" />
                         <IconButton iconId="codicon-debug-step-out" label="debug-step-out" />
                         <IconButton iconId="codicon-debug-step-over" label="debug-step-over" />
                         <IconButton iconId="codicon-debug-stop" label="debug-stop" />
                         <IconButton iconId="codicon-debug" label="debug" />
-                        <IconButton iconId="codicon-desktop-download" label="desktop-download" />
                         <IconButton iconId="codicon-device-camera-video" label="device-camera-video" />
                         <IconButton iconId="codicon-device-camera" label="device-camera" />
                         <IconButton iconId="codicon-device-mobile" label="device-mobile" />
@@ -791,17 +969,11 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-diff-renamed" label="diff-renamed" />
                         <IconButton iconId="codicon-diff" label="diff" />
                         <IconButton iconId="codicon-discard" label="discard" />
-                        <IconButton iconId="codicon-edit" label="edit" />
                         <IconButton iconId="codicon-editor-layout" label="editor-layout" />
-                        <IconButton iconId="codicon-ellipsis" label="ellipsis" />
                         <IconButton iconId="codicon-empty-window" label="empty-window" />
-                        <IconButton iconId="codicon-error" label="error" />
                         <IconButton iconId="codicon-exclude" label="exclude" />
-                        <IconButton iconId="codicon-expand-all" label="expand-all" />
                         <IconButton iconId="codicon-extensions" label="extensions" />
                         <IconButton iconId="codicon-eye-closed" label="eye-closed" />
-                        <IconButton iconId="codicon-eye" label="eye" />
-                        <IconButton iconId="codicon-feedback" label="feedback" />
                         <IconButton iconId="codicon-file-binary" label="file-binary" />
                         <IconButton iconId="codicon-file-code" label="file-code" />
                         <IconButton iconId="codicon-file-media" label="file-media" />
@@ -810,7 +982,6 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-file-symlink-directory" label="file-symlink-directory" />
                         <IconButton iconId="codicon-file-symlink-file" label="file-symlink-file" />
                         <IconButton iconId="codicon-file-zip" label="file-zip" />
-                        <IconButton iconId="codicon-file" label="file" />
                         <IconButton iconId="codicon-files" label="files" />
                         <IconButton iconId="codicon-filter" label="filter" />
                         <IconButton iconId="codicon-flame" label="flame" />
@@ -819,33 +990,25 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-fold" label="fold" />
                         <IconButton iconId="codicon-folder-active" label="folder-active" />
                         <IconButton iconId="codicon-folder-opened" label="folder-opened" />
-                        <IconButton iconId="codicon-folder" label="folder" />
                         <IconButton iconId="codicon-gear" label="gear" />
                         <IconButton iconId="codicon-gift" label="gift" />
                         <IconButton iconId="codicon-gist-secret" label="gist-secret" />
                         <IconButton iconId="codicon-gist" label="gist" />
                         <IconButton iconId="codicon-git-commit" label="git-commit" />
                         <IconButton iconId="codicon-git-compare" label="git-compare" />
+                        <IconButton iconId="codicon-compare-changes" label="compare-changes" />
                         <IconButton iconId="codicon-git-merge" label="git-merge" />
-                        <IconButton iconId="codicon-git-pull-request" label="git-pull-request" />
                         <IconButton iconId="codicon-github-action" label="github-action" />
                         <IconButton iconId="codicon-github-alt" label="github-alt" />
-                        <IconButton iconId="codicon-github-inverted" label="github-inverted" />
-                        <IconButton iconId="codicon-github" label="github" />
                         <IconButton iconId="codicon-globe" label="globe" />
-                        <IconButton iconId="codicon-go-to-file" label="go-to-file" />
                         <IconButton iconId="codicon-grabber" label="grabber" />
                         <IconButton iconId="codicon-graph" label="graph" />
                         <IconButton iconId="codicon-gripper" label="gripper" />
-                        <IconButton iconId="codicon-group-by-ref-type" label="group-by-ref-type" />
                         <IconButton iconId="codicon-heart" label="heart" />
-                        <IconButton iconId="codicon-history" label="history" />
                         <IconButton iconId="codicon-home" label="home" />
                         <IconButton iconId="codicon-horizontal-rule" label="horizontal-rule" />
                         <IconButton iconId="codicon-hubot" label="hubot" />
                         <IconButton iconId="codicon-inbox" label="inbox" />
-                        <IconButton iconId="codicon-info" label="info" />
-                        <IconButton iconId="codicon-issue-closed" label="issue-closed" />
                         <IconButton iconId="codicon-issue-reopened" label="issue-reopened" />
                         <IconButton iconId="codicon-issues" label="issues" />
                         <IconButton iconId="codicon-italic" label="italic" />
@@ -854,62 +1017,43 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-kebab-vertical" label="kebab-vertical" />
                         <IconButton iconId="codicon-key" label="key" />
                         <IconButton iconId="codicon-law" label="law" />
-                        <IconButton iconId="codicon-library" label="library" />
                         <IconButton iconId="codicon-lightbulb-autofix" label="lightbulb-autofix" />
-                        <IconButton iconId="codicon-lightbulb" label="lightbulb" />
                         <IconButton iconId="codicon-link-external" label="link-external" />
                         <IconButton iconId="codicon-link" label="link" />
-                        <IconButton iconId="codicon-list-filter" label="list-filter" />
-                        <IconButton iconId="codicon-list-flat" label="list-flat" />
                         <IconButton iconId="codicon-list-ordered" label="list-ordered" />
-                        <IconButton iconId="codicon-list-selection" label="list-selection" />
-                        <IconButton iconId="codicon-list-tree" label="list-tree" />
                         <IconButton iconId="codicon-list-unordered" label="list-unordered" />
                         <IconButton iconId="codicon-live-share" label="live-share" />
                         <IconButton iconId="codicon-loading" label="loading" />
                         <IconButton iconId="codicon-location" label="location" />
-                        <IconButton iconId="codicon-lock" label="lock" />
                         <IconButton iconId="codicon-mail-read" label="mail-read" />
                         <IconButton iconId="codicon-mail" label="mail" />
                         <IconButton iconId="codicon-markdown" label="markdown" />
                         <IconButton iconId="codicon-megaphone" label="megaphone" />
                         <IconButton iconId="codicon-mention" label="mention" />
-                        <IconButton iconId="codicon-menu" label="menu" />
-                        <IconButton iconId="codicon-merge" label="merge" />
                         <IconButton iconId="codicon-milestone" label="milestone" />
-                        <IconButton iconId="codicon-mirror" label="mirror" />
+                        <IconButton iconId="codicon-git-pull-request-milestone" label="git-pull-request-milestone" />
                         <IconButton iconId="codicon-mortar-board" label="mortar-board" />
                         <IconButton iconId="codicon-move" label="move" />
                         <IconButton iconId="codicon-multiple-windows" label="multiple-windows" />
                         <IconButton iconId="codicon-mute" label="mute" />
-                        <IconButton iconId="codicon-new-file" label="new-file" />
-                        <IconButton iconId="codicon-new-folder" label="new-folder" />
                         <IconButton iconId="codicon-no-newline" label="no-newline" />
                         <IconButton iconId="codicon-note" label="note" />
                         <IconButton iconId="codicon-octoface" label="octoface" />
                         <IconButton iconId="codicon-open-preview" label="open-preview" />
-                        <IconButton iconId="codicon-organization" label="organization" />
-                        <IconButton iconId="codicon-output" label="output" />
                         <IconButton iconId="codicon-package" label="package" />
                         <IconButton iconId="codicon-paintcan" label="paintcan" />
-                        <IconButton iconId="codicon-pass" label="pass" />
-                        <IconButton iconId="codicon-person" label="person" />
                         <IconButton iconId="codicon-pin" label="pin" />
-                        <IconButton iconId="codicon-pinned" label="pinned" />
-                        <IconButton iconId="codicon-play-circle" label="play-circle" />
                         <IconButton iconId="codicon-play" label="play" />
+                        <IconButton iconId="codicon-run" label="run" />
                         <IconButton iconId="codicon-plug" label="plug" />
                         <IconButton iconId="codicon-preserve-case" label="preserve-case" />
                         <IconButton iconId="codicon-preview" label="preview" />
-                        <IconButton iconId="codicon-primitive-square" label="primitive-square" />
                         <IconButton iconId="codicon-project" label="project" />
                         <IconButton iconId="codicon-pulse" label="pulse" />
                         <IconButton iconId="codicon-question" label="question" />
                         <IconButton iconId="codicon-quote" label="quote" />
                         <IconButton iconId="codicon-radio-tower" label="radio-tower" />
                         <IconButton iconId="codicon-reactions" label="reactions" />
-                        <IconButton iconId="codicon-record-keys" label="record-keys" />
-                        <IconButton iconId="codicon-record" label="record" />
                         <IconButton iconId="codicon-references" label="references" />
                         <IconButton iconId="codicon-refresh" label="refresh" />
                         <IconButton iconId="codicon-regex" label="regex" />
@@ -918,13 +1062,10 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-remove" label="remove" />
                         <IconButton iconId="codicon-replace-all" label="replace-all" />
                         <IconButton iconId="codicon-replace" label="replace" />
-                        <IconButton iconId="codicon-reply" label="reply" />
                         <IconButton iconId="codicon-repo-clone" label="repo-clone" />
                         <IconButton iconId="codicon-repo-force-push" label="repo-force-push" />
-                        <IconButton iconId="codicon-repo-forked" label="repo-forked" />
                         <IconButton iconId="codicon-repo-pull" label="repo-pull" />
                         <IconButton iconId="codicon-repo-push" label="repo-push" />
-                        <IconButton iconId="codicon-repo" label="repo" />
                         <IconButton iconId="codicon-report" label="report" />
                         <IconButton iconId="codicon-request-changes" label="request-changes" />
                         <IconButton iconId="codicon-rocket" label="rocket" />
@@ -932,87 +1073,58 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-root-folder" label="root-folder" />
                         <IconButton iconId="codicon-rss" label="rss" />
                         <IconButton iconId="codicon-ruby" label="ruby" />
-                        <IconButton iconId="codicon-run-all" label="run-all" />
                         <IconButton iconId="codicon-save-all" label="save-all" />
                         <IconButton iconId="codicon-save-as" label="save-as" />
                         <IconButton iconId="codicon-save" label="save" />
                         <IconButton iconId="codicon-screen-full" label="screen-full" />
                         <IconButton iconId="codicon-screen-normal" label="screen-normal" />
                         <IconButton iconId="codicon-search-stop" label="search-stop" />
-                        <IconButton iconId="codicon-search" label="search" />
-                        <IconButton iconId="codicon-server-environment" label="server-environment" />
-                        <IconButton iconId="codicon-server-process" label="server-process" />
                         <IconButton iconId="codicon-server" label="server" />
                         <IconButton iconId="codicon-settings-gear" label="settings-gear" />
                         <IconButton iconId="codicon-settings" label="settings" />
                         <IconButton iconId="codicon-shield" label="shield" />
-                        <IconButton iconId="codicon-sign-in" label="sign-in" />
-                        <IconButton iconId="codicon-sign-out" label="sign-out" />
                         <IconButton iconId="codicon-smiley" label="smiley" />
                         <IconButton iconId="codicon-sort-precedence" label="sort-precedence" />
-                        <IconButton iconId="codicon-source-control" label="source-control" />
                         <IconButton iconId="codicon-split-horizontal" label="split-horizontal" />
                         <IconButton iconId="codicon-split-vertical" label="split-vertical" />
                         <IconButton iconId="codicon-squirrel" label="squirrel" />
-                        <IconButton iconId="codicon-star-empty" label="star-empty" />
                         <IconButton iconId="codicon-star-full" label="star-full" />
                         <IconButton iconId="codicon-star-half" label="star-half" />
-                        <IconButton iconId="codicon-stop-circle" label="stop-circle" />
-                        <IconButton iconId="codicon-symbol-array" label="symbol-array" />
-                        <IconButton iconId="codicon-symbol-boolean" label="symbol-boolean" />
-                        <IconButton iconId="codicon-symbol-className" label="symbol-className" />
+                        <IconButton iconId="codicon-symbol-class" label="symbol-class" />
                         <IconButton iconId="codicon-symbol-color" label="symbol-color" />
                         <IconButton iconId="codicon-symbol-constant" label="symbol-constant" />
                         <IconButton iconId="codicon-symbol-enum-member" label="symbol-enum-member" />
-                        <IconButton iconId="codicon-symbol-enum" label="symbol-enum" />
-                        <IconButton iconId="codicon-symbol-event" label="symbol-event" />
                         <IconButton iconId="codicon-symbol-field" label="symbol-field" />
                         <IconButton iconId="codicon-symbol-file" label="symbol-file" />
                         <IconButton iconId="codicon-symbol-interface" label="symbol-interface" />
-                        <IconButton iconId="codicon-symbol-key" label="symbol-key" />
                         <IconButton iconId="codicon-symbol-keyword" label="symbol-keyword" />
-                        <IconButton iconId="codicon-symbol-method" label="symbol-method" />
                         <IconButton iconId="codicon-symbol-misc" label="symbol-misc" />
-                        <IconButton iconId="codicon-symbol-namespace" label="symbol-namespace" />
-                        <IconButton iconId="codicon-symbol-numeric" label="symbol-numeric" />
                         <IconButton iconId="codicon-symbol-operator" label="symbol-operator" />
-                        <IconButton iconId="codicon-symbol-parameter" label="symbol-parameter" />
                         <IconButton iconId="codicon-symbol-property" label="symbol-property" />
-                        <IconButton iconId="codicon-symbol-ruler" label="symbol-ruler" />
+                        <IconButton iconId="codicon-wrench" label="wrench" />
+                        <IconButton iconId="codicon-wrench-subaction" label="wrench-subaction" />
                         <IconButton iconId="codicon-symbol-snippet" label="symbol-snippet" />
-                        <IconButton iconId="codicon-symbol-string" label="symbol-string" />
-                        <IconButton iconId="codicon-symbol-structure" label="symbol-structure" />
-                        <IconButton iconId="codicon-symbol-variable" label="symbol-variable" />
-                        <IconButton iconId="codicon-sync-ignored" label="sync-ignored" />
-                        <IconButton iconId="codicon-sync" label="sync" />
-                        <IconButton iconId="codicon-tag" label="tag" />
                         <IconButton iconId="codicon-tasklist" label="tasklist" />
                         <IconButton iconId="codicon-telescope" label="telescope" />
-                        <IconButton iconId="codicon-terminal" label="terminal" />
                         <IconButton iconId="codicon-text-size" label="text-size" />
                         <IconButton iconId="codicon-three-bars" label="three-bars" />
                         <IconButton iconId="codicon-thumbsdown" label="thumbsdown" />
                         <IconButton iconId="codicon-thumbsup" label="thumbsup" />
                         <IconButton iconId="codicon-tools" label="tools" />
-                        <IconButton iconId="codicon-trash" label="trash" />
                         <IconButton iconId="codicon-triangle-down" label="triangle-down" />
                         <IconButton iconId="codicon-triangle-left" label="triangle-left" />
                         <IconButton iconId="codicon-triangle-right" label="triangle-right" />
                         <IconButton iconId="codicon-triangle-up" label="triangle-up" />
                         <IconButton iconId="codicon-twitter" label="twitter" />
                         <IconButton iconId="codicon-unfold" label="unfold" />
-                        <IconButton iconId="codicon-ungroup-by-ref-type" label="ungroup-by-ref-type" />
                         <IconButton iconId="codicon-unlock" label="unlock" />
                         <IconButton iconId="codicon-unmute" label="unmute" />
                         <IconButton iconId="codicon-unverified" label="unverified" />
                         <IconButton iconId="codicon-verified" label="verified" />
                         <IconButton iconId="codicon-versions" label="versions" />
                         <IconButton iconId="codicon-vm-active" label="vm-active" />
-                        <IconButton iconId="codicon-vm-connect" label="vm-connect" />
                         <IconButton iconId="codicon-vm-outline" label="vm-outline" />
                         <IconButton iconId="codicon-vm-running" label="vm-running" />
-                        <IconButton iconId="codicon-vm" label="vm" />
-                        <IconButton iconId="codicon-warning" label="warning" />
                         <IconButton iconId="codicon-watch" label="watch" />
                         <IconButton iconId="codicon-whitespace" label="whitespace" />
                         <IconButton iconId="codicon-whole-word" label="whole-word" />
@@ -1020,6 +1132,189 @@ const Page: React.FC = () => {
                         <IconButton iconId="codicon-word-wrap" label="word-wrap" />
                         <IconButton iconId="codicon-zoom-in" label="zoom-in" />
                         <IconButton iconId="codicon-zoom-out" label="zoom-out" />
+                        <IconButton iconId="codicon-list-filter" label="list-filter" />
+                        <IconButton iconId="codicon-list-flat" label="list-flat" />
+                        <IconButton iconId="codicon-list-selection" label="list-selection" />
+                        <IconButton iconId="codicon-selection" label="selection" />
+                        <IconButton iconId="codicon-list-tree" label="list-tree" />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-function-unverified"
+                            label="debug-breakpoint-function-unverified"
+                        />
+                        <IconButton iconId="codicon-debug-breakpoint-function" label="debug-breakpoint-function" />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-function-disabled"
+                            label="debug-breakpoint-function-disabled"
+                        />
+                        <IconButton iconId="codicon-debug-stackframe-active" label="debug-stackframe-active" />
+                        <IconButton iconId="codicon-circle-small-filled" label="circle-small-filled" />
+                        <IconButton iconId="codicon-debug-stackframe-dot" label="debug-stackframe-dot" />
+                        <IconButton iconId="codicon-terminal-decoration-mark" label="terminal-decoration-mark" />
+                        <IconButton iconId="codicon-debug-stackframe" label="debug-stackframe" />
+                        <IconButton iconId="codicon-debug-stackframe-focused" label="debug-stackframe-focused" />
+                        <IconButton
+                            iconId="codicon-debug-breakpoint-unsupported"
+                            label="debug-breakpoint-unsupported"
+                        />
+                        <IconButton iconId="codicon-symbol-string" label="symbol-string" />
+                        <IconButton iconId="codicon-debug-reverse-continue" label="debug-reverse-continue" />
+                        <IconButton iconId="codicon-debug-step-back" label="debug-step-back" />
+                        <IconButton iconId="codicon-debug-restart-frame" label="debug-restart-frame" />
+                        <IconButton iconId="codicon-debug-alt" label="debug-alt" />
+                        <IconButton iconId="codicon-call-incoming" label="call-incoming" />
+                        <IconButton iconId="codicon-call-outgoing" label="call-outgoing" />
+                        <IconButton iconId="codicon-menu" label="menu" />
+                        <IconButton iconId="codicon-expand-all" label="expand-all" />
+                        <IconButton iconId="codicon-feedback" label="feedback" />
+                        <IconButton iconId="codicon-git-pull-request-reviewer" label="git-pull-request-reviewer" />
+                        <IconButton iconId="codicon-group-by-ref-type" label="group-by-ref-type" />
+                        <IconButton iconId="codicon-ungroup-by-ref-type" label="ungroup-by-ref-type" />
+                        <IconButton iconId="codicon-account" label="account" />
+                        <IconButton iconId="codicon-git-pull-request-assignee" label="git-pull-request-assignee" />
+                        <IconButton iconId="codicon-bell-dot" label="bell-dot" />
+                        <IconButton iconId="codicon-debug-console" label="debug-console" />
+                        <IconButton iconId="codicon-library" label="library" />
+                        <IconButton iconId="codicon-output" label="output" />
+                        <IconButton iconId="codicon-run-all" label="run-all" />
+                        <IconButton iconId="codicon-sync-ignored" label="sync-ignored" />
+                        <IconButton iconId="codicon-pinned" label="pinned" />
+                        <IconButton iconId="codicon-github-inverted" label="github-inverted" />
+                        <IconButton iconId="codicon-server-process" label="server-process" />
+                        <IconButton iconId="codicon-server-environment" label="server-environment" />
+                        <IconButton iconId="codicon-pass" label="pass" />
+                        <IconButton iconId="codicon-issue-closed" label="issue-closed" />
+                        <IconButton iconId="codicon-stop-circle" label="stop-circle" />
+                        <IconButton iconId="codicon-play-circle" label="play-circle" />
+                        <IconButton iconId="codicon-record" label="record" />
+                        <IconButton iconId="codicon-debug-alt-small" label="debug-alt-small" />
+                        <IconButton iconId="codicon-vm-connect" label="vm-connect" />
+                        <IconButton iconId="codicon-cloud" label="cloud" />
+                        <IconButton iconId="codicon-merge" label="merge" />
+                        <IconButton iconId="codicon-export" label="export" />
+                        <IconButton iconId="codicon-graph-left" label="graph-left" />
+                        <IconButton iconId="codicon-magnet" label="magnet" />
+                        <IconButton iconId="codicon-notebook" label="notebook" />
+                        <IconButton iconId="codicon-redo" label="redo" />
+                        <IconButton iconId="codicon-check-all" label="check-all" />
+                        <IconButton iconId="codicon-pinned-dirty" label="pinned-dirty" />
+                        <IconButton iconId="codicon-pass-filled" label="pass-filled" />
+                        <IconButton iconId="codicon-circle-large-filled" label="circle-large-filled" />
+                        <IconButton iconId="codicon-circle-large" label="circle-large" />
+                        <IconButton iconId="codicon-circle-large-outline" label="circle-large-outline" />
+                        <IconButton iconId="codicon-combine" label="combine" />
+                        <IconButton iconId="codicon-gather" label="gather" />
+                        <IconButton iconId="codicon-table" label="table" />
+                        <IconButton iconId="codicon-variable-group" label="variable-group" />
+                        <IconButton iconId="codicon-type-hierarchy" label="type-hierarchy" />
+                        <IconButton iconId="codicon-type-hierarchy-sub" label="type-hierarchy-sub" />
+                        <IconButton iconId="codicon-type-hierarchy-super" label="type-hierarchy-super" />
+                        <IconButton iconId="codicon-git-pull-request-create" label="git-pull-request-create" />
+                        <IconButton iconId="codicon-run-above" label="run-above" />
+                        <IconButton iconId="codicon-run-below" label="run-below" />
+                        <IconButton iconId="codicon-notebook-template" label="notebook-template" />
+                        <IconButton iconId="codicon-debug-rerun" label="debug-rerun" />
+                        <IconButton iconId="codicon-workspace-trusted" label="workspace-trusted" />
+                        <IconButton iconId="codicon-workspace-untrusted" label="workspace-untrusted" />
+                        <IconButton iconId="codicon-workspace-unknown" label="workspace-unknown" />
+                        <IconButton iconId="codicon-terminal-cmd" label="terminal-cmd" />
+                        <IconButton iconId="codicon-terminal-debian" label="terminal-debian" />
+                        <IconButton iconId="codicon-terminal-linux" label="terminal-linux" />
+                        <IconButton iconId="codicon-terminal-powershell" label="terminal-powershell" />
+                        <IconButton iconId="codicon-terminal-tmux" label="terminal-tmux" />
+                        <IconButton iconId="codicon-terminal-ubuntu" label="terminal-ubuntu" />
+                        <IconButton iconId="codicon-terminal-bash" label="terminal-bash" />
+                        <IconButton iconId="codicon-arrow-swap" label="arrow-swap" />
+                        <IconButton iconId="codicon-copy" label="copy" />
+                        <IconButton iconId="codicon-person-add" label="person-add" />
+                        <IconButton iconId="codicon-filter-filled" label="filter-filled" />
+                        <IconButton iconId="codicon-wand" label="wand" />
+                        <IconButton iconId="codicon-debug-line-by-line" label="debug-line-by-line" />
+                        <IconButton iconId="codicon-inspect" label="inspect" />
+                        <IconButton iconId="codicon-layers" label="layers" />
+                        <IconButton iconId="codicon-layers-dot" label="layers-dot" />
+                        <IconButton iconId="codicon-layers-active" label="layers-active" />
+                        <IconButton iconId="codicon-compass" label="compass" />
+                        <IconButton iconId="codicon-compass-dot" label="compass-dot" />
+                        <IconButton iconId="codicon-compass-active" label="compass-active" />
+                        <IconButton iconId="codicon-azure" label="azure" />
+                        <IconButton iconId="codicon-issue-draft" label="issue-draft" />
+                        <IconButton iconId="codicon-git-pull-request-closed" label="git-pull-request-closed" />
+                        <IconButton iconId="codicon-git-pull-request-draft" label="git-pull-request-draft" />
+                        <IconButton iconId="codicon-debug-all" label="debug-all" />
+                        <IconButton iconId="codicon-debug-coverage" label="debug-coverage" />
+                        <IconButton iconId="codicon-run-errors" label="run-errors" />
+                        <IconButton iconId="codicon-folder-library" label="folder-library" />
+                        <IconButton iconId="codicon-debug-continue-small" label="debug-continue-small" />
+                        <IconButton iconId="codicon-beaker-stop" label="beaker-stop" />
+                        <IconButton iconId="codicon-graph-line" label="graph-line" />
+                        <IconButton iconId="codicon-graph-scatter" label="graph-scatter" />
+                        <IconButton iconId="codicon-pie-chart" label="pie-chart" />
+                        <IconButton iconId="codicon-bracket" label="bracket" />
+                        <IconButton iconId="codicon-bracket-dot" label="bracket-dot" />
+                        <IconButton iconId="codicon-bracket-error" label="bracket-error" />
+                        <IconButton iconId="codicon-lock-small" label="lock-small" />
+                        <IconButton iconId="codicon-azure-devops" label="azure-devops" />
+                        <IconButton iconId="codicon-verified-filled" label="verified-filled" />
+                        <IconButton iconId="codicon-newline" label="newline" />
+                        <IconButton iconId="codicon-layout" label="layout" />
+                        <IconButton iconId="codicon-layout-activitybar-left" label="layout-activitybar-left" />
+                        <IconButton iconId="codicon-layout-activitybar-right" label="layout-activitybar-right" />
+                        <IconButton iconId="codicon-layout-panel-left" label="layout-panel-left" />
+                        <IconButton iconId="codicon-layout-panel-center" label="layout-panel-center" />
+                        <IconButton iconId="codicon-layout-panel-justify" label="layout-panel-justify" />
+                        <IconButton iconId="codicon-layout-panel-right" label="layout-panel-right" />
+                        <IconButton iconId="codicon-layout-panel" label="layout-panel" />
+                        <IconButton iconId="codicon-layout-sidebar-left" label="layout-sidebar-left" />
+                        <IconButton iconId="codicon-layout-sidebar-right" label="layout-sidebar-right" />
+                        <IconButton iconId="codicon-layout-statusbar" label="layout-statusbar" />
+                        <IconButton iconId="codicon-layout-menubar" label="layout-menubar" />
+                        <IconButton iconId="codicon-layout-centered" label="layout-centered" />
+                        <IconButton iconId="codicon-target" label="target" />
+                        <IconButton iconId="codicon-indent" label="indent" />
+                        <IconButton iconId="codicon-record-small" label="record-small" />
+                        <IconButton iconId="codicon-error-small" label="error-small" />
+                        <IconButton iconId="codicon-terminal-decoration-error" label="terminal-decoration-error" />
+                        <IconButton iconId="codicon-arrow-circle-down" label="arrow-circle-down" />
+                        <IconButton iconId="codicon-arrow-circle-left" label="arrow-circle-left" />
+                        <IconButton iconId="codicon-arrow-circle-right" label="arrow-circle-right" />
+                        <IconButton iconId="codicon-arrow-circle-up" label="arrow-circle-up" />
+                        <IconButton iconId="codicon-layout-sidebar-right-off" label="layout-sidebar-right-off" />
+                        <IconButton iconId="codicon-layout-panel-off" label="layout-panel-off" />
+                        <IconButton iconId="codicon-layout-sidebar-left-off" label="layout-sidebar-left-off" />
+                        <IconButton iconId="codicon-blank" label="blank" />
+                        <IconButton iconId="codicon-heart-filled" label="heart-filled" />
+                        <IconButton iconId="codicon-map" label="map" />
+                        <IconButton iconId="codicon-map-filled" label="map-filled" />
+                        <IconButton iconId="codicon-circle-small" label="circle-small" />
+                        <IconButton iconId="codicon-bell-slash" label="bell-slash" />
+                        <IconButton iconId="codicon-bell-slash-dot" label="bell-slash-dot" />
+                        <IconButton iconId="codicon-comment-unresolved" label="comment-unresolved" />
+                        <IconButton
+                            iconId="codicon-git-pull-request-go-to-changes"
+                            label="git-pull-request-go-to-changes"
+                        />
+                        <IconButton
+                            iconId="codicon-git-pull-request-new-changes"
+                            label="git-pull-request-new-changes"
+                        />
+                        <IconButton iconId="codicon-search-fuzzy" label="search-fuzzy" />
+                        <IconButton iconId="codicon-comment-draft" label="comment-draft" />
+                        <IconButton iconId="codicon-send" label="send" />
+                        <IconButton iconId="codicon-sparkle" label="sparkle" />
+                        <IconButton iconId="codicon-insert" label="insert" />
+                        <IconButton iconId="codicon-mic" label="mic" />
+                        <IconButton iconId="codicon-thumbsdown-filled" label="thumbsdown-filled" />
+                        <IconButton iconId="codicon-thumbsup-filled" label="thumbsup-filled" />
+                        <IconButton iconId="codicon-coffee" label="coffee" />
+                        <IconButton iconId="codicon-snake" label="snake" />
+                        <IconButton iconId="codicon-game" label="game" />
+                        <IconButton iconId="codicon-vr" label="vr" />
+                        <IconButton iconId="codicon-chip" label="chip" />
+                        <IconButton iconId="codicon-piano" label="piano" />
+                        <IconButton iconId="codicon-music" label="music" />
+                        <IconButton iconId="codicon-mic-filled" label="mic-filled" />
+                        <IconButton iconId="codicon-git-fetch" label="git-fetch" />
+                        <IconButton iconId="codicon-copilot" label="copilot" />
                     </div>
                 </div>
             </div>
@@ -1028,7 +1323,7 @@ const Page: React.FC = () => {
 };
 
 const meta: Meta = {
-    title: "CodIcons",
+    title: "@mas/icons/CodIcons",
 };
 
 export default meta;

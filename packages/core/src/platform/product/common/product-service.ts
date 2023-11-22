@@ -5,7 +5,7 @@
  *
  * File Created: 11/06/2023 03:53 pm
  *
- * Last Modified: 11/06/2023 03:53 pm
+ * Last Modified: 11/07/2023 03:01 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,4 +22,4 @@ export const IProductService = Symbol("productService");
 
 export interface IProductService extends Readonly<IProductConfiguration> {}
 
-export const productSchemaId = "vscode://schemas/vscode-product";
+export const productSchemaId = "mas://schemas/mas-product";
