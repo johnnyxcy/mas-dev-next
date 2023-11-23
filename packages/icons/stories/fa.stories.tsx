@@ -5,7 +5,7 @@
  *
  * File Created: 11/22/2023 11:06 am
  *
- * Last Modified: 11/23/2023 03:37 pm
+ * Last Modified: 11/23/2023 04:16 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,6 +15,7 @@ import React from "react";
 
 import { Meta, StoryObj } from "@storybook/react";
 
+import "@mas/icons/fontawesome";
 import "@mas/icons/fontawesome/brands";
 import "@mas/icons/fontawesome/regular";
 import "@mas/icons/fontawesome/solid";

@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 11/17/2023 01:23 pm
+ * Last Modified: 11/23/2023 04:17 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -36,10 +36,14 @@ export default defineConfig({
         outDir: ".dist/lib",
         lib: {
             entry: {
-                codicons: "./src/codicons/index.ts",
+                "codicons": "./src/codicons/index.ts",
+                "fontawesome/index": "./src/fontawesome/index.ts",
+                "fontawesome/brands": "./src/fontawesome/brands.ts",
+                "fontawesome/regular": "./src/fontawesome/regular.ts",
+                "fontawesome/solid": "./src/fontawesome/solid.ts",
             },
             formats: ["es"],
-            fileName: () => "codicons.js",
+            fileName: (_, entryName) => `${entryName}.js`,
         },
         chunkSizeWarningLimit: 1000,
     },
