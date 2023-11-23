@@ -5,7 +5,7 @@
  *
  * File Created: 11/22/2023 11:06 am
  *
- * Last Modified: 11/22/2023 04:40 pm
+ * Last Modified: 11/23/2023 03:24 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -86,6 +86,21 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                     background-color: #f8f8f8;
                 }
 
+                .search-container {
+                    position: fixed;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .icons-container {
+                    padding-top: 60px;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
                 .icon {
                     width: 100px;
                     display: inline-block;
@@ -141,7 +156,6 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                     padding: 12px 16px;
                     margin: 0 auto;
                     max-width: 900px;
-                    margin-bottom: 24px;
                     border: 1px solid rgba(0,0,0,.1);
                     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.06);
                 }
@@ -176,10 +190,7 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                 }`}
             </style>
             <div className="fa-stories-container">
-                <div id="notification">
-                    📋 Copied: <span id="notification-id"></span>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", flexWrap: "nowrap" }}>
+                <div className="search-container">
                     <input
                         type="text"
                         className="search"
@@ -187,7 +198,7 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                         onChange={(e) => {
                             const value = e.target.value;
                             const filter = value.toUpperCase();
-                            const wrapper = document.querySelectorAll(".icons");
+                            const wrapper = document.querySelectorAll(".icons-container");
                             if (!wrapper) {
                                 return;
                             }
@@ -203,8 +214,12 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                             }
                         }}
                     />
-                    <div className="icons">{children}</div>
                 </div>
+                <div id="notification">
+                    📋 Copied: <span id="notification-id"></span>
+                </div>
+
+                <div className="icons-container">{children}</div>
             </div>
         </>
     );
