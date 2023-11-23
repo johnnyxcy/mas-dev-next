@@ -5,7 +5,7 @@
  *
  * File Created: 11/22/2023 11:06 am
  *
- * Last Modified: 11/23/2023 03:24 pm
+ * Last Modified: 11/23/2023 03:37 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -36,7 +36,7 @@ const FaIconButton: React.FC<FaIconButtonProps> = ({ variant, iconId, label }) =
             data-name={iconId}
             title={iconId}
             onClick={() => {
-                navigator.clipboard.writeText(clsName);
+                navigator.clipboard.writeText(`<span className="${clsName}" />`);
                 const notification = document.querySelector("#notification");
                 const notificationText = document.querySelector("#notification-id");
                 if (notification && notificationText) {
@@ -53,9 +53,8 @@ const FaIconButton: React.FC<FaIconButtonProps> = ({ variant, iconId, label }) =
             }}
         >
             <span className="inner">
-                <i className={clsName} aria-hidden="true"></i>
+                <span className={clsName} aria-hidden="true" />
             </span>
-            <br />
             <span className="label">{label}</span>
         </div>
     );
@@ -125,7 +124,7 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                     transition: all .3s ease-in-out;
                 }
 
-                .icon .inner i {
+                .icon .inner span {
                     padding: 16px 0;
                     font-size: 48px;
                     color: #333;
