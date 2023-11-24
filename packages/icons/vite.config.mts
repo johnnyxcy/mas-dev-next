@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 11/23/2023 04:17 pm
+ * Last Modified: 11/23/2023 06:15 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -41,6 +41,9 @@ export default defineConfig({
                 "fontawesome/brands": "./src/fontawesome/brands.ts",
                 "fontawesome/regular": "./src/fontawesome/regular.ts",
                 "fontawesome/solid": "./src/fontawesome/solid.ts",
+                "material-symbols/outlined": "./src/material-symbols/outlined.ts",
+                "material-symbols/rounded": "./src/material-symbols/rounded.ts",
+                "material-symbols/sharp": "./src/material-symbols/sharp.ts",
             },
             formats: ["es"],
             fileName: (_, entryName) => `${entryName}.js`,

@@ -5,7 +5,7 @@
  *
  * File Created: 11/22/2023 11:06 am
  *
- * Last Modified: 11/23/2023 04:16 pm
+ * Last Modified: 11/23/2023 06:00 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -20,6 +20,9 @@ import "@mas/icons/fontawesome/brands";
 import "@mas/icons/fontawesome/regular";
 import "@mas/icons/fontawesome/solid";
 
+import IconButton from "./icon-button";
+import IconsPage from "./icons-page";
+
 interface FaIconButtonBaseProps {
     iconId: string;
     label: string;
@@ -30,35 +33,7 @@ interface FaIconButtonProps extends FaIconButtonBaseProps {
 }
 
 const FaIconButton: React.FC<FaIconButtonProps> = ({ variant, iconId, label }) => {
-    const clsName = `fa fa-${variant} ${iconId}`;
-    return (
-        <div
-            className="icon"
-            data-name={iconId}
-            title={iconId}
-            onClick={() => {
-                navigator.clipboard.writeText(`<span className="${clsName}" />`);
-                const notification = document.querySelector("#notification");
-                const notificationText = document.querySelector("#notification-id");
-                if (notification && notificationText) {
-                    notificationText.innerHTML = iconId;
-                    if (!notification.classList.contains("show")) {
-                        notification.classList.add("show");
-                    }
-                    setTimeout(() => {
-                        if (notification.classList.contains("show")) {
-                            notification.classList.remove("show");
-                        }
-                    }, 3000);
-                }
-            }}
-        >
-            <span className="inner">
-                <span className={clsName} aria-hidden="true" />
-            </span>
-            <span className="label">{label}</span>
-        </div>
-    );
+    return <IconButton familyClassName={`fa fa-${variant}`} iconId={iconId} label={label} />;
 };
 
 const FaSolidIconButton: React.FC<FaIconButtonBaseProps> = ({ iconId, label }) => {
@@ -71,158 +46,6 @@ const FaRegularIconButton: React.FC<FaIconButtonBaseProps> = ({ iconId, label })
 
 const FaBrandsIconButton: React.FC<FaIconButtonBaseProps> = ({ iconId, label }) => {
     return <FaIconButton variant="brands" iconId={iconId} label={label} />;
-};
-
-const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefined }) => {
-    return (
-        <>
-            <style type="text/css">
-                {`
-                .fa-stories-container {
-                    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
-                    margin: 0;
-                    padding: 40px 20px;
-                    text-align: center;
-                    background-color: #f8f8f8;
-                }
-
-                .search-container {
-                    position: fixed;
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                .icons-container {
-                    padding-top: 60px;
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: center;
-                }
-
-                .icon {
-                    width: 100px;
-                    display: inline-block;
-                    margin: 8px;
-                }
-
-                .icon:hover {
-                    cursor: pointer;
-                }
-
-                .icon:hover .inner {
-                    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.24);
-                }
-
-                .icon .inner {
-                    display: inline-block;
-                    width: 100%;
-                    text-align: center;
-                    background-color: white;
-                    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.06);
-                    border-radius: 4px;
-                    transition: all .3s ease-in-out;
-                }
-
-                .icon .inner span {
-                    padding: 16px 0;
-                    font-size: 48px;
-                    color: #333;
-                    overflow: hidden;
-                }
-
-                .icon .inner::before {
-                    overflow: hidden;
-                }
-
-                .label {
-                    margin-top: 8px;
-                    display: inline-block;
-                    width: 100%;
-                    box-sizing: border-box;
-                    padding: 4px;
-                    font-size: 10px;
-                    color: #666;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                .search {
-                    display: flex;
-                    width: 100%;
-                    font-size: 16px;
-                    padding: 12px 16px;
-                    margin: 0 auto;
-                    max-width: 900px;
-                    border: 1px solid rgba(0,0,0,.1);
-                    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.06);
-                }
-
-                .search:focus {
-                    outline: none !important;
-                    border-color: #18a0fb;
-                }
-
-                #notification {
-                    position: fixed;
-                    margin: auto;
-                    bottom: 40px;
-                    left: 50%;
-                    width: auto;
-                    transform: translateX(-50%);
-                    color: white;
-                    background-color: #212121;
-                    padding: 8px 24px;
-                    border-radius: 8px;
-                    opacity: 0;
-                    transition: opacity .3s ease-in-out;
-                    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
-                }
-
-                #notification-id {
-                    font-weight: bold;
-                }
-
-                #notification.show{
-                    opacity: .9;
-                }`}
-            </style>
-            <div className="fa-stories-container">
-                <div className="search-container">
-                    <input
-                        type="text"
-                        className="search"
-                        placeholder="Search for icon names"
-                        onChange={(e) => {
-                            const value = e.target.value;
-                            const filter = value.toUpperCase();
-                            const wrapper = document.querySelectorAll(".icons-container");
-                            if (!wrapper) {
-                                return;
-                            }
-                            const icons = wrapper[0].querySelectorAll<HTMLDivElement>(".icon");
-
-                            for (let i = 0; i < icons.length; i++) {
-                                const iconName = icons[i].getAttribute("data-name");
-                                if (iconName && iconName.toUpperCase().includes(filter)) {
-                                    icons[i].style.display = "";
-                                } else {
-                                    icons[i].style.display = "none";
-                                }
-                            }
-                        }}
-                    />
-                </div>
-                <div id="notification">
-                    📋 Copied: <span id="notification-id"></span>
-                </div>
-
-                <div className="icons-container">{children}</div>
-            </div>
-        </>
-    );
 };
 
 const SolidIconsPage: React.FC = () => {
