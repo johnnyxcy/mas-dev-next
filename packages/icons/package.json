@@ -7,6 +7,20 @@
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },
+    "exports": {
+        "./codicons": {
+            "types": "./.dist/types/src/codicons/index.d.ts",
+            "default": "./.dist/lib/codicons.js"
+        },
+        "./fontawesome/*": {
+            "types": "./.dist/types/src/fontawesome/*.d.ts",
+            "default": "./.dist/lib/fontawesome/*.js"
+        },
+        "./material-symbols/*": {
+            "types": "./.dist/types/src/material-symbols/*.d.ts",
+            "default": "./.dist/lib/material-symbols/*.js"
+        }
+    },
     "keywords": [],
     "author": {
         "name": "Maspectra Dev Team",

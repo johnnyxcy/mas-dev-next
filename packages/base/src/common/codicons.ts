@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 06:04 pm
  *
- * Last Modified: 09/27/2023 01:33 pm
+ * Last Modified: 11/28/2023 02:16 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -17,6 +17,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { type ThemeIcon } from "@mas/base/common/themables";
 import { isString } from "@mas/base/common/types";
+import { Codicon as CodiconType } from "@mas/icons/codicons";
 
 const _codiconFontCharacters: { [id: string]: number } = Object.create(null);
 
@@ -53,7 +54,10 @@ export function getAllCodicons(): ThemeIcon[] {
  * themeable, component should define new, UI component specific icons using `iconRegistry.registerIcon`.
  * In that call a Codicon can be named as default.
  */
-export const Codicon = {
+type ThemeCodicon = {
+    readonly [K in CodiconType]: ThemeIcon;
+};
+export const Codicon: ThemeCodicon = {
     // built-in icons, with image name
     add: register("add", 0xea60),
     plus: register("plus", 0xea60),
@@ -580,34 +584,23 @@ export const Codicon = {
     sparkle: register("sparkle", 0xec10),
     insert: register("insert", 0xec11),
     mic: register("mic", 0xec12),
-
     // derived icons, that could become separate icons
-
     dialogError: register("dialog-error", "error"),
     dialogWarning: register("dialog-warning", "warning"),
     dialogInfo: register("dialog-info", "info"),
     dialogClose: register("dialog-close", "close"),
-
     treeItemExpanded: register("tree-item-expanded", "chevron-down"), // collapsed is done with rotation
-
     treeFilterOnTypeOn: register("tree-filter-on-type-on", "list-filter"),
     treeFilterOnTypeOff: register("tree-filter-on-type-off", "list-selection"),
     treeFilterClear: register("tree-filter-clear", "close"),
-
     treeItemLoading: register("tree-item-loading", "loading"),
-
     menuSelection: register("menu-selection", "check"),
     menuSubmenu: register("menu-submenu", "chevron-right"),
-
     menuBarMore: register("menubar-more", "more"),
-
     scrollbarButtonLeft: register("scrollbar-button-left", "triangle-left"),
     scrollbarButtonRight: register("scrollbar-button-right", "triangle-right"),
-
     scrollbarButtonUp: register("scrollbar-button-up", "triangle-up"),
     scrollbarButtonDown: register("scrollbar-button-down", "triangle-down"),
-
     toolBarMore: register("toolbar-more", "more"),
-
     quickInputBack: register("quick-input-back", "arrow-left"),
 } as const;
