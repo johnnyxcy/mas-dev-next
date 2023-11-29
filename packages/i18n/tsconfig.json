@@ -4,6 +4,7 @@
         "baseUrl": "./",
         "noEmit": false,
         "composite": true,
+        "experimentalDecorators": true,
 
         "paths": {
             "@mas/i18n": ["src/index"],
