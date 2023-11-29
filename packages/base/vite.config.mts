@@ -1,17 +1,18 @@
 /*
- * File: @mas/i18n/vite.config.ts
+ * File: @mas/base/vite.config.mts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/31/2023 11:17 am
+ * Last Modified: 11/29/2023 04:54 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
 /// <reference types="vitest" />
+
 import { rmSync } from "node:fs";
 import path from "node:path";
 import { defineConfig } from "vite";
@@ -19,6 +20,8 @@ import { defineConfig } from "vite";
 import { glob } from "glob";
 import dts from "vite-plugin-dts";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+import pkg from "./package.json";
 
 export default defineConfig(() => {
     rmSync(".dist/", { recursive: true, force: true });
@@ -36,13 +39,15 @@ export default defineConfig(() => {
             },
         ],
         build: {
+            sourcemap: true,
+            minify: "esbuild",
             outDir: ".dist/lib",
             lib: {
-                entry: glob.sync(path.resolve(__dirname, "src/**/*.ts")),
+                entry: glob.sync(path.resolve(__dirname, "src/**/*.ts"), { ignore: ["**/*.d.ts"] }),
                 formats: ["es"],
             },
             rollupOptions: {
-                external: ["fs-extra", "inversify", /@mas\/contribution(.+)?/],
+                external: [...Object.keys(pkg.dependencies || {}), /@mas\/i18n(.+)?/, /@vitest(.+)?/, /^node:/],
                 output: {
                     preserveModules: true,
                     preserveModulesRoot: "src",
@@ -59,6 +64,12 @@ export default defineConfig(() => {
             coverage: {
                 provider: "istanbul",
             },
+            environmentMatchGlobs: [
+                ["**/tests/common/**/*.test.ts", "node"],
+                ["**/tests/node/**/*.test.ts", "node"],
+                ["**/tests/browser/**/*.test.ts", "happy-dom"],
+            ],
+            setupFiles: ["fake-indexeddb/auto"],
         },
     };
 });

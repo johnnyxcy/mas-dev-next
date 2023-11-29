@@ -10,7 +10,7 @@
         "src",
         "tests",
         ".scripts",
-        "vite.config.ts",
+        "vite.config.mts",
         ".eslintrc.cjs"
     ]
 }

@@ -1,11 +1,11 @@
 /*
- * File: @mas/core/vite.config.ts
+ * File: @mas/core/vite.config.mts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 11/06/2023 01:42 pm
+ * Last Modified: 11/29/2023 04:54 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -43,7 +43,7 @@ export default defineConfig(() => {
             outDir: ".dist/lib",
             lib: {
                 entry: glob.sync(path.resolve(__dirname, "src/**/*.ts"), { ignore: ["**/*.d.ts"] }),
-                formats: ["es"],
+                formats: ["es" as const],
             },
             rollupOptions: {
                 external: [
@@ -68,7 +68,7 @@ export default defineConfig(() => {
             /* for example, use global to avoid globals imports (describe, test, expect): */
             globals: true,
             coverage: {
-                provider: "istanbul",
+                provider: "istanbul" as const,
             },
             environmentMatchGlobs: [
                 ["**/tests/**/common/**/*.test.ts", "node"],

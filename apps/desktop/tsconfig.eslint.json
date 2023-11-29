@@ -10,6 +10,7 @@
         "src",
         ".scripts",
         ".eslintrc.cjs",
-        "*.config.ts"
+        "*.config.ts",
+        "*.config.mts"
     ]
 }

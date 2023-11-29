@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 10/27/2023 05:21 pm
+ * Last Modified: 11/28/2023 05:31 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,7 +15,10 @@ import React from "react";
 
 import ReactDOM from "react-dom/client";
 
+import { getAllCodicons } from "@mas/base/common/codicons";
+
 const App: React.FC = () => {
+    console.log(getAllCodicons());
     return (
         <div>
             Hello World<button onClick={async (e) => {}}>Click Me Now!</button>

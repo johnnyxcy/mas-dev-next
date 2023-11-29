@@ -1,11 +1,11 @@
 /*
- * File: @mas/tools/vite.config.ts
+ * File: @mas/tools/vite.config.mts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/31/2023 10:17 am
+ * Last Modified: 11/29/2023 04:51 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -32,7 +32,7 @@ export default defineConfig(() => {
                 entry: {
                     cli: path.resolve(__dirname, "src/cli/main.ts"),
                 },
-                formats: ["cjs"],
+                formats: ["cjs" as const],
             },
             rollupOptions: {
                 external: [...Object.keys(pkg.dependencies || {}), /^node:/],
@@ -42,7 +42,7 @@ export default defineConfig(() => {
             /* for example, use global to avoid globals imports (describe, test, expect): */
             globals: true,
             coverage: {
-                provider: "istanbul",
+                provider: "istanbul" as const,
             },
         },
     };

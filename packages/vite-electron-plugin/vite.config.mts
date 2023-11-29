@@ -1,11 +1,11 @@
 /*
- * File: @mas/vite-electron-plugin/vite.config.ts
+ * File: @mas/vite-electron-plugin/vite.config.mts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 10/31/2023 11:18 am
+ * Last Modified: 11/29/2023 04:51 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -29,7 +29,7 @@ export default defineConfig(() => {
             outDir: ".dist/lib",
             lib: {
                 entry: path.resolve(__dirname, "src/index.ts"),
-                formats: ["cjs"],
+                formats: ["cjs" as const],
             },
             rollupOptions: {
                 external: ["vite", "electron", /^node:/],
@@ -39,7 +39,7 @@ export default defineConfig(() => {
             /* for example, use global to avoid globals imports (describe, test, expect): */
             globals: true,
             coverage: {
-                provider: "istanbul",
+                provider: "istanbul" as const,
             },
         },
     };

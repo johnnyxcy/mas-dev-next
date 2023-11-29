@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/27/2023 10:34 am
+ * Last Modified: 11/29/2023 04:21 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -24,7 +24,7 @@ module.exports = {
     ignorePatterns: [".eslintrc.js", "node_modules"],
     overrides: [
         {
-            files: [".scripts/*", "*.config.ts"],
+            files: [".scripts/*", "*.config.ts", "*.config.mts"],
             rules: {
                 "global-require": "off",
                 "no-console": "off",

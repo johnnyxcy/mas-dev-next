@@ -5,14 +5,14 @@
  *
  * File Created: 09/13/2023 03:12 pm
  *
- * Last Modified: 10/24/2023 04:53 pm
+ * Last Modified: 11/29/2023 04:14 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
 
-import { exposeInMainWorld } from "@mas/core/parts/sandbox/electron-sandbox/preload";
+// import { exposeInMainWorld } from "@mas/core/parts/sandbox/electron-sandbox/preload";
 
 function domReady(condition: DocumentReadyState[] = ["complete", "interactive"]): Promise<boolean> {
     return new Promise((resolve) => {
@@ -103,7 +103,7 @@ function spinning(): {
 
 // ----------------------------------------------------------------------
 
-exposeInMainWorld();
+// exposeInMainWorld();
 
 const { appendLoading, removeLoading } = spinning();
 domReady()

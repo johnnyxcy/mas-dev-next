@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 10/27/2023 01:33 pm
+ * Last Modified: 11/29/2023 04:52 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -33,7 +33,7 @@ module.exports = {
             },
         },
         {
-            files: ["*.config.ts"],
+            files: ["*.config.mts"],
             rules: {
                 "@typescript-eslint/no-restricted-imports": "off",
             },

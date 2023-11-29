@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 05:07 pm
  *
- * Last Modified: 09/27/2023 05:07 pm
+ * Last Modified: 11/29/2023 04:58 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,8 +15,6 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-
-import { memoize } from "@mas/base/common/decorators";
 
 export interface ILink {
     readonly label: string;
@@ -29,7 +27,6 @@ export type LinkedTextNode = string | ILink;
 export class LinkedText {
     constructor(readonly nodes: LinkedTextNode[]) {}
 
-    @memoize
     toString(): string {
         return this.nodes.map((node) => (typeof node === "string" ? node : node.label)).join("");
     }

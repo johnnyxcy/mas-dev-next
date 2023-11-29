@@ -9,6 +9,7 @@
         // whatever paths you intend to lint
         "src",
         ".eslintrc.cjs",
-        "*.config.ts"
+        "*.config.mts",
+        "package.json"
     ]
 }
