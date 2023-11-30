@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 11/30/2023 02:24 pm
+ * Last Modified: 11/30/2023 03:54 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,10 +15,11 @@ import React from "react";
 
 import ReactDOM from "react-dom/client";
 
-import { $ } from "@mas/base/browser/dom";
+import { createStyleSheet } from "@mas/base/browser/dom";
+import { mainWindow } from "@mas/base/browser/window";
 import { Codicon, getCodiconFontCharacters } from "@mas/base/common/codicons";
+import { DisposableStore } from "@mas/base/common/lifecycle";
 import { ThemeIcon } from "@mas/base/common/themables";
-
 import "@mas/icons/codicons";
 
 const App: React.FC = () => {
@@ -26,8 +27,19 @@ const App: React.FC = () => {
         const iconStyles = Object.entries(getCodiconFontCharacters()).map(
             ([key, value]) => `.codicon-${key}:before { content: "\\${value.toString(16)}" }`,
         );
-        $("#codiconStyles")!.innerHTML = iconStyles.join("\n");
-    });
+        const disposable = new DisposableStore();
+        createStyleSheet(
+            mainWindow.document.head,
+            (el) => {
+                el.className = "codiconStyles";
+                el.innerHTML = iconStyles.join("\n");
+            },
+            disposable,
+        );
+        return () => {
+            disposable.dispose();
+        };
+    }, []);
     return (
         <div>
             Hello World
@@ -37,7 +49,7 @@ const App: React.FC = () => {
     );
 };
 
-ReactDOM.createRoot($("#maspectra-desktop-root") as HTMLElement).render(
+ReactDOM.createRoot(mainWindow.document.querySelector<HTMLDivElement>("#maspectra-desktop-root")!).render(
     <React.StrictMode>
         <App />
     </React.StrictMode>,
