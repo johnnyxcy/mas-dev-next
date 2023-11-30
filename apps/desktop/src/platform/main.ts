@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:24 pm
  *
- * Last Modified: 11/28/2023 05:56 pm
+ * Last Modified: 11/29/2023 05:52 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -43,7 +43,9 @@ let win: BrowserWindow | null = null;
 // Here, you can also use other preload
 const preload = join(__dirname, "preload.js");
 const devUrl = process.env.VITE_DEV_SERVER_URL;
-const workbenchHtml = join(devUrl ? join(devUrl, "src") : process.env.DIST, "renderer/workbench.html");
+const workbenchHtml = devUrl
+    ? join(devUrl, "src/workbench/index.html")
+    : join(process.env.DIST, "renderer/workbench.html");
 
 async function createWindow(): Promise<void> {
     win = new BrowserWindow({

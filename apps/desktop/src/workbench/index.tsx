@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 11/28/2023 05:31 pm
+ * Last Modified: 11/30/2023 01:35 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,13 +15,23 @@ import React from "react";
 
 import ReactDOM from "react-dom/client";
 
-import { getAllCodicons } from "@mas/base/common/codicons";
+import { Codicon, getCodiconFontCharacters } from "@mas/base/common/codicons";
+import { ThemeIcon } from "@mas/base/common/themables";
+
+import "@mas/icons/codicons";
 
 const App: React.FC = () => {
-    console.log(getAllCodicons());
+    React.useEffect(() => {
+        const iconStyles = Object.entries(getCodiconFontCharacters()).map(
+            ([key, value]) => `.codicon-${key}:before { content: "\\${value.toString(16)}" }`,
+        );
+        document.getElementById("codicons-stylesheet")!.innerHTML = iconStyles.join("\n");
+    });
     return (
         <div>
-            Hello World<button onClick={async (e) => {}}>Click Me Now!</button>
+            Hello World
+            <span className={ThemeIcon.asClassName(Codicon.account)} />
+            <button onClick={async (e) => {}}>Click Me Now!</button>
         </div>
     );
 };
