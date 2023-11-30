@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 01:18 pm
  *
- * Last Modified: 09/27/2023 01:40 pm
+ * Last Modified: 11/30/2023 03:03 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,16 +16,16 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { type CancellationToken } from "@mas/base/common/cancellation";
+import { CancellationToken } from "@mas/base/common/cancellation";
 import { onUnexpectedError } from "@mas/base/common/errors";
 import { createSingleCallFunction } from "@mas/base/common/functional";
 import {
+    combinedDisposable,
     Disposable,
     DisposableMap,
     DisposableStore,
-    combinedDisposable,
+    IDisposable,
     toDisposable,
-    type IDisposable,
 } from "@mas/base/common/lifecycle";
 import { LinkedList } from "@mas/base/common/linked-list";
 import { StopWatch } from "@mas/base/common/stopwatch";
@@ -655,8 +655,8 @@ export namespace Event {
     export interface IChainableSythensis<T> {
         map<O>(fn: (i: T) => O): IChainableSythensis<O>;
         forEach(fn: (i: T) => void): IChainableSythensis<T>;
+        filter<R extends T>(fn: (e: T) => e is R): IChainableSythensis<R>;
         filter(fn: (e: T) => boolean): IChainableSythensis<T>;
-        filter<R>(fn: (e: T | R) => e is R): IChainableSythensis<R>;
         reduce<R>(merge: (last: R, event: T) => R, initial: R): IChainableSythensis<R>;
         reduce<R>(merge: (last: R | undefined, event: T) => R): IChainableSythensis<R>;
         latch(equals?: (a: T, b: T) => boolean): IChainableSythensis<T>;
@@ -749,8 +749,10 @@ export namespace Event {
      * runAndSubscribe(dataChangeEvent, () => this._updateUI());
      * ```
      */
-    export function runAndSubscribe<T>(event: Event<T>, handler: (e: T | undefined) => any): IDisposable {
-        handler(undefined);
+    export function runAndSubscribe<T>(event: Event<T>, handler: (e: T) => any, initial: T): IDisposable;
+    export function runAndSubscribe<T>(event: Event<T>, handler: (e: T | undefined) => any): IDisposable;
+    export function runAndSubscribe<T>(event: Event<T>, handler: (e: T | undefined) => any, initial?: T): IDisposable {
+        handler(initial);
         return event((e) => handler(e));
     }
 

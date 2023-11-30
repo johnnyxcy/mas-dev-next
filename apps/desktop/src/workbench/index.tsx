@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 11/30/2023 01:35 pm
+ * Last Modified: 11/30/2023 02:24 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -15,6 +15,7 @@ import React from "react";
 
 import ReactDOM from "react-dom/client";
 
+import { $ } from "@mas/base/browser/dom";
 import { Codicon, getCodiconFontCharacters } from "@mas/base/common/codicons";
 import { ThemeIcon } from "@mas/base/common/themables";
 
@@ -25,7 +26,7 @@ const App: React.FC = () => {
         const iconStyles = Object.entries(getCodiconFontCharacters()).map(
             ([key, value]) => `.codicon-${key}:before { content: "\\${value.toString(16)}" }`,
         );
-        document.getElementById("codicons-stylesheet")!.innerHTML = iconStyles.join("\n");
+        $("#codiconStyles")!.innerHTML = iconStyles.join("\n");
     });
     return (
         <div>
@@ -36,7 +37,7 @@ const App: React.FC = () => {
     );
 };
 
-ReactDOM.createRoot(document.getElementById("maspectra-desktop-root") as HTMLElement).render(
+ReactDOM.createRoot($("#maspectra-desktop-root") as HTMLElement).render(
     <React.StrictMode>
         <App />
     </React.StrictMode>,

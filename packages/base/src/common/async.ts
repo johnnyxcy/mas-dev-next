@@ -5,7 +5,7 @@
  *
  * File Created: 09/27/2023 03:40 pm
  *
- * Last Modified: 09/27/2023 03:44 pm
+ * Last Modified: 11/30/2023 02:46 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,21 +16,22 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { CancellationTokenSource, type CancellationToken } from "@mas/base/common/cancellation";
-import { CancellationError } from "@mas/base/common/errors";
+import { CancellationToken, CancellationTokenSource } from "@mas/base/common/cancellation";
+import { BugIndicatingError, CancellationError } from "@mas/base/common/errors";
 import { Emitter, Event } from "@mas/base/common/event";
+import { Lazy } from "@mas/base/common/lazy";
 import {
     Disposable,
     DisposableMap,
     DisposableStore,
+    IDisposable,
     MutableDisposable,
     toDisposable,
-    type IDisposable,
 } from "@mas/base/common/lifecycle";
 import { setTimeout0 } from "@mas/base/common/platform";
 import { IExtUri, extUri as defaultExtUri } from "@mas/base/common/resources";
 import { MicrotaskDelay } from "@mas/base/common/symbols";
-import { type URI } from "@mas/base/common/uri";
+import { URI } from "@mas/base/common/uri";
 
 export function isThenable<T>(obj: unknown): obj is Promise<T> {
     return !!obj && typeof (obj as unknown as Promise<T>).then === "function";
@@ -162,7 +163,7 @@ export function raceTimeout<T>(promise: Promise<T>, timeout: number, onTimeout?:
     ]);
 }
 
-export function asPromise<T>(callback: () => T | PromiseLike<T>): Promise<T> {
+export function asPromise<T>(callback: () => T | Promise<T>): Promise<T> {
     return new Promise<T>((resolve, reject) => {
         const item = callback();
         if (isThenable<T>(item)) {
@@ -608,7 +609,7 @@ export function first<T>(
 
         return promise.then((result) => {
             if (shouldStop(result)) {
-                return result;
+                return Promise.resolve(result);
             }
 
             return loop();
@@ -932,28 +933,27 @@ export class TimeoutTimer implements IDisposable {
 }
 
 export class IntervalTimer implements IDisposable {
-    private _token: any;
+    private disposable: IDisposable | undefined = undefined;
 
-    constructor() {
-        this._token = -1;
+    cancel(): void {
+        this.disposable?.dispose();
+        this.disposable = undefined;
+    }
+
+    cancelAndSet(runner: () => void, interval: number, context = globalThis): void {
+        this.cancel();
+        const handle = context.setInterval(() => {
+            runner();
+        }, interval);
+
+        this.disposable = toDisposable(() => {
+            context.clearInterval(handle);
+            this.disposable = undefined;
+        });
     }
 
     dispose(): void {
         this.cancel();
-    }
-
-    cancel(): void {
-        if (this._token !== -1) {
-            clearInterval(this._token);
-            this._token = -1;
-        }
-    }
-
-    cancelAndSet(runner: () => void, interval: number): void {
-        this.cancel();
-        this._token = setInterval(() => {
-            runner();
-        }, interval);
     }
 }
 
@@ -1253,6 +1253,8 @@ export interface IdleDeadline {
     timeRemaining(): number;
 }
 
+type IdleApi = Pick<typeof globalThis, "requestIdleCallback" | "cancelIdleCallback">;
+
 /**
  * Execute the callback the next time the browser is idle, returning an
  * {@link IDisposable} that will cancel the callback when disposed. This wraps
@@ -1270,28 +1272,33 @@ export interface IdleDeadline {
  * [IdleDeadline]: https://developer.mozilla.org/en-US/docs/Web/API/IdleDeadline
  * [requestIdleCallback]: https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback
  * [setTimeout]: https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout
+ *
+ * **Note** that there is `dom.ts#runWhenWindowIdle` which is better suited when running inside a browser
+ * context
  */
-export let runWhenIdle: (callback: (idle: IdleDeadline) => void, timeout?: number) => IDisposable;
+export let runWhenGlobalIdle: (callback: (idle: IdleDeadline) => void, timeout?: number) => IDisposable;
 
-declare function requestIdleCallback(callback: (args: IdleDeadline) => void, options?: { timeout: number }): number;
-declare function cancelIdleCallback(handle: number): void;
+export let _runWhenIdle: (
+    targetWindow: IdleApi,
+    callback: (idle: IdleDeadline) => void,
+    timeout?: number,
+) => IDisposable;
 
 (function () {
-    if (typeof requestIdleCallback !== "function" || typeof cancelIdleCallback !== "function") {
-        runWhenIdle = (runner) => {
+    if (typeof globalThis.requestIdleCallback !== "function" || typeof globalThis.cancelIdleCallback !== "function") {
+        _runWhenIdle = (_targetWindow, runner) => {
             setTimeout0(() => {
                 if (disposed) {
                     return;
                 }
                 const end = Date.now() + 15; // one frame at 64fps
-                runner(
-                    Object.freeze({
-                        didTimeout: true,
-                        timeRemaining() {
-                            return Math.max(0, end - Date.now());
-                        },
-                    }),
-                );
+                const deadline: IdleDeadline = {
+                    didTimeout: true,
+                    timeRemaining() {
+                        return Math.max(0, end - Date.now());
+                    },
+                };
+                runner(Object.freeze(deadline));
             });
             let disposed = false;
             return {
@@ -1304,8 +1311,11 @@ declare function cancelIdleCallback(handle: number): void;
             };
         };
     } else {
-        runWhenIdle = (runner, timeout?) => {
-            const handle: number = requestIdleCallback(runner, typeof timeout === "number" ? { timeout } : undefined);
+        _runWhenIdle = (targetWindow: IdleApi, runner, timeout?) => {
+            const handle: number = targetWindow.requestIdleCallback(
+                runner,
+                typeof timeout === "number" ? { timeout } : undefined,
+            );
             let disposed = false;
             return {
                 dispose() {
@@ -1313,18 +1323,15 @@ declare function cancelIdleCallback(handle: number): void;
                         return;
                     }
                     disposed = true;
-                    cancelIdleCallback(handle);
+                    targetWindow.cancelIdleCallback(handle);
                 },
             };
         };
     }
+    runWhenGlobalIdle = (runner) => _runWhenIdle(globalThis, runner);
 })();
 
-/**
- * An implementation of the "idle-until-urgent"-strategy as introduced
- * here: https://philipwalton.com/articles/idle-until-urgent/
- */
-export class IdleValue<T> {
+export abstract class AbstractIdleValue<T> {
     private readonly _executor: () => void;
     private readonly _handle: IDisposable;
 
@@ -1332,7 +1339,7 @@ export class IdleValue<T> {
     private _value?: T;
     private _error: unknown;
 
-    constructor(executor: () => T) {
+    constructor(targetWindow: IdleApi, executor: () => T) {
         this._executor = () => {
             try {
                 this._value = executor();
@@ -1342,7 +1349,7 @@ export class IdleValue<T> {
                 this._didRun = true;
             }
         };
-        this._handle = runWhenIdle(() => this._executor());
+        this._handle = _runWhenIdle(targetWindow, () => this._executor());
     }
 
     dispose(): void {
@@ -1362,6 +1369,18 @@ export class IdleValue<T> {
 
     get isInitialized(): boolean {
         return this._didRun;
+    }
+}
+
+/**
+ * An `IdleValue` that always uses the current window (which might be throttled or inactive)
+ *
+ * **Note** that there is `dom.ts#WindowIdleValue` which is better suited when running inside a browser
+ * context
+ */
+export class GlobalIdleValue<T> extends AbstractIdleValue<T> {
+    constructor(executor: () => T) {
+        super(globalThis, executor);
     }
 }
 
@@ -1668,6 +1687,71 @@ export namespace Promises {
     }
 }
 
+export class StatefulPromise<T> {
+    private _value: T | undefined = undefined;
+    get value(): T | undefined {
+        return this._value;
+    }
+
+    private _error: unknown = undefined;
+    get error(): unknown {
+        return this._error;
+    }
+
+    private _isResolved = false;
+    get isResolved() {
+        return this._isResolved;
+    }
+
+    readonly promise: Promise<T>;
+
+    constructor(promise: Promise<T>) {
+        this.promise = promise.then(
+            (value) => {
+                this._value = value;
+                this._isResolved = true;
+                return value;
+            },
+            (error) => {
+                this._error = error;
+                this._isResolved = true;
+                throw error;
+            },
+        );
+    }
+
+    requireValue(): T {
+        if (!this._isResolved) {
+            throw new BugIndicatingError("Promise is not resolved yet");
+        }
+        if (this._error) {
+            throw this._error;
+        }
+        return this._value!;
+    }
+}
+
+export class LazyStatefulPromise<T> {
+    private _promise = new Lazy(() => new StatefulPromise(this._compute()));
+
+    constructor(private readonly _compute: () => Promise<T>) {}
+
+    /**
+     * Returns the resolved value.
+     * Crashes if the promise is not resolved yet.
+     */
+    requireValue(): T {
+        return this._promise.value.requireValue();
+    }
+
+    /**
+     * Returns the promise (and triggers a computation of the promise if not yet done so).
+     */
+    getPromise(): Promise<T> {
+        return this._promise.value.promise;
+    }
+}
+
 // #endregion
 
 // #region
@@ -1947,6 +2031,61 @@ export function createCancelableAsyncIterable<T>(
             emitter.reject(err);
         }
     });
+}
+
+export class AsyncIterableSource<T> {
+    private readonly _deferred = new DeferredPromise<void>();
+    private readonly _asyncIterable: AsyncIterableObject<T>;
+
+    private _errorFn: (error: Error) => void;
+    private _emitFn: (item: T) => void;
+
+    constructor() {
+        this._asyncIterable = new AsyncIterableObject((emitter) => {
+            if (earlyError) {
+                emitter.reject(earlyError);
+                return;
+            }
+            if (earlyItems) {
+                emitter.emitMany(earlyItems);
+            }
+            this._errorFn = (error: Error) => emitter.reject(error);
+            this._emitFn = (item: T) => emitter.emitOne(item);
+            return this._deferred.p;
+        });
+
+        let earlyError: Error | undefined;
+        let earlyItems: T[] | undefined;
+
+        this._emitFn = (item: T) => {
+            if (!earlyItems) {
+                earlyItems = [];
+            }
+            earlyItems.push(item);
+        };
+        this._errorFn = (error: Error) => {
+            if (!earlyError) {
+                earlyError = error;
+            }
+        };
+    }
+
+    get asyncIterable(): AsyncIterableObject<T> {
+        return this._asyncIterable;
+    }
+
+    resolve(): void {
+        this._deferred.complete();
+    }
+
+    reject(error: Error): void {
+        this._errorFn(error);
+        this._deferred.complete();
+    }
+
+    emitOne(item: T): void {
+        this._emitFn(item);
+    }
 }
 
 // #endregion
