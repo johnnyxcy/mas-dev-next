@@ -19,6 +19,10 @@
         "./material-symbols/*": {
             "types": "./.dist/types/src/material-symbols/*.d.ts",
             "default": "./.dist/lib/material-symbols/*.js"
+        },
+        "./fluent-system/*": {
+            "types": "./.dist/types/src/fluent-system/*.d.ts",
+            "default": "./.dist/lib/fluent-system/*.js"
         }
     },
     "keywords": [],

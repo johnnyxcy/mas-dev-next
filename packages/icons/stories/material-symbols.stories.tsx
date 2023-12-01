@@ -5,7 +5,7 @@
  *
  * File Created: 11/23/2023 04:30 pm
  *
- * Last Modified: 11/23/2023 06:22 pm
+ * Last Modified: 12/01/2023 10:47 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -18,15 +18,15 @@ import { Meta, StoryObj } from "@storybook/react";
 import { MaterialSymbols } from "@mas/icons/material-symbols";
 
 import IconButton from "./icon-button";
-import IconsPage from "./icons-page";
+import IconsPage, { FontSizeOptions } from "./icons-page";
 
 import "@mas/icons/material-symbols/outlined";
 import "@mas/icons/material-symbols/rounded";
 import "@mas/icons/material-symbols/sharp";
 
-const OutlinedIconsPage: React.FC = () => {
+const OutlinedIconsPage: React.FC<{ size: FontSizeOptions }> = ({ size }) => {
     return (
-        <IconsPage>
+        <IconsPage size={size}>
             {MaterialSymbols.map((iconId) => (
                 <IconButton
                     key={iconId}
@@ -40,9 +40,9 @@ const OutlinedIconsPage: React.FC = () => {
     );
 };
 
-const RoundedIconsPage: React.FC = () => {
+const RoundedIconsPage: React.FC<{ size: FontSizeOptions }> = ({ size }) => {
     return (
-        <IconsPage>
+        <IconsPage size={size}>
             {MaterialSymbols.map((iconId) => (
                 <IconButton
                     key={iconId}
@@ -56,9 +56,9 @@ const RoundedIconsPage: React.FC = () => {
     );
 };
 
-const SharpIconsPage: React.FC = () => {
+const SharpIconsPage: React.FC<{ size: FontSizeOptions }> = ({ size }) => {
     return (
-        <IconsPage>
+        <IconsPage size={size}>
             {MaterialSymbols.map((iconId) => (
                 <IconButton
                     key={iconId}
@@ -78,16 +78,29 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj;
-
-export const Outlined: Story = {
-    render: () => <OutlinedIconsPage />,
+const StoryArgs: Partial<StoryObj<{ size: FontSizeOptions }>> = {
+    argTypes: {
+        size: {
+            options: [12, 16, 20, 24, 28, 48],
+            control: { type: "select" },
+        },
+    },
+    args: {
+        size: 24,
+    },
 };
 
-export const Rounded: Story = {
-    render: () => <RoundedIconsPage />,
+export const Outlined: StoryObj<{ size: FontSizeOptions }> = {
+    render: ({ size }) => <OutlinedIconsPage size={size} />,
+    ...StoryArgs,
 };
 
-export const Sharp: Story = {
-    render: () => <SharpIconsPage />,
+export const Rounded: StoryObj<{ size: FontSizeOptions }> = {
+    render: ({ size }) => <RoundedIconsPage size={size} />,
+    ...StoryArgs,
+};
+
+export const Sharp: StoryObj<{ size: FontSizeOptions }> = {
+    render: ({ size }) => <SharpIconsPage size={size} />,
+    ...StoryArgs,
 };

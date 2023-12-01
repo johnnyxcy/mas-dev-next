@@ -5,7 +5,7 @@
  *
  * File Created: 11/22/2023 11:06 am
  *
- * Last Modified: 11/23/2023 06:00 pm
+ * Last Modified: 12/01/2023 10:47 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -21,7 +21,7 @@ import "@mas/icons/fontawesome/regular";
 import "@mas/icons/fontawesome/solid";
 
 import IconButton from "./icon-button";
-import IconsPage from "./icons-page";
+import IconsPage, { FontSizeOptions } from "./icons-page";
 
 interface FaIconButtonBaseProps {
     iconId: string;
@@ -48,9 +48,9 @@ const FaBrandsIconButton: React.FC<FaIconButtonBaseProps> = ({ iconId, label }) 
     return <FaIconButton variant="brands" iconId={iconId} label={label} />;
 };
 
-const SolidIconsPage: React.FC = () => {
+const SolidIconsPage: React.FC<{ size: FontSizeOptions }> = ({ size }) => {
     return (
-        <IconsPage>
+        <IconsPage size={size}>
             <FaSolidIconButton iconId="fa-0" label="0" />
             <FaSolidIconButton iconId="fa-1" label="1" />
             <FaSolidIconButton iconId="fa-2" label="2" />
@@ -2021,9 +2021,9 @@ const SolidIconsPage: React.FC = () => {
     );
 };
 
-const RegularIconsPage: React.FC = () => {
+const RegularIconsPage: React.FC<{ size: FontSizeOptions }> = ({ size }) => {
     return (
-        <IconsPage>
+        <IconsPage size={size}>
             <FaRegularIconButton iconId="fa-comment-dots" label="comment-dots" />
             <FaRegularIconButton iconId="fa-file-zipper" label="file-zipper" />
             <FaRegularIconButton iconId="fa-hand" label="hand" />
@@ -2191,9 +2191,9 @@ const RegularIconsPage: React.FC = () => {
     );
 };
 
-const BrandsIconsPage: React.FC = () => {
+const BrandsIconsPage: React.FC<{ size: FontSizeOptions }> = ({ size }) => {
     return (
-        <IconsPage>
+        <IconsPage size={size}>
             <FaBrandsIconButton iconId="fa-supple" label="supple" />
             <FaBrandsIconButton iconId="fa-x-twitter" label="x-twitter" />
             <FaBrandsIconButton iconId="fa-bootstrap" label="bootstrap" />
@@ -2676,16 +2676,29 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj;
-
-export const Solid: Story = {
-    render: () => <SolidIconsPage />,
+const StoryArgs: Partial<StoryObj<{ size: FontSizeOptions }>> = {
+    argTypes: {
+        size: {
+            options: [12, 16, 20, 24, 28, 48],
+            control: { type: "select" },
+        },
+    },
+    args: {
+        size: 24,
+    },
 };
 
-export const Regular: Story = {
-    render: () => <RegularIconsPage />,
+export const Solid: StoryObj<{ size: FontSizeOptions }> = {
+    render: ({ size }) => <SolidIconsPage size={size} />,
+    ...StoryArgs,
 };
 
-export const Brands: Story = {
-    render: () => <BrandsIconsPage />,
+export const Regular: StoryObj<{ size: FontSizeOptions }> = {
+    render: ({ size }) => <RegularIconsPage size={size} />,
+    ...StoryArgs,
+};
+
+export const Brands: StoryObj<{ size: FontSizeOptions }> = {
+    render: ({ size }) => <BrandsIconsPage size={size} />,
+    ...StoryArgs,
 };

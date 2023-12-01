@@ -5,7 +5,7 @@
  *
  * File Created: 10/10/2023 04:00 pm
  *
- * Last Modified: 11/23/2023 06:00 pm
+ * Last Modified: 12/01/2023 10:47 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -18,7 +18,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import "@mas/icons/codicons";
 
 import IconButton from "./icon-button";
-import IconsPage from "./icons-page";
+import IconsPage, { FontSizeOptions } from "./icons-page";
 
 type CodIconButtonProps = {
     iconId: string;
@@ -572,11 +572,11 @@ const codiconsCss = `
 .codicon-copilot:before { content: "\\ec1e" }
 `;
 
-const Page: React.FC = () => {
+const Page: React.FC<{ size: FontSizeOptions }> = ({ size }) => {
     return (
         <>
             <style type="text/css">{codiconsCss}</style>
-            <IconsPage>
+            <IconsPage size={size}>
                 <CodIconButton iconId="codicon-add" label="add" />
                 <CodIconButton iconId="codicon-plus" label="plus" />
                 <CodIconButton iconId="codicon-gist-new" label="gist-new" />
@@ -1155,8 +1155,15 @@ const meta: Meta = {
 
 export default meta;
 
-type Story = StoryObj;
-
-export const AllCodIcons: Story = {
-    render: () => <Page />,
+export const AllCodIcons: StoryObj<{ size: FontSizeOptions }> = {
+    render: ({ size }) => <Page size={size} />,
+    argTypes: {
+        size: {
+            options: [12, 16, 20, 24, 28, 48],
+            control: { type: "select" },
+        },
+    },
+    args: {
+        size: 24,
+    },
 };

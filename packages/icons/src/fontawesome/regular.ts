@@ -5,7 +5,7 @@
  *
  * File Created: 11/22/2023 11:13 am
  *
- * Last Modified: 11/24/2023 10:57 am
+ * Last Modified: 12/01/2023 10:01 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -177,7 +177,7 @@ const FaRegularIcons = [
     "square-caret-left",
     "calendar-days",
     "heart",
-];
+] as const;
 
 type FaRegularIcon = (typeof FaRegularIcons)[number];
 

@@ -5,7 +5,7 @@
  *
  * File Created: 11/23/2023 05:50 pm
  *
- * Last Modified: 11/23/2023 05:57 pm
+ * Last Modified: 12/01/2023 10:47 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -14,9 +14,21 @@
 
 import React from "react";
 
-const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefined }) => {
+export type FontSizeOptions = [12, 16, 20, 24, 28, 48][number];
+
+const IconsPage: React.FC<{ size?: FontSizeOptions; children: React.ReactNode }> = ({
+    size = 16,
+    children = undefined,
+}) => {
     return (
         <>
+            <style type="text/css">
+                {`
+            .icon .inner span, .icon .inner::before  {
+                font-size: ${size}px;
+            }
+            `}
+            </style>
             <style type="text/css">
                 {`
                 .icons-page {
@@ -45,9 +57,9 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                 }
 
                 .icon {
-                    width: 100px;
                     display: inline-block;
                     margin: 8px;
+                    width: 100px;
                 }
 
                 .icon:hover {
@@ -59,8 +71,11 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                 }
 
                 .icon .inner {
-                    display: inline-block;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     width: 100%;
+                    height: 60px;
                     text-align: center;
                     background-color: white;
                     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.06);
@@ -68,14 +83,7 @@ const IconsPage: React.FC<{ children: React.ReactNode }> = ({ children = undefin
                     transition: all .3s ease-in-out;
                 }
 
-                .icon .inner span {
-                    padding: 16px 0;
-                    font-size: 48px;
-                    color: #333;
-                    overflow: hidden;
-                }
-
-                .icon .inner::before {
+                .icon .inner span, .icon .inner::before {
                     overflow: hidden;
                 }
 
