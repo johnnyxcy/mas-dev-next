@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 11/06/2023 01:50 pm
+ * Last Modified: 12/01/2023 08:05 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -89,7 +89,15 @@ module.exports = {
 
         // #region unicorn
         "unicorn/empty-brace-spaces": "error",
-        "unicorn/filename-case": ["error", { case: "kebabCase", ignore: [/indexedDB/] }],
+        "unicorn/filename-case": [
+            "error",
+            {
+                case: "kebabCase",
+                ignore: [
+                    /indexedDB/, // indexedDB is a reserved word
+                ],
+            },
+        ],
         "unicorn/import-style": "error",
         "unicorn/new-for-builtins": "error",
         "unicorn/no-abusive-eslint-disable": "error",
@@ -181,7 +189,10 @@ module.exports = {
         "@typescript-eslint/no-inferrable-types": "off",
         // no relative import
         "@typescript-eslint/no-restricted-imports": ["error", { patterns: ["\\./*", "\\.\\./*"] }],
-        "@typescript-eslint/no-unused-vars": ["error", { destructuredArrayIgnorePattern: "^_", args: "none" }],
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            { destructuredArrayIgnorePattern: "^_", args: "none", ignoreRestSiblings: true },
+        ],
         // using type imports to resolve circular import error
         "@typescript-eslint/consistent-type-imports": "off",
         "@typescript-eslint/lines-between-class-members": "off",
@@ -343,7 +354,7 @@ module.exports = {
                     "error",
                     {
                         selector: "default",
-                        format: ["camelCase"],
+                        format: ["camelCase", "PascalCase"],
                         leadingUnderscore: "allow",
                         trailingUnderscore: "allow",
                     },
@@ -352,14 +363,6 @@ module.exports = {
                         format: ["camelCase", "UPPER_CASE", "PascalCase"],
                         leadingUnderscore: "allow",
                         trailingUnderscore: "allow",
-                    },
-                    {
-                        selector: "import",
-                        format: ["camelCase", "PascalCase"],
-                    },
-                    {
-                        selector: "typeProperty",
-                        format: ["camelCase", "PascalCase"],
                     },
                     { selector: "objectLiteralProperty", format: null },
                     {

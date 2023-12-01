@@ -1,0 +1,39 @@
+{
+    "name": "@mas/vite-markdown-plugin",
+    "version": "1.0.0",
+    "scripts": {
+        "build": "vite build",
+        "lint": "eslint --config ./.eslintrc.cjs ./src"
+    },
+    "exports": {
+        ".": {
+            "types": "./.dist/types/src/index.d.ts",
+            "default": "./.dist/lib/vite-markdown-plugin.js"
+        }
+    },
+    "keywords": [],
+    "author": {
+        "name": "Maspectra Dev Team",
+        "email": "mas@drugchina.net",
+        "url": "https://www.maspectra.com"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "latest",
+        "@types/markdown-it": "latest",
+        "eslint": "*",
+        "vite": "*",
+        "vite-plugin-dts": "*",
+        "vite-tsconfig-paths": "*",
+        "vitest": "*"
+    },
+    "dependencies": {
+        "domhandler": "latest",
+        "front-matter": "latest",
+        "htmlparser2": "latest",
+        "markdown-it": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "*"
+    }
+}

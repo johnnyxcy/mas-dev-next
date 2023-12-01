@@ -2,13 +2,13 @@
     "extends": "../../tsconfig.base.json",
     "compilerOptions": {
         "baseUrl": "./",
-        "noEmit": true,
+        "outDir": "./.dist",
+        "noEmit": false,
         "composite": true,
-        "sourceMap": true,
 
         "paths": {
-            "@mas/components/*": ["./src/*"]
+            "@mas/vite-markdown-plugin/*": ["src/*"]
         }
     },
-    "include": ["src", "tests", "stories"]
+    "include": ["src"]
 }

@@ -5,5 +5,5 @@
         "noEmit": true,
         "emitDeclarationOnly": true
     },
-    "include": ["src", "stories", "tests", "*.config.mts", ".storybook/*.ts"]
+    "include": ["src", "stories", "tests", "*.config.mts", ".storybook/*.js"]
 }

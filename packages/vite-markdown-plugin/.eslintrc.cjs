@@ -1,5 +1,5 @@
 /*
- * File: @mas/vite-electron-plugin/.eslintrc.cjs
+ * File: @mas/vite-markdown-plugin/.eslintrc.cjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -27,9 +27,11 @@ module.exports = {
             files: ["src/**/*.ts"],
             rules: {
                 "no-console": "off",
+                "global-require": "off",
                 "@typescript-eslint/no-restricted-imports": "off",
                 "@typescript-eslint/no-shadow": "off",
                 "@typescript-eslint/explicit-function-return-type": "off",
+                "@typescript-eslint/no-var-requires": "off",
             },
         },
         {

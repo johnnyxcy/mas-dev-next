@@ -1,7 +1,7 @@
 {
     "name": "@mas/components",
     "version": "1.0.0",
-    "description": "",
+    "description": "An awesome component library based on @fluentui/react-components",
     "scripts": {
         "build": "vite build",
         "storybook": "storybook dev -p 6006",
@@ -21,6 +21,9 @@
     },
     "license": "ISC",
     "devDependencies": {
+        "@babel/core": "latest",
+        "@babel/preset-react": "latest",
+        "@mas/vite-markdown-plugin": "*",
         "@storybook/addon-essentials": "latest",
         "@storybook/addon-interactions": "latest",
         "@storybook/addon-links": "latest",
@@ -30,10 +33,13 @@
         "@storybook/react": "latest",
         "@storybook/react-vite": "latest",
         "@storybook/testing-library": "latest",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
         "eslint": "*",
         "react": "latest",
         "react-dom": "latest",
         "storybook": "latest",
+        "storybook-dark-mode": "latest",
         "vite": "*",
         "vite-plugin-dts": "*",
         "vite-plugin-lib-inject-css": "latest",
@@ -43,5 +49,9 @@
     "peerDependencies": {
         "@mas/configs": "*",
         "typescript": "*"
+    },
+    "dependencies": {
+        "@fluentui/react-components": "latest",
+        "scheduler": "latest"
     }
 }
