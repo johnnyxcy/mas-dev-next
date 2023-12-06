@@ -4,7 +4,8 @@
     "description": "An awesome component library based on @fluentui/react-components",
     "scripts": {
         "build": "vite build",
-        "storybook": "storybook dev -p 6006",
+        "sb": "yarn storybook",
+        "storybook": "storybook dev -p 6007",
         "build-storybook": "storybook build"
     },
     "exports": {

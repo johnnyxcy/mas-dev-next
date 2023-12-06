@@ -5,13 +5,17 @@
  *
  * File Created: 12/01/2023 02:59 pm
  *
- * Last Modified: 12/01/2023 08:33 pm
+ * Last Modified: 12/05/2023 06:41 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-import { useTabStyles_unstable as useFuiTabStyles, TabState as FuiTabState } from "@fluentui/react-components";
+import {
+    useTabStyles_unstable as useFuiTabStyles,
+    TabState as FuiTabState,
+    shorthands,
+} from "@fluentui/react-components";
 import { tokens } from "@fluentui/react-theme";
 import { makeStyles, mergeClasses } from "@griffel/react";
 
@@ -19,7 +23,10 @@ import type { TabState } from "./Tab.types";
 
 const useCardTabStyles = makeStyles({
     card: {
-        "backgroundColor": tokens.colorSubtleBackground,
+        ...shorthands.borderColor("none"),
+        ...shorthands.borderRadius(0),
+        ...shorthands.borderWidth(0),
+        "backgroundColor": tokens.colorNeutralBackground5,
         ":hover": {
             backgroundColor: tokens.colorSubtleBackgroundHover,
         },
@@ -46,9 +53,37 @@ const useCardTabStyles = makeStyles({
         },
     },
     disabled: {
-        cursor: "pointer",
+        "cursor": "default",
+        ":hover": {
+            backgroundColor: "none",
+        },
+        ":active": {
+            backgroundColor: "none",
+        },
+        "& .fui-Tab__icon": {
+            color: tokens.colorNeutralForegroundDisabled,
+        },
+        "& .fui-Tab__content": {
+            color: tokens.colorNeutralForegroundDisabled,
+        },
+        ":hover .fui-Tab__icon": {
+            color: tokens.colorNeutralForegroundDisabled,
+        },
+        ":active .fui-Tab__icon": {
+            color: tokens.colorNeutralForegroundDisabled,
+        },
+        ":hover .fui-Tab__content": {
+            color: tokens.colorNeutralForegroundDisabled,
+        },
+        ":active .fui-Tab__content": {
+            color: tokens.colorNeutralForegroundDisabled,
+        },
     },
     selected: {
+        "backgroundColor": tokens.colorNeutralBackground1,
+        ":hover": {
+            backgroundColor: tokens.colorNeutralBackground1,
+        },
         "& .fui-Tab__icon": {
             color: tokens.colorCompoundBrandForeground1,
         },
@@ -71,16 +106,7 @@ const useCardTabStyles = makeStyles({
 });
 
 const usePendingIndicatorStyles = makeStyles({
-    base: {
-        "::before": {
-            width: 0,
-            heigh: 0,
-        },
-        "::after": {
-            width: 0,
-            heigh: 0,
-        },
-    },
+    base: {},
     disabled: {
         ":hover::before": {
             backgroundColor: tokens.colorTransparentStroke,
@@ -94,41 +120,35 @@ const usePendingIndicatorStyles = makeStyles({
 const useActiveIndicatorStyles = makeStyles({
     base: {
         "::before": {
+            height: 0,
             width: 0,
-            heigh: 0,
         },
         "::after": {
-            width: 0,
-            heigh: 0,
+            content: '""',
+            display: "block",
+            position: "absolute",
+            left: "auto",
+            top: "auto",
+            right: 0,
+            bottom: "auto",
+            height: "60%",
+            width: tokens.strokeWidthThin,
+            backgroundColor: tokens.colorNeutralStroke1,
+        },
+        ":hover::after": {
+            backgroundColor: "transparent",
+        },
+        ":active::after": {
+            backgroundColor: "transparent",
         },
     },
     selected: {
-        "::after": {
-            backgroundColor: tokens.colorCompoundBrandStroke,
-        },
+        "::after": { backgroundColor: "transparent" },
         ":hover::after": {
-            backgroundColor: tokens.colorCompoundBrandStrokeHover,
-        },
-        ":active::after": {
-            backgroundColor: tokens.colorCompoundBrandStrokePressed,
-        },
-        "@media (forced-colors: active)": {
-            "::after": {
-                backgroundColor: "ButtonText",
-            },
-            ":hover::after": {
-                backgroundColor: "ButtonText",
-            },
-            ":active::after": {
-                backgroundColor: "ButtonText",
-            },
+            backgroundColor: "transparent",
         },
     },
-    disabled: {
-        "::after": {
-            backgroundColor: tokens.colorNeutralForegroundDisabled,
-        },
-    },
+    disabled: {},
 });
 
 /**
@@ -148,13 +168,14 @@ export const useTabStyles_unstable = (state: TabState): TabState => {
 
     if (appearance === "card") {
         state.root.className = mergeClasses(
-            !disabled && rootStyles.card,
+            rootStyles.card,
             !disabled && selected && rootStyles.selected,
+            disabled && rootStyles.disabled,
             // pending indicator (before pseudo element)
             pendingIndicatorStyles.base,
             disabled && pendingIndicatorStyles.disabled,
             // active indicator (after pseudo element)
-            selected && activeIndicatorStyles.base,
+            activeIndicatorStyles.base,
             selected && !disabled && activeIndicatorStyles.selected,
             selected && disabled && activeIndicatorStyles.disabled,
 

@@ -4,6 +4,7 @@
     "description": "",
     "scripts": {
         "build": "vite build",
+        "sb": "yarn storybook",
         "storybook": "storybook dev -p 6006",
         "build-storybook": "storybook build"
     },

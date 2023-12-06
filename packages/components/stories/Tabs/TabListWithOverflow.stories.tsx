@@ -11,8 +11,6 @@ import {
     MenuList,
     MenuPopover,
     MenuTrigger,
-    Tab,
-    TabList,
     useIsOverflowItemVisible,
     useOverflowMenu,
     Overflow,
@@ -41,6 +39,8 @@ import {
     MoreHorizontalFilled,
     bundleIcon,
 } from "@fluentui/react-icons";
+
+import { Tab, TabList } from "@mas/components/Tabs";
 
 import type { ARIAButtonElement } from "@fluentui/react-aria";
 
@@ -229,8 +229,12 @@ const HorizontalExample = (): JSX.Element => {
 
     return (
         <div className={mergeClasses(styles.example, styles.horizontal)}>
-            <Overflow minimumVisible={2}>
-                <TabList selectedValue={selectedTabId} onTabSelect={(_, d) => onTabSelect(d.value as string)}>
+            <Overflow>
+                <TabList
+                    appearance="card"
+                    selectedValue={selectedTabId}
+                    onTabSelect={(_, d) => onTabSelect(d.value as string)}
+                >
                     {tabs.map((tab) => {
                         return (
                             <OverflowItem key={tab.id} id={tab.id} priority={tab.id === selectedTabId ? 2 : 1}>

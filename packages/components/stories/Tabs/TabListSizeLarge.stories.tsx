@@ -1,7 +1,9 @@
 import * as React from "react";
 
-import { makeStyles, shorthands, Tab, TabList } from "@fluentui/react-components";
+import { makeStyles, shorthands } from "@fluentui/react-components";
 import { CalendarMonthRegular, CalendarMonthFilled, bundleIcon } from "@fluentui/react-icons";
+
+import { TabList, Tab } from "@mas/components/Tabs";
 
 const CalendarMonth = bundleIcon(CalendarMonthFilled, CalendarMonthRegular);
 
@@ -38,6 +40,12 @@ export const SizeLarge = (): JSX.Element => {
                 {renderTabs()}
             </TabList>
             <TabList defaultSelectedValue="tab2" size="large" vertical>
+                {renderTabs()}
+            </TabList>
+            <TabList defaultSelectedValue="tab2" size="large" appearance="card">
+                {renderTabs()}
+            </TabList>
+            <TabList defaultSelectedValue="tab2" size="large" appearance="card" vertical>
                 {renderTabs()}
             </TabList>
         </div>
