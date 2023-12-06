@@ -20,18 +20,18 @@
     "dependencies": {
         "@mas/base": "*",
         "@mas/core": "*",
-        "electron-updater": "^6.1.1"
+        "electron-updater": "latest"
     },
     "devDependencies": {
         "@mas/vite-electron-plugin": "*",
-        "@types/react": "^18.2.20",
-        "@types/react-dom": "^18.2.7",
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
         "@vitejs/plugin-react": "*",
-        "electron": "27.0.2",
-        "electron-builder": "^24.6.3",
+        "electron": "28.0.0",
+        "electron-builder": "latest",
         "eslint": "*",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
+        "react": "latest",
+        "react-dom": "latest",
         "vite": "*",
         "vite-plugin-dts": "*",
         "vite-tsconfig-paths": "*",
