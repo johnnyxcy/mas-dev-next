@@ -3,6 +3,7 @@ import path from "node:path";
 import { UserConfig, defineConfig } from "vite";
 
 import react from "@vitejs/plugin-react";
+import chalk from "chalk";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 import { electron, notBundle } from "@mas/vite-electron-plugin";
@@ -11,14 +12,16 @@ import pkg from "./package.json";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }): UserConfig => {
-    rmSync(".dist/", { recursive: true, force: true });
-
     const isServe = command === "serve";
     const isBuild = command === "build";
+
+    if (isBuild) {
+        console.info(`Cleaning up the .dist/ directory before ${chalk.green("build")}...`);
+        rmSync(".dist/", { recursive: true, force: true });
+    }
+
     const isVscodeDebug = !!process.env._VSCODE_DEBUG;
     const sourcemap = isServe || isVscodeDebug;
-
-    console.log(command);
 
     return {
         plugins: [
@@ -28,6 +31,7 @@ export default defineConfig(({ command }): UserConfig => {
                 {
                     // Main-Process entry file of the Electron App.
                     entry: "src/platform/main.ts",
+                    libFormats: [pkg.type === "module" ? "es" : "cjs"],
                     vite: {
                         build: {
                             sourcemap,
@@ -41,6 +45,11 @@ export default defineConfig(({ command }): UserConfig => {
                     },
 
                     onstart(options) {
+                        console.info(
+                            `${chalk.dim("[Electron:Main]")} Starting Application ${chalk.bold(
+                                chalk.yellow(pkg.name),
+                            )}@${chalk.yellow(pkg.version)}`,
+                        );
                         if (isVscodeDebug) {
                             if (!process.env._REMOTE_DEBUGGING_PORT) {
                                 throw new Error(
@@ -70,6 +79,7 @@ export default defineConfig(({ command }): UserConfig => {
                         },
                     },
                     onstart(options) {
+                        console.info(`${chalk.dim("[Electron:Preload]")} Notify the Renderer-Process to reload`);
                         // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
                         // instead of restarting the entire Electron App.
                         options.reload();

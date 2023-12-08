@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 03:56 pm
  *
- * Last Modified: 09/25/2023 05:18 pm
+ * Last Modified: 12/08/2023 10:33 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -14,7 +14,8 @@
 import { defineWorkspace } from "vitest/config";
 
 export default defineWorkspace([
-    "apps/**/vite.config.ts",
-    "packages/**/vite.config.{e2e,unit}.ts",
-    "packages/**/vite.config.ts",
+    "apps/**/vite.config.mts",
+    "packages/**/vite.config.{e2e,unit}.mts",
+    "packages/**/vite.config.mts",
+    "packages/**/vite.config.js",
 ]);

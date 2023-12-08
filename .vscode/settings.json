@@ -2,6 +2,12 @@
     "[cpp]": {
         "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[json, jsonc]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
@@ -10,12 +16,6 @@
             "source.organizeImports": "explicit"
         },
         "editor.defaultFormatter": "ms-python.black-formatter"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -214,27 +214,29 @@
         "zhenghan"
     ],
     "files.associations": {
+        "*.json5": "jsonc",
         "*.spec": "python",
-        ".coveragerc": "plaintext",
-        "*.json5": "jsonc"
+        ".coveragerc": "plaintext"
     },
-    "jupyter.notebookFileRoot": "${workspaceFolder}",
     "json.schemas": [
         {
             "fileMatch": ["/*electron-builder.json5", "/*electron-builder.json"],
             "url": "https://json.schemastore.org/electron-builder"
         }
     ],
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
     "material-icon-theme.files.associations": {
         "*.eslint.js": "eslint"
     },
     "material-icon-theme.folders.associations": {
-        "runtime": "connection",
-        "c++": "project",
         ".cmake": "tools",
         ".debug": "debug",
-        ".scripts": "scripts"
+        ".scripts": "scripts",
+        "c++": "project",
+        "runtime": "connection"
     },
+    "nxConsole.enableGenerateFromContextMenu": false,
+    "nxConsole.enableGeneratorFilters": false,
     "psi-header.changes-tracking": {
         "autoHeader": "manualSave",
         "include": ["python", "javascript", "javascriptreact", "typescript", "typescriptreact", "cpp"],
@@ -286,12 +288,12 @@
     "python.analysis.typeCheckingMode": "strict",
     "python.envFile": "${workspaceFolder}/.env",
     "python.languageServer": "Pylance",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.terminal.activateEnvironment": true,
     "python.testing.cwd": "${workspaceFolder}",
     "python.testing.pytestArgs": ["-s"],
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
-    "python.terminal.activateEnvInCurrentTerminal": true,
-    "python.terminal.activateEnvironment": true,
     "search.exclude": {
         "**/node_modules": true,
         "build": true,
@@ -322,7 +324,5 @@
     "testMate.cpp.test.workingDirectory": "${workspaceFolder}",
     "typescript.tsdk": "node_modules/typescript/lib",
     "typescript.tsserver.maxTsServerMemory": 4096,
-    "yaml.customTags": ["!reference sequence"],
-    "nxConsole.enableGenerateFromContextMenu": false,
-    "nxConsole.enableGeneratorFilters": false
+    "yaml.customTags": ["!reference sequence"]
 }

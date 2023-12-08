@@ -27,6 +27,8 @@
         "vitest": "*"
     },
     "peerDependencies": {
+        "chalk": "*",
+        "electron": "*",
         "typescript": "*"
     }
 }

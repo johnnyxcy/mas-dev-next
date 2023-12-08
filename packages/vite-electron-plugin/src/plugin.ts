@@ -1,11 +1,11 @@
 /*
- * File: vite-electron-plugin/src/plugin.ts
+ * File: @mas/vite-electron-plugin/src/plugin.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 10/30/2023 03:04 pm
  *
- * Last Modified: 10/30/2023 03:16 pm
+ * Last Modified: 12/07/2023 06:23 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *

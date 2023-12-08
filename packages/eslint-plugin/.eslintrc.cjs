@@ -5,10 +5,11 @@
  */
 module.exports = {
     root: true,
-    extends: ["eslint:recommended", "plugin:eslint-plugin/recommended", "plugin:node/recommended"],
+    extends: ["eslint:recommended", "plugin:eslint-plugin/recommended"],
     env: {
         node: true,
     },
+    parser: "@typescript-eslint/parser",
     overrides: [
         {
             files: ["lib/rules/*.js"],

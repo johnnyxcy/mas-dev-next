@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 12/01/2023 08:05 pm
+ * Last Modified: 12/08/2023 08:44 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -188,7 +188,15 @@ module.exports = {
         "@typescript-eslint/no-this-alias": "off",
         "@typescript-eslint/no-inferrable-types": "off",
         // no relative import
-        "@typescript-eslint/no-restricted-imports": ["error", { patterns: ["\\./*", "\\.\\./*"] }],
+        "@typescript-eslint/no-restricted-imports": [
+            "error",
+            {
+                patterns: [
+                    { group: ["\\./*", "\\.\\./*"], message: "Always use absolute import" },
+                    { group: ["@mas/i18n/*"], message: 'Only use `import nls from "@mas/i18n"`' },
+                ],
+            },
+        ],
         "@typescript-eslint/no-unused-vars": [
             "error",
             { destructuredArrayIgnorePattern: "^_", args: "none", ignoreRestSiblings: true },
@@ -400,6 +408,11 @@ module.exports = {
                             {
                                 pattern: "react",
                                 group: "builtin",
+                                position: "before",
+                            },
+                            {
+                                pattern: "@mas/i18n",
+                                group: "internal",
                                 position: "before",
                             },
                         ],

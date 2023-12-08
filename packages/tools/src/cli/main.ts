@@ -5,7 +5,7 @@
  *
  * File Created: 10/27/2023 09:04 am
  *
- * Last Modified: 10/27/2023 03:08 pm
+ * Last Modified: 12/06/2023 11:05 am
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -17,7 +17,7 @@ import { extract } from "@mas/tools/localization/extractor";
 
 async function main(): Promise<void> {
     yargs(process.argv.slice(2))
-        .scriptName("mas dev command line interface")
+        .scriptName("mas-dev command line interface")
         .command<{
             root: string;
             output: string;

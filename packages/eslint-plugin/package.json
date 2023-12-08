@@ -1,6 +1,6 @@
 {
     "name": "eslint-plugin-mas",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "Eslint Plugin for mas-dev",
     "keywords": [
         "eslint",
@@ -27,9 +27,16 @@
         "requireindex": "latest"
     },
     "devDependencies": {
-        "eslint": "*",
+        "@eslint/eslintrc": "latest",
+        "@typescript-eslint/parser": "*",
+        "@typescript-eslint/rule-tester": "*",
         "eslint-doc-generator": "latest",
         "eslint-plugin-eslint-plugin": "latest",
-        "eslint-plugin-node": "latest"
+        "eslint-plugin-node": "latest",
+        "vitest": "*"
+    },
+    "peerDependencies": {
+        "eslint": "*",
+        "vite": "*"
     }
 }

@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:24 pm
  *
- * Last Modified: 11/29/2023 05:52 pm
+ * Last Modified: 12/07/2023 06:39 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,7 +13,14 @@
  */
 import { BrowserWindow, app, ipcMain, shell } from "electron";
 import { release } from "node:os";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+/**
+ * @see: ESModule Support for CommonJS __dirname and __filename
+ */
+globalThis.__filename = fileURLToPath(import.meta.url);
+globalThis.__dirname = dirname(__filename);
 
 process.env.DIST = join(__dirname, "../");
 process.env.VITE_PUBLIC = process.env.VITE_DEV_SERVER_URL ? join(process.env.DIST, "../public") : process.env.DIST;
@@ -34,11 +41,6 @@ if (!app.requestSingleInstanceLock()) {
     process.exit(0);
 }
 
-// Remove electron security warnings
-// This warning only shows in development mode
-// Read more on https://www.electronjs.org/docs/latest/tutorial/security
-// process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true'
-
 let win: BrowserWindow | null = null;
 // Here, you can also use other preload
 const preload = join(__dirname, "preload.js");
@@ -52,11 +54,8 @@ async function createWindow(): Promise<void> {
         title: "Main window",
         webPreferences: {
             preload,
-            // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
-            // Consider using contextBridge.exposeInMainWorld
-            // Read more on https://www.electronjs.org/docs/latest/tutorial/context-isolation
-            nodeIntegration: true,
-            contextIsolation: false,
+            nodeIntegration: false,
+            contextIsolation: true,
         },
     });
 

@@ -5,7 +5,7 @@
  *
  * File Created: 10/30/2023 02:44 pm
  *
- * Last Modified: 11/29/2023 04:18 pm
+ * Last Modified: 12/07/2023 01:44 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -26,8 +26,7 @@ export function resolveViteConfigWithOptions(options: ElectronOptions): InlineCo
             lib: options.entry
                 ? {
                       entry: options.entry,
-                      // At present, Electron(20) can only support CommonJs
-                      formats: ["cjs"],
+                      formats: options.libFormats ?? ["cjs"],
                       fileName: () => "[name].js",
                   }
                 : undefined,

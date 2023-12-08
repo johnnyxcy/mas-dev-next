@@ -1,18 +1,18 @@
 /*
- * File: @mas/tools/src/vite-electron-plugin/options.ts
+ * File: @mas/vite-electron-plugin/src/options.ts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * File Created: 10/30/2023 02:39 pm
  *
- * Last Modified: 10/30/2023 02:52 pm
+ * Last Modified: 12/07/2023 01:44 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
 
-import type { InlineConfig, LibraryOptions } from "vite";
+import type { InlineConfig, LibraryOptions, LibraryFormats } from "vite";
 
 export interface ElectronOptions {
     /**
@@ -20,6 +20,7 @@ export interface ElectronOptions {
      */
     entry?: LibraryOptions["entry"];
     vite?: InlineConfig;
+    libFormats?: LibraryFormats[];
     /**
      * Triggered when Vite is built every time -- `vite serve` command only.
      *

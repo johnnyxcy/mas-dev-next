@@ -1990,7 +1990,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^2.1.4":
+"@eslint/eslintrc@npm:^2.1.4, @eslint/eslintrc@npm:latest":
   version: 2.1.4
   resolution: "@eslint/eslintrc@npm:2.1.4"
   dependencies:
@@ -3759,6 +3759,7 @@ __metadata:
     "@types/react": "npm:latest"
     "@types/react-dom": "npm:latest"
     "@vitejs/plugin-react": "npm:*"
+    chalk: "npm:latest"
     electron: "npm:28.0.0"
     electron-builder: "npm:latest"
     electron-updater: "npm:latest"
@@ -3859,6 +3860,8 @@ __metadata:
     vite-tsconfig-paths: "npm:*"
     vitest: "npm:*"
   peerDependencies:
+    chalk: "*"
+    electron: "*"
     typescript: "*"
   languageName: unknown
   linkType: soft
@@ -6872,7 +6875,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:latest":
+"@typescript-eslint/parser@npm:*, @typescript-eslint/parser@npm:latest":
   version: 6.13.2
   resolution: "@typescript-eslint/parser@npm:6.13.2"
   dependencies:
@@ -6887,6 +6890,22 @@ __metadata:
     typescript:
       optional: true
   checksum: 2c62b8cd8a37eb2ea59cd00e559f51a9f57af746e2040e872af3c58ddd3f4071ad7b7009789bdeb0e0d4ee0343bfe96ee77288020f3ae22d08e1674203f5e156
+  languageName: node
+  linkType: hard
+
+"@typescript-eslint/rule-tester@npm:*":
+  version: 6.13.2
+  resolution: "@typescript-eslint/rule-tester@npm:6.13.2"
+  dependencies:
+    "@typescript-eslint/typescript-estree": "npm:6.13.2"
+    "@typescript-eslint/utils": "npm:6.13.2"
+    ajv: "npm:^6.10.0"
+    lodash.merge: "npm:4.6.2"
+    semver: "npm:^7.5.4"
+  peerDependencies:
+    "@eslint/eslintrc": ">=2"
+    eslint: ">=8"
+  checksum: aeebeeb72947d7908a956cec211fa03c4e9ccafeea0903dd712c2f2a23c8010acc83c205271d1c645e5d66ba1f80c6136c2faf51d381fb440e2acbd844efb6df
   languageName: node
   linkType: hard
 
@@ -8465,7 +8484,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:5.3.0":
+"chalk@npm:5.3.0, chalk@npm:latest":
   version: 5.3.0
   resolution: "chalk@npm:5.3.0"
   checksum: 8297d436b2c0f95801103ff2ef67268d362021b8210daf8ddbe349695333eb3610a71122172ff3b0272f1ef2cf7cc2c41fdaa4715f52e49ffe04c56340feed09
@@ -10520,12 +10539,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "eslint-plugin-mas@workspace:packages/eslint-plugin"
   dependencies:
-    eslint: "npm:*"
+    "@eslint/eslintrc": "npm:latest"
+    "@typescript-eslint/parser": "npm:*"
+    "@typescript-eslint/rule-tester": "npm:*"
     eslint-doc-generator: "npm:latest"
     eslint-plugin-eslint-plugin: "npm:latest"
     eslint-plugin-node: "npm:latest"
     js-levenshtein: "npm:latest"
     requireindex: "npm:latest"
+    vitest: "npm:*"
+  peerDependencies:
+    eslint: "*"
+    vite: "*"
   languageName: unknown
   linkType: soft
 
@@ -13867,7 +13892,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.merge@npm:^4.6.2":
+"lodash.merge@npm:4.6.2, lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: 402fa16a1edd7538de5b5903a90228aa48eb5533986ba7fa26606a49db2572bf414ff73a2c9f5d5fd36b31c46a5d5c7e1527749c07cbcf965ccff5fbdf32c506

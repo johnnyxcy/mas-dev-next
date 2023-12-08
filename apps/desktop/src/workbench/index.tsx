@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 11/30/2023 03:54 pm
+ * Last Modified: 12/07/2023 01:22 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -14,6 +14,8 @@
 import React from "react";
 
 import ReactDOM from "react-dom/client";
+
+import nls from "@mas/i18n";
 
 import { createStyleSheet } from "@mas/base/browser/dom";
 import { mainWindow } from "@mas/base/browser/window";
@@ -42,9 +44,9 @@ const App: React.FC = () => {
     }, []);
     return (
         <div>
-            Hello World
+            {nls.localize("helloWord", "Hello World")}
             <span className={ThemeIcon.asClassName(Codicon.account)} />
-            <button onClick={async (e) => {}}>Click Me Now!</button>
+            <button onClick={async (e) => {}}>{nls.localize("clicky", "Clicky")}</button>
         </div>
     );
 };

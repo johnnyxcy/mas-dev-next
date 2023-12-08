@@ -44,6 +44,6 @@ Then configure the rules you want to use under the rules section.
 
 | Name                                 | Description                              | 🔧  |
 | :----------------------------------- | :--------------------------------------- | :-- |
-| [check-nls](docs/rules/check-nls.md) | prevent incorrect use of 'nls.localize'. | 🔧  |
+| [check-nls](docs/rules/check-nls.md) | Prevent incorrect use of 'nls.localize'. | 🔧  |
 
 <!-- end auto-generated rules list -->

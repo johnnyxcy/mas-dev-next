@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 11/29/2023 04:51 pm
+ * Last Modified: 12/07/2023 06:23 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -32,7 +32,7 @@ export default defineConfig(() => {
                 formats: ["cjs" as const],
             },
             rollupOptions: {
-                external: ["vite", "electron", /^node:/],
+                external: ["vite", /^electron/, /^node:/],
             },
         },
         test: {
