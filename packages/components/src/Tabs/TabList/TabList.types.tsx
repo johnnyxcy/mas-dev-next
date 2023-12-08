@@ -5,7 +5,7 @@
  *
  * File Created: 12/01/2023 05:18 pm
  *
- * Last Modified: 12/02/2023 02:02 pm
+ * Last Modified: 12/08/2023 05:22 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -18,7 +18,7 @@ import {
     TabListSlots,
 } from "@fluentui/react-components";
 
-export type TabListProps = Omit<FuiTabListProps, "appearance" | "vertical"> & {
+export type TabListProps = Omit<FuiTabListProps, "appearance"> & {
     /**
      * A tab list can supports 'card', 'transparent' and 'subtle' appearance.
      *- 'card': A card-like appearance with a border and background.
@@ -28,11 +28,10 @@ export type TabListProps = Omit<FuiTabListProps, "appearance" | "vertical"> & {
      * @default 'transparent'
      */
     appearance?: "card" | "transparent" | "subtle";
-
-    vertical?: boolean;
 };
 
-export type TabListContextValue = Omit<FuiTabListContextValue, "appearance"> & Pick<TabListProps, "appearance">;
+export type TabListContextValue = Omit<FuiTabListContextValue, "appearance"> &
+    Required<Pick<TabListProps, "appearance">>;
 
 export type TabListContextValues = {
     /**
