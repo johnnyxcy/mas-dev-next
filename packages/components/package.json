@@ -29,6 +29,7 @@
         "@storybook/addon-interactions": "latest",
         "@storybook/addon-links": "latest",
         "@storybook/addon-onboarding": "latest",
+        "@storybook/api": "latest",
         "@storybook/blocks": "latest",
         "@storybook/builder-vite": "latest",
         "@storybook/react": "latest",
@@ -53,6 +54,7 @@
     },
     "dependencies": {
         "@fluentui/react-components": "latest",
+        "@mas/base": "*",
         "scheduler": "latest"
     }
 }
