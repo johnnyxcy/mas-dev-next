@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 12/07/2023 01:22 pm
+ * Last Modified: 12/15/2023 01:38 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,6 +22,9 @@ import { mainWindow } from "@mas/base/browser/window";
 import { Codicon, getCodiconFontCharacters } from "@mas/base/common/codicons";
 import { DisposableStore } from "@mas/base/common/lifecycle";
 import { ThemeIcon } from "@mas/base/common/themables";
+
+import { Tab, TabList, FluentProvider } from "@mas/components";
+
 import "@mas/icons/codicons";
 
 const App: React.FC = () => {
@@ -47,13 +50,18 @@ const App: React.FC = () => {
             {nls.localize("helloWord", "Hello World")}
             <span className={ThemeIcon.asClassName(Codicon.account)} />
             <button onClick={async (e) => {}}>{nls.localize("clicky", "Clicky")}</button>
+            <TabList appearance="card">
+                <Tab value="123">123</Tab>
+            </TabList>
         </div>
     );
 };
 
 ReactDOM.createRoot(mainWindow.document.querySelector<HTMLDivElement>("#maspectra-desktop-root")!).render(
     <React.StrictMode>
-        <App />
+        <FluentProvider>
+            <App />
+        </FluentProvider>
     </React.StrictMode>,
 );
 
