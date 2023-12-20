@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 11/30/2023 04:07 pm
+ * Last Modified: 12/15/2023 01:35 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -18,6 +18,8 @@ import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+import pkg from "./package.json";
 
 export default defineConfig(() => {
     return {
@@ -41,6 +43,9 @@ export default defineConfig(() => {
                 },
                 formats: ["es" as const],
                 fileName: (_, entryName) => `${entryName}.js`,
+            },
+            rollupOptions: {
+                external: [...Object.keys(pkg.dependencies || {}), /@mas\/base(.+)?/, /@mas\/i18n(.+)?/, /^node:/],
             },
             chunkSizeWarningLimit: 1000,
         },

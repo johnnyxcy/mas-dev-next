@@ -5,7 +5,7 @@
  *
  * File Created: 12/09/2023 01:28 am
  *
- * Last Modified: 12/09/2023 01:32 am
+ * Last Modified: 12/18/2023 04:29 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -18,6 +18,7 @@ import bestPracticesMd from "./InputBestPractices.md";
 import descriptionMd from "./InputDescription.md";
 
 export { Default } from "./FormInputDefault.stories";
+export { ComponentExamples } from "./FuiField.stories";
 
 const meta: Meta = {
     title: "Components/Input",

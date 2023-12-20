@@ -5,17 +5,31 @@
  *
  * File Created: 11/30/2023 04:24 pm
  *
- * Last Modified: 12/02/2023 12:04 am
+ * Last Modified: 12/18/2023 04:49 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
 // @ts-check
-import { FluentProvider, webLightTheme, webDarkTheme } from "@fluentui/react-components";
+import {
+    FluentProvider,
+    webLightTheme,
+    webDarkTheme,
+    makeStyles,
+    shorthands,
+    tokens,
+} from "@fluentui/react-components";
 import { withLinks } from "@storybook/addon-links";
 import React from "react";
 import { useDarkMode } from "storybook-dark-mode";
+
+const useStyles = makeStyles({
+    root: {
+        boxSizing: "border-box",
+        ...shorthands.padding(tokens.spacingVerticalXXL, tokens.spacingHorizontalXXL),
+    },
+});
 
 /** @type { import('@storybook/react').Preview } */
 const preview = {
@@ -24,7 +38,7 @@ const preview = {
         (Story) => {
             const isDark = useDarkMode();
             return (
-                <FluentProvider theme={isDark ? webDarkTheme : webLightTheme}>
+                <FluentProvider theme={isDark ? webDarkTheme : webLightTheme} className={useStyles().root}>
                     <Story />
                 </FluentProvider>
             );

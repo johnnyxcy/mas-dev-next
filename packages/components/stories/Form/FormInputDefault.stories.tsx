@@ -5,7 +5,7 @@
  *
  * File Created: 12/09/2023 01:28 am
  *
- * Last Modified: 12/12/2023 01:05 pm
+ * Last Modified: 12/18/2023 04:51 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -33,7 +33,6 @@ const useStyles = makeStyles({
         // Stack the label above the field
         display: "flex",
         flexDirection: "column",
-        ...shorthands.padding("20px"),
         // Use 2px gap below the label (per the design system)
         ...shorthands.gap("2px"),
         // Prevent the example from taking the full width of the page (optional)
