@@ -1,5 +1,5 @@
 /*
- * File: @mas/spreadsheet/.eslintrc.cjs
+ * File: @mas/ui/.eslintrc.cjs
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *

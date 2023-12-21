@@ -20,8 +20,8 @@
     },
     "dependencies": {
         "@mas/base": "*",
-        "@mas/components": "*",
         "@mas/core": "*",
+        "@mas/ui": "*",
         "electron-updater": "latest"
     },
     "devDependencies": {

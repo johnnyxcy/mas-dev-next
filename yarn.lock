@@ -3641,44 +3641,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@mas/components@npm:*, @mas/components@workspace:packages/components":
-  version: 0.0.0-use.local
-  resolution: "@mas/components@workspace:packages/components"
-  dependencies:
-    "@babel/core": "npm:latest"
-    "@babel/preset-react": "npm:latest"
-    "@fluentui/react-components": "npm:latest"
-    "@mas/base": "npm:*"
-    "@mas/vite-markdown-plugin": "npm:*"
-    "@storybook/addon-essentials": "npm:latest"
-    "@storybook/addon-interactions": "npm:latest"
-    "@storybook/addon-links": "npm:latest"
-    "@storybook/addon-onboarding": "npm:latest"
-    "@storybook/api": "npm:latest"
-    "@storybook/blocks": "npm:latest"
-    "@storybook/builder-vite": "npm:latest"
-    "@storybook/react": "npm:latest"
-    "@storybook/react-vite": "npm:latest"
-    "@storybook/testing-library": "npm:latest"
-    "@types/react": "npm:latest"
-    "@types/react-dom": "npm:latest"
-    eslint: "npm:*"
-    react: "npm:latest"
-    react-dom: "npm:latest"
-    scheduler: "npm:latest"
-    storybook: "npm:latest"
-    storybook-dark-mode: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
-    vite-plugin-lib-inject-css: "npm:latest"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    "@mas/configs": "*"
-    typescript: "*"
-  languageName: unknown
-  linkType: soft
-
 "@mas/configs@workspace:dev-packages/configs":
   version: 0.0.0-use.local
   resolution: "@mas/configs@workspace:dev-packages/configs"
@@ -3751,8 +3713,8 @@ __metadata:
   resolution: "@mas/desktop@workspace:apps/desktop"
   dependencies:
     "@mas/base": "npm:*"
-    "@mas/components": "npm:*"
     "@mas/core": "npm:*"
+    "@mas/ui": "npm:*"
     "@mas/vite-electron-plugin": "npm:*"
     "@types/react": "npm:latest"
     "@types/react-dom": "npm:latest"
@@ -3883,6 +3845,44 @@ __metadata:
     vitest: "npm:*"
     yargs: "npm:latest"
   peerDependencies:
+    typescript: "*"
+  languageName: unknown
+  linkType: soft
+
+"@mas/ui@npm:*, @mas/ui@workspace:packages/ui":
+  version: 0.0.0-use.local
+  resolution: "@mas/ui@workspace:packages/ui"
+  dependencies:
+    "@babel/core": "npm:latest"
+    "@babel/preset-react": "npm:latest"
+    "@fluentui/react-components": "npm:latest"
+    "@mas/base": "npm:*"
+    "@mas/vite-markdown-plugin": "npm:*"
+    "@storybook/addon-essentials": "npm:latest"
+    "@storybook/addon-interactions": "npm:latest"
+    "@storybook/addon-links": "npm:latest"
+    "@storybook/addon-onboarding": "npm:latest"
+    "@storybook/api": "npm:latest"
+    "@storybook/blocks": "npm:latest"
+    "@storybook/builder-vite": "npm:latest"
+    "@storybook/react": "npm:latest"
+    "@storybook/react-vite": "npm:latest"
+    "@storybook/testing-library": "npm:latest"
+    "@types/react": "npm:latest"
+    "@types/react-dom": "npm:latest"
+    eslint: "npm:*"
+    react: "npm:latest"
+    react-dom: "npm:latest"
+    scheduler: "npm:latest"
+    storybook: "npm:latest"
+    storybook-dark-mode: "npm:latest"
+    vite: "npm:*"
+    vite-plugin-dts: "npm:*"
+    vite-plugin-lib-inject-css: "npm:latest"
+    vite-tsconfig-paths: "npm:*"
+    vitest: "npm:*"
+  peerDependencies:
+    "@mas/configs": "*"
     typescript: "*"
   languageName: unknown
   linkType: soft

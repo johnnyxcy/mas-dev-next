@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:29 pm
  *
- * Last Modified: 12/15/2023 01:38 pm
+ * Last Modified: 12/21/2023 06:14 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -23,7 +23,7 @@ import { Codicon, getCodiconFontCharacters } from "@mas/base/common/codicons";
 import { DisposableStore } from "@mas/base/common/lifecycle";
 import { ThemeIcon } from "@mas/base/common/themables";
 
-import { Tab, TabList, FluentProvider } from "@mas/components";
+import { Tab, TabList, FluentProvider } from "@mas/ui";
 
 import "@mas/icons/codicons";
 

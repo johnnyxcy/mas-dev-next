@@ -1,5 +1,5 @@
 /*
- * File: @mas/spreadsheet/vite.config.mts
+ * File: @mas/ui/vite.config.mts
  *
  * Author: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -18,6 +18,8 @@ import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
 import tsconfigPaths from "vite-tsconfig-paths";
+
+import pkg from "./package.json";
 
 export default defineConfig(() => {
     return {
@@ -41,6 +43,9 @@ export default defineConfig(() => {
                 },
                 formats: ["es" as const],
                 fileName: (_, entryName) => `${entryName}.js`,
+            },
+            rollupOptions: {
+                external: [...Object.keys(pkg.dependencies || {}), /@mas\/base(.+)?/, /@mas\/i18n(.+)?/, /^node:/],
             },
             chunkSizeWarningLimit: 1000,
         },

@@ -1,0 +1,14 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "noEmit": true,
+        "composite": true,
+        "sourceMap": true,
+
+        "paths": {
+            "@mas/ui/*": ["./src/*"]
+        }
+    },
+    "include": ["src", "tests", "stories"]
+}
