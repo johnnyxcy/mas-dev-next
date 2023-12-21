@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 12/21/2023 02:31 pm
+ * Last Modified: 12/21/2023 06:10 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -23,8 +23,6 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
         "plugin:promise/recommended",
-
-        require.resolve("./restricted-path.eslint"),
     ],
     plugins: ["unicorn", "prettier", "import", "@typescript-eslint", "mas"],
     parser: "@typescript-eslint/parser",
@@ -43,8 +41,9 @@ module.exports = {
     },
     reportUnusedDisableDirectives: true,
     rules: {
-        // #region custom
+        // #region eslint-plugin-mas
         "mas/check-nls": "error",
+        "mas/check-runtime-import": "error",
         // #endregion
         // #region General
         "no-plusplus": "off",
@@ -192,10 +191,7 @@ module.exports = {
         "@typescript-eslint/no-restricted-imports": [
             "error",
             {
-                patterns: [
-                    { group: ["\\./*", "\\.\\./*"], message: "Always use absolute import" },
-                    { group: ["@mas/i18n/*"], message: 'Only use `import nls from "@mas/i18n"`' },
-                ],
+                patterns: [{ group: ["\\./*", "\\.\\./*"], message: "Always use absolute import" }],
             },
         ],
         "@typescript-eslint/no-unused-vars": [

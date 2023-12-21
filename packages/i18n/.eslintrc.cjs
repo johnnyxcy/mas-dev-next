@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 12/21/2023 02:33 pm
+ * Last Modified: 12/21/2023 06:10 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -38,10 +38,16 @@ module.exports = {
             },
         },
         {
-            files: ["src/index.ts", "src/common/localization-server.ts"],
+            files: ["src/index.ts"],
             rules: {
                 "no-restricted-syntax": "off",
                 "@typescript-eslint/no-var-requires": "off",
+            },
+        },
+        {
+            files: ["src/**/*.ts"],
+            rules: {
+                "mas/check-nls": "off",
                 "@typescript-eslint/no-restricted-imports": "off",
             },
         },
