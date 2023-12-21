@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 09:42 pm
  *
- * Last Modified: 10/27/2023 03:26 pm
+ * Last Modified: 12/21/2023 02:31 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -103,8 +103,7 @@ class LocalizationKeyProvider {
      * This allows us to skip the key in the localization process and map the original english default values to their translations in different languages.
      */
     private buildData(): Map<string, string> {
-        // eslint-disable-next-line global-require, @typescript-eslint/no-var-requires
-        const bundles = require("./common/i18n/nls.metadata.json");
+        const bundles = require("../../../vendor/vscode/vscode.nls.metadata.json");
         const keys: INlsKeys = bundles.keys;
         const messages: Record<string, string[]> = bundles.messages;
         const data = new Map<string, string>();

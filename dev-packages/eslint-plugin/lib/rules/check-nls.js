@@ -5,7 +5,7 @@
  *
  * File Created: 10/27/2023 04:20 pm
  *
- * Last Modified: 12/08/2023 02:05 pm
+ * Last Modified: 12/21/2023 02:24 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -16,7 +16,7 @@
 
 const levenshtein = require("js-levenshtein");
 
-const metadata = require("../../../i18n/src/common/nls.metadata.json");
+const metadata = require("../../../../vendor/vscode/vscode.nls.metadata.json");
 
 const messages = new Set(
     Object.values(metadata.messages)

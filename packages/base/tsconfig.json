@@ -11,6 +11,5 @@
             "@mas/base/*": ["./src/*"]
         }
     },
-    "include": ["src", "tests"],
-    "references": [{ "path": "../tools/tsconfig.json" }, { "path": "../i18n/tsconfig.json" }]
+    "include": ["src", "tests"]
 }

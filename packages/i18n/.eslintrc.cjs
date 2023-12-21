@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 11/29/2023 04:53 pm
+ * Last Modified: 12/21/2023 02:31 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -41,6 +41,8 @@ module.exports = {
             files: ["src/index.ts"],
             rules: {
                 "no-restricted-syntax": "off",
+                "@typescript-eslint/no-var-requires": "off",
+                "@typescript-eslint/no-restricted-imports": "off",
             },
         },
     ],

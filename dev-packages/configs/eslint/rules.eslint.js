@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 12/08/2023 08:44 am
+ * Last Modified: 12/21/2023 02:31 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -74,6 +74,7 @@ module.exports = {
         "no-promise-executor-return": "off",
         "operator-assignment": "off",
         "func-names": "off",
+        "global-require": "off",
         "guard-for-in": "off",
         "quote-props": ["error", "consistent"],
         "no-console": ["error", { allow: ["warn", "error"] }],

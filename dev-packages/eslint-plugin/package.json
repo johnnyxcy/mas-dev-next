@@ -30,13 +30,13 @@
         "@eslint/eslintrc": "latest",
         "@typescript-eslint/parser": "*",
         "@typescript-eslint/rule-tester": "*",
+        "eslint": "*",
         "eslint-doc-generator": "latest",
         "eslint-plugin-eslint-plugin": "latest",
         "eslint-plugin-node": "latest",
         "vitest": "*"
     },
     "peerDependencies": {
-        "eslint": "*",
         "vite": "*"
     }
 }

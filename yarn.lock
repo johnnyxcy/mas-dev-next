@@ -3679,9 +3679,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@mas/configs@workspace:packages/configs":
+"@mas/configs@workspace:dev-packages/configs":
   version: 0.0.0-use.local
-  resolution: "@mas/configs@workspace:packages/configs"
+  resolution: "@mas/configs@workspace:dev-packages/configs"
   dependencies:
     "@typescript-eslint/eslint-plugin": "npm:latest"
     "@typescript-eslint/parser": "npm:latest"
@@ -3862,9 +3862,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@mas/tools@workspace:packages/tools":
+"@mas/tools@workspace:dev-packages/tools":
   version: 0.0.0-use.local
-  resolution: "@mas/tools@workspace:packages/tools"
+  resolution: "@mas/tools@workspace:dev-packages/tools"
   dependencies:
     "@types/fancy-log": "npm:latest"
     "@types/through": "npm:latest"
@@ -3887,9 +3887,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@mas/vite-electron-plugin@npm:*, @mas/vite-electron-plugin@workspace:packages/vite-electron-plugin":
+"@mas/vite-electron-plugin@npm:*, @mas/vite-electron-plugin@workspace:dev-packages/vite-electron-plugin":
   version: 0.0.0-use.local
-  resolution: "@mas/vite-electron-plugin@workspace:packages/vite-electron-plugin"
+  resolution: "@mas/vite-electron-plugin@workspace:dev-packages/vite-electron-plugin"
   dependencies:
     eslint: "npm:*"
     vite: "npm:*"
@@ -3903,9 +3903,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@mas/vite-markdown-plugin@npm:*, @mas/vite-markdown-plugin@workspace:packages/vite-markdown-plugin":
+"@mas/vite-markdown-plugin@npm:*, @mas/vite-markdown-plugin@workspace:dev-packages/vite-markdown-plugin":
   version: 0.0.0-use.local
-  resolution: "@mas/vite-markdown-plugin@workspace:packages/vite-markdown-plugin"
+  resolution: "@mas/vite-markdown-plugin@workspace:dev-packages/vite-markdown-plugin"
   dependencies:
     "@babel/core": "npm:latest"
     "@types/markdown-it": "npm:latest"
@@ -10638,13 +10638,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-mas@workspace:packages/eslint-plugin":
+"eslint-plugin-mas@workspace:dev-packages/eslint-plugin":
   version: 0.0.0-use.local
-  resolution: "eslint-plugin-mas@workspace:packages/eslint-plugin"
+  resolution: "eslint-plugin-mas@workspace:dev-packages/eslint-plugin"
   dependencies:
     "@eslint/eslintrc": "npm:latest"
     "@typescript-eslint/parser": "npm:*"
     "@typescript-eslint/rule-tester": "npm:*"
+    eslint: "npm:*"
     eslint-doc-generator: "npm:latest"
     eslint-plugin-eslint-plugin: "npm:latest"
     eslint-plugin-node: "npm:latest"
@@ -10652,7 +10653,6 @@ __metadata:
     requireindex: "npm:latest"
     vitest: "npm:*"
   peerDependencies:
-    eslint: "*"
     vite: "*"
   languageName: unknown
   linkType: soft
