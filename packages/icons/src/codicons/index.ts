@@ -7,7 +7,7 @@ import "./css/codicon-modifiers.css";
 import "./css/codicon.css";
 
 // Note: 直接导入这个文件没有效果, 需要与 @mas/base/common/codicons.ts 和 @mas/core/theme/browser/icon-service.ts 一起使用
-const CodiconsNames = [
+const CodiconNames = [
     "add",
     "plus",
     "gistNew",
@@ -553,6 +553,6 @@ const CodiconsNames = [
     "quickInputBack",
 ] as const;
 
-type Codicon = (typeof CodiconsNames)[number];
+type Codicon = (typeof CodiconNames)[number];
 
-export { Codicon, CodiconsNames };
+export { Codicon, CodiconNames };
