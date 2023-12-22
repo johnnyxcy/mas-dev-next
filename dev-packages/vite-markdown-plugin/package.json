@@ -18,22 +18,20 @@
         "url": "https://www.maspectra.com"
     },
     "license": "MIT",
-    "devDependencies": {
-        "@babel/core": "latest",
-        "@types/markdown-it": "latest",
-        "eslint": "*",
-        "vite": "*",
-        "vite-plugin-dts": "*",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
-    },
     "dependencies": {
         "domhandler": "latest",
         "front-matter": "latest",
         "htmlparser2": "latest",
         "markdown-it": "latest"
     },
-    "peerDependencies": {
-        "typescript": "*"
+    "devDependencies": {
+        "@babel/core": "latest",
+        "@types/markdown-it": "latest",
+        "eslint": "latest",
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     }
 }

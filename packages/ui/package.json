@@ -5,6 +5,7 @@
     "scripts": {
         "build": "vite build",
         "sb": "yarn storybook",
+        "lint": "eslint --config .eslintrc.cjs .",
         "storybook": "storybook dev -p 6007",
         "build-storybook": "storybook build"
     },
@@ -21,9 +22,16 @@
         "url": "https://www.maspectra.com"
     },
     "license": "ISC",
+    "dependencies": {
+        "@fluentui/react-components": "latest",
+        "@mas/base": "*",
+        "scheduler": "latest",
+        "tabster": "latest"
+    },
     "devDependencies": {
         "@babel/core": "latest",
         "@babel/preset-react": "latest",
+        "@mas/configs": "*",
         "@mas/vite-markdown-plugin": "*",
         "@storybook/addon-essentials": "latest",
         "@storybook/addon-interactions": "latest",
@@ -37,24 +45,16 @@
         "@storybook/testing-library": "latest",
         "@types/react": "latest",
         "@types/react-dom": "latest",
-        "eslint": "*",
+        "eslint": "latest",
         "react": "latest",
         "react-dom": "latest",
         "storybook": "latest",
         "storybook-dark-mode": "latest",
-        "vite": "*",
-        "vite-plugin-dts": "*",
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
         "vite-plugin-lib-inject-css": "latest",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
-    },
-    "peerDependencies": {
-        "@mas/configs": "*",
-        "typescript": "*"
-    },
-    "dependencies": {
-        "@fluentui/react-components": "latest",
-        "@mas/base": "*",
-        "scheduler": "latest"
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     }
 }

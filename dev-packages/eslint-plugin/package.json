@@ -28,15 +28,13 @@
     },
     "devDependencies": {
         "@eslint/eslintrc": "latest",
-        "@typescript-eslint/parser": "*",
-        "@typescript-eslint/rule-tester": "*",
-        "eslint": "*",
+        "@typescript-eslint/parser": "latest",
+        "@typescript-eslint/rule-tester": "latest",
+        "eslint": "latest",
         "eslint-doc-generator": "latest",
         "eslint-plugin-eslint-plugin": "latest",
         "eslint-plugin-node": "latest",
-        "vitest": "*"
-    },
-    "peerDependencies": {
-        "vite": "*"
+        "vite": "latest",
+        "vitest": "latest"
     }
 }

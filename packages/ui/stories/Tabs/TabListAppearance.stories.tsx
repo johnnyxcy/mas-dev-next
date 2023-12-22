@@ -1,8 +1,6 @@
 import * as React from "react";
 
-import { makeStyles, shorthands } from "@fluentui/react-components";
-
-import { Tab, TabList } from "@mas/ui/Tabs";
+import { makeStyles, shorthands, Tab, TabList } from "@mas/ui";
 
 const useStyles = makeStyles({
     root: {
@@ -47,7 +45,7 @@ export const Appearance = (): JSX.Element => {
 Appearance.parameters = {
     docs: {
         description: {
-            story: "A tab list can have a `transparent` or `subtle` appearance. The default is `transparent`.",
+            story: "A tab list can have a `transparent`/`subtle`/`card` appearance. The default is `transparent`.",
         },
     },
 };

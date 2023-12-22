@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { makeStyles, shorthands, Tab, TabList } from "@fluentui/react-components";
+import { makeStyles, shorthands, Tab, TabList } from "@mas/ui";
 
 const useStyles = makeStyles({
     root: {

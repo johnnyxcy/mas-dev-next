@@ -25,23 +25,21 @@
         "electron-updater": "latest"
     },
     "devDependencies": {
+        "@mas/configs": "*",
         "@mas/vite-electron-plugin": "*",
         "@types/react": "latest",
         "@types/react-dom": "latest",
-        "@vitejs/plugin-react": "*",
+        "@vitejs/plugin-react": "latest",
         "chalk": "latest",
         "electron": "28.0.0",
         "electron-builder": "latest",
-        "eslint": "*",
+        "eslint": "latest",
         "react": "latest",
         "react-dom": "latest",
-        "vite": "*",
-        "vite-plugin-dts": "*",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
-    },
-    "peerDependencies": {
-        "@mas/configs": "*",
-        "typescript": "*"
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     }
 }

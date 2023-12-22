@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { makeStyles, shorthands, tokens, Tab, TabList } from "@fluentui/react-components";
 import {
     AirplaneRegular,
     AirplaneFilled,
@@ -11,7 +10,7 @@ import {
     bundleIcon,
 } from "@fluentui/react-icons";
 
-import type { SelectTabData, SelectTabEvent, TabValue } from "@fluentui/react-components";
+import { makeStyles, shorthands, tokens, Tab, TabList, SelectTabData, SelectTabEvent, TabValue } from "@mas/ui";
 
 const Airplane = bundleIcon(AirplaneFilled, AirplaneRegular);
 const AirplaneTakeOff = bundleIcon(AirplaneTakeOffFilled, AirplaneTakeOffRegular);

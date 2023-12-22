@@ -44,18 +44,16 @@
         "inversify": "latest"
     },
     "devDependencies": {
-        "@mas/contribution": "*",
-        "@vitest/coverage-istanbul": "*",
-        "deepmerge": "latest",
-        "eslint": "*",
-        "glob": "*",
-        "vite": "*",
-        "vite-plugin-dts": "*",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
-    },
-    "peerDependencies": {
         "@mas/configs": "*",
-        "typescript": "*"
+        "@mas/contribution": "*",
+        "@vitest/coverage-istanbul": "latest",
+        "deepmerge": "latest",
+        "eslint": "latest",
+        "glob": "latest",
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     }
 }

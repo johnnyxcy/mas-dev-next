@@ -1,22 +1,6 @@
 import * as React from "react";
 
 import {
-    makeStyles,
-    mergeClasses,
-    shorthands,
-    tokens,
-    Button,
-    Menu,
-    MenuItem,
-    MenuList,
-    MenuPopover,
-    MenuTrigger,
-    useIsOverflowItemVisible,
-    useOverflowMenu,
-    Overflow,
-    OverflowItem,
-} from "@fluentui/react-components";
-import {
     Calendar3DayRegular,
     CalendarAgendaRegular,
     CalendarChatRegular,
@@ -40,7 +24,24 @@ import {
     bundleIcon,
 } from "@fluentui/react-icons";
 
-import { Tab, TabList } from "@mas/ui/Tabs";
+import {
+    makeStyles,
+    mergeClasses,
+    shorthands,
+    tokens,
+    Button,
+    Menu,
+    MenuItem,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+    useIsOverflowItemVisible,
+    useOverflowMenu,
+    Overflow,
+    OverflowItem,
+    Tab,
+    TabList,
+} from "@mas/ui";
 
 import type { ARIAButtonElement } from "@fluentui/react-aria";
 

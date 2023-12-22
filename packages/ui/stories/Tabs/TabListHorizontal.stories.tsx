@@ -5,7 +5,7 @@
  *
  * File Created: 12/01/2023 11:51 pm
  *
- * Last Modified: 12/21/2023 06:14 pm
+ * Last Modified: 12/22/2023 04:44 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,7 +13,7 @@
  */
 import * as React from "react";
 
-import { makeStyles, shorthands, Tab, TabList } from "@fluentui/react-components";
+import { makeStyles, shorthands, Tab, TabList } from "@mas/ui";
 
 const useStyles = makeStyles({
     root: {

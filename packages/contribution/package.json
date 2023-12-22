@@ -32,15 +32,13 @@
         "inversify": "latest"
     },
     "devDependencies": {
-        "eslint": "*",
-        "glob": "*",
-        "vite": "*",
-        "vite-plugin-dts": "*",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
-    },
-    "peerDependencies": {
         "@mas/configs": "*",
-        "typescript": "*"
+        "eslint": "latest",
+        "glob": "latest",
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     }
 }

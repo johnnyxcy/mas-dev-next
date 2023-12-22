@@ -26,14 +26,11 @@
     "devDependencies": {
         "@types/fancy-log": "latest",
         "@types/through": "latest",
-        "eslint": "*",
-        "vite": "*",
-        "vite-plugin-dts": "*",
+        "eslint": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
         "vite-plugin-lib-inject-css": "latest",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
-    },
-    "peerDependencies": {
-        "typescript": "*"
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     }
 }

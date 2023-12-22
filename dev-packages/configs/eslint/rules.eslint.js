@@ -5,7 +5,7 @@
  *
  * File Created: 09/20/2023 04:15 pm
  *
- * Last Modified: 12/21/2023 06:10 pm
+ * Last Modified: 12/22/2023 03:55 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -275,6 +275,10 @@ module.exports = {
                         format: ["camelCase", "UPPER_CASE"],
                         leadingUnderscore: "allow",
                         trailingUnderscore: "allow",
+                        filter: {
+                            regex: "^(.+)_(un)?stable$",
+                            match: false,
+                        },
                     },
                     {
                         selector: "variable",
@@ -362,6 +366,10 @@ module.exports = {
                         format: ["camelCase", "PascalCase"],
                         leadingUnderscore: "allow",
                         trailingUnderscore: "allow",
+                        filter: {
+                            regex: "^(.+)_(un)?stable$",
+                            match: false,
+                        },
                     },
                     {
                         selector: "variable",

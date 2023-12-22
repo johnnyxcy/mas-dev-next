@@ -5,15 +5,15 @@
  *
  * File Created: 12/01/2023 05:38 pm
  *
- * Last Modified: 12/21/2023 06:13 pm
+ * Last Modified: 12/22/2023 04:43 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-import { TabList } from "@fluentui/react-components";
-
 import { Meta } from "@storybook/react";
+
+import { TabList } from "@mas/ui";
 
 import bestPracticesMd from "./TabListBestPractices.md";
 import descriptionMd from "./TabListDescription.md";

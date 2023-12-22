@@ -5,7 +5,7 @@
  *
  * File Created: 12/01/2023 08:29 pm
  *
- * Last Modified: 12/21/2023 06:13 pm
+ * Last Modified: 12/22/2023 03:35 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,3 +13,4 @@
  */
 export * from "./TabList";
 export * from "./TabList.types";
+export * from "./useTabListStyles.styles";

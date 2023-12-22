@@ -3634,36 +3634,35 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mas/base@workspace:packages/base"
   dependencies:
+    "@mas/configs": "npm:*"
     "@mas/i18n": "npm:*"
     "@types/yazl": "npm:latest"
-    "@vitest/coverage-istanbul": "npm:*"
-    eslint: "npm:*"
+    "@vitest/coverage-istanbul": "npm:latest"
+    eslint: "npm:latest"
     fake-indexeddb: "npm:latest"
-    glob: "npm:*"
+    glob: "npm:latest"
     iconv-lite: "npm:latest"
     inversify: "npm:latest"
     jschardet: "npm:latest"
     pretty-format: "npm:latest"
     reflect-metadata: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
     yauzl: "npm:latest"
     yazl: "npm:latest"
-  peerDependencies:
-    "@mas/configs": "*"
-    typescript: "*"
   languageName: unknown
   linkType: soft
 
-"@mas/configs@workspace:dev-packages/configs":
+"@mas/configs@npm:*, @mas/configs@workspace:dev-packages/configs":
   version: 0.0.0-use.local
   resolution: "@mas/configs@workspace:dev-packages/configs"
   dependencies:
     "@typescript-eslint/eslint-plugin": "npm:latest"
     "@typescript-eslint/parser": "npm:latest"
-    eslint: "npm:*"
+    eslint: "npm:latest"
     eslint-config-airbnb: "npm:latest"
     eslint-config-airbnb-base: "npm:latest"
     eslint-config-airbnb-typescript: "npm:latest"
@@ -3678,7 +3677,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:latest"
     eslint-plugin-react-redux: "npm:latest"
     eslint-plugin-unicorn: "npm:latest"
-    prettier: "npm:*"
+    prettier: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -3686,16 +3685,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mas/contribution@workspace:packages/contribution"
   dependencies:
-    eslint: "npm:*"
-    glob: "npm:*"
+    "@mas/configs": "npm:*"
+    eslint: "npm:latest"
+    glob: "npm:latest"
     inversify: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    "@mas/configs": "*"
-    typescript: "*"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -3704,23 +3702,23 @@ __metadata:
   resolution: "@mas/core@workspace:packages/core"
   dependencies:
     "@mas/base": "npm:*"
+    "@mas/configs": "npm:*"
     "@mas/contribution": "npm:*"
     "@mas/i18n": "npm:*"
     "@parcel/watcher": "npm:latest"
     "@types/wicg-file-system-access": "npm:latest"
-    "@vitest/coverage-istanbul": "npm:*"
+    "@vitest/coverage-istanbul": "npm:latest"
     "@vscode/sqlite3": "npm:latest"
-    eslint: "npm:*"
-    glob: "npm:*"
+    eslint: "npm:latest"
+    glob: "npm:latest"
     graceful-fs: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   peerDependencies:
-    "@mas/configs": "*"
     electron: 28.0.0
-    typescript: "*"
   languageName: unknown
   linkType: soft
 
@@ -3729,26 +3727,25 @@ __metadata:
   resolution: "@mas/desktop@workspace:apps/desktop"
   dependencies:
     "@mas/base": "npm:*"
+    "@mas/configs": "npm:*"
     "@mas/core": "npm:*"
     "@mas/ui": "npm:*"
     "@mas/vite-electron-plugin": "npm:*"
     "@types/react": "npm:latest"
     "@types/react-dom": "npm:latest"
-    "@vitejs/plugin-react": "npm:*"
+    "@vitejs/plugin-react": "npm:latest"
     chalk: "npm:latest"
     electron: "npm:28.0.0"
     electron-builder: "npm:latest"
     electron-updater: "npm:latest"
-    eslint: "npm:*"
+    eslint: "npm:latest"
     react: "npm:latest"
     react-dom: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    "@mas/configs": "*"
-    typescript: "*"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -3756,20 +3753,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mas/i18n@workspace:packages/i18n"
   dependencies:
+    "@mas/configs": "npm:*"
     "@mas/contribution": "npm:*"
-    "@vitest/coverage-istanbul": "npm:*"
+    "@vitest/coverage-istanbul": "npm:latest"
     deepmerge: "npm:latest"
-    eslint: "npm:*"
+    eslint: "npm:latest"
     fs-extra: "npm:latest"
-    glob: "npm:*"
+    glob: "npm:latest"
     inversify: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    "@mas/configs": "*"
-    typescript: "*"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -3777,6 +3773,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mas/icons@workspace:packages/icons"
   dependencies:
+    "@mas/configs": "npm:*"
     "@storybook/addon-essentials": "npm:latest"
     "@storybook/addon-interactions": "npm:latest"
     "@storybook/addon-links": "npm:latest"
@@ -3786,18 +3783,16 @@ __metadata:
     "@storybook/react": "npm:latest"
     "@storybook/react-vite": "npm:latest"
     "@storybook/testing-library": "npm:latest"
-    eslint: "npm:*"
+    eslint: "npm:latest"
     react: "npm:latest"
     react-dom: "npm:latest"
     storybook: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
     vite-plugin-lib-inject-css: "npm:latest"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    "@mas/configs": "*"
-    typescript: "*"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -3809,6 +3804,7 @@ __metadata:
     "@babel/preset-react": "npm:latest"
     "@fluentui/react-components": "npm:latest"
     "@mas/base": "npm:*"
+    "@mas/configs": "npm:*"
     "@mas/vite-markdown-plugin": "npm:*"
     "@storybook/addon-essentials": "npm:latest"
     "@storybook/addon-interactions": "npm:latest"
@@ -3822,21 +3818,19 @@ __metadata:
     "@storybook/testing-library": "npm:latest"
     "@types/react": "npm:latest"
     "@types/react-dom": "npm:latest"
-    eslint: "npm:*"
+    eslint: "npm:latest"
     handsontable: "npm:latest"
     react: "npm:latest"
     react-dom: "npm:latest"
     scheduler: "npm:latest"
     storybook: "npm:latest"
     storybook-dark-mode: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
     vite-plugin-lib-inject-css: "npm:latest"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    "@mas/configs": "*"
-    typescript: "*"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -3848,20 +3842,18 @@ __metadata:
     "@types/through": "npm:latest"
     ansi-colors: "npm:latest"
     deepmerge: "npm:latest"
-    eslint: "npm:*"
+    eslint: "npm:latest"
     fancy-log: "npm:latest"
     fs-extra: "npm:latest"
     glob: "npm:latest"
     through: "npm:latest"
     typescript: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
     vite-plugin-lib-inject-css: "npm:latest"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
     yargs: "npm:latest"
-  peerDependencies:
-    typescript: "*"
   languageName: unknown
   linkType: soft
 
@@ -3873,6 +3865,7 @@ __metadata:
     "@babel/preset-react": "npm:latest"
     "@fluentui/react-components": "npm:latest"
     "@mas/base": "npm:*"
+    "@mas/configs": "npm:*"
     "@mas/vite-markdown-plugin": "npm:*"
     "@storybook/addon-essentials": "npm:latest"
     "@storybook/addon-interactions": "npm:latest"
@@ -3886,20 +3879,19 @@ __metadata:
     "@storybook/testing-library": "npm:latest"
     "@types/react": "npm:latest"
     "@types/react-dom": "npm:latest"
-    eslint: "npm:*"
+    eslint: "npm:latest"
     react: "npm:latest"
     react-dom: "npm:latest"
     scheduler: "npm:latest"
     storybook: "npm:latest"
     storybook-dark-mode: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
+    tabster: "npm:latest"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
     vite-plugin-lib-inject-css: "npm:latest"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    "@mas/configs": "*"
-    typescript: "*"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -3907,15 +3899,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mas/vite-electron-plugin@workspace:dev-packages/vite-electron-plugin"
   dependencies:
-    eslint: "npm:*"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    chalk: "*"
-    electron: "*"
-    typescript: "*"
+    chalk: "npm:latest"
+    electron: "npm:*"
+    eslint: "npm:latest"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -3926,16 +3917,15 @@ __metadata:
     "@babel/core": "npm:latest"
     "@types/markdown-it": "npm:latest"
     domhandler: "npm:latest"
-    eslint: "npm:*"
+    eslint: "npm:latest"
     front-matter: "npm:latest"
     htmlparser2: "npm:latest"
     markdown-it: "npm:latest"
-    vite: "npm:*"
-    vite-plugin-dts: "npm:*"
-    vite-tsconfig-paths: "npm:*"
-    vitest: "npm:*"
-  peerDependencies:
-    typescript: "*"
+    typescript: "npm:latest"
+    vite: "npm:latest"
+    vite-plugin-dts: "npm:latest"
+    vite-tsconfig-paths: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -6726,7 +6716,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.0.0, @types/node@npm:^20.5.9":
+"@types/node@npm:*, @types/node@npm:^20.0.0, @types/node@npm:latest":
   version: 20.10.5
   resolution: "@types/node@npm:20.10.5"
   dependencies:
@@ -6988,7 +6978,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/parser@npm:*, @typescript-eslint/parser@npm:latest":
+"@typescript-eslint/parser@npm:latest":
   version: 6.15.0
   resolution: "@typescript-eslint/parser@npm:6.15.0"
   dependencies:
@@ -7006,7 +6996,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/rule-tester@npm:*":
+"@typescript-eslint/rule-tester@npm:latest":
   version: 6.15.0
   resolution: "@typescript-eslint/rule-tester@npm:6.15.0"
   dependencies:
@@ -7171,21 +7161,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:*, @vitejs/plugin-react@npm:latest":
-  version: 4.2.1
-  resolution: "@vitejs/plugin-react@npm:4.2.1"
-  dependencies:
-    "@babel/core": "npm:^7.23.5"
-    "@babel/plugin-transform-react-jsx-self": "npm:^7.23.3"
-    "@babel/plugin-transform-react-jsx-source": "npm:^7.23.3"
-    "@types/babel__core": "npm:^7.20.5"
-    react-refresh: "npm:^0.14.0"
-  peerDependencies:
-    vite: ^4.2.0 || ^5.0.0
-  checksum: de1eec44d703f32e5b58e776328ca20793657fe991835d15b290230b19a2a08be5d31501d424279ae13ecfed28044c117b69d746891c8d9b92c69e8a8907e989
-  languageName: node
-  linkType: hard
-
 "@vitejs/plugin-react@npm:^3.0.1":
   version: 3.1.0
   resolution: "@vitejs/plugin-react@npm:3.1.0"
@@ -7201,7 +7176,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/coverage-istanbul@npm:*":
+"@vitejs/plugin-react@npm:latest":
+  version: 4.2.1
+  resolution: "@vitejs/plugin-react@npm:4.2.1"
+  dependencies:
+    "@babel/core": "npm:^7.23.5"
+    "@babel/plugin-transform-react-jsx-self": "npm:^7.23.3"
+    "@babel/plugin-transform-react-jsx-source": "npm:^7.23.3"
+    "@types/babel__core": "npm:^7.20.5"
+    react-refresh: "npm:^0.14.0"
+  peerDependencies:
+    vite: ^4.2.0 || ^5.0.0
+  checksum: de1eec44d703f32e5b58e776328ca20793657fe991835d15b290230b19a2a08be5d31501d424279ae13ecfed28044c117b69d746891c8d9b92c69e8a8907e989
+  languageName: node
+  linkType: hard
+
+"@vitest/coverage-istanbul@npm:latest":
   version: 1.1.0
   resolution: "@vitest/coverage-istanbul@npm:1.1.0"
   dependencies:
@@ -9956,6 +9946,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"electron@npm:*":
+  version: 28.1.0
+  resolution: "electron@npm:28.1.0"
+  dependencies:
+    "@electron/get": "npm:^2.0.0"
+    "@types/node": "npm:^18.11.18"
+    extract-zip: "npm:^2.0.1"
+  bin:
+    electron: cli.js
+  checksum: a620cf3c20e72a5858cdc14a787b141b83b37c2f9cef11c07d50348c35cc5ac3181959906017d9e80650e4103dbf5d27351dc0e5857a97fa3dd95a2e85b4fd13
+  languageName: node
+  linkType: hard
+
 "electron@npm:28.0.0":
   version: 28.0.0
   resolution: "electron@npm:28.0.0"
@@ -10662,17 +10665,16 @@ __metadata:
   resolution: "eslint-plugin-mas@workspace:dev-packages/eslint-plugin"
   dependencies:
     "@eslint/eslintrc": "npm:latest"
-    "@typescript-eslint/parser": "npm:*"
-    "@typescript-eslint/rule-tester": "npm:*"
-    eslint: "npm:*"
+    "@typescript-eslint/parser": "npm:latest"
+    "@typescript-eslint/rule-tester": "npm:latest"
+    eslint: "npm:latest"
     eslint-doc-generator: "npm:latest"
     eslint-plugin-eslint-plugin: "npm:latest"
     eslint-plugin-node: "npm:latest"
     js-levenshtein: "npm:latest"
     requireindex: "npm:latest"
-    vitest: "npm:*"
-  peerDependencies:
-    vite: "*"
+    vite: "npm:latest"
+    vitest: "npm:latest"
   languageName: unknown
   linkType: soft
 
@@ -10863,7 +10865,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:*, eslint@npm:^8.52.0":
+"eslint@npm:latest":
   version: 8.56.0
   resolution: "eslint@npm:8.56.0"
   dependencies:
@@ -11916,21 +11918,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:*, glob@npm:^10.0.0, glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:latest":
-  version: 10.3.10
-  resolution: "glob@npm:10.3.10"
-  dependencies:
-    foreground-child: "npm:^3.1.0"
-    jackspeak: "npm:^2.3.5"
-    minimatch: "npm:^9.0.1"
-    minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
-    path-scurry: "npm:^1.10.1"
-  bin:
-    glob: dist/esm/bin.mjs
-  checksum: 13d8a1feb7eac7945f8c8480e11cd4a44b24d26503d99a8d8ac8d5aefbf3e9802a2b6087318a829fad04cb4e829f25c5f4f1110c68966c498720dd261c7e344d
-  languageName: node
-  linkType: hard
-
 "glob@npm:7.1.4":
   version: 7.1.4
   resolution: "glob@npm:7.1.4"
@@ -11942,6 +11929,21 @@ __metadata:
     once: "npm:^1.3.0"
     path-is-absolute: "npm:^1.0.0"
   checksum: 7f6fcbf600eb2298cce34c65f6d8bbe6933ddd4f88aa5b38a9c6feec82b615bb33b63b120725303e89c4b50284413c21d2ff883414717a5c7d0c9f7cd7a0e5fe
+  languageName: node
+  linkType: hard
+
+"glob@npm:^10.0.0, glob@npm:^10.2.2, glob@npm:^10.3.10, glob@npm:latest":
+  version: 10.3.10
+  resolution: "glob@npm:10.3.10"
+  dependencies:
+    foreground-child: "npm:^3.1.0"
+    jackspeak: "npm:^2.3.5"
+    minimatch: "npm:^9.0.1"
+    minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
+    path-scurry: "npm:^1.10.1"
+  bin:
+    glob: dist/esm/bin.mjs
+  checksum: 13d8a1feb7eac7945f8c8480e11cd4a44b24d26503d99a8d8ac8d5aefbf3e9802a2b6087318a829fad04cb4e829f25c5f4f1110c68966c498720dd261c7e344d
   languageName: node
   linkType: hard
 
@@ -14311,18 +14313,18 @@ __metadata:
   dependencies:
     "@types/eslint": "npm:latest"
     "@types/lint-staged": "npm:latest"
-    "@types/node": "npm:^20.5.9"
+    "@types/node": "npm:latest"
     "@vitejs/plugin-react": "npm:latest"
     "@vitest/ui": "npm:latest"
-    eslint: "npm:^8.52.0"
+    eslint: "npm:latest"
     happy-dom: "npm:latest"
     husky: "npm:latest"
     lerna: "npm:latest"
     lint-staged: "npm:latest"
     prettier: "npm:latest"
-    pyright: "npm:^1.1.326"
+    pyright: "npm:latest"
     ts-node: "npm:latest"
-    typescript: "npm:^5.2.2"
+    typescript: "npm:latest"
     vite: "npm:latest"
     vite-plugin-dts: "npm:latest"
     vite-tsconfig-paths: "npm:latest"
@@ -16500,21 +16502,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:*, prettier@npm:latest":
-  version: 3.1.1
-  resolution: "prettier@npm:3.1.1"
-  bin:
-    prettier: bin/prettier.cjs
-  checksum: facc944ba20e194ff4db765e830ffbcb642803381f0d2033ed397e79904fa4ccc877dc25ad68f42d36985c01d051c990ca1b905fb83d2d7d65fe69e4386fa1a3
-  languageName: node
-  linkType: hard
-
 "prettier@npm:^2.8.0":
   version: 2.8.8
   resolution: "prettier@npm:2.8.8"
   bin:
     prettier: bin-prettier.js
   checksum: 463ea8f9a0946cd5b828d8cf27bd8b567345cf02f56562d5ecde198b91f47a76b7ac9eae0facd247ace70e927143af6135e8cf411986b8cb8478784a4d6d724a
+  languageName: node
+  linkType: hard
+
+"prettier@npm:latest":
+  version: 3.1.1
+  resolution: "prettier@npm:3.1.1"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: facc944ba20e194ff4db765e830ffbcb642803381f0d2033ed397e79904fa4ccc877dc25ad68f42d36985c01d051c990ca1b905fb83d2d7d65fe69e4386fa1a3
   languageName: node
   linkType: hard
 
@@ -16709,7 +16711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pyright@npm:^1.1.326":
+"pyright@npm:latest":
   version: 1.1.342
   resolution: "pyright@npm:1.1.342"
   dependencies:
@@ -18567,7 +18569,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tabster@npm:^5.0.1":
+"tabster@npm:^5.0.1, tabster@npm:latest":
   version: 5.2.0
   resolution: "tabster@npm:5.2.0"
   dependencies:
@@ -19179,7 +19181,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.3.3, typescript@npm:>=3 < 6, typescript@npm:^5.2.2, typescript@npm:latest":
+"typescript@npm:5.3.3, typescript@npm:>=3 < 6, typescript@npm:latest":
   version: 5.3.3
   resolution: "typescript@npm:5.3.3"
   bin:
@@ -19199,7 +19201,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.2.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3Alatest#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3Alatest#optional!builtin<compat/typescript>":
   version: 5.3.3
   resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
   bin:
@@ -19786,7 +19788,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-dts@npm:*, vite-plugin-dts@npm:latest":
+"vite-plugin-dts@npm:latest":
   version: 3.6.4
   resolution: "vite-plugin-dts@npm:3.6.4"
   dependencies:
@@ -19818,7 +19820,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-tsconfig-paths@npm:*, vite-tsconfig-paths@npm:latest":
+"vite-tsconfig-paths@npm:latest":
   version: 4.2.2
   resolution: "vite-tsconfig-paths@npm:4.2.2"
   dependencies:
@@ -19834,7 +19836,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:*, vite@npm:^5.0.0, vite@npm:latest":
+"vite@npm:^5.0.0, vite@npm:latest":
   version: 5.0.10
   resolution: "vite@npm:5.0.10"
   dependencies:
@@ -19874,7 +19876,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:*, vitest@npm:latest":
+"vitest@npm:latest":
   version: 1.1.0
   resolution: "vitest@npm:1.1.0"
   dependencies:

@@ -1,7 +1,8 @@
 import React from "react";
 
-import { makeStyles, shorthands, Tab, TabList } from "@fluentui/react-components";
 import { CalendarMonthRegular, CalendarMonthFilled, bundleIcon } from "@fluentui/react-icons";
+
+import { makeStyles, shorthands, Tab, TabList } from "@mas/ui";
 
 const CalendarMonth = bundleIcon(CalendarMonthFilled, CalendarMonthRegular);
 

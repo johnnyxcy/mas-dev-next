@@ -21,9 +21,16 @@
         "url": "https://www.maspectra.com"
     },
     "license": "ISC",
+    "dependencies": {
+        "@fluentui/react-components": "latest",
+        "@mas/base": "*",
+        "handsontable": "latest",
+        "scheduler": "latest"
+    },
     "devDependencies": {
         "@babel/core": "latest",
         "@babel/preset-react": "latest",
+        "@mas/configs": "*",
         "@mas/vite-markdown-plugin": "*",
         "@storybook/addon-essentials": "latest",
         "@storybook/addon-interactions": "latest",
@@ -37,25 +44,16 @@
         "@storybook/testing-library": "latest",
         "@types/react": "latest",
         "@types/react-dom": "latest",
-        "eslint": "*",
+        "eslint": "latest",
         "react": "latest",
         "react-dom": "latest",
         "storybook": "latest",
         "storybook-dark-mode": "latest",
-        "vite": "*",
-        "vite-plugin-dts": "*",
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
         "vite-plugin-lib-inject-css": "latest",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
-    },
-    "peerDependencies": {
-        "@mas/configs": "*",
-        "typescript": "*"
-    },
-    "dependencies": {
-        "@fluentui/react-components": "latest",
-        "@mas/base": "*",
-        "handsontable": "latest",
-        "scheduler": "latest"
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     }
 }

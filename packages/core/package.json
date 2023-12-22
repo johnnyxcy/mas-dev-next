@@ -51,18 +51,18 @@
         "graceful-fs": "latest"
     },
     "devDependencies": {
+        "@mas/configs": "*",
         "@types/wicg-file-system-access": "latest",
-        "@vitest/coverage-istanbul": "*",
-        "eslint": "*",
-        "glob": "*",
-        "vite": "*",
-        "vite-plugin-dts": "*",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
+        "@vitest/coverage-istanbul": "latest",
+        "eslint": "latest",
+        "glob": "latest",
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     },
     "peerDependencies": {
-        "@mas/configs": "*",
-        "electron": "28.0.0",
-        "typescript": "*"
+        "electron": "28.0.0"
     }
 }

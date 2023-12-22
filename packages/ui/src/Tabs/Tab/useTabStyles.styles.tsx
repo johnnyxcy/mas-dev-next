@@ -5,7 +5,7 @@
  *
  * File Created: 12/01/2023 02:59 pm
  *
- * Last Modified: 12/21/2023 06:13 pm
+ * Last Modified: 12/22/2023 03:51 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -236,7 +236,7 @@ const useIndicatorStyles = makeStyles({
 /**
  * Apply styling to the Tab slots based on the state
  */
-export const useTabStyles_unstable = (state: TabState): TabState => {
+export function useTabStyles_unstable(state: TabState): TabState {
     const rootStyles = useCardTabStyles();
     const pendingIndicatorStyles = useDividerStyles();
     const activeIndicatorStyles = useIndicatorStyles();
@@ -273,4 +273,4 @@ export const useTabStyles_unstable = (state: TabState): TabState => {
     });
 
     return state;
-};
+}

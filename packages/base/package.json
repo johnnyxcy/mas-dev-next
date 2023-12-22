@@ -61,18 +61,16 @@
         "yazl": "latest"
     },
     "devDependencies": {
-        "@types/yazl": "latest",
-        "@vitest/coverage-istanbul": "*",
-        "eslint": "*",
-        "fake-indexeddb": "latest",
-        "glob": "*",
-        "vite": "*",
-        "vite-plugin-dts": "*",
-        "vite-tsconfig-paths": "*",
-        "vitest": "*"
-    },
-    "peerDependencies": {
         "@mas/configs": "*",
-        "typescript": "*"
+        "@types/yazl": "latest",
+        "@vitest/coverage-istanbul": "latest",
+        "eslint": "latest",
+        "fake-indexeddb": "latest",
+        "glob": "latest",
+        "typescript": "latest",
+        "vite": "latest",
+        "vite-plugin-dts": "latest",
+        "vite-tsconfig-paths": "latest",
+        "vitest": "latest"
     }
 }
