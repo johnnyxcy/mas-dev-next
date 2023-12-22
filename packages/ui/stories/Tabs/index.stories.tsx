@@ -5,7 +5,7 @@
  *
  * File Created: 12/01/2023 05:38 pm
  *
- * Last Modified: 12/22/2023 04:43 pm
+ * Last Modified: 12/22/2023 04:59 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -22,6 +22,7 @@ export { Default } from "./TabListDefault.stories";
 export { Horizontal } from "./TabListHorizontal.stories";
 export { Vertical } from "./TabListVertical.stories";
 export { Appearance } from "./TabListAppearance.stories";
+export { Actions } from "./TabListActions.stories";
 export { Disabled } from "./TabListDisabled.stories";
 export { SizeSmall } from "./TabListSizeSmall.stories";
 export { SizeMedium } from "./TabListSizeMedium.stories";
