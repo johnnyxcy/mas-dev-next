@@ -233,7 +233,10 @@
         ".debug": "debug",
         ".scripts": "scripts",
         "c++": "project",
-        "runtime": "connection"
+        "runtime": "connection",
+        "ui": "React-components",
+        "spreadsheet": "Stack",
+        "dev-packages": "helper"
     },
     "nxConsole.enableGenerateFromContextMenu": false,
     "nxConsole.enableGeneratorFilters": false,

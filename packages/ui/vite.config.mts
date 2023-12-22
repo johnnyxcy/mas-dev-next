@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 12/21/2023 06:12 pm
+ * Last Modified: 12/22/2023 03:21 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,7 +13,7 @@
  */
 /// <reference types="vitest" />
 
-import { defineConfig } from "vite";
+import { UserConfig, defineConfig } from "vite";
 
 import dts from "vite-plugin-dts";
 import { libInjectCss } from "vite-plugin-lib-inject-css";
@@ -21,7 +21,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 import pkg from "./package.json";
 
-export default defineConfig(() => {
+export default defineConfig(({ command }): UserConfig => {
     return {
         plugins: [
             tsconfigPaths(),
@@ -35,6 +35,7 @@ export default defineConfig(() => {
             },
             libInjectCss(),
         ],
+        assetsInclude: command !== "build" ? ["/sb-preview/runtime.js"] : undefined,
         build: {
             outDir: ".dist/lib",
             lib: {

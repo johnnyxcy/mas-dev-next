@@ -5,7 +5,7 @@
  *
  * File Created: 11/30/2023 04:24 pm
  *
- * Last Modified: 12/21/2023 06:12 pm
+ * Last Modified: 12/22/2023 03:27 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -27,6 +27,7 @@ import { useDarkMode } from "storybook-dark-mode";
 const useStyles = makeStyles({
     root: {
         boxSizing: "border-box",
+        height: "100%",
         ...shorthands.padding(tokens.spacingVerticalXXL, tokens.spacingHorizontalXXL),
     },
 });
