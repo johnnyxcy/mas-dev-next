@@ -1,11 +1,31 @@
 import * as React from "react";
 
-import { Add16Regular, Add16Filled, Dismiss16Filled, Dismiss16Regular, bundleIcon } from "@fluentui/react-icons";
+import {
+    Add16Regular,
+    Add16Filled,
+    Dismiss12Regular,
+    CalendarMonthFilled,
+    CalendarMonthRegular,
+    bundleIcon,
+} from "@fluentui/react-icons";
 
-import { Button, makeStyles, shorthands, Tab, TabList } from "@mas/ui";
+import {
+    Button,
+    makeStyles,
+    Menu,
+    MenuItem,
+    MenuList,
+    MenuPopover,
+    MenuTrigger,
+    shorthands,
+    Tab,
+    TabList,
+    tokens,
+} from "@mas/ui";
 
 const AddIcon = bundleIcon(Add16Filled, Add16Regular);
-const DismissIcon = bundleIcon(Dismiss16Filled, Dismiss16Regular);
+const DismissIcon = Dismiss12Regular;
+const CalendarMonth = bundleIcon(CalendarMonthFilled, CalendarMonthRegular);
 
 const useStyles = makeStyles({
     root: {
@@ -29,13 +49,85 @@ const useStyles = makeStyles({
         justifyContent: "center",
     },
 
-    button: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "20px",
+    dismissButton: {
+        "height": "20px",
+        "width": "20px",
+        "minWidth": "20px",
+        "maxWidth": "20px",
+        ...shorthands.padding(0),
+        ":hover": {
+            backgroundColor: tokens.colorNeutralBackground2Hover,
+        },
+    },
+
+    menuPopover: {
+        zIndex: 3,
     },
 });
+
+type TabWithActionProps = {
+    label: string;
+    value: number;
+    onClick?: (ev: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+    onDismiss?: (
+        ev: React.MouseEvent<HTMLElement, MouseEvent>,
+        target: "current" | "all" | "others" | "left-all" | "right-all",
+    ) => void;
+};
+
+const TabWithAction: React.FC<TabWithActionProps> = ({ label, value, onClick = undefined, onDismiss = undefined }) => {
+    const styles = useStyles();
+    return (
+        <Menu openOnContext inline>
+            <MenuTrigger>
+                <Tab
+                    value={value}
+                    icon={<CalendarMonth />}
+                    iconAfter={
+                        <Button
+                            as="a"
+                            icon={<DismissIcon />}
+                            className={styles.dismissButton}
+                            appearance="subtle"
+                            shape="circular"
+                            onClick={(ev) => {
+                                onDismiss?.(ev, "current");
+                            }}
+                        />
+                    }
+                    onClick={onClick}
+                >
+                    {label}
+                </Tab>
+            </MenuTrigger>
+            <MenuPopover className={styles.menuPopover}>
+                <MenuList>
+                    <MenuItem
+                        onClick={(ev) => {
+                            onDismiss?.(ev, "current");
+                        }}
+                    >
+                        Close
+                    </MenuItem>
+                    <MenuItem
+                        onClick={(ev) => {
+                            onDismiss?.(ev, "others");
+                        }}
+                    >
+                        Close Others
+                    </MenuItem>
+                    <MenuItem
+                        onClick={(ev) => {
+                            onDismiss?.(ev, "all");
+                        }}
+                    >
+                        Close All
+                    </MenuItem>
+                </MenuList>
+            </MenuPopover>
+        </Menu>
+    );
+};
 
 export const Actions = (): JSX.Element => {
     const styles = useStyles();
@@ -55,35 +147,40 @@ export const Actions = (): JSX.Element => {
         },
     ]);
 
+    const [selectedValue, setSelectedValue] = React.useState(2);
+
     const renderTabs = React.useCallback(() => {
-        return tabValues.map(({ value, label }) => (
-            <Tab key={value} value={value}>
-                <div className={styles.tab}>
-                    {label}
-                    <Button
-                        icon={<DismissIcon />}
-                        className={styles.button}
-                        appearance="transparent"
-                        shape="circular"
-                        onClick={(ev) => {
-                            ev.stopPropagation();
-                            setTabValues((v) => v.filter((tab) => tab.value !== value));
-                        }}
-                    />
-                </div>
-            </Tab>
+        return tabValues.map(({ value, label }, index) => (
+            <TabWithAction
+                key={value}
+                value={value}
+                label={label}
+                onDismiss={(ev, target) => {
+                    ev.stopPropagation();
+                    if (target === "current") {
+                        setTabValues((v) => v.filter((t) => t.value !== value));
+                    } else if (target === "all") {
+                        setTabValues([]);
+                    } else if (target === "others") {
+                        setTabValues((v) => v.filter((t) => t.value === value));
+                    }
+                }}
+            />
         ));
-    }, [styles.button, styles.tab, tabValues]);
+    }, [tabValues]);
 
     return (
         <div className={styles.root}>
-            <TabList defaultSelectedValue="tab3" appearance="card">
+            <TabList
+                selectedValue={selectedValue}
+                appearance="card"
+                onTabSelect={(_, data) => setSelectedValue(data.value as number)}
+            >
                 {renderTabs()}
 
                 <div className={styles.action}>
                     <Button
                         icon={<AddIcon />}
-                        className={styles.button}
                         appearance="transparent"
                         shape="circular"
                         onClick={() => {

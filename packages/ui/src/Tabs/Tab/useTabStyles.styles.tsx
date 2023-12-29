@@ -5,13 +5,13 @@
  *
  * File Created: 12/01/2023 02:59 pm
  *
- * Last Modified: 12/22/2023 03:51 pm
+ * Last Modified: 12/29/2023 03:44 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
  * Copyright (c) 2023 Maspectra Dev Team
  */
-import { useTabStyles_unstable as useFuiTabStyles, shorthands } from "@fluentui/react-components";
+import { useTabStyles_unstable as useFuiTabStyles, shorthands, tabClassNames } from "@fluentui/react-components";
 import { tokens } from "@fluentui/react-theme";
 import { makeStyles, mergeClasses } from "@griffel/react";
 
@@ -233,6 +233,58 @@ const useIndicatorStyles = makeStyles({
     },
 });
 
+// These should match the constants defined in @fluentui/react-icons
+// This package avoids taking a dependency on the icons package for only the constants.
+const iconClassNames = {
+    filled: "fui-Icon-filled",
+    regular: "fui-Icon-regular",
+};
+
+/**
+ * Styles for the icon slot.
+ */
+const useIconStyles = makeStyles({
+    base: {
+        gridColumnStart: "auto",
+        gridRowStart: "auto",
+        alignItems: "center",
+        display: "inline-flex",
+        justifyContent: "center",
+        ...shorthands.overflow("hidden"),
+        [`& .${iconClassNames.filled}`]: {
+            display: "none",
+        },
+        [`& .${iconClassNames.regular}`]: {
+            display: "inline",
+        },
+    },
+    // per design, the small and medium font sizes are the same.
+    // the size prop only affects spacing.
+    small: {
+        fontSize: "20px",
+        height: "20px",
+        width: "20px",
+    },
+    medium: {
+        fontSize: "20px",
+        height: "20px",
+        width: "20px",
+    },
+    large: {
+        fontSize: "24px",
+        height: "24px",
+        width: "24px",
+    },
+    selected: {
+        [`& .${iconClassNames.filled}`]: {
+            display: "inline",
+        },
+        [`& .${iconClassNames.regular}`]: {
+            display: "none",
+        },
+    },
+});
+
 /**
  * Apply styling to the Tab slots based on the state
  */
@@ -240,8 +292,9 @@ export function useTabStyles_unstable(state: TabState): TabState {
     const rootStyles = useCardTabStyles();
     const pendingIndicatorStyles = useDividerStyles();
     const activeIndicatorStyles = useIndicatorStyles();
+    const iconStyles = useIconStyles();
 
-    const { appearance, disabled, selected, vertical } = state;
+    const { appearance, disabled, selected, vertical, size } = state;
 
     if (appearance === "card") {
         state.root.className = mergeClasses(
@@ -264,6 +317,16 @@ export function useTabStyles_unstable(state: TabState): TabState {
             disabled && activeIndicatorStyles.disabled,
 
             state.root.className,
+        );
+    }
+
+    if (state.iconAfter) {
+        state.iconAfter.className = mergeClasses(
+            tabClassNames.icon,
+            iconStyles.base,
+            iconStyles[size],
+            selected && iconStyles.selected,
+            state.iconAfter.className,
         );
     }
 

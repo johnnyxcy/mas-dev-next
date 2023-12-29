@@ -21,10 +21,11 @@
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
         "useDefineForClassFields": false,
+        "importHelpers": true,
 
         /* Linting */
         "strict": true,
-        "noUnusedLocals": false,
+        "noUnusedLocals": true,
         "noUnusedParameters": false,
         "noImplicitReturns": true,
         "noImplicitOverride": true,

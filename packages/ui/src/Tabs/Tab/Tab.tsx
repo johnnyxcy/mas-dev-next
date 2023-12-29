@@ -5,7 +5,7 @@
  *
  * File Created: 12/01/2023 02:46 pm
  *
- * Last Modified: 12/21/2023 06:13 pm
+ * Last Modified: 12/29/2023 05:47 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -13,10 +13,12 @@
  */
 import * as React from "react";
 
-import { TabProps, renderTab_unstable, TabState as FuiTabState } from "@fluentui/react-components";
+import { TabState as FuiTabState } from "@fluentui/react-components";
 import { useCustomStyleHook_unstable } from "@fluentui/react-shared-contexts";
 import { ForwardRefComponent } from "@fluentui/react-utilities";
 
+import { TabProps } from "./Tab.types";
+import { renderTab_unstable } from "./renderTab";
 import { useTab_unstable } from "./useTab";
 import { useTabStyles_unstable } from "./useTabStyles.styles";
 

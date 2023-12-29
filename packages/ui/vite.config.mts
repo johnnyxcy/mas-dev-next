@@ -5,7 +5,7 @@
  *
  * File Created: 09/25/2023 10:11 am
  *
- * Last Modified: 12/22/2023 03:21 pm
+ * Last Modified: 12/29/2023 01:19 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -36,6 +36,10 @@ export default defineConfig(({ command }): UserConfig => {
             libInjectCss(),
         ],
         assetsInclude: command !== "build" ? ["/sb-preview/runtime.js"] : undefined,
+        esbuild: {
+            jsxFactory: "createElement",
+            jsxInject: 'import { createElement } from "@fluentui/react-jsx-runtime"',
+        },
         build: {
             outDir: ".dist/lib",
             lib: {
@@ -45,6 +49,7 @@ export default defineConfig(({ command }): UserConfig => {
                 formats: ["es" as const],
                 fileName: (_, entryName) => `${entryName}.js`,
             },
+
             rollupOptions: {
                 external: [...Object.keys(pkg.dependencies || {}), /@mas\/base(.+)?/, /@mas\/i18n(.+)?/, /^node:/],
             },

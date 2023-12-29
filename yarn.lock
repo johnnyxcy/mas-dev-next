@@ -2583,7 +2583,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fluentui/react-jsx-runtime@npm:^9.0.22":
+"@fluentui/react-jsx-runtime@npm:^9.0.22, @fluentui/react-jsx-runtime@npm:latest":
   version: 9.0.22
   resolution: "@fluentui/react-jsx-runtime@npm:9.0.22"
   dependencies:
@@ -3864,6 +3864,7 @@ __metadata:
     "@babel/core": "npm:latest"
     "@babel/preset-react": "npm:latest"
     "@fluentui/react-components": "npm:latest"
+    "@fluentui/react-jsx-runtime": "npm:latest"
     "@mas/base": "npm:*"
     "@mas/configs": "npm:*"
     "@mas/vite-markdown-plugin": "npm:*"

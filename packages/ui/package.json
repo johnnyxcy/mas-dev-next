@@ -24,6 +24,7 @@
     "license": "ISC",
     "dependencies": {
         "@fluentui/react-components": "latest",
+        "@fluentui/react-jsx-runtime": "latest",
         "@mas/base": "*",
         "scheduler": "latest",
         "tabster": "latest"

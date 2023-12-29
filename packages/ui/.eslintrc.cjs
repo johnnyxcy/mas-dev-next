@@ -5,7 +5,7 @@
  *
  * File Created: 09/13/2023 03:13 pm
  *
- * Last Modified: 12/21/2023 06:12 pm
+ * Last Modified: 12/29/2023 05:47 pm
  *
  * Modified By: Johnny Xu <johnny.xcy1997@outlook.com>
  *
@@ -27,4 +27,12 @@ module.exports = {
         "i18next/no-literal-string": "off",
         "unicorn/filename-case": "off",
     },
+    overrides: [
+        {
+            files: ["*.tsx"],
+            rules: {
+                "react/react-in-jsx-scope": "off",
+            },
+        },
+    ],
 };
